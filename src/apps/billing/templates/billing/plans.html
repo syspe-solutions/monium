@@ -1,0 +1,112 @@
+{% extends 'common/layouts/base-aside.html' %}
+{% load i18n %}
+
+{% block title %}Plans — Monium{% endblock %}
+
+{% block content %}
+<div class="flex-1 overflow-y-auto p-6 lg:p-8 space-y-10">
+
+    <!-- Header -->
+    <div class="text-center space-y-2">
+        <div class="inline-flex items-center gap-2 bg-zinc-800 text-zinc-400 text-xs font-medium px-3 py-1 rounded-full mb-2">
+            <span class="material-symbols-outlined text-sm leading-none">rocket_launch</span>
+            {% trans "Simple, transparent pricing" %}
+        </div>
+        <h1 class="text-3xl font-bold text-white">{% trans "Choose your plan" %}</h1>
+        <p class="text-zinc-400 text-sm max-w-xl mx-auto">
+            {% trans "Start for free. Upgrade as you grow. No surprise fees." %}
+        </p>
+    </div>
+
+    <!-- Plans grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5 max-w-6xl mx-auto">
+        {% for plan in plans %}
+        <div class="relative flex flex-col rounded-2xl border
+                    {% if plan.highlight %}
+                        border-white/20 bg-zinc-800 shadow-xl shadow-black/40
+                    {% else %}
+                        border-zinc-800 bg-zinc-900
+                    {% endif %}
+                    p-6">
+
+            {% if plan.badge %}
+            <div class="absolute -top-3 left-1/2 -translate-x-1/2">
+                <span class="bg-white text-zinc-950 text-xs font-semibold px-3 py-0.5 rounded-full shadow">
+                    {{ plan.badge }}
+                </span>
+            </div>
+            {% endif %}
+
+            <!-- Plan name & description -->
+            <div class="mb-5">
+                <h2 class="text-white font-bold text-lg">{{ plan.name }}</h2>
+                <p class="text-zinc-500 text-xs mt-1 leading-relaxed">{{ plan.description }}</p>
+            </div>
+
+            <!-- Price -->
+            <div class="mb-6">
+                {% if plan.price %}
+                    <div class="flex items-end gap-1">
+                        <span class="text-zinc-400 text-sm self-start mt-1">R$</span>
+                        <span class="text-4xl font-bold text-white leading-none">{{ plan.price }}</span>
+                        <span class="text-zinc-500 text-xs pb-1">/{% trans plan.period %}</span>
+                    </div>
+                {% elif plan.id == "free" %}
+                    <span class="text-4xl font-bold text-white">{% trans "Free" %}</span>
+                {% else %}
+                    <span class="text-4xl font-bold text-white">{% trans "Custom" %}</span>
+                {% endif %}
+            </div>
+
+            <!-- CTA -->
+            {% if plan.cta_disabled %}
+            <button disabled
+                    class="w-full py-2 px-4 rounded-lg text-sm font-medium mb-6
+                           bg-zinc-800 text-zinc-500 border border-zinc-700 cursor-default">
+                {% trans plan.cta %}
+            </button>
+            {% elif plan.highlight %}
+            <button class="w-full py-2 px-4 rounded-lg text-sm font-medium mb-6
+                           bg-white text-zinc-950 hover:bg-zinc-100 transition">
+                {% trans plan.cta %}
+            </button>
+            {% else %}
+            <button class="w-full py-2 px-4 rounded-lg text-sm font-medium mb-6
+                           bg-zinc-800 text-zinc-200 border border-zinc-700 hover:bg-zinc-700 transition">
+                {% trans plan.cta %}
+            </button>
+            {% endif %}
+
+            <!-- Features -->
+            <ul class="space-y-2.5 flex-1">
+                {% for icon, label in plan.features %}
+                <li class="flex items-center gap-2 text-sm
+                           {% if icon == 'check' %}text-zinc-200{% else %}text-zinc-600{% endif %}">
+                    <span class="material-symbols-outlined text-sm leading-none shrink-0
+                                 {% if icon == 'check' %}text-green-500{% else %}text-zinc-700{% endif %}">
+                        {% if icon == 'check' %}check_circle{% else %}cancel{% endif %}
+                    </span>
+                    {{ label }}
+                </li>
+                {% endfor %}
+            </ul>
+
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- FAQ / note -->
+    <div class="max-w-2xl mx-auto text-center space-y-3 pb-6">
+        <p class="text-zinc-600 text-xs">
+            {% trans "All plans include SSL encryption, automatic backups, and uptime SLA." %}
+            {% trans "Prices in BRL. Billing is monthly. Cancel anytime." %}
+        </p>
+        <a href="mailto:contact@monium.app"
+           class="inline-flex items-center gap-1 text-zinc-500 hover:text-zinc-300 text-xs transition">
+            <span class="material-symbols-outlined text-sm leading-none">mail</span>
+            {% trans "Questions? Contact us" %}
+        </a>
+    </div>
+
+</div>
+{% endblock %}
