@@ -1,0 +1,19 @@
+{
+  "name": "monium-assets",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "npm run build:ts && npm run build:css",
+    "build:ts": "node build.mjs",
+    "build:css": "tailwindcss -i ./apps/common/web/static/common/css/input.css -o ./apps/common/web/static/common/css/tailwind.css --minify",
+    "typecheck": "tsc --noEmit",
+    "watch:ts": "node build.mjs --watch",
+    "watch:css": "CHOKIDAR_USEPOLLING=1 tailwindcss -i ./apps/common/web/static/common/css/input.css -o ./apps/common/web/static/common/css/tailwind.css --watch"
+  },
+  "devDependencies": {
+    "esbuild": "^0.24.0",
+    "glob": "^11.0.0",
+    "tailwindcss": "^3.4.0",
+    "typescript": "^5.3.0"
+  }
+}

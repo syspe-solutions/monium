@@ -1,0 +1,1535 @@
+# Monium — Portuguese (Brazil) translations
+# Copyright (C) 2026 Monium
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Monium 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-30 00:00-0300\n"
+"PO-Revision-Date: 2026-06-30 00:00-0300\n"
+"Last-Translator: Jonathas Cardoso\n"
+"Language-Team: Portuguese (Brazil)\n"
+"Language: pt_BR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+# ── Monium logo alt ──────────────────────────────────────────────────────────
+msgid "Monium logo"
+msgstr "Logo do Monium"
+
+# ── Auth — Form widgets ──────────────────────────────────────────────────────
+msgid "Username"
+msgstr "Usuário"
+
+msgid "Your username"
+msgstr "Seu nome de usuário"
+
+msgid "Your password"
+msgstr "Sua senha"
+
+msgid "E-mail address"
+msgstr "Endereço de e-mail"
+
+msgid "example@email.com"
+msgstr "exemplo@email.com"
+
+msgid "Password"
+msgstr "Senha"
+
+msgid "Your secure password"
+msgstr "Sua senha segura"
+
+msgid "Confirm password"
+msgstr "Confirmar senha"
+
+msgid "Confirm your password"
+msgstr "Confirme sua senha"
+
+msgid "Passwords do not match."
+msgstr "As senhas não coincidem."
+
+# ── Auth — Login ─────────────────────────────────────────────────────────────
+msgid "Welcome back!"
+msgstr "Bem-vindo de volta!"
+
+msgid "Please log in to your account"
+msgstr "Faça login na sua conta"
+
+msgid "Forgot your password?"
+msgstr "Esqueceu sua senha?"
+
+msgid "Signin"
+msgstr "Entrar"
+
+msgid "Don't have an account yet?"
+msgstr "Ainda não tem uma conta?"
+
+msgid "Click here"
+msgstr "Clique aqui"
+
+# ── Auth — Register ──────────────────────────────────────────────────────────
+msgid "Create your account!"
+msgstr "Crie sua conta!"
+
+msgid "Join us! Create your account today"
+msgstr "Junte-se a nós! Crie sua conta hoje"
+
+msgid "Register"
+msgstr "Registrar"
+
+msgid "Already have an account?"
+msgstr "Já possui uma conta?"
+
+# ── Auth — Password reset ─────────────────────────────────────────────────────
+msgid "Recover your account"
+msgstr "Recuperar sua conta"
+
+msgid "Enter your email to receive reset instructions"
+msgstr "Digite seu e-mail para receber instruções de redefinição"
+
+msgid "Send instructions"
+msgstr "Enviar instruções"
+
+msgid "Back to login"
+msgstr "Voltar ao login"
+
+msgid "Email sent!"
+msgstr "E-mail enviado!"
+
+msgid "If the email you entered is registered, you will receive a link to reset your password."
+msgstr "Se o e-mail informado estiver cadastrado, você receberá um link para redefinir sua senha."
+
+msgid "Define a new password"
+msgstr "Definir nova senha"
+
+msgid "Save new password"
+msgstr "Salvar nova senha"
+
+msgid "Password changed successfully!"
+msgstr "Senha alterada com sucesso!"
+
+msgid "You can now log in using your new password."
+msgstr "Agora você já pode entrar com sua nova senha."
+
+msgid "Go to login"
+msgstr "Ir para o login"
+
+# ── Sidebar ──────────────────────────────────────────────────────────────────
+msgid "Collapse menu"
+msgstr "Retrair menu"
+
+msgid "Home"
+msgstr "Início"
+
+msgid "Inventory"
+msgstr "Inventário"
+
+msgid "Categories"
+msgstr "Categorias"
+
+msgid "Register Item"
+msgstr "Cadastrar Item"
+
+msgid "Account"
+msgstr "Conta"
+
+msgid "Logout"
+msgstr "Sair"
+
+msgid "Language"
+msgstr "Idioma"
+
+# ── Home (dashboard) ─────────────────────────────────────────────────────────
+msgid "Hello, %(name)s 👋"
+msgstr "Olá, %(name)s 👋"
+
+msgid "Here's an overview of today's inventory."
+msgstr "Aqui está um resumo do inventário hoje."
+
+msgid "New Item"
+msgstr "Novo Item"
+
+msgid "Total"
+msgstr "Total"
+
+msgid "registered items"
+msgstr "itens cadastrados"
+
+msgid "Active"
+msgstr "Ativos"
+
+msgid "Maintenance"
+msgstr "Manutenção"
+
+msgid "in maintenance"
+msgstr "em manutenção"
+
+msgid "Missing"
+msgstr "Extraviados"
+
+msgid "missing"
+msgstr "extraviados"
+
+msgid "Written Off"
+msgstr "Baixados"
+
+msgid "written off"
+msgstr "baixados"
+
+msgid "Alerts & Pending"
+msgstr "Alertas e Pendências"
+
+msgid "Quick Actions"
+msgstr "Ações Rápidas"
+
+msgid "Register new item"
+msgstr "Cadastrar novo item"
+
+msgid "View items by category"
+msgstr "Ver itens por categoria"
+
+msgid "Items by Category"
+msgstr "Itens por Categoria"
+
+msgid "No category with items yet."
+msgstr "Nenhuma categoria com itens ainda."
+
+msgid "Top Sectors"
+msgstr "Top Setores"
+
+msgid "No sector with items yet."
+msgstr "Nenhum setor com itens ainda."
+
+msgid "items"
+msgstr "itens"
+
+msgid "Latest Registered Items"
+msgstr "Últimos Itens Cadastrados"
+
+msgid "View all"
+msgstr "Ver todos"
+
+msgid "Code"
+msgstr "Código"
+
+msgid "Name"
+msgstr "Nome"
+
+msgid "Category"
+msgstr "Categoria"
+
+msgid "Sector"
+msgstr "Setor"
+
+msgid "Status"
+msgstr "Status"
+
+msgid "Registered at"
+msgstr "Cadastrado em"
+
+msgid "No items registered yet."
+msgstr "Nenhum item cadastrado ainda."
+
+msgid "Register now"
+msgstr "Cadastrar agora"
+
+msgid "No alerts at the moment. All good!"
+msgstr "Nenhum alerta no momento. Tudo certo!"
+
+msgid "overdue loan"
+msgstr "empréstimo em atraso"
+
+msgid "overdue loans"
+msgstr "empréstimos em atraso"
+
+msgid "loans past due (unmarked)"
+msgstr "empréstimos com prazo vencido (não marcado)"
+
+msgid "open maintenance over 7 days"
+msgstr "manutenções abertas há mais de 7 dias"
+
+msgid "item in poor condition and still active"
+msgstr "item em condição ruim e ainda ativo"
+
+msgid "items in poor condition and still active"
+msgstr "itens em condição ruim e ainda ativos"
+
+# ── Item form ────────────────────────────────────────────────────────────────
+msgid "New Item — Inventory"
+msgstr "Novo Item — Inventário"
+
+msgid "Fill in the details to register an item in the inventory"
+msgstr "Preencha os dados para cadastrar um item no inventário"
+
+msgid "Identification"
+msgstr "Identificação"
+
+msgid "Code / Asset Number"
+msgstr "Código / Patrimônio"
+
+msgid "Description"
+msgstr "Descrição"
+
+msgid "Location"
+msgstr "Localização"
+
+msgid "Specific location"
+msgstr "Localização específica"
+
+msgid "Responsible"
+msgstr "Responsável"
+
+msgid "Condition"
+msgstr "Condição"
+
+msgid "Notes"
+msgstr "Observações"
+
+msgid "Technical Specifications"
+msgstr "Especificações Técnicas"
+
+msgid "(optional)"
+msgstr "(opcional)"
+
+msgid "Brand"
+msgstr "Marca"
+
+msgid "Select a brand"
+msgstr "Selecione uma marca"
+
+msgid "+ New brand..."
+msgstr "+ Nova marca..."
+
+msgid "Enter the name of the new brand"
+msgstr "Digite o nome da nova marca"
+
+msgid "Model"
+msgstr "Modelo"
+
+msgid "Serial Number"
+msgstr "Número de série"
+
+msgid "Image"
+msgstr "Imagem"
+
+msgid "Cancel"
+msgstr "Cancelar"
+
+msgid "Save Item"
+msgstr "Salvar Item"
+
+# ── Footer ───────────────────────────────────────────────────────────────────
+msgid "Simplify your management with style. Track performance and reach with Monium."
+msgstr "Simplifique sua gestão com estilo. Acompanhe desempenho e alcance com o Monium."
+
+msgid "Navigation"
+msgstr "Navegação"
+
+msgid "Contact"
+msgstr "Contato"
+
+msgid "All rights reserved."
+msgstr "Todos os direitos reservados."
+
+# ── Header ───────────────────────────────────────────────────────────────────
+msgid "My Account"
+msgstr "Minha Conta"
+
+# ── Profile ───────────────────────────────────────────────────────────────────
+msgid "My Profile"
+msgstr "Meu Perfil"
+
+msgid "Manage your personal information and account settings"
+msgstr "Gerencie suas informações pessoais e configurações de conta"
+
+msgid "Pending changes"
+msgstr "Alterações pendentes"
+
+msgid "Basic Information"
+msgstr "Informações Básicas"
+
+msgid "First Name"
+msgstr "Primeiro Nome"
+
+msgid "Last Name"
+msgstr "Sobrenome"
+
+msgid "Date of Birth"
+msgstr "Data de Nascimento"
+
+msgid "About You"
+msgstr "Sobre Você"
+
+msgid "Bio"
+msgstr "Bio"
+
+msgid "Website / Link"
+msgstr "Website / Link"
+
+msgid "Back"
+msgstr "Voltar"
+
+msgid "Save Changes"
+msgstr "Salvar Alterações"
+
+msgid "Saving..."
+msgstr "Salvando..."
+
+msgid "Security"
+msgstr "Segurança"
+
+msgid "Keep your account protected by changing your password periodically."
+msgstr "Mantenha sua conta protegida alterando sua senha periodicamente."
+
+msgid "Change Password"
+msgstr "Alterar Senha"
+
+msgid "Danger Zone"
+msgstr "Zona de Perigo"
+
+msgid "Account deletion is permanent and cannot be undone."
+msgstr "A exclusão da conta é permanente e não pode ser desfeita."
+
+msgid "Delete my account"
+msgstr "Apagar minha conta"
+
+msgid "Preview"
+msgstr "Pré-visualização"
+
+# ── Change password modal ─────────────────────────────────────────────────────
+msgid "Current Password"
+msgstr "Senha Atual"
+
+msgid "New Password"
+msgstr "Nova Senha"
+
+msgid "Confirm New Password"
+msgstr "Confirmar Nova Senha"
+
+msgid "Update"
+msgstr "Atualizar"
+
+# ── Deactivate modal ──────────────────────────────────────────────────────────
+msgid "Your account will be deactivated and permanently deleted after 30 days."
+msgstr "Sua conta será desativada e excluída permanentemente após 30 dias."
+
+msgid "Deactivate"
+msgstr "Desativar"
+
+# ── Cancel deactivate ─────────────────────────────────────────────────────────
+msgid "Deletion cancelled"
+msgstr "Exclusão cancelada"
+
+msgid "Your account deactivation request has been cancelled. Your account remains active."
+msgstr "Sua solicitação de desativação foi cancelada. Sua conta continua ativa."
+
+# ── Dashboard (categories) ───────────────────────────────────────────────────
+msgid "Management view of items by category"
+msgstr "Visão gerencial de itens por categoria"
+
+msgid "Items by category"
+msgstr "Itens por categoria"
+
+msgid "Distribution"
+msgstr "Distribuição"
+
+msgid "No categories registered yet."
+msgstr "Nenhuma categoria cadastrada ainda."
+
+# ── Home misc ────────────────────────────────────────────────────────────────
+msgid "since"
+msgstr "desde"
+
+msgid "%(count)s overdue loan"
+msgstr "%(count)s empréstimo em atraso"
+
+msgid "%(count)s overdue loans"
+msgstr "%(count)s empréstimos em atraso"
+
+msgid "%(count)s loan past due (unmarked)"
+msgstr "%(count)s empréstimo com prazo vencido (não marcado)"
+
+msgid "%(count)s loans past due (unmarked)"
+msgstr "%(count)s empréstimos com prazo vencido (não marcado)"
+
+msgid "%(count)s open maintenance over 7 days"
+msgstr "%(count)s manutenção aberta há mais de 7 dias"
+
+msgid "%(count)s open maintenances over 7 days"
+msgstr "%(count)s manutenções abertas há mais de 7 dias"
+
+msgid "%(count)s item in poor condition and still active"
+msgstr "%(count)s item em condição ruim e ainda ativo"
+
+msgid "%(count)s items in poor condition and still active"
+msgstr "%(count)s itens em condição ruim e ainda ativos"
+
+msgid "%(count)s items"
+msgstr "%(count)s itens"
+
+# ── Item form — JS strings ────────────────────────────────────────────────────
+msgid "Similar brand already exists"
+msgstr "Marca similar já existe"
+
+msgid "similarity"
+msgstr "de semelhança"
+
+msgid "Select it from the list or use a different name."
+msgstr "Selecione-a na lista ou use um nome diferente."
+
+# ── Base-aside ────────────────────────────────────────────────────────────────
+msgid "Open menu"
+msgstr "Abrir menu"
+
+# ── 404 ──────────────────────────────────────────────────────────────────────
+msgid "Page Not Found"
+msgstr "Página Não Encontrada"
+
+msgid "Sorry, the page you're looking for does not exist."
+msgstr "Desculpe, a página que você está procurando não existe."
+
+msgid "Back to Home"
+msgstr "Voltar ao Início"
+
+# ── Public nav ────────────────────────────────────────────────────────────────
+msgid "Services"
+msgstr "Serviços"
+
+msgid "Plans"
+msgstr "Planos"
+
+msgid "Go to app"
+msgstr "Ir para o app"
+
+msgid "Log in"
+msgstr "Entrar"
+
+msgid "Get started"
+msgstr "Começar"
+
+# ── Home / landing ────────────────────────────────────────────────────────────
+msgid "Now in early access — start free"
+msgstr "Em acesso antecipado — comece grátis"
+
+msgid "Your entire inventory,"
+msgstr "Todo o seu inventário,"
+
+msgid "under control."
+msgstr "sob controle."
+
+msgid "Monium replaces spreadsheets with a clean, fast system for tracking assets, loans, and maintenance — so your team spends less time looking for things and more time using them."
+msgstr "O Monium substitui planilhas por um sistema limpo e rápido para rastrear ativos, empréstimos e manutenções — para sua equipe gastar menos tempo procurando coisas e mais tempo usando."
+
+msgid "Start for free"
+msgstr "Comece de graça"
+
+msgid "See plans"
+msgstr "Ver planos"
+
+msgid "No credit card required. Free forever up to 50 items."
+msgstr "Sem cartão de crédito. Gratuito para sempre até 50 itens."
+
+msgid "across 12 sectors"
+msgstr "em 12 setores"
+
+msgid "open tickets"
+msgstr "chamados abertos"
+
+msgid "past due date"
+msgstr "com prazo vencido"
+
+msgid "assets tracked"
+msgstr "ativos monitorados"
+
+msgid "teams onboarded"
+msgstr "times cadastrados"
+
+msgid "satisfaction rate"
+msgstr "de satisfação"
+
+msgid "avg. item lookup"
+msgstr "busca média de item"
+
+msgid "Why Monium?"
+msgstr "Por que o Monium?"
+
+msgid "Built for teams that are tired of spreadsheets and too-complex ERPs."
+msgstr "Feito para times que estão cansados de planilhas e ERPs complexos demais."
+
+msgid "Everything you need"
+msgstr "Tudo que você precisa"
+
+msgid "One platform. All your asset management needs."
+msgstr "Uma plataforma. Todas as suas necessidades de gestão de ativos."
+
+msgid "View all services"
+msgstr "Ver todos os serviços"
+
+msgid "Learn more"
+msgstr "Saiba mais"
+
+msgid "Simple pricing"
+msgstr "Preços simples"
+
+msgid "Start free. No credit card. Upgrade when you're ready."
+msgstr "Comece de graça. Sem cartão. Faça upgrade quando quiser."
+
+msgid "Up to 50 items"
+msgstr "Até 50 itens"
+
+msgid "Popular"
+msgstr "Popular"
+
+msgid "month"
+msgstr "mês"
+
+msgid "Unlimited items + API"
+msgstr "Itens ilimitados + API"
+
+msgid "Get Pro"
+msgstr "Assinar Pro"
+
+msgid "Custom"
+msgstr "Personalizado"
+
+msgid "Unlimited + SLA + SSO"
+msgstr "Ilimitado + SLA + SSO"
+
+msgid "Talk to us"
+msgstr "Fale conosco"
+
+msgid "Compare all plans in detail"
+msgstr "Comparar todos os planos em detalhe"
+
+msgid "Ready to take control of your inventory?"
+msgstr "Pronto para ter controle do seu inventário?"
+
+msgid "Join 500+ teams already using Monium. Set up your account in under 5 minutes."
+msgstr "Junte-se a mais de 500 times que já usam o Monium. Configure sua conta em menos de 5 minutos."
+
+msgid "Create free account"
+msgstr "Criar conta grátis"
+
+msgid "Read FAQ"
+msgstr "Ler FAQ"
+
+# ── Differentials ─────────────────────────────────────────────────────────────
+msgid "Up and running in minutes"
+msgstr "Pronto para usar em minutos"
+
+msgid "No lengthy onboarding. Create an account, import your items via CSV or add them one by one, and your team is productive the same day."
+msgstr "Sem onboarding demorado. Crie uma conta, importe seus itens via CSV ou adicione um por um, e sua equipe já é produtiva no mesmo dia."
+
+msgid "Find any item instantly"
+msgstr "Encontre qualquer item instantaneamente"
+
+msgid "Search by name, code, sector, responsible, or scan a QR label. What used to take 20 minutes now takes seconds."
+msgstr "Busque por nome, código, setor, responsável ou escaneie uma etiqueta QR. O que antes levava 20 minutos agora leva segundos."
+
+msgid "Proactive alerts — not reactive panic"
+msgstr "Alertas proativos — não pânico reativo"
+
+msgid "Automatic emails for overdue loans, long-running maintenance, and items in poor condition. You're always one step ahead."
+msgstr "E-mails automáticos para empréstimos atrasados, manutenções prolongadas e itens em mau estado. Você está sempre um passo à frente."
+
+msgid "Secure and LGPD compliant"
+msgstr "Seguro e em conformidade com a LGPD"
+
+msgid "All data stored in Brazil with TLS 1.3 encryption, daily backups, and role-based access control so only the right people see the right data."
+msgstr "Todos os dados armazenados no Brasil com criptografia TLS 1.3, backups diários e controle de acesso por função para que só as pessoas certas vejam os dados certos."
+
+msgid "Works on any device"
+msgstr "Funciona em qualquer dispositivo"
+
+msgid "Fully responsive web app. Use it on desktop for full management or on mobile for quick lookups and QR scanning — no app install needed."
+msgstr "Web app totalmente responsivo. Use no desktop para gestão completa ou no celular para consultas rápidas e leitura de QR — sem precisar instalar nada."
+
+msgid "Real humans behind support"
+msgstr "Suporte humano de verdade"
+
+msgid "We answer emails, not bots. Priority support for Pro users with guaranteed response times and onboarding assistance for Enterprise."
+msgstr "Respondemos e-mails, não robôs. Suporte prioritário para usuários Pro com tempo de resposta garantido e assistência de onboarding para Enterprise."
+
+# ── Services listing ──────────────────────────────────────────────────────────
+msgid "What Monium offers"
+msgstr "O que o Monium oferece"
+
+msgid "A complete platform to manage every aspect of your organization's physical assets — from registration to write-off."
+msgstr "Uma plataforma completa para gerenciar cada aspecto dos ativos físicos da sua organização — do cadastro ao descarte."
+
+msgid "Ready to get started?"
+msgstr "Pronto para começar?"
+
+msgid "All features available on the Free plan — no credit card needed."
+msgstr "Todos os recursos disponíveis no plano Free — sem cartão de crédito."
+
+msgid "View plans"
+msgstr "Ver planos"
+
+# ── Service names & taglines ──────────────────────────────────────────────────
+msgid "Inventory Control"
+msgstr "Controle de Inventário"
+
+msgid "Complete visibility over every physical asset."
+msgstr "Visibilidade completa de cada ativo físico."
+
+msgid "Loan Management"
+msgstr "Gestão de Empréstimos"
+
+msgid "Know exactly who has what — and when it's due back."
+msgstr "Saiba exatamente quem tem o quê — e quando deve devolver."
+
+msgid "Maintenance Tracking"
+msgstr "Rastreamento de Manutenção"
+
+msgid "Keep your assets running. Never miss a maintenance."
+msgstr "Mantenha seus ativos funcionando. Nunca perca uma manutenção."
+
+msgid "Reports & Analytics"
+msgstr "Relatórios e Análises"
+
+msgid "Turn inventory data into actionable decisions."
+msgstr "Transforme dados de inventário em decisões acionáveis."
+
+msgid "QR Code Labels"
+msgstr "Etiquetas QR Code"
+
+msgid "Scan any asset and get its full history instantly."
+msgstr "Escaneie qualquer ativo e veja seu histórico completo na hora."
+
+msgid "Team Management"
+msgstr "Gestão de Equipe"
+
+msgid "Collaborate with your entire team, with proper access control."
+msgstr "Colabore com toda a sua equipe, com controle de acesso adequado."
+
+# ── Service descriptions ──────────────────────────────────────────────────────
+msgid "Register, categorize, and locate every item in your organization in seconds. Monium's inventory control gives you a live view of assets distributed across sectors, locations, and responsible parties — eliminating manual spreadsheets."
+msgstr "Cadastre, categorize e localize cada item da sua organização em segundos. O controle de inventário do Monium oferece uma visão em tempo real dos ativos distribuídos por setores, locais e responsáveis — eliminando planilhas manuais."
+
+msgid "Track every item that leaves its designated location. Register loans to employees, sectors, or external parties with expected return dates. Receive automatic alerts when items are overdue, preventing losses and improving accountability."
+msgstr "Rastreie cada item que sai do seu local designado. Registre empréstimos para funcionários, setores ou partes externas com datas de devolução esperadas. Receba alertas automáticos quando itens estiverem atrasados, prevenindo perdas e melhorando a responsabilidade."
+
+msgid "Schedule preventive maintenances and track corrective ones. Log every intervention, associate costs and technicians, and monitor open tickets. Monium alerts you when items have been in maintenance for too long or when preventive dates are due."
+msgstr "Agende manutenções preventivas e acompanhe as corretivas. Registre cada intervenção, associe custos e técnicos, e monitore chamados abertos. O Monium alerta quando itens ficam em manutenção por tempo demais ou quando datas preventivas se aproximam."
+
+msgid "From real-time dashboards to scheduled PDF reports, Monium gives you the data you need to make informed asset decisions. Export to CSV for custom analysis, or receive weekly summary emails directly in your inbox."
+msgstr "De dashboards em tempo real a relatórios PDF agendados, o Monium fornece os dados necessários para decisões informadas sobre ativos. Exporte para CSV para análise personalizada ou receba resumos semanais diretamente no seu e-mail."
+
+msgid "Generate print-ready QR code label sheets for your entire inventory. Attach them to physical assets and scan from any smartphone to instantly view or update item details, current location, and loan status."
+msgstr "Gere folhas de etiquetas QR prontas para impressão de todo o seu inventário. Fixe-as nos ativos físicos e escaneie de qualquer smartphone para ver ou atualizar detalhes do item, localização atual e status de empréstimo."
+
+msgid "Invite team members and assign roles to control what each person can see and do. Operators can register and update items, while managers get full reporting access. Every action is logged with the responsible user for full accountability."
+msgstr "Convide membros da equipe e atribua funções para controlar o que cada pessoa pode ver e fazer. Operadores podem cadastrar e atualizar itens, enquanto gerentes têm acesso completo aos relatórios. Cada ação é registrada com o usuário responsável."
+
+# ── Service for_whom ──────────────────────────────────────────────────────────
+msgid "Operations and facilities managers"
+msgstr "Gerentes de operações e facilities"
+
+msgid "IT departments tracking equipment"
+msgstr "Departamentos de TI rastreando equipamentos"
+
+msgid "Schools and universities managing lab assets"
+msgstr "Escolas e universidades gerenciando ativos de laboratório"
+
+msgid "NGOs and public institutions controlling patrimony"
+msgstr "ONGs e instituições públicas controlando patrimônio"
+
+msgid "HR teams managing tool or equipment loans"
+msgstr "Times de RH gerenciando empréstimos de ferramentas ou equipamentos"
+
+msgid "IT departments tracking laptops and peripherals"
+msgstr "Departamentos de TI rastreando notebooks e periféricos"
+
+msgid "Events teams lending AV equipment"
+msgstr "Times de eventos emprestando equipamentos audiovisuais"
+
+msgid "Labs managing shared instruments"
+msgstr "Laboratórios gerenciando instrumentos compartilhados"
+
+msgid "Maintenance teams in factories and warehouses"
+msgstr "Times de manutenção em fábricas e armazéns"
+
+msgid "Facilities managers in office buildings"
+msgstr "Gerentes de facilities em prédios comerciais"
+
+msgid "Fleet managers tracking vehicle upkeep"
+msgstr "Gestores de frota acompanhando a manutenção de veículos"
+
+msgid "Technical support teams managing repair workflows"
+msgstr "Times de suporte técnico gerenciando fluxos de reparo"
+
+msgid "CFOs and finance teams needing asset valuation"
+msgstr "CFOs e times financeiros precisando de valoração de ativos"
+
+msgid "Operations managers monitoring sector performance"
+msgstr "Gerentes de operações monitorando desempenho por setor"
+
+msgid "Auditors requiring documented asset registers"
+msgstr "Auditores exigindo registros documentados de ativos"
+
+msgid "Directors wanting executive summary dashboards"
+msgstr "Diretores que querem dashboards de resumo executivo"
+
+msgid "Asset managers labeling physical equipment"
+msgstr "Gestores de ativos etiquetando equipamentos físicos"
+
+msgid "Warehouse teams doing quick inventory checks"
+msgstr "Times de armazém fazendo verificações rápidas de inventário"
+
+msgid "IT departments tagging computers and peripherals"
+msgstr "Departamentos de TI etiquetando computadores e periféricos"
+
+msgid "Schools labeling books, furniture, and lab equipment"
+msgstr "Escolas etiquetando livros, mobiliário e equipamentos de laboratório"
+
+msgid "Organizations with multiple departments accessing inventory"
+msgstr "Organizações com múltiplos departamentos acessando o inventário"
+
+msgid "Operations managers delegating data entry"
+msgstr "Gerentes de operações delegando entrada de dados"
+
+msgid "Security-conscious teams needing role separation"
+msgstr "Times preocupados com segurança que precisam de separação de funções"
+
+msgid "Businesses with external auditors needing read-only access"
+msgstr "Empresas com auditores externos que precisam de acesso somente leitura"
+
+# ── Service steps ─────────────────────────────────────────────────────────────
+msgid "Add"
+msgstr "Adicionar"
+
+msgid "Add items with code, category, sector, condition, and responsible party."
+msgstr "Adicione itens com código, categoria, setor, condição e responsável."
+
+msgid "Label"
+msgstr "Etiquetar"
+
+msgid "Generate and print QR code labels to physically identify each asset."
+msgstr "Gere e imprima etiquetas QR para identificar fisicamente cada ativo."
+
+msgid "Track"
+msgstr "Rastrear"
+
+msgid "Search, filter, and locate items instantly from any device."
+msgstr "Busque, filtre e localize itens instantaneamente de qualquer dispositivo."
+
+msgid "Report"
+msgstr "Relatório"
+
+msgid "Generate PDF and CSV reports for audits, insurance, or internal reviews."
+msgstr "Gere relatórios em PDF e CSV para auditorias, seguros ou revisões internas."
+
+msgid "Assign"
+msgstr "Atribuir"
+
+msgid "Associate an item to a person or sector with a return date."
+msgstr "Associe um item a uma pessoa ou setor com data de devolução."
+
+msgid "Alert"
+msgstr "Alertar"
+
+msgid "Receive automatic alerts when the return deadline approaches."
+msgstr "Receba alertas automáticos quando o prazo de devolução se aproximar."
+
+msgid "Return"
+msgstr "Devolver"
+
+msgid "Register the return and automatically restore item availability."
+msgstr "Registre a devolução e restaure automaticamente a disponibilidade do item."
+
+msgid "History"
+msgstr "Histórico"
+
+msgid "Full loan history per item and per person for accountability."
+msgstr "Histórico completo de empréstimos por item e por pessoa para responsabilização."
+
+msgid "Schedule"
+msgstr "Agendar"
+
+msgid "Set preventive maintenance dates per item category or individually."
+msgstr "Defina datas de manutenção preventiva por categoria de item ou individualmente."
+
+msgid "Execute"
+msgstr "Executar"
+
+msgid "Log the intervention with technician, date, cost, and notes."
+msgstr "Registre a intervenção com técnico, data, custo e observações."
+
+msgid "Close"
+msgstr "Encerrar"
+
+msgid "Mark the ticket as resolved and restore the item to active status."
+msgstr "Marque o chamado como resolvido e restaure o item para status ativo."
+
+msgid "Analyze"
+msgstr "Analisar"
+
+msgid "View maintenance history and cost per asset for ROI decisions."
+msgstr "Veja o histórico de manutenção e custo por ativo para decisões de ROI."
+
+msgid "Dashboard"
+msgstr "Dashboard"
+
+msgid "Real-time overview of inventory status, alerts, and trends."
+msgstr "Visão em tempo real do status do inventário, alertas e tendências."
+
+msgid "PDF"
+msgstr "PDF"
+
+msgid "Generate formatted inventory reports ready for printing or emailing."
+msgstr "Gere relatórios de inventário formatados prontos para impressão ou envio por e-mail."
+
+msgid "CSV Export"
+msgstr "Exportar CSV"
+
+msgid "Export any filtered view to CSV for use in Excel or BI tools."
+msgstr "Exporte qualquer visualização filtrada para CSV para uso no Excel ou ferramentas de BI."
+
+msgid "Set up weekly or monthly report emails delivered automatically."
+msgstr "Configure envios automáticos de relatórios semanais ou mensais por e-mail."
+
+msgid "Select"
+msgstr "Selecionar"
+
+msgid "Choose items or categories to generate labels for."
+msgstr "Escolha itens ou categorias para gerar etiquetas."
+
+msgid "Print"
+msgstr "Imprimir"
+
+msgid "Download a PDF label sheet ready for standard label printers."
+msgstr "Baixe uma folha de etiquetas PDF pronta para impressoras de etiquetas padrão."
+
+msgid "Attach"
+msgstr "Fixar"
+
+msgid "Stick labels on assets — done once, useful forever."
+msgstr "Fixe etiquetas nos ativos — feito uma vez, útil para sempre."
+
+msgid "Scan"
+msgstr "Escanear"
+
+msgid "Any smartphone camera scans the QR and opens the item's full profile."
+msgstr "Qualquer câmera de smartphone escaneia o QR e abre o perfil completo do item."
+
+msgid "Invite"
+msgstr "Convidar"
+
+msgid "Add team members by email — they receive a setup link instantly."
+msgstr "Adicione membros da equipe por e-mail — eles recebem um link de configuração instantaneamente."
+
+msgid "Set roles: Admin, Manager, Operator, or Viewer."
+msgstr "Defina funções: Admin, Gerente, Operador ou Visualizador."
+
+msgid "Control"
+msgstr "Controlar"
+
+msgid "Each role sees and can do only what's relevant to their function."
+msgstr "Cada função vê e pode fazer apenas o que é relevante para sua função."
+
+msgid "Audit"
+msgstr "Auditoria"
+
+msgid "Full action log: who changed what, when, and from where."
+msgstr "Registro completo de ações: quem mudou o quê, quando e de onde."
+
+# ── Service benefits ──────────────────────────────────────────────────────────
+msgid "Reduce time spent searching for items by up to 80%"
+msgstr "Reduza o tempo gasto buscando itens em até 80%"
+
+msgid "Eliminate duplicate asset registration"
+msgstr "Elimine cadastros duplicados de ativos"
+
+msgid "Ensure audit readiness at any time"
+msgstr "Esteja sempre pronto para auditorias"
+
+msgid "Track asset lifecycle from acquisition to write-off"
+msgstr "Rastreie o ciclo de vida do ativo da aquisição ao descarte"
+
+msgid "Zero items lost due to untracked loans"
+msgstr "Zero itens perdidos por empréstimos não rastreados"
+
+msgid "Automated overdue reminders via email"
+msgstr "Lembretes automáticos de atrasos por e-mail"
+
+msgid "Full accountability trail for audits"
+msgstr "Trilha completa de responsabilidade para auditorias"
+
+msgid "Real-time view of item availability"
+msgstr "Visão em tempo real da disponibilidade dos itens"
+
+msgid "Reduce unplanned downtime with preventive scheduling"
+msgstr "Reduza paradas não planejadas com agendamento preventivo"
+
+msgid "Track maintenance costs per asset over its lifetime"
+msgstr "Rastreie custos de manutenção por ativo ao longo do tempo"
+
+msgid "Immediate visibility into items currently under repair"
+msgstr "Visibilidade imediata dos itens atualmente em reparo"
+
+msgid "Alert when maintenance exceeds expected duration"
+msgstr "Alerta quando a manutenção excede a duração esperada"
+
+msgid "Ready-made audit reports in one click"
+msgstr "Relatórios de auditoria prontos em um clique"
+
+msgid "CSV compatibility with Excel, Power BI, and Google Sheets"
+msgstr "Compatibilidade CSV com Excel, Power BI e Google Sheets"
+
+msgid "Executive dashboard accessible from any device"
+msgstr "Dashboard executivo acessível de qualquer dispositivo"
+
+msgid "Trend analysis to anticipate asset replacement needs"
+msgstr "Análise de tendências para antecipar necessidades de substituição de ativos"
+
+msgid "Eliminate manual item lookup during physical audits"
+msgstr "Elimine buscas manuais de itens durante auditorias físicas"
+
+msgid "Compatible with standard A4 label sheets"
+msgstr "Compatível com folhas de etiquetas A4 padrão"
+
+msgid "No app installation needed to scan"
+msgstr "Não precisa instalar aplicativo para escanear"
+
+msgid "Instant access to full asset history on scan"
+msgstr "Acesso instantâneo ao histórico completo do ativo ao escanear"
+
+msgid "Delegate data entry without losing control"
+msgstr "Delegue entrada de dados sem perder controle"
+
+msgid "Prevent unauthorized changes with role-based access"
+msgstr "Previna alterações não autorizadas com acesso por função"
+
+msgid "Full audit trail for compliance and security"
+msgstr "Trilha completa de auditoria para conformidade e segurança"
+
+msgid "Onboard new team members in under 2 minutes"
+msgstr "Integre novos membros da equipe em menos de 2 minutos"
+
+# ── Service detail page ───────────────────────────────────────────────────────
+msgid "Who is this for?"
+msgstr "Para quem é este serviço?"
+
+msgid "Key benefits"
+msgstr "Principais benefícios"
+
+msgid "How it works"
+msgstr "Como funciona"
+
+msgid "Explore other services"
+msgstr "Explore outros serviços"
+
+msgid "Get started today"
+msgstr "Comece hoje"
+
+msgid "Free plan available. No credit card required."
+msgstr "Plano gratuito disponível. Sem cartão de crédito."
+
+msgid "Create your free account"
+msgstr "Crie sua conta gratuita"
+
+# ── FAQ ───────────────────────────────────────────────────────────────────────
+msgid "Frequently Asked Questions"
+msgstr "Perguntas Frequentes"
+
+msgid "Everything you need to know about Monium. Can't find what you're looking for?"
+msgstr "Tudo que você precisa saber sobre o Monium. Não encontrou o que procurava?"
+
+msgid "Contact us."
+msgstr "Fale conosco."
+
+msgid "Still have questions?"
+msgstr "Ainda tem dúvidas?"
+
+msgid "We're happy to help. Reach out and we'll get back to you quickly."
+msgstr "Ficamos felizes em ajudar. Entre em contato e responderemos rapidamente."
+
+msgid "Send us an email"
+msgstr "Envie um e-mail"
+
+msgid "How does the free plan work?"
+msgstr "Como funciona o plano gratuito?"
+
+msgid "The Free plan is available indefinitely — no credit card required. You can register up to 50 items and 1 user. When your needs grow, you can upgrade to Starter or Pro at any time from the Plans page."
+msgstr "O plano Free está disponível por tempo indeterminado — sem cartão de crédito. Você pode cadastrar até 50 itens e 1 usuário. Quando suas necessidades crescerem, faça upgrade para o Starter ou Pro a qualquer momento na página de Planos."
+
+msgid "Can I upgrade or downgrade my plan at any time?"
+msgstr "Posso fazer upgrade ou downgrade do meu plano a qualquer momento?"
+
+msgid "Yes. Plan changes take effect immediately. When upgrading, you pay the prorated difference for the current billing cycle. When downgrading, the new plan takes effect at the start of the next cycle."
+msgstr "Sim. Mudanças de plano entram em vigor imediatamente. Ao fazer upgrade, você paga a diferença proporcional do ciclo atual. Ao fazer downgrade, o novo plano entra em vigor no início do próximo ciclo."
+
+msgid "How does billing work? Which payment methods are accepted?"
+msgstr "Como funciona a cobrança? Quais formas de pagamento são aceitas?"
+
+msgid "Billing is monthly and automatic via credit card (Visa, Mastercard, Amex). You will receive an invoice by email on each renewal date. Annual billing with a 20% discount is available for Pro and Starter plans."
+msgstr "A cobrança é mensal e automática via cartão de crédito (Visa, Mastercard, Amex). Você receberá uma fatura por e-mail a cada data de renovação. Cobrança anual com 20% de desconto está disponível para os planos Pro e Starter."
+
+msgid "Is there a minimum contract or commitment?"
+msgstr "Há contrato mínimo ou fidelidade?"
+
+msgid "No. All plans are month-to-month with no lock-in. You can cancel at any time from your account settings. Access continues until the end of the paid period."
+msgstr "Não. Todos os planos são mensais sem fidelidade. Você pode cancelar a qualquer momento nas configurações da conta. O acesso continua até o fim do período pago."
+
+msgid "What happens to my data if I cancel?"
+msgstr "O que acontece com meus dados se eu cancelar?"
+
+msgid "Your data is kept for 30 days after cancellation. During this period, you can export a full CSV of your inventory. After 30 days, all data is permanently deleted from our servers."
+msgstr "Seus dados ficam disponíveis por 30 dias após o cancelamento. Nesse período, você pode exportar um CSV completo do seu inventário. Após 30 dias, todos os dados são excluídos permanentemente dos nossos servidores."
+
+msgid "How is my data stored and protected?"
+msgstr "Como meus dados são armazenados e protegidos?"
+
+msgid "All data is stored in encrypted databases hosted in Brazil, complying with LGPD requirements. Data in transit is protected by TLS 1.3. Automated backups run daily with 30-day retention."
+msgstr "Todos os dados são armazenados em bancos de dados criptografados hospedados no Brasil, em conformidade com a LGPD. Os dados em trânsito são protegidos por TLS 1.3. Backups automáticos são realizados diariamente com retenção de 30 dias."
+
+msgid "Can I import my existing inventory from Excel or CSV?"
+msgstr "Posso importar meu inventário existente do Excel ou CSV?"
+
+msgid "Yes. Monium supports bulk import via CSV. Download our template, fill it in with your existing data, and upload — items are created in seconds. Our support team can assist with large or complex migrations."
+msgstr "Sim. O Monium suporta importação em massa via CSV. Baixe nosso modelo, preencha com seus dados existentes e faça o upload — os itens são criados em segundos. Nossa equipe de suporte pode auxiliar em migrações grandes ou complexas."
+
+msgid "Does Monium have a mobile app?"
+msgstr "O Monium tem aplicativo mobile?"
+
+msgid "Monium is a fully responsive web app that works on any smartphone browser. A native iOS and Android app is on the roadmap for 2026. QR code label scanning works via any mobile camera without installing an app."
+msgstr "O Monium é um web app totalmente responsivo que funciona em qualquer navegador de smartphone. Um aplicativo nativo para iOS e Android está no roadmap para 2026. A leitura de etiquetas QR funciona pela câmera de qualquer celular sem precisar instalar nada."
+
+msgid "How many users can I add?"
+msgstr "Quantos usuários posso adicionar?"
+
+msgid "Free: 1 user. Starter: up to 3 users. Pro: up to 10 users. Enterprise: unlimited users with custom roles and SSO. Additional user seats can also be purchased as an add-on."
+msgstr "Free: 1 usuário. Starter: até 3 usuários. Pro: até 10 usuários. Enterprise: usuários ilimitados com funções personalizadas e SSO. Assentos adicionais também podem ser comprados como add-on."
+
+msgid "Is there a discount for NGOs, schools, or public institutions?"
+msgstr "Há desconto para ONGs, escolas ou instituições públicas?"
+
+msgid "Yes. We offer a 40% discount for registered NGOs, public schools, and universities. Contact us at contact@monium.app with your institution's documentation to apply."
+msgstr "Sim. Oferecemos 40% de desconto para ONGs registradas, escolas públicas e universidades. Entre em contato via contact@monium.app com a documentação da sua instituição para se candidatar."
+
+msgid "Does Monium offer an API for integrations?"
+msgstr "O Monium oferece API para integrações?"
+
+msgid "A REST API is available on the Pro and Enterprise plans. You can integrate Monium with ERP systems, procurement platforms, or internal tools. API documentation and sandbox access are available after signup."
+msgstr "Uma API REST está disponível nos planos Pro e Enterprise. Você pode integrar o Monium com sistemas ERP, plataformas de compras ou ferramentas internas. Documentação da API e acesso ao sandbox estão disponíveis após o cadastro."
+
+msgid "What support options are available?"
+msgstr "Quais opções de suporte estão disponíveis?"
+
+msgid "Free: community forum and documentation. Starter: email support with 48h response time. Pro: priority email support with 8h response time. Enterprise: dedicated account manager with phone/video support and SLA."
+msgstr "Free: fórum da comunidade e documentação. Starter: suporte por e-mail com tempo de resposta de 48h. Pro: suporte por e-mail prioritário com tempo de resposta de 8h. Enterprise: gerente de conta dedicado com suporte por telefone/vídeo e SLA."
+
+# ── Privacy policy ────────────────────────────────────────────────────────────
+msgid "Privacy Policy"
+msgstr "Política de Privacidade"
+
+msgid "Last updated: June 30, 2026."
+msgstr "Última atualização: 30 de junho de 2026."
+
+msgid "In compliance with Brazil's Lei Geral de Proteção de Dados (LGPD — Law 13.709/2018)."
+msgstr "Em conformidade com a Lei Geral de Proteção de Dados (LGPD — Lei 13.709/2018)."
+
+msgid "Data Controller"
+msgstr "Controlador dos Dados"
+
+msgid "The data controller responsible for processing your personal data is Monium Software Ltda., registered in Brazil. For any data-related requests, contact our Data Protection Officer (DPO) at:"
+msgstr "O controlador dos dados responsável pelo tratamento dos seus dados pessoais é a Monium Software Ltda., registrada no Brasil. Para solicitações relacionadas a dados, entre em contato com nosso Encarregado de Proteção de Dados (DPO) em:"
+
+msgid "Data We Collect"
+msgstr "Dados que Coletamos"
+
+msgid "Depending on how you use Monium, we may collect the following categories of personal data:"
+msgstr "Dependendo de como você usa o Monium, podemos coletar as seguintes categorias de dados pessoais:"
+
+msgid "Account data:"
+msgstr "Dados de conta:"
+
+msgid "Full name, email address, username, and hashed password."
+msgstr "Nome completo, endereço de e-mail, nome de usuário e senha criptografada."
+
+msgid "Profile data:"
+msgstr "Dados de perfil:"
+
+msgid "Date of birth, bio, and website link (optional, provided by you)."
+msgstr "Data de nascimento, bio e link do site (opcionais, fornecidos por você)."
+
+msgid "Usage data:"
+msgstr "Dados de uso:"
+
+msgid "IP address, browser type, pages visited, and actions performed within the platform (logged for security and audit purposes)."
+msgstr "Endereço IP, tipo de navegador, páginas visitadas e ações realizadas na plataforma (registradas para fins de segurança e auditoria)."
+
+msgid "Inventory data:"
+msgstr "Dados de inventário:"
+
+msgid "Item descriptions, locations, responsible parties, and other data you enter into the system."
+msgstr "Descrições de itens, localizações, responsáveis e outros dados que você insere no sistema."
+
+msgid "Billing data:"
+msgstr "Dados de pagamento:"
+
+msgid "Payment information is processed by our payment provider and is never stored on Monium's servers."
+msgstr "As informações de pagamento são processadas pelo nosso provedor de pagamentos e nunca são armazenadas nos servidores do Monium."
+
+msgid "Purpose and Legal Basis (LGPD)"
+msgstr "Finalidade e Base Legal (LGPD)"
+
+msgid "Purpose"
+msgstr "Finalidade"
+
+msgid "Legal basis (LGPD Art. 7)"
+msgstr "Base legal (LGPD Art. 7)"
+
+msgid "Account creation and authentication"
+msgstr "Criação de conta e autenticação"
+
+msgid "Contract performance (Art. 7, V)"
+msgstr "Execução de contrato (Art. 7, V)"
+
+msgid "Providing inventory management features"
+msgstr "Fornecimento de funcionalidades de gestão de inventário"
+
+msgid "Sending transactional emails (alerts, password reset)"
+msgstr "Envio de e-mails transacionais (alertas, redefinição de senha)"
+
+msgid "Security monitoring and fraud prevention"
+msgstr "Monitoramento de segurança e prevenção de fraudes"
+
+msgid "Legitimate interest (Art. 7, IX)"
+msgstr "Legítimo interesse (Art. 7, IX)"
+
+msgid "Compliance with legal obligations"
+msgstr "Cumprimento de obrigações legais"
+
+msgid "Legal obligation (Art. 7, II)"
+msgstr "Obrigação legal (Art. 7, II)"
+
+msgid "Sending product news and updates (opt-in)"
+msgstr "Envio de novidades e atualizações do produto (opt-in)"
+
+msgid "Consent (Art. 7, I)"
+msgstr "Consentimento (Art. 7, I)"
+
+msgid "Data Sharing"
+msgstr "Compartilhamento de Dados"
+
+msgid "We do not sell your personal data. We may share data with:"
+msgstr "Não vendemos seus dados pessoais. Podemos compartilhar dados com:"
+
+msgid "Payment processors (for billing), under their own privacy policies and under contractual data protection obligations."
+msgstr "Processadores de pagamento (para cobrança), sob suas próprias políticas de privacidade e obrigações contratuais de proteção de dados."
+
+msgid "Cloud infrastructure providers hosting data in Brazil."
+msgstr "Provedores de infraestrutura em nuvem que hospedam dados no Brasil."
+
+msgid "Legal authorities, when required by law or court order."
+msgstr "Autoridades legais, quando exigido por lei ou ordem judicial."
+
+msgid "Data Retention"
+msgstr "Retenção de Dados"
+
+msgid "Account data is retained for the duration of your active subscription plus 30 days after cancellation, after which it is permanently deleted. Audit logs are retained for 12 months. You may request earlier deletion via our DPO."
+msgstr "Os dados da conta são retidos pelo período da sua assinatura ativa mais 30 dias após o cancelamento, após os quais são excluídos permanentemente. Os registros de auditoria são retidos por 12 meses. Você pode solicitar exclusão antecipada via nosso DPO."
+
+msgid "Your Rights Under LGPD"
+msgstr "Seus Direitos pela LGPD"
+
+msgid "Under the LGPD, you have the following rights regarding your personal data:"
+msgstr "Pela LGPD, você tem os seguintes direitos em relação aos seus dados pessoais:"
+
+msgid "Access:"
+msgstr "Acesso:"
+
+msgid "Request a copy of your personal data we hold."
+msgstr "Solicite uma cópia dos seus dados pessoais que mantemos."
+
+msgid "Correction:"
+msgstr "Correção:"
+
+msgid "Request correction of inaccurate or incomplete data."
+msgstr "Solicite a correção de dados imprecisos ou incompletos."
+
+msgid "Deletion:"
+msgstr "Exclusão:"
+
+msgid "Request deletion of data processed with your consent."
+msgstr "Solicite a exclusão de dados tratados com seu consentimento."
+
+msgid "Portability:"
+msgstr "Portabilidade:"
+
+msgid "Request your data in a structured, machine-readable format."
+msgstr "Solicite seus dados em formato estruturado e legível por máquina."
+
+msgid "Objection:"
+msgstr "Oposição:"
+
+msgid "Object to processing based on legitimate interest."
+msgstr "Oponha-se ao tratamento baseado em legítimo interesse."
+
+msgid "Consent withdrawal:"
+msgstr "Revogação do consentimento:"
+
+msgid "Withdraw consent for optional data uses at any time."
+msgstr "Revogue o consentimento para usos opcionais de dados a qualquer momento."
+
+msgid "Submit requests to"
+msgstr "Envie solicitações para"
+
+msgid "We will respond within 15 business days."
+msgstr "Responderemos em até 15 dias úteis."
+
+msgid "Cookies"
+msgstr "Cookies"
+
+msgid "Monium uses only essential session cookies required for authentication and security. We do not use advertising or tracking cookies. No third-party analytics scripts are embedded in the application."
+msgstr "O Monium usa apenas cookies de sessão essenciais necessários para autenticação e segurança. Não utilizamos cookies de publicidade ou rastreamento. Nenhum script de análise de terceiros está incorporado na aplicação."
+
+msgid "We implement technical and organizational measures including TLS 1.3 encryption in transit, AES-256 encryption at rest, role-based access control, daily automated backups, and ongoing security monitoring. However, no system is 100% immune to breaches. In case of an incident affecting your rights, we will notify you within 72 hours as required by LGPD."
+msgstr "Implementamos medidas técnicas e organizacionais incluindo criptografia TLS 1.3 em trânsito, criptografia AES-256 em repouso, controle de acesso por função, backups automáticos diários e monitoramento contínuo de segurança. No entanto, nenhum sistema é 100% imune a violações. Em caso de incidente que afete seus direitos, notificaremos você em até 72 horas conforme exigido pela LGPD."
+
+msgid "Changes to This Policy"
+msgstr "Alterações nesta Política"
+
+msgid "We may update this policy periodically. We will notify you of material changes by email or by displaying a notice in the application. Continued use after notification constitutes acceptance."
+msgstr "Podemos atualizar esta política periodicamente. Notificaremos você sobre alterações materiais por e-mail ou exibindo um aviso na aplicação. O uso continuado após a notificação constitui aceitação."
+
+msgid "Terms of Use"
+msgstr "Termos de Uso"
+
+# ── Terms of use ──────────────────────────────────────────────────────────────
+msgid "Governed by Brazilian law."
+msgstr "Regido pela legislação brasileira."
+
+msgid "Acceptance"
+msgstr "Aceitação"
+
+msgid "By creating an account or using the Monium platform (\"the Service\"), you agree to be bound by these Terms of Use. If you do not agree, do not use the Service. These terms apply to all users including administrators, managers, and operators."
+msgstr "Ao criar uma conta ou usar a plataforma Monium (\"o Serviço\"), você concorda em estar vinculado a estes Termos de Uso. Se não concordar, não use o Serviço. Estes termos se aplicam a todos os usuários, incluindo administradores, gerentes e operadores."
+
+msgid "Description of Service"
+msgstr "Descrição do Serviço"
+
+msgid "Monium is a cloud-based inventory management platform that enables organizations to register, track, and manage physical assets, loans, and maintenance records. The Service is provided on a subscription basis with plans described at"
+msgstr "O Monium é uma plataforma de gestão de inventário baseada em nuvem que permite às organizações cadastrar, rastrear e gerenciar ativos físicos, empréstimos e registros de manutenção. O Serviço é fornecido por assinatura com planos descritos em"
+
+msgid "our Plans page"
+msgstr "nossa página de Planos"
+
+msgid "Monium reserves the right to modify, suspend, or discontinue any feature of the Service at any time with reasonable prior notice, except in cases of security or legal necessity."
+msgstr "O Monium reserva o direito de modificar, suspender ou descontinuar qualquer recurso do Serviço a qualquer momento com aviso prévio razoável, exceto em casos de necessidade de segurança ou legal."
+
+msgid "Account Registration and Responsibility"
+msgstr "Registro de Conta e Responsabilidade"
+
+msgid "You must be at least 18 years old and have legal capacity to enter into this agreement."
+msgstr "Você deve ter pelo menos 18 anos e ter capacidade legal para celebrar este acordo."
+
+msgid "You are responsible for maintaining the confidentiality of your credentials and for all activity occurring under your account."
+msgstr "Você é responsável por manter a confidencialidade das suas credenciais e por toda atividade que ocorra em sua conta."
+
+msgid "You must immediately notify us of any unauthorized use of your account at"
+msgstr "Você deve nos notificar imediatamente sobre qualquer uso não autorizado da sua conta em"
+
+msgid "Each account is for use by a single organization. Sharing accounts across unrelated organizations is prohibited."
+msgstr "Cada conta é para uso por uma única organização. Compartilhar contas entre organizações não relacionadas é proibido."
+
+msgid "Acceptable Use"
+msgstr "Uso Aceitável"
+
+msgid "You agree not to use Monium to:"
+msgstr "Você concorda em não usar o Monium para:"
+
+msgid "Upload or transmit content that is illegal, harmful, fraudulent, or violates third-party rights."
+msgstr "Fazer upload ou transmitir conteúdo ilegal, prejudicial, fraudulento ou que viole direitos de terceiros."
+
+msgid "Attempt to probe, scan, or test the vulnerability of any system or breach security measures."
+msgstr "Tentar sondar, varrer ou testar a vulnerabilidade de qualquer sistema ou violar medidas de segurança."
+
+msgid "Use automated scripts, bots, or crawlers to extract data from the platform without prior written consent."
+msgstr "Usar scripts automatizados, bots ou crawlers para extrair dados da plataforma sem consentimento prévio por escrito."
+
+msgid "Resell or sublicense access to the Service without an explicit Enterprise or white-label agreement."
+msgstr "Revender ou sublicenciar o acesso ao Serviço sem um acordo Enterprise ou white-label explícito."
+
+msgid "Circumvent plan limits through technical means."
+msgstr "Contornar limites de plano por meios técnicos."
+
+msgid "Violations may result in immediate account suspension without refund."
+msgstr "Violações podem resultar em suspensão imediata da conta sem reembolso."
+
+msgid "Subscription, Billing, and Refunds"
+msgstr "Assinatura, Cobrança e Reembolsos"
+
+msgid "Paid plans are billed monthly in advance. Access continues until the end of the paid period after cancellation."
+msgstr "Planos pagos são cobrados mensalmente com antecedência. O acesso continua até o fim do período pago após o cancelamento."
+
+msgid "Prices may change with 30 days' notice. You may cancel before the new pricing takes effect."
+msgstr "Os preços podem mudar com 30 dias de aviso. Você pode cancelar antes que o novo preço entre em vigor."
+
+msgid "Refunds are available within 7 days of first purchase (cooling-off period under Brazilian Consumer Code, CDC Art. 49)."
+msgstr "Reembolsos estão disponíveis dentro de 7 dias após a primeira compra (período de arrependimento previsto no Código de Defesa do Consumidor, CDC Art. 49)."
+
+msgid "No refund is issued for partial months or unused features."
+msgstr "Nenhum reembolso é emitido por meses parciais ou recursos não utilizados."
+
+msgid "Intellectual Property"
+msgstr "Propriedade Intelectual"
+
+msgid "The Monium platform, including its design, code, brand, and documentation, is owned by Monium Software Ltda. and protected by Brazilian and international intellectual property law."
+msgstr "A plataforma Monium, incluindo seu design, código, marca e documentação, é propriedade da Monium Software Ltda. e protegida pela lei de propriedade intelectual brasileira e internacional."
+
+msgid "You retain full ownership of all data you upload into the platform. By using the Service, you grant Monium a limited license to process that data solely to provide the Service."
+msgstr "Você mantém a propriedade total de todos os dados que carrega na plataforma. Ao usar o Serviço, você concede ao Monium uma licença limitada para processar esses dados exclusivamente para fornecer o Serviço."
+
+msgid "Uptime and Service Level"
+msgstr "Disponibilidade e Nível de Serviço"
+
+msgid "Monium targets 99.5% monthly uptime for paid plans, measured excluding scheduled maintenance windows announced with at least 24 hours' notice. Enterprise customers receive SLA terms defined in their contract."
+msgstr "O Monium tem como meta 99,5% de disponibilidade mensal para planos pagos, medida excluindo janelas de manutenção agendadas anunciadas com pelo menos 24 horas de antecedência. Clientes Enterprise recebem termos de SLA definidos em seu contrato."
+
+msgid "Free plan users do not have uptime guarantees."
+msgstr "Usuários do plano Free não possuem garantias de disponibilidade."
+
+msgid "Limitation of Liability"
+msgstr "Limitação de Responsabilidade"
+
+msgid "To the maximum extent permitted by Brazilian law, Monium shall not be liable for indirect, incidental, special, or consequential damages arising from your use of the Service, including loss of data, revenue, or business opportunity."
+msgstr "Na máxima extensão permitida pela lei brasileira, o Monium não será responsável por danos indiretos, incidentais, especiais ou consequenciais decorrentes do uso do Serviço, incluindo perda de dados, receita ou oportunidade de negócio."
+
+msgid "Our total liability for any claim related to the Service shall not exceed the amount you paid in the three months preceding the event giving rise to the claim."
+msgstr "Nossa responsabilidade total por qualquer reclamação relacionada ao Serviço não excederá o valor que você pagou nos três meses anteriores ao evento que deu origem à reclamação."
+
+msgid "Termination"
+msgstr "Rescisão"
+
+msgid "You may terminate your account at any time from account settings. Monium may terminate or suspend your account immediately for material breach of these Terms or for non-payment."
+msgstr "Você pode encerrar sua conta a qualquer momento nas configurações da conta. O Monium pode encerrar ou suspender sua conta imediatamente por violação material destes Termos ou por falta de pagamento."
+
+msgid "Upon termination, your data is retained for 30 days and then permanently deleted, in accordance with our Privacy Policy."
+msgstr "Após o encerramento, seus dados são mantidos por 30 dias e então excluídos permanentemente, de acordo com nossa Política de Privacidade."
+
+msgid "Governing Law and Disputes"
+msgstr "Lei Aplicável e Disputas"
+
+msgid "These Terms are governed by the laws of Brazil. Any disputes shall be submitted to the courts of São Paulo, SP, Brazil, with the parties waiving any other jurisdiction, however privileged it may be."
+msgstr "Estes Termos são regidos pelas leis do Brasil. Quaisquer disputas serão submetidas aos tribunais de São Paulo, SP, Brasil, com as partes renunciando a qualquer outra jurisdição, por mais privilegiada que seja."
+
+msgid "Consumer disputes may also be filed through the Brazilian consumer platform Consumidor.gov.br."
+msgstr "Disputas de consumo também podem ser registradas por meio da plataforma brasileira de consumo Consumidor.gov.br."
+
+msgid "Changes to These Terms"
+msgstr "Alterações nestes Termos"
+
+msgid "We reserve the right to update these Terms at any time. Material changes will be communicated via email or in-app notification at least 15 days in advance. Continued use after the effective date constitutes acceptance."
+msgstr "Reservamos o direito de atualizar estes Termos a qualquer momento. Alterações materiais serão comunicadas por e-mail ou notificação no aplicativo com pelo menos 15 dias de antecedência. O uso continuado após a data efetiva constitui aceitação."
+
+# ── Plans (billing) ───────────────────────────────────────────────────────────
+msgid "Simple, transparent pricing"
+msgstr "Preços simples e transparentes"
+
+msgid "Choose your plan"
+msgstr "Escolha seu plano"
+
+msgid "Start for free. Upgrade as you grow. No surprise fees."
+msgstr "Comece de graça. Faça upgrade conforme cresce. Sem taxas surpresa."
+
+msgid "For individuals getting started with inventory control."
+msgstr "Para pessoas físicas começando a controlar o inventário."
+
+msgid "Current plan"
+msgstr "Plano atual"
+
+msgid "Export CSV (50 rows/month)"
+msgstr "Exportar CSV (50 linhas/mês)"
+
+msgid "Overdue alerts"
+msgstr "Alertas de atraso"
+
+msgid "PDF reports"
+msgstr "Relatórios em PDF"
+
+msgid "QR code labels"
+msgstr "Etiquetas QR code"
+
+msgid "API access"
+msgstr "Acesso à API"
+
+msgid "Priority support"
+msgstr "Suporte prioritário"
+
+msgid "For small teams that need more items and basic automation."
+msgstr "Para equipes pequenas que precisam de mais itens e automação básica."
+
+msgid "Get Starter"
+msgstr "Assinar Starter"
+
+msgid "Up to 500 items"
+msgstr "Até 500 itens"
+
+msgid "Up to 3 users"
+msgstr "Até 3 usuários"
+
+msgid "Full dashboard"
+msgstr "Dashboard completo"
+
+msgid "Unlimited CSV export"
+msgstr "Exportação CSV ilimitada"
+
+msgid "Overdue loan alerts by email"
+msgstr "Alertas de empréstimos em atraso por e-mail"
+
+msgid "For growing teams with complete control and integrations."
+msgstr "Para times em crescimento com controle completo e integrações."
+
+msgid "Most popular"
+msgstr "Mais popular"
+
+msgid "Up to 10 users"
+msgstr "Até 10 usuários"
+
+msgid "QR code labels (print-ready)"
+msgstr "Etiquetas QR code (prontas para impressão)"
+
+msgid "REST API access"
+msgstr "Acesso à API REST"
+
+msgid "For organizations with custom requirements and SLA."
+msgstr "Para organizações com requisitos personalizados e SLA."
+
+msgid "Unlimited users"
+msgstr "Usuários ilimitados"
+
+msgid "All Pro features"
+msgstr "Todos os recursos do Pro"
+
+msgid "Custom integrations (ERP, SAP)"
+msgstr "Integrações personalizadas (ERP, SAP)"
+
+msgid "On-premise deployment option"
+msgstr "Opção de implantação on-premise"
+
+msgid "SSO / Active Directory"
+msgstr "SSO / Active Directory"
+
+msgid "SLA agreement"
+msgstr "Acordo de SLA"
+
+msgid "Dedicated account manager"
+msgstr "Gerente de conta dedicado"
+
+msgid "Custom branding (white-label)"
+msgstr "Marca personalizada (white-label)"
+
+msgid "All plans include SSL encryption, automatic backups, and uptime SLA."
+msgstr "Todos os planos incluem criptografia SSL, backups automáticos e SLA de disponibilidade."
+
+msgid "Prices in BRL. Billing is monthly. Cancel anytime."
+msgstr "Preços em BRL. Cobrança mensal. Cancele a qualquer momento."
+
+msgid "Questions? Contact us"
+msgstr "Dúvidas? Fale conosco"
+

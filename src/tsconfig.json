@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "target": "ES2017",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "noEmit": true,
+    "allowImportingTsExtensions": true,
+    "paths": {
+      "@common/*":   ["./apps/common/web/static/common/js/*"],
+      "@business/*": ["./apps/business/web/static/js/*"],
+      "@manager/*":  ["./apps/manager/web/static/manager/js/*"],
+      "@search/*":   ["./apps/search/web/static/js/*"]
+    }
+  },
+  "include": [
+    "./apps/**/static/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    ".venv"
+  ]
+}
