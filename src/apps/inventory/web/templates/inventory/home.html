@@ -1,0 +1,281 @@
+{% extends "common/layouts/base-aside.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans "Home" %} — Monium{% endblock %}
+
+{% block content %}
+<div class="p-6 space-y-6">
+
+    <!-- Welcome -->
+    <div class="flex items-center justify-between flex-wrap gap-3">
+        <div>
+            <h1 class="text-2xl font-bold text-white">
+                {% blocktrans with name=request.user.first_name|default:request.user.username %}Hello, {{ name }} 👋{% endblocktrans %}
+            </h1>
+            <p class="text-sm text-zinc-500 mt-0.5">{% trans "Here's an overview of today's inventory." %}</p>
+        </div>
+        <a href="{% url 'inventory:item_create' %}"
+           class="flex items-center gap-2 bg-white text-zinc-950 text-sm font-medium px-4 py-2.5 rounded hover:bg-zinc-100 transition">
+            <span class="material-symbols-outlined text-base leading-none">add</span>
+            {% trans "New Item" %}
+        </a>
+    </div>
+
+    <!-- Summary cards -->
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+
+        <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-4 flex flex-col gap-1">
+            <span class="text-xs font-semibold text-zinc-500 uppercase tracking-wide">{% trans "Total" %}</span>
+            <span class="text-3xl font-bold text-white">{{ total_items }}</span>
+            <span class="text-xs text-zinc-500">{% trans "registered items" %}</span>
+        </div>
+
+        <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-4 flex flex-col gap-1">
+            <span class="text-xs font-semibold text-green-500 uppercase tracking-wide">{% trans "Active" %}</span>
+            <span class="text-3xl font-bold text-green-400">{{ active_items }}</span>
+            <div class="w-full bg-zinc-800 rounded-full h-1 mt-1">
+                {% if total_items %}<div class="bg-green-400 h-1 rounded-full" style="width:{{ active_items|floatformat:0 }}%"></div>{% endif %}
+            </div>
+        </div>
+
+        <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-4 flex flex-col gap-1">
+            <span class="text-xs font-semibold text-amber-500 uppercase tracking-wide">{% trans "Maintenance" %}</span>
+            <span class="text-3xl font-bold text-amber-400">{{ maintenance_items }}</span>
+            <span class="text-xs text-zinc-500">{% trans "in maintenance" %}</span>
+        </div>
+
+        <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-4 flex flex-col gap-1">
+            <span class="text-xs font-semibold text-red-400 uppercase tracking-wide">{% trans "Missing" %}</span>
+            <span class="text-3xl font-bold text-red-400">{{ missing_items }}</span>
+            <span class="text-xs text-zinc-500">{% trans "missing" %}</span>
+        </div>
+
+        <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-4 flex flex-col gap-1">
+            <span class="text-xs font-semibold text-zinc-500 uppercase tracking-wide">{% trans "Written Off" %}</span>
+            <span class="text-3xl font-bold text-zinc-400">{{ written_off_items }}</span>
+            <span class="text-xs text-zinc-500">{% trans "written off" %}</span>
+        </div>
+
+    </div>
+
+    <!-- Alerts + Quick actions -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+
+        <!-- Alerts -->
+        <div class="border border-zinc-800 rounded-xl bg-zinc-900 overflow-hidden">
+            <div class="flex items-center gap-2 px-5 py-4 border-b border-zinc-800">
+                <span class="material-symbols-outlined text-amber-500 text-base leading-none">warning</span>
+                <h2 class="text-sm font-semibold text-white">{% trans "Alerts & Pending" %}</h2>
+            </div>
+            <div class="divide-y divide-zinc-800">
+
+                {% if overdue_loans_count %}
+                <div class="flex items-start gap-3 px-5 py-3">
+                    <span class="material-symbols-outlined text-red-400 text-base leading-none mt-0.5">event_busy</span>
+                    <div>
+                        <p class="text-sm font-medium text-zinc-100">
+                            {% blocktrans count count=overdue_loans_count %}
+                                {{ count }} overdue loan
+                            {% plural %}
+                                {{ count }} overdue loans
+                            {% endblocktrans %}
+                        </p>
+                        {% for loan in overdue_loans %}
+                        <p class="text-xs text-zinc-500 mt-0.5">{{ loan.item.name }} → {{ loan.loaned_to }}</p>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+
+                {% if loans_past_due %}
+                <div class="flex items-start gap-3 px-5 py-3">
+                    <span class="material-symbols-outlined text-amber-400 text-base leading-none mt-0.5">schedule</span>
+                    <div>
+                        <p class="text-sm font-medium text-zinc-100">
+                            {% blocktrans count count=loans_past_due %}
+                                {{ count }} loan past due (unmarked)
+                            {% plural %}
+                                {{ count }} loans past due (unmarked)
+                            {% endblocktrans %}
+                        </p>
+                    </div>
+                </div>
+                {% endif %}
+
+                {% if open_maintenances_count %}
+                <div class="flex items-start gap-3 px-5 py-3">
+                    <span class="material-symbols-outlined text-amber-400 text-base leading-none mt-0.5">build</span>
+                    <div>
+                        <p class="text-sm font-medium text-zinc-100">
+                            {% blocktrans count count=open_maintenances_count %}
+                                {{ count }} open maintenance over 7 days
+                            {% plural %}
+                                {{ count }} open maintenances over 7 days
+                            {% endblocktrans %}
+                        </p>
+                        {% for m in open_maintenances %}
+                        <p class="text-xs text-zinc-500 mt-0.5">{{ m.item.name }} — {% trans "since" %} {{ m.started_at|date:"d/m/Y" }}</p>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+
+                {% if poor_condition_active %}
+                <div class="flex items-start gap-3 px-5 py-3">
+                    <span class="material-symbols-outlined text-orange-400 text-base leading-none mt-0.5">report</span>
+                    <div>
+                        <p class="text-sm font-medium text-zinc-100">
+                            {% blocktrans count count=poor_condition_active %}
+                                {{ count }} item in poor condition and still active
+                            {% plural %}
+                                {{ count }} items in poor condition and still active
+                            {% endblocktrans %}
+                        </p>
+                    </div>
+                </div>
+                {% endif %}
+
+                {% if not overdue_loans_count and not loans_past_due and not open_maintenances_count and not poor_condition_active %}
+                <div class="flex items-center gap-2 px-5 py-5 text-sm text-zinc-500">
+                    <span class="material-symbols-outlined text-green-400 text-base leading-none">check_circle</span>
+                    {% trans "No alerts at the moment. All good!" %}
+                </div>
+                {% endif %}
+
+            </div>
+        </div>
+
+        <!-- Quick actions -->
+        <div class="border border-zinc-800 rounded-xl bg-zinc-900 overflow-hidden">
+            <div class="flex items-center gap-2 px-5 py-4 border-b border-zinc-800">
+                <span class="material-symbols-outlined text-zinc-400 text-base leading-none">bolt</span>
+                <h2 class="text-sm font-semibold text-white">{% trans "Quick Actions" %}</h2>
+            </div>
+            <div class="p-4 grid grid-cols-1 gap-2">
+                <a href="{% url 'inventory:item_create' %}"
+                   class="flex items-center gap-3 px-4 py-3 border border-zinc-800 rounded-lg hover:border-zinc-600 hover:bg-zinc-800 transition text-sm text-zinc-200 group">
+                    <span class="material-symbols-outlined text-zinc-500 text-base leading-none group-hover:text-zinc-200">add_box</span>
+                    {% trans "Register new item" %}
+                </a>
+                <a href="{% url 'inventory:dashboard' %}"
+                   class="flex items-center gap-3 px-4 py-3 border border-zinc-800 rounded-lg hover:border-zinc-600 hover:bg-zinc-800 transition text-sm text-zinc-200 group">
+                    <span class="material-symbols-outlined text-zinc-500 text-base leading-none group-hover:text-zinc-200">category</span>
+                    {% trans "View items by category" %}
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Distribution + Top Sectors -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+
+        <!-- Items by category -->
+        <div class="border border-zinc-800 rounded-xl bg-zinc-900 overflow-hidden">
+            <div class="flex items-center gap-2 px-5 py-4 border-b border-zinc-800">
+                <span class="material-symbols-outlined text-zinc-400 text-base leading-none">donut_small</span>
+                <h2 class="text-sm font-semibold text-white">{% trans "Items by Category" %}</h2>
+            </div>
+            <div class="p-5 flex flex-col gap-3">
+                {% for cat in categories_dist %}
+                <div class="flex flex-col gap-1">
+                    <div class="flex items-center justify-between text-xs">
+                        <span class="font-medium text-zinc-300 truncate max-w-[70%]">{{ cat.name }}</span>
+                        <span class="text-zinc-500">{{ cat.item_count }}</span>
+                    </div>
+                    <div class="w-full bg-zinc-800 rounded-full h-1.5">
+                        <div class="bg-zinc-500 h-1.5 rounded-full transition-all"
+                             style="width: {% widthratio cat.item_count categories_total 100 %}%"></div>
+                    </div>
+                </div>
+                {% empty %}
+                <p class="text-xs text-zinc-500">{% trans "No category with items yet." %}</p>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Top sectors -->
+        <div class="border border-zinc-800 rounded-xl bg-zinc-900 overflow-hidden">
+            <div class="flex items-center gap-2 px-5 py-4 border-b border-zinc-800">
+                <span class="material-symbols-outlined text-zinc-400 text-base leading-none">apartment</span>
+                <h2 class="text-sm font-semibold text-white">{% trans "Top Sectors" %}</h2>
+            </div>
+            <div class="divide-y divide-zinc-800">
+                {% for sector in sectors_dist %}
+                <div class="flex items-center justify-between px-5 py-3">
+                    <div class="flex items-center gap-2">
+                        <span class="w-5 h-5 rounded-full bg-zinc-800 text-zinc-300 text-[10px] font-bold flex items-center justify-center shrink-0">
+                            {{ forloop.counter }}
+                        </span>
+                        <span class="text-sm text-zinc-200 truncate max-w-[180px]">{{ sector.name }}</span>
+                    </div>
+                    <span class="text-xs font-semibold text-zinc-500 shrink-0">
+                        {% blocktrans with count=sector.item_count %}{{ count }} items{% endblocktrans %}
+                    </span>
+                </div>
+                {% empty %}
+                <p class="text-xs text-zinc-500 px-5 py-4">{% trans "No sector with items yet." %}</p>
+                {% endfor %}
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Latest registered items -->
+    <div class="border border-zinc-800 rounded-xl bg-zinc-900 overflow-hidden">
+        <div class="flex items-center justify-between px-5 py-4 border-b border-zinc-800">
+            <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-zinc-400 text-base leading-none">history</span>
+                <h2 class="text-sm font-semibold text-white">{% trans "Latest Registered Items" %}</h2>
+            </div>
+            <a href="{% url 'inventory:dashboard' %}" class="text-xs text-zinc-500 hover:text-zinc-300 hover:underline">{% trans "View all" %}</a>
+        </div>
+
+        {% if recent_items %}
+        <div class="overflow-x-auto">
+            <table class="w-full text-sm">
+                <thead>
+                    <tr class="text-left text-xs text-zinc-500 font-semibold uppercase tracking-wide bg-zinc-800 border-b border-zinc-700">
+                        <th class="px-5 py-3">{% trans "Code" %}</th>
+                        <th class="px-5 py-3">{% trans "Name" %}</th>
+                        <th class="px-5 py-3 hidden sm:table-cell">{% trans "Category" %}</th>
+                        <th class="px-5 py-3 hidden md:table-cell">{% trans "Sector" %}</th>
+                        <th class="px-5 py-3">{% trans "Status" %}</th>
+                        <th class="px-5 py-3 hidden lg:table-cell">{% trans "Registered at" %}</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-zinc-800">
+                    {% for item in recent_items %}
+                    <tr class="hover:bg-zinc-800/50 transition">
+                        <td class="px-5 py-3 font-mono text-xs text-zinc-500">{{ item.code }}</td>
+                        <td class="px-5 py-3 font-medium text-zinc-100">{{ item.name }}</td>
+                        <td class="px-5 py-3 text-zinc-400 hidden sm:table-cell">{{ item.category.name }}</td>
+                        <td class="px-5 py-3 text-zinc-400 hidden md:table-cell">{{ item.sector.name }}</td>
+                        <td class="px-5 py-3">
+                            <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium
+                                {% if item.status == 'ativo' %}bg-green-950 text-green-400
+                                {% elif item.status == 'em_manutencao' %}bg-amber-950 text-amber-400
+                                {% elif item.status == 'extraviado' %}bg-red-950 text-red-400
+                                {% else %}bg-zinc-800 text-zinc-400{% endif %}">
+                                {{ item.get_status_display }}
+                            </span>
+                        </td>
+                        <td class="px-5 py-3 text-zinc-500 text-xs hidden lg:table-cell">
+                            {{ item.created_at|date:"d/m/Y H:i" }}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <div class="px-5 py-8 text-center text-sm text-zinc-500">
+            {% trans "No items registered yet." %}
+            <a href="{% url 'inventory:item_create' %}" class="text-zinc-300 hover:text-white hover:underline ml-1">{% trans "Register now" %}</a>
+        </div>
+        {% endif %}
+    </div>
+
+</div>
+{% endblock %}

@@ -1,0 +1,255 @@
+{% extends "common/layouts/base-aside.html" %}
+{% load widget_tweaks %}
+{% load i18n %}
+
+{% block title %}{% trans "New Item — Inventory" %}{% endblock %}
+
+{% block content %}
+<main class="min-h-screen p-4 w-full flex items-start justify-center pt-10">
+    <div class="flex flex-col w-full max-w-2xl gap-4">
+
+        <!-- Header -->
+        <div class="flex items-center gap-2">
+            <a href="{% url 'inventory:dashboard' %}"
+               class="text-zinc-400 hover:text-zinc-300 transition">
+                <span class="material-symbols-outlined text-xl leading-none">arrow_back</span>
+            </a>
+            <div>
+                <h1 class="text-white text-xl sm:text-2xl font-bold">{% trans "New Item" %}</h1>
+                <p class="text-zinc-400 text-sm">{% trans "Fill in the details to register an item in the inventory" %}</p>
+            </div>
+        </div>
+
+        <form method="post" enctype="multipart/form-data" class="flex flex-col gap-4" novalidate>
+            {% csrf_token %}
+
+            <!-- Identification -->
+            <div class="border rounded-xl flex flex-col gap-3 p-4 border-zinc-800 bg-zinc-900">
+                <p class="font-medium text-sm text-zinc-300 flex items-center gap-1.5">
+                    <span class="material-symbols-outlined text-zinc-700 text-base leading-none">badge</span>
+                    {% trans "Identification" %}
+                </p>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                        <label class="block font-medium text-xs sm:text-sm mb-1 text-zinc-400">
+                            {% trans "Code / Asset Number" %} <span class="text-red-500">*</span>
+                        </label>
+                        {{ form.code }}
+                        {% if form.code.errors %}<p class="text-red-500 text-xs mt-1">{{ form.code.errors.0 }}</p>{% endif %}
+                    </div>
+
+                    <div>
+                        <label class="block font-medium text-xs sm:text-sm mb-1 text-zinc-400">
+                            {% trans "Name" %} <span class="text-red-500">*</span>
+                        </label>
+                        {{ form.name }}
+                        {% if form.name.errors %}<p class="text-red-500 text-xs mt-1">{{ form.name.errors.0 }}</p>{% endif %}
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block font-medium text-xs sm:text-sm mb-1 text-zinc-400">{% trans "Category" %} <span class="text-red-500">*</span></label>
+                    {{ form.category }}
+                    {% if form.category.errors %}<p class="text-red-500 text-xs mt-1">{{ form.category.errors.0 }}</p>{% endif %}
+                </div>
+
+                <div>
+                    <label class="block font-medium text-xs sm:text-sm mb-1 text-zinc-400">{% trans "Description" %}</label>
+                    {{ form.description }}
+                    {% if form.description.errors %}<p class="text-red-500 text-xs mt-1">{{ form.description.errors.0 }}</p>{% endif %}
+                </div>
+            </div>
+
+            <!-- Location -->
+            <div class="border rounded-xl flex flex-col gap-3 p-4 border-zinc-800 bg-zinc-900">
+                <p class="font-medium text-sm text-zinc-300 flex items-center gap-1.5">
+                    <span class="material-symbols-outlined text-zinc-700 text-base leading-none">location_on</span>
+                    {% trans "Location" %}
+                </p>
+
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                    <div>
+                        <label class="block font-medium text-xs sm:text-sm mb-1 text-zinc-400">{% trans "Sector" %} <span class="text-red-500">*</span></label>
+                        {{ form.sector }}
+                        {% if form.sector.errors %}<p class="text-red-500 text-xs mt-1">{{ form.sector.errors.0 }}</p>{% endif %}
+                    </div>
+
+                    <div>
+                        <label class="block font-medium text-xs sm:text-sm mb-1 text-zinc-400">{% trans "Specific location" %}</label>
+                        {{ form.location }}
+                        {% if form.location.errors %}<p class="text-red-500 text-xs mt-1">{{ form.location.errors.0 }}</p>{% endif %}
+                    </div>
+
+                    <div>
+                        <label class="block font-medium text-xs sm:text-sm mb-1 text-zinc-400">{% trans "Responsible" %}</label>
+                        {{ form.responsible }}
+                        {% if form.responsible.errors %}<p class="text-red-500 text-xs mt-1">{{ form.responsible.errors.0 }}</p>{% endif %}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Condition -->
+            <div class="border rounded-xl flex flex-col gap-3 p-4 border-zinc-800 bg-zinc-900">
+                <p class="font-medium text-sm text-zinc-300 flex items-center gap-1.5">
+                    <span class="material-symbols-outlined text-zinc-700 text-base leading-none">fact_check</span>
+                    {% trans "Condition" %}
+                </p>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                        <label class="block font-medium text-xs sm:text-sm mb-1 text-zinc-400">{% trans "Status" %}</label>
+                        {{ form.status }}
+                        {% if form.status.errors %}<p class="text-red-500 text-xs mt-1">{{ form.status.errors.0 }}</p>{% endif %}
+                    </div>
+
+                    <div>
+                        <label class="block font-medium text-xs sm:text-sm mb-1 text-zinc-400">{% trans "Condition" %}</label>
+                        {{ form.condition }}
+                        {% if form.condition.errors %}<p class="text-red-500 text-xs mt-1">{{ form.condition.errors.0 }}</p>{% endif %}
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block font-medium text-xs sm:text-sm mb-1 text-zinc-400">{% trans "Notes" %}</label>
+                    {{ form.notes }}
+                    {% if form.notes.errors %}<p class="text-red-500 text-xs mt-1">{{ form.notes.errors.0 }}</p>{% endif %}
+                </div>
+            </div>
+
+            <!-- Technical specifications -->
+            <div class="border rounded-xl flex flex-col gap-3 p-4 border-zinc-800 bg-zinc-900">
+                <p class="font-medium text-sm text-zinc-300 flex items-center gap-1.5">
+                    <span class="material-symbols-outlined text-zinc-700 text-base leading-none">settings</span>
+                    {% trans "Technical Specifications" %}
+                    <span class="text-xs font-normal text-zinc-400">{% trans "(optional)" %}</span>
+                </p>
+
+                <!-- Brand -->
+                <div>
+                    <label class="block font-medium text-xs sm:text-sm mb-1 text-zinc-400">{% trans "Brand" %}</label>
+
+                    <select id="brand_select" name="brand_id"
+                            class="w-full p-2 border border-zinc-700 rounded text-sm focus:outline-none focus:ring-2 focus:ring-zinc-600 bg-zinc-900 text-white">
+                        <option value="">{% trans "Select a brand" %}</option>
+                        {% for brand in brands %}
+                        <option value="{{ brand.id }}"
+                            {% if selected_brand_id == brand.id|stringformat:"s" %}selected{% endif %}>
+                            {{ brand.name }}
+                        </option>
+                        {% endfor %}
+                        <option value="__new__" {% if selected_brand_id == "__new__" %}selected{% endif %}>
+                            {% trans "+ New brand..." %}
+                        </option>
+                    </select>
+
+                    <!-- New brand panel -->
+                    <div id="new_brand_panel"
+                         class="mt-2 flex flex-col gap-2 {% if selected_brand_id != '__new__' %}hidden{% endif %}">
+
+                        <input type="text"
+                               name="new_brand_name"
+                               id="new_brand_name_input"
+                               value="{{ request.POST.new_brand_name|default:'' }}"
+                               placeholder="{% trans 'Enter the name of the new brand' %}"
+                               autocomplete="off"
+                               class="w-full p-2 border border-zinc-700 rounded text-sm bg-zinc-900 text-white focus:outline-none focus:ring-2 focus:ring-zinc-600">
+
+                        <!-- Similarity warning (filled by JS) -->
+                        <div id="similarity_warning" class="hidden flex items-start gap-2 px-3 py-2 bg-amber-950/40 border border-amber-800 rounded text-xs text-amber-400">
+                            <span class="material-symbols-outlined text-sm leading-none mt-0.5 shrink-0">warning</span>
+                            <span id="similarity_text"></span>
+                        </div>
+                    </div>
+
+                    {% if brand_error %}
+                    <p class="text-red-500 text-xs mt-1">{{ brand_error }}</p>
+                    {% endif %}
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                        <label class="block font-medium text-xs sm:text-sm mb-1 text-zinc-400">{% trans "Model" %}</label>
+                        {{ spec_form.model_name }}
+                        {% if spec_form.model_name.errors %}<p class="text-red-500 text-xs mt-1">{{ spec_form.model_name.errors.0 }}</p>{% endif %}
+                    </div>
+
+                    <div>
+                        <label class="block font-medium text-xs sm:text-sm mb-1 text-zinc-400">{% trans "Serial Number" %}</label>
+                        {{ spec_form.serial_number }}
+                        {% if spec_form.serial_number.errors %}<p class="text-red-500 text-xs mt-1">{{ spec_form.serial_number.errors.0 }}</p>{% endif %}
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block font-medium text-xs sm:text-sm mb-1 text-zinc-400">{% trans "Image" %}</label>
+                    {{ spec_form.image }}
+                    {% if spec_form.image.errors %}<p class="text-red-500 text-xs mt-1">{{ spec_form.image.errors.0 }}</p>{% endif %}
+                </div>
+            </div>
+
+            <!-- Actions -->
+            <div class="flex items-center justify-end gap-3">
+                <a href="{% url 'inventory:dashboard' %}"
+                   class="text-sm text-zinc-500 hover:text-zinc-300 transition px-4 py-2">
+                    {% trans "Cancel" %}
+                </a>
+                <button type="submit"
+                        class="bg-white text-zinc-950 py-2 px-6 rounded hover:bg-zinc-200 transition text-sm font-medium flex items-center gap-1.5">
+                    <span class="material-symbols-outlined text-base leading-none">save</span>
+                    {% trans "Save Item" %}
+                </button>
+            </div>
+
+        </form>
+    </div>
+</main>
+{% endblock %}
+
+{% block scripts %}
+<script>
+(function () {
+    const brandSelect = document.getElementById('brand_select');
+    const newBrandPanel = document.getElementById('new_brand_panel');
+    const newBrandInput = document.getElementById('new_brand_name_input');
+    const similarityWarning = document.getElementById('similarity_warning');
+    const similarityText = document.getElementById('similarity_text');
+    const CHECK_URL = "{% url 'inventory:brand_check' %}";
+
+    brandSelect.addEventListener('change', function () {
+        if (this.value === '__new__') {
+            newBrandPanel.classList.remove('hidden');
+            newBrandInput.focus();
+        } else {
+            newBrandPanel.classList.add('hidden');
+            similarityWarning.classList.add('hidden');
+            newBrandInput.value = '';
+        }
+    });
+
+    let debounceTimer;
+    newBrandInput.addEventListener('input', function () {
+        const name = this.value.trim();
+        clearTimeout(debounceTimer);
+        similarityWarning.classList.add('hidden');
+
+        if (name.length < 2) return;
+
+        debounceTimer = setTimeout(async () => {
+            try {
+                const res = await fetch(`${CHECK_URL}?name=${encodeURIComponent(name)}`);
+                const data = await res.json();
+                if (data.similar && data.similar.length > 0) {
+                    const top = data.similar[0];
+                    similarityText.textContent =
+                        `{% trans "Similar brand already exists" %}: "${top.name}" (${top.ratio}% {% trans "similarity" %}). {% trans "Select it from the list or use a different name." %}`;
+                    similarityWarning.classList.remove('hidden');
+                } else {
+                    similarityWarning.classList.add('hidden');
+                }
+            } catch (_) { /* ignore network errors */ }
+        }, 400);
+    });
+})();
+</script>
+{% endblock %}
