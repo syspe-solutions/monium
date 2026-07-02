@@ -1,0 +1,27 @@
+{% extends "audit/log_dashboard_base.html" %}
+
+{% block dashboard_title %}Logs: ACCESS{% endblock %}
+{% block dashboard_subtitle %}Trafego HTTP de entrada e saida{% endblock %}
+
+{% block table_headers %}
+<th class="p-3 font-semibold w-40">Timestamp</th>
+<th class="p-3 font-semibold w-24">Metodo</th>
+<th class="p-3 font-semibold">Endpoint</th>
+<th class="p-3 font-semibold w-24 text-center">Status</th>
+<th class="p-3 font-semibold w-28">Tempo (ms)</th>
+<th class="p-3 font-semibold w-40">IP</th>
+{% endblock %}
+
+{% block row_renderer %}
+const ts = log.timestamp ? new Date(log.timestamp).toLocaleString('pt-BR') : "-";
+const data = log.data || {};
+return `
+<tr class="hover:bg-zinc-50 transition">
+    <td class="p-3 text-zinc-500 whitespace-nowrap border-r border-zinc-50">${ts}</td>
+    <td class="p-3 border-r border-zinc-50">${toSafeTextFn(data.method)}</td>
+    <td class="p-3 border-r border-zinc-50 break-all">${toSafeTextFn(data.endpoint)}</td>
+    <td class="p-3 text-center border-r border-zinc-50">${toSafeTextFn(data.status_code)}</td>
+    <td class="p-3 border-r border-zinc-50">${toSafeTextFn(data.response_time_ms)}</td>
+    <td class="p-3">${toSafeTextFn(data.ip_address)}</td>
+</tr>`;
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends "audit/log_dashboard_base.html" %}
+
+{% block dashboard_title %}Logs: SECURITY{% endblock %}
+{% block dashboard_subtitle %}Autenticacao, autorizacao e eventos suspeitos{% endblock %}
+
+{% block table_headers %}
+<th class="p-3 font-semibold w-40">Timestamp</th>
+<th class="p-3 font-semibold w-28">Acao</th>
+<th class="p-3 font-semibold w-24">Status</th>
+<th class="p-3 font-semibold w-40">Usuario</th>
+<th class="p-3 font-semibold w-40">IP</th>
+<th class="p-3 font-semibold">Motivo</th>
+{% endblock %}
+
+{% block row_renderer %}
+const ts = log.timestamp ? new Date(log.timestamp).toLocaleString('pt-BR') : "-";
+const data = log.data || {};
+return `
+<tr class="hover:bg-zinc-50 transition">
+    <td class="p-3 text-zinc-500 whitespace-nowrap border-r border-zinc-50">${ts}</td>
+    <td class="p-3 border-r border-zinc-50">${toSafeTextFn(data.action)}</td>
+    <td class="p-3 border-r border-zinc-50">${toSafeTextFn(data.status)}</td>
+    <td class="p-3 border-r border-zinc-50">${toSafeTextFn(data.user)}</td>
+    <td class="p-3 border-r border-zinc-50">${toSafeTextFn(data.ip_address)}</td>
+    <td class="p-3 break-all">${toSafeTextFn(data.reason)}</td>
+</tr>`;
+{% endblock %}

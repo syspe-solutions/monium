@@ -1,0 +1,27 @@
+{% extends "audit/log_dashboard_base.html" %}
+
+{% block dashboard_title %}Logs: DATABASE{% endblock %}
+{% block dashboard_subtitle %}Consultas SQL e desempenho do banco{% endblock %}
+
+{% block table_headers %}
+<th class="p-3 font-semibold w-40">Timestamp</th>
+<th class="p-3 font-semibold w-20">Status</th>
+<th class="p-3 font-semibold w-28">Tempo (ms)</th>
+<th class="p-3 font-semibold w-28">Banco</th>
+<th class="p-3 font-semibold">Query</th>
+<th class="p-3 font-semibold">Erro</th>
+{% endblock %}
+
+{% block row_renderer %}
+const ts = log.timestamp ? new Date(log.timestamp).toLocaleString('pt-BR') : "-";
+const data = log.data || {};
+return `
+<tr class="hover:bg-zinc-50 transition">
+    <td class="p-3 text-zinc-500 whitespace-nowrap border-r border-zinc-50">${ts}</td>
+    <td class="p-3 border-r border-zinc-50">${toSafeTextFn(data.status || log.level)}</td>
+    <td class="p-3 border-r border-zinc-50">${toSafeTextFn(data.execution_time_ms)}</td>
+    <td class="p-3 border-r border-zinc-50">${toSafeTextFn(data.database_name)}</td>
+    <td class="p-3 border-r border-zinc-50 break-all">${toSafeTextFn(data.query || log.message)}</td>
+    <td class="p-3 break-all">${toSafeTextFn(data.error)}</td>
+</tr>`;
+{% endblock %}

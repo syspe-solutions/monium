@@ -1,0 +1,28 @@
+{% extends "audit/log_dashboard_base.html" %}
+
+{% block dashboard_title %}Logs: PERFORMANCE{% endblock %}
+{% block dashboard_subtitle %}Tempos de execucao e gargalos{% endblock %}
+
+{% block table_headers %}
+<th class="p-3 font-semibold w-40">Timestamp</th>
+<th class="p-3 font-semibold w-44">Funcao</th>
+<th class="p-3 font-semibold">Endpoint</th>
+<th class="p-3 font-semibold w-28">Tempo (ms)</th>
+<th class="p-3 font-semibold w-24">Status</th>
+<th class="p-3 font-semibold">Metadata</th>
+{% endblock %}
+
+{% block row_renderer %}
+const ts = log.timestamp ? new Date(log.timestamp).toLocaleString('pt-BR') : "-";
+const data = log.data || {};
+const execMs = data.execution_time_ms || (data.duration_sec ? Number(data.duration_sec) * 1000 : "-");
+return `
+<tr class="hover:bg-zinc-50 transition">
+    <td class="p-3 text-zinc-500 whitespace-nowrap border-r border-zinc-50">${ts}</td>
+    <td class="p-3 border-r border-zinc-50">${toSafeTextFn(data.function_name || data.function)}</td>
+    <td class="p-3 border-r border-zinc-50 break-all">${toSafeTextFn(data.endpoint)}</td>
+    <td class="p-3 border-r border-zinc-50">${toSafeTextFn(execMs)}</td>
+    <td class="p-3 border-r border-zinc-50">${toSafeTextFn(data.status)}</td>
+    <td class="p-3 break-all">${toSafeTextFn(data.metadata || data)}</td>
+</tr>`;
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends "audit/log_dashboard_base.html" %}
+
+{% block dashboard_title %}Logs: BUSINESS{% endblock %}
+{% block dashboard_subtitle %}Eventos de Negócio e Ações de Usuario{% endblock %}
+
+{% block table_headers %}
+<th class="p-3 font-semibold w-40">Timestamp</th>
+<th class="p-3 font-semibold w-20 text-center">Level</th>
+<th class="p-3 font-semibold w-36">Acao</th>
+<th class="p-3 font-semibold w-32">Entidade</th>
+<th class="p-3 font-semibold">Detalhes</th>
+{% endblock %}
+
+{% block row_renderer %}
+const ts = log.timestamp ? new Date(log.timestamp).toLocaleString('pt-BR') : "-";
+const level = toSafeTextFn(log.level || "INFO");
+const data = log.data || {};
+const action = toSafeTextFn(data.action || log.message);
+const entity = toSafeTextFn(data.entity);
+const details = toSafeTextFn(data.details || data);
+return `
+<tr class="hover:bg-zinc-50 transition">
+    <td class="p-3 text-zinc-500 whitespace-nowrap border-r border-zinc-50">${ts}</td>
+    <td class="p-3 text-center border-r border-zinc-50"><span class="px-2 py-0.5 rounded-full font-bold text-[10px] ${getLevelBadgeFn(level)}">${level}</span></td>
+    <td class="p-3 border-r border-zinc-50">${action}</td>
+    <td class="p-3 border-r border-zinc-50">${entity}</td>
+    <td class="p-3 text-zinc-700 break-all">${details}</td>
+</tr>`;
+{% endblock %}

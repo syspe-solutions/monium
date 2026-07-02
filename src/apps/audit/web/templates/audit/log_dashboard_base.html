@@ -1,0 +1,234 @@
+{% extends 'common/layouts/base-aside.html' %}
+
+{% block content %}
+<main class="min-h-screen p-4 flex gap-4 flex-col">
+    <header class="flex flex-col gap-4">
+        <div class="flex justify-between items-center bg-white p-4 border border-zinc-200 rounded shadow-sm">
+            <div>
+                <h1 class="text-xl font-bold text-blue-600">{% block dashboard_title %}Logs{% endblock %}</h1>
+                <p class="text-sm text-zinc-500">{% block dashboard_subtitle %}Visualizacao detalhada da camada{% endblock %}</p>
+            </div>
+            <div class="flex gap-2">
+                <a href="{% url 'audit:log-export' current_layer %}" class="flex items-center gap-2 px-3 py-2 bg-white border border-zinc-200 rounded text-sm font-medium text-zinc-700 hover:bg-zinc-50 transition shadow-sm">
+                    <span class="material-symbols-outlined text-sm">download</span>
+                    Exportar
+                </a>
+                <button id="auto-refresh-btn" class="flex items-center gap-2 px-3 py-2 bg-white border border-zinc-200 rounded text-sm font-medium text-zinc-700 hover:bg-zinc-50 transition shadow-sm">
+                    <span class="material-symbols-outlined text-sm">pause_circle</span>
+                    <span id="auto-refresh-text">Pausar</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="flex border-b border-zinc-200 overflow-x-auto">
+            {% for layer in layers %}
+                <a href="{% url 'audit:log-layer-dashboard' layer %}"
+                   class="px-6 py-3 border-b-2 text-sm font-semibold transition-all whitespace-nowrap
+                   {% if current_layer == layer %}border-blue-600 text-blue-600{% else %}border-transparent text-zinc-500 hover:text-zinc-700{% endif %}">
+                    {{ layer|upper }}
+                </a>
+            {% endfor %}
+        </div>
+    </header>
+
+    <div class="grid gap-4 grid-cols-[repeat(auto-fit,minmax(220px,1fr))]">
+        <div class="bg-white border flex flex-col gap-2 border-zinc-200 rounded p-4">
+            <h2 class="text-md font-semibold text-blue-600">Total de Entradas</h2>
+            <p class="text-3xl font-bold text-blue-600" id="metric-total">{{ metrics.total_count }}</p>
+            <p class="text-sm text-zinc-600">Registros totais (arquivo + snapshot)</p>
+        </div>
+        <div class="bg-white border flex flex-col gap-2 border-zinc-200 rounded p-4">
+            <h2 class="text-md font-semibold text-blue-600">Taxa de Erro</h2>
+            <p class="text-3xl font-bold text-red-600" id="metric-error-rate">{{ metrics.error_rate }}</p>
+            <p class="text-sm text-zinc-600">Percentual de falhas</p>
+        </div>
+        <div class="bg-white border flex flex-col gap-2 border-zinc-200 rounded p-4">
+            <h2 class="text-md font-semibold text-blue-600">Eventos / Minuto</h2>
+            <p class="text-3xl font-bold text-blue-600" id="metric-rpm">{{ metrics.requests_per_minute }}</p>
+            <p class="text-sm text-zinc-600">Frequencia em tempo real</p>
+        </div>
+        <div class="bg-white border flex flex-col gap-2 border-zinc-200 rounded p-4">
+            <h2 class="text-md font-semibold text-blue-600">Incidentes Críticos</h2>
+            <p class="text-3xl font-bold text-red-600" id="metric-critical">{{ metrics.critical_incidents }}</p>
+            <p class="text-sm text-zinc-600">Casos que requerem atencao</p>
+        </div>
+    </div>
+
+    <section class="bg-white border border-zinc-200 rounded p-4 shadow-sm flex flex-col gap-3">
+
+        <div class="flex items-center gap-2">
+            <div class="relative flex-1">
+                <span class="material-symbols-outlined absolute left-2 top-1/2 -translate-y-1/2 text-zinc-400 text-sm">search</span>
+                <input type="text" id="q-filter" placeholder="Palavra-chave na mensagem..."
+                       class="w-full p-2 pl-8 border border-zinc-300 rounded text-sm focus:ring-1 focus:ring-blue-500 outline-none transition">
+            </div>
+
+            <button type="button" id="filter-toggle"
+                    class="relative lg:hidden flex items-center gap-1 px-3 py-2 border border-zinc-300 rounded text-xs text-zinc-600 hover:bg-zinc-50 transition shrink-0">
+                <span class="material-symbols-outlined text-sm">tune</span>
+                <span>Filtros</span>
+                <span id="filter-dot" class="absolute -top-1 -right-1 w-2 h-2 bg-blue-600 rounded-full hidden"></span>
+            </button>
+
+            <button id="apply-filters"
+                    class="hidden lg:flex items-center gap-1 bg-blue-600 text-white px-4 py-2 rounded text-sm font-medium hover:bg-blue-700 transition shrink-0">
+                Filtrar
+            </button>
+        </div>
+
+        <div id="filter-panel" class="hidden grid-cols-2 gap-3">
+
+            <div class="col-span-1">
+                <label class="block text-xs font-medium text-zinc-500 uppercase tracking-wide mb-1">Level</label>
+                <select id="level-filter"
+                        class="w-full p-2 border border-zinc-300 rounded text-sm outline-none focus:ring-1 focus:ring-blue-500 bg-white transition">
+                    <option value="">Todos</option>
+                    <option value="INFO">INFO</option>
+                    <option value="WARNING">WARNING</option>
+                    <option value="ERROR">ERROR</option>
+                    <option value="CRITICAL">CRITICAL</option>
+                </select>
+            </div>
+
+            <div class="col-span-1">
+                <label class="block text-xs font-medium text-zinc-500 uppercase tracking-wide mb-1">Trace ID</label>
+                <input type="text" id="trace-id-filter" placeholder="UUID..."
+                       class="w-full p-2 border border-zinc-300 rounded text-sm outline-none focus:ring-1 focus:ring-blue-500 transition">
+            </div>
+
+            <div class="col-span-2 sm:col-span-3 lg:hidden flex justify-end">
+                <button id="apply-filters-mobile"
+                        class="bg-blue-600 text-white px-4 py-2 rounded text-sm font-medium hover:bg-blue-700 transition">
+                    Filtrar
+                </button>
+            </div>
+        </div>
+
+    </section>
+
+    <div class="bg-white border border-zinc-200 rounded flex-1 flex flex-col min-h-[400px]">
+        <div class="p-4 border-b border-zinc-100 flex justify-between items-center">
+            <h3 class="font-bold text-zinc-800">Eventos Recentes</h3>
+            <select id="limit-select" class="p-1 border border-zinc-300 rounded text-xs outline-none">
+                <option value="50">50 linhas</option>
+                <option value="100">100 linhas</option>
+                <option value="500">500 linhas</option>
+            </select>
+        </div>
+        <div class="overflow-x-auto flex-1">
+            <table class="w-full text-left text-xs border-collapse">
+                <thead>
+                    <tr class="bg-blue-50 text-blue-900 border-b border-blue-100">
+                        {% block table_headers %}{% endblock %}
+                    </tr>
+                </thead>
+                <tbody id="log-table-body" class="divide-y divide-zinc-100 font-mono"></tbody>
+            </table>
+        </div>
+    </div>
+</main>
+{% endblock %}
+
+{% block scripts %}
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script>
+$(document).ready(function() {
+    const LAYER = "{{ current_layer }}";
+    const DATA_URL = `/audit/logs/${LAYER}/`;
+    const METRICS_URL = `/audit/logs/${LAYER}/metrics/`;
+    const EMPTY_COLSPAN = {{ empty_colspan|default:4 }};
+    let refreshInterval;
+    let autoRefresh = true;
+
+    function getLevelBadge(level) {
+        level = (level || "INFO").toUpperCase();
+        const classes = {
+            INFO: 'bg-blue-100 text-blue-700',
+            WARNING: 'bg-yellow-100 text-yellow-700',
+            ERROR: 'bg-red-100 text-red-700',
+            CRITICAL: 'bg-red-600 text-white',
+            DEBUG: 'bg-zinc-100 text-zinc-600'
+        };
+        return classes[level] || 'bg-zinc-100 text-zinc-700';
+    }
+
+    function toSafeText(value) {
+        if (value === null || value === undefined || value === "") return "-";
+        return typeof value === "object" ? JSON.stringify(value) : String(value);
+    }
+
+    function fetchMetrics() {
+        $.get(METRICS_URL, function(data) {
+            $('#metric-total').text((data.total_count || 0).toLocaleString());
+            $('#metric-error-rate').text(data.error_rate || "0.00%");
+            $('#metric-rpm').text((data.requests_per_minute || 0).toLocaleString());
+            $('#metric-critical').text((data.critical_incidents || 0).toLocaleString());
+        });
+    }
+
+    function renderRow(log, getLevelBadgeFn, toSafeTextFn) {
+        {% block row_renderer %}return "";{% endblock %}
+    }
+
+    function fetchLogs() {
+        const params = {
+            limit: $('#limit-select').val(),
+            level: $('#level-filter').val(),
+            q: $('#q-filter').val(),
+            trace_id: $('#trace-id-filter').val()
+        };
+
+        $.get(DATA_URL, params, function(data) {
+            const $tbody = $('#log-table-body');
+            $tbody.empty();
+
+            if (!data || data.length === 0) {
+                $tbody.append(`<tr><td colspan="${EMPTY_COLSPAN}" class="p-8 text-center text-zinc-400">Nenhum registro encontrado para os filtros atuais.</td></tr>`);
+                return;
+            }
+
+            data.forEach(log => $tbody.append(renderRow(log, getLevelBadge, toSafeText)));
+        });
+    }
+
+    function startAutoRefresh() {
+        fetchLogs();
+        fetchMetrics();
+        if (autoRefresh) {
+            refreshInterval = setInterval(() => {
+                fetchLogs();
+                fetchMetrics();
+            }, 5000);
+        }
+    }
+
+    $('#auto-refresh-btn').click(function() {
+        autoRefresh = !autoRefresh;
+        if (autoRefresh) {
+            $(this).find('.material-symbols-outlined').text('pause_circle');
+            $('#auto-refresh-text').text('Pausar');
+            startAutoRefresh();
+        } else {
+            $(this).find('.material-symbols-outlined').text('play_circle');
+            $('#auto-refresh-text').text('Retomar');
+            clearInterval(refreshInterval);
+        }
+    });
+
+    $('#apply-filters, #apply-filters-mobile').click(() => { fetchLogs(); fetchMetrics(); });
+    $('#limit-select').change(fetchLogs);
+    $('#level-filter').change(() => {
+        $('#filter-dot').toggleClass('hidden', !$('#level-filter').val() && !$('#trace-id-filter').val());
+    });
+
+    // Toggle painel mobile
+    $('#filter-toggle').click(function() {
+        const panel = $('#filter-panel');
+        const isHidden = panel.hasClass('hidden');
+        panel.toggleClass('hidden', !isHidden).toggleClass('grid', isHidden);
+    });
+
+    startAutoRefresh();
+});
+</script>
+{% endblock %}
