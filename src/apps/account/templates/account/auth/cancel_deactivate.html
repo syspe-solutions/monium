@@ -1,0 +1,35 @@
+{% extends 'common/base.html' %}
+{% load i18n %}
+
+{% block header %}
+<header class="fixed w-full bg-zinc-950 border-b border-zinc-800 z-50">
+  <div class="px-4 py-3 flex items-center justify-start">
+    <a href="{% url 'inventory:home' %}" class="text-xl font-bold text-white">Monium</a>
+  </div>
+</header>
+{% endblock %}
+
+{% block footer %}{% endblock %}
+
+{% block content %}
+<main class="min-h-screen p-4 w-full flex items-center justify-center">
+  <div class="flex flex-col w-full max-w-md gap-6 text-center">
+
+    <div class="flex flex-col items-center gap-3">
+      <div class="w-16 h-16 rounded-full bg-green-950 border border-green-800 flex items-center justify-center">
+        <span class="material-symbols-outlined text-green-400 text-3xl leading-none">check_circle</span>
+      </div>
+      <h1 class="text-white text-xl font-bold">{% trans "Deletion cancelled" %}</h1>
+      <p class="text-zinc-400 text-sm">
+        {% trans "Your account deactivation request has been cancelled. Your account remains active." %}
+      </p>
+    </div>
+
+    <a href="{% url 'inventory:home' %}"
+       class="w-full bg-white text-zinc-950 py-2 px-4 rounded hover:bg-zinc-200 transition font-medium text-sm">
+      {% trans "Back to Home" %}
+    </a>
+
+  </div>
+</main>
+{% endblock %}
