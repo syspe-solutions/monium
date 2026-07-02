@@ -1,0 +1,24 @@
+{% load static %}
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" type="text/css" href="{% static 'converter/css/form.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'common/css/default.css' %}">
+<link rel="icon" type="image/x-icon" sizes="32x32" href="{% static 'common/favicon.ico' %}">
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+
+<style rel="stylesheet" type="text/tailwindcss">
+    @layer components {
+        .btn {
+            @apply w-fit flex items-center gap-1 px-3 py-2 text-sm font-medium rounded transition;
+        }
+    }
+</style>

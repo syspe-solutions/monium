@@ -1,0 +1,225 @@
+{% load i18n %}
+<script>
+    (function() {
+        const isCollapsed = localStorage.getItem('sidebar-collapsed') === 'true';
+        if (isCollapsed) document.documentElement.classList.add('sidebar-is-collapsed');
+    })();
+</script>
+
+<style>
+    #main-sidebar { transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+
+    .sidebar-is-collapsed #main-sidebar { width: 5rem; }
+
+    .sidebar-is-collapsed #main-sidebar .sidebar-text,
+    .sidebar-is-collapsed #main-sidebar .sidebar-header,
+    .sidebar-is-collapsed #main-sidebar #logo-full,
+    .sidebar-is-collapsed #main-sidebar .user-info { display: none; }
+
+    .sidebar-is-collapsed #main-sidebar #logo-compact { display: block; }
+
+    .sidebar-is-collapsed #main-sidebar .nav-item {
+        justify-content: center;
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .sidebar-is-collapsed #sidebar-content::-webkit-scrollbar { display: none; }
+    .sidebar-is-collapsed #sidebar-content { -ms-overflow-style: none; scrollbar-width: none; }
+
+    #logo-compact { display: none; }
+
+    @media (max-width: 1023px) {
+        #main-sidebar {
+            position: fixed !important;
+            top: 0; left: 0;
+            height: 100vh;
+            width: 16rem !important;
+            transform: translateX(-100%);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+            z-index: 80;
+        }
+        .mobile-sidebar-open #main-sidebar { transform: translateX(0); }
+        .sidebar-is-collapsed #main-sidebar { width: 16rem !important; }
+        .sidebar-is-collapsed #main-sidebar .sidebar-text,
+        .sidebar-is-collapsed #main-sidebar .sidebar-header,
+        .sidebar-is-collapsed #main-sidebar #logo-full { display: block !important; }
+        .sidebar-is-collapsed #main-sidebar .user-info { display: flex !important; }
+        .sidebar-is-collapsed #main-sidebar #logo-compact { display: none !important; }
+        .sidebar-is-collapsed #main-sidebar .nav-item {
+            justify-content: flex-start !important;
+            padding-left: 0.75rem !important;
+            padding-right: 0.75rem !important;
+        }
+        #sidebar-toggle { display: none !important; }
+    }
+</style>
+
+<aside id="main-sidebar"
+       class="relative h-screen sticky top-0 w-64 bg-zinc-900 text-white flex flex-col border-r border-zinc-800 z-50 flex-shrink-0">
+
+    <button id="sidebar-toggle"
+            class="absolute flex items-center justify-center -right-3 top-10 bg-zinc-700 text-white rounded-full w-6 h-6 border-2 border-zinc-900 hover:bg-zinc-600 transition shadow-md z-[60]"
+            aria-label="{% trans 'Collapse menu' %}">
+        <span class="material-symbols-outlined text-xs leading-none" id="toggle-icon">chevron_left</span>
+    </button>
+
+    <div id="sidebar-content" class="flex flex-col flex-1 overflow-y-auto overflow-x-hidden p-4">
+
+        <!-- Logo -->
+        <a href="{% url 'inventory:home' %}" class="flex justify-center mb-8 shrink-0">
+            <span id="logo-full" class="text-3xl font-bold text-center">Monium</span>
+            <span id="logo-compact" class="text-3xl font-bold">M</span>
+        </a>
+
+        <!-- Principal -->
+        <div class="mb-4 shrink-0">
+            <nav class="flex flex-col gap-1">
+                <a href="{% url 'inventory:home' %}"
+                   class="nav-item flex items-center gap-3 p-3 rounded-lg transition-all
+                          {% if request.resolver_match.url_name == 'home' %}bg-zinc-800 text-white{% else %}hover:bg-zinc-800{% endif %}"
+                   title="{% trans 'Home' %}">
+                    <span class="material-symbols-outlined text-sm shrink-0">home</span>
+                    <span class="sidebar-text text-sm overflow-hidden whitespace-nowrap">{% trans "Home" %}</span>
+                </a>
+            </nav>
+        </div>
+
+        <!-- Inventário -->
+        <div class="mb-4 shrink-0">
+            <h3 class="sidebar-header text-zinc-500 uppercase text-xs font-semibold p-3">{% trans "Inventory" %}</h3>
+            <nav class="flex flex-col gap-1">
+                <a href="{% url 'inventory:dashboard' %}"
+                   class="nav-item flex items-center gap-3 p-3 rounded transition-all
+                          {% if request.resolver_match.url_name == 'dashboard' %}bg-zinc-800 text-white{% else %}hover:bg-zinc-800{% endif %}"
+                   title="{% trans 'Categories' %}">
+                    <span class="material-symbols-outlined text-sm shrink-0">category</span>
+                    <span class="sidebar-text text-sm overflow-hidden whitespace-nowrap">{% trans "Categories" %}</span>
+                </a>
+
+                <a href="{% url 'inventory:item_create' %}"
+                   class="nav-item flex items-center gap-3 p-3 rounded transition-all
+                          {% if request.resolver_match.url_name == 'item_create' %}bg-zinc-800 text-white{% else %}hover:bg-zinc-800{% endif %}"
+                   title="{% trans 'Register Item' %}">
+                    <span class="material-symbols-outlined text-sm shrink-0">add_box</span>
+                    <span class="sidebar-text text-sm overflow-hidden whitespace-nowrap">{% trans "Register Item" %}</span>
+                </a>
+            </nav>
+        </div>
+
+        <!-- Planos -->
+        <div class="mb-4 shrink-0">
+            <nav class="flex flex-col gap-1">
+                <a href="{% url 'billing:plans' %}"
+                   class="nav-item flex items-center gap-3 p-3 rounded-lg transition-all
+                          {% if request.resolver_match.url_name == 'plans' %}bg-zinc-800 text-white{% else %}hover:bg-zinc-800{% endif %}"
+                   title="{% trans 'Plans' %}">
+                    <span class="material-symbols-outlined text-sm shrink-0">workspace_premium</span>
+                    <span class="sidebar-text text-sm overflow-hidden whitespace-nowrap">{% trans "Plans" %}</span>
+                </a>
+            </nav>
+        </div>
+
+        <!-- Conta -->
+        <div class="shrink-0">
+            <h3 class="sidebar-header text-zinc-500 uppercase text-xs font-semibold mb-2 px-3">{% trans "Account" %}</h3>
+            <nav class="flex flex-col gap-1">
+
+                <!-- Language switcher -->
+                <div class="nav-item flex items-center gap-3 p-3 rounded" title="{% trans 'Language' %}">
+                    <span class="material-symbols-outlined text-sm shrink-0 text-zinc-500">language</span>
+                    <div class="sidebar-text flex items-center gap-1">
+                        {% get_current_language as LANGUAGE_CODE %}
+                        <form action="{% url 'set_language' %}" method="post" class="flex items-center gap-1">
+                            {% csrf_token %}
+                            <input type="hidden" name="next" value="{{ request.path }}">
+                            <button type="submit" name="language" value="pt-br"
+                                    class="text-xs px-2 py-0.5 rounded transition
+                                           {% if LANGUAGE_CODE == 'pt-br' %}bg-zinc-700 text-white{% else %}text-zinc-500 hover:text-zinc-200{% endif %}">
+                                PT
+                            </button>
+                            <span class="text-zinc-700 text-xs">|</span>
+                            <button type="submit" name="language" value="en"
+                                    class="text-xs px-2 py-0.5 rounded transition
+                                           {% if LANGUAGE_CODE == 'en' %}bg-zinc-700 text-white{% else %}text-zinc-500 hover:text-zinc-200{% endif %}">
+                                EN
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <form method="post" action="{% url 'account:logout' %}" class="m-0">
+                    {% csrf_token %}
+                    <button type="submit"
+                            class="nav-item w-full flex items-center gap-3 p-3 rounded hover:bg-red-900/30 transition-all text-red-500 font-semibold text-left"
+                            title="{% trans 'Logout' %}">
+                        <span class="material-symbols-outlined text-sm shrink-0">logout</span>
+                        <span class="sidebar-text text-sm overflow-hidden whitespace-nowrap">{% trans "Logout" %}</span>
+                    </button>
+                </form>
+            </nav>
+        </div>
+
+        <div class="mt-auto border-t border-zinc-800 pt-4 shrink-0">
+            <a href="{% url 'account:profile_edit' %}"
+               class="nav-item flex items-center gap-3 p-2 rounded hover:bg-zinc-800 transition-all">
+                <div class="w-10 h-10 rounded-full bg-zinc-700 flex items-center justify-center font-bold text-lg shrink-0">
+                    {{ request.user.first_name|default:request.user.username|first|upper }}
+                </div>
+                <div class="user-info flex flex-col leading-tight overflow-hidden">
+                    <span class="text-sm font-semibold whitespace-nowrap">
+                        {{ request.user.get_full_name|default:request.user.username|truncatechars:20 }}
+                    </span>
+                    <span class="text-xs text-zinc-500 whitespace-nowrap truncate">
+                        {{ request.user.email }}
+                    </span>
+                </div>
+            </a>
+        </div>
+
+    </div>
+</aside>
+
+<div id="mobile-backdrop"
+     class="fixed inset-0 bg-black/50 hidden z-[70]"
+     aria-hidden="true"></div>
+
+<style>
+#sidebar-content { scrollbar-width: thin; scrollbar-color: rgba(100,116,139,0.4) transparent; }
+#sidebar-content::-webkit-scrollbar { width: 6px; }
+#sidebar-content::-webkit-scrollbar-track { background: transparent; }
+#sidebar-content::-webkit-scrollbar-thumb { background-color: rgba(100,116,139,0.3); border-radius: 999px; }
+#sidebar-content:hover::-webkit-scrollbar-thumb { background-color: rgba(100,116,139,0.6); }
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const html = document.documentElement;
+
+    // Desktop collapse
+    const toggleBtn = document.getElementById('sidebar-toggle');
+    const toggleIcon = document.getElementById('toggle-icon');
+
+    function updateToggleIcon(collapsed) {
+        toggleIcon.textContent = collapsed ? 'chevron_right' : 'chevron_left';
+    }
+    updateToggleIcon(html.classList.contains('sidebar-is-collapsed'));
+
+    toggleBtn.addEventListener('click', function () {
+        const isNowCollapsed = html.classList.toggle('sidebar-is-collapsed');
+        localStorage.setItem('sidebar-collapsed', isNowCollapsed);
+        updateToggleIcon(isNowCollapsed);
+    });
+
+    // Mobile overlay
+    const backdrop = document.getElementById('mobile-backdrop');
+    const hamburger = document.getElementById('mobile-hamburger');
+
+    function openMobileSidebar()  { html.classList.add('mobile-sidebar-open');    backdrop.classList.remove('hidden'); }
+    function closeMobileSidebar() { html.classList.remove('mobile-sidebar-open'); backdrop.classList.add('hidden'); }
+
+    if (hamburger) hamburger.addEventListener('click', openMobileSidebar);
+    backdrop.addEventListener('click', closeMobileSidebar);
+    window.addEventListener('resize', function () { if (window.innerWidth >= 1024) closeMobileSidebar(); });
+});
+</script>

@@ -1,0 +1,66 @@
+{% load static %}
+{% load assets %}
+{% load i18n %}
+
+<!DOCTYPE html>
+<html lang="{{ request.LANGUAGE_CODE|default:'pt-br' }}">
+<head>
+    <title>{% block title %}Monium{% endblock %}</title>
+    {% include "common/includes/builtin.html" %}
+    {% block extrahead %}{% endblock %}
+</head>
+
+<body class="bg-zinc-950 h-screen flex font-[Inter] overflow-hidden">
+
+    {% block sidebar %}
+        {% include "common/includes/aside.html" %}
+    {% endblock %}
+
+    <div class="flex flex-col flex-1 h-screen overflow-y-auto">
+
+        <header class="flex lg:!hidden items-center gap-3 h-14 px-4 bg-zinc-950 text-white sticky top-0 z-[60] shrink-0 shadow-md w-full">
+            <button id="mobile-hamburger"
+                    aria-label="{% trans 'Open menu' %}"
+                    class="flex items-center justify-center w-9 h-9 rounded hover:bg-zinc-800 transition">
+                <span class="material-symbols-outlined">menu</span>
+            </button>
+            <span class="text-xl font-bold">Monium</span>
+        </header>
+
+        {% block header %}{% endblock %}
+        {% block content %}{% endblock %}
+        {% block footer %}{% endblock %}
+
+    </div>
+
+    {% if messages %}
+    <div class="fixed top-4 right-4 z-50 flex flex-col gap-2 w-80">
+        {% for message in messages %}
+        <div class="flash-message flex items-center gap-2 px-4 py-3 rounded-lg border text-sm shadow transition-all duration-500
+            {% if message.tags == 'error' %}bg-red-950 border-red-800 text-red-400
+            {% elif message.tags == 'success' %}bg-green-950 border-green-800 text-green-400
+            {% elif message.tags == 'warning' %}bg-yellow-950 border-yellow-800 text-yellow-400
+            {% else %}bg-zinc-800 border-zinc-700 text-zinc-200{% endif %}">
+            <span class="material-symbols-outlined text-base">
+                {% if message.tags == 'error' %}block{% elif message.tags == 'success' %}check_circle{% elif message.tags == 'warning' %}warning{% else %}info{% endif %}
+            </span>
+            {{ message }}
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    {% block scripts %}{% endblock %}
+
+    <script src="{% ts 'common/js/utilities.ts' %}"></script>
+    <script>
+        setTimeout(() => {
+            document.querySelectorAll('.flash-message').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(-8px)';
+                setTimeout(() => el.remove(), 500);
+            });
+        }, 4000);
+    </script>
+</body>
+</html>

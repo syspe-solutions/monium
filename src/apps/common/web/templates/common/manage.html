@@ -1,0 +1,33 @@
+{% load static i18n %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Administrador{% endblock %}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3184834555541287"
+     crossorigin="anonymous">
+    </script>
+    
+    {% block extrahead %}
+    {% endblock %}
+</head>
+    <body class="bg-white flex flex-col">
+
+        {% block header %}
+            {% include 'common/includes/header.html' %}
+        {% endblock %}
+
+        {% block content %}{% endblock %}
+
+        {% block footer %}
+            {% include 'common/includes/footer.html' %}
+        {% endblock %}
+
+        {% block scripts %}{% endblock %}
+    </body>
+</html>
