@@ -1,0 +1,69 @@
+# Auto normalize all text files
+* text=auto
+
+# Scripts and shell
+*.sh     text eol=lf
+*.bash   text eol=lf
+*.zsh    text eol=lf
+*.command text eol=lf
+
+# Settings files
+*.env          text eol=lf
+*.ini          text eol=lf
+*.toml         text eol=lf
+*.yml          text eol=lf
+*.yaml         text eol=lf
+*.json         text eol=lf
+*.conf         text eol=lf
+
+# Code files
+*.py     text eol=lf
+*.js     text eol=lf
+*.ts     text eol=lf
+*.jsx    text eol=lf
+*.tsx    text eol=lf
+*.java   text eol=lf
+*.go     text eol=lf
+*.rb     text eol=lf
+*.php    text eol=lf
+*.pl     text eol=lf
+*.c      text eol=lf
+*.cpp    text eol=lf
+*.h      text eol=lf
+*.cs     text eol=lf
+*.rs     text eol=lf
+*.swift  text eol=lf
+*.kt     text eol=lf
+
+# HTML/CSS/Markup
+*.html   text eol=lf
+*.htm    text eol=lf
+*.css    text eol=lf
+*.scss   text eol=lf
+*.md     text eol=lf
+*.markdown text eol=lf
+*.txt    text eol=lf
+*.xml    text eol=lf
+*.svg    text eol=lf
+
+# Docker / Infra
+Dockerfile     text eol=lf
+*.dockerignore text eol=lf
+*.gitignore    text eol=lf
+*.gitattributes text eol=lf
+*.tf           text eol=lf
+*.tfvars       text eol=lf
+
+# CI/CD
+*.yml          text eol=lf
+*.yaml         text eol=lf
+*.gitlab-ci.yml text eol=lf
+*.circleci/*    text eol=lf
+*.github/*      text eol=lf
+
+# Makefiles
+Makefile   text eol=lf
+*.mk       text eol=lf
+
+# SQL
+*.sql      text eol=lf
