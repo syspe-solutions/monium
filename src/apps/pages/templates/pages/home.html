@@ -1,0 +1,245 @@
+{% extends 'pages/base_public.html' %}
+{% load i18n %}
+
+{% block title %}Monium — Smart Inventory Management{% endblock %}
+
+{% block content %}
+<div class="pt-14">
+
+  <!-- ── HERO ──────────────────────────────────────────────────────── -->
+  <section class="relative overflow-hidden min-h-[88vh] flex items-center">
+    <!-- Subtle radial glow -->
+    <div class="absolute inset-0 pointer-events-none">
+      <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[900px] h-[500px] bg-white/[0.03] rounded-full blur-3xl"></div>
+    </div>
+
+    <div class="relative max-w-6xl mx-auto px-4 py-20 lg:py-28 grid lg:grid-cols-2 gap-12 items-center w-full">
+
+      <!-- Copy -->
+      <div class="space-y-6">
+        <div class="inline-flex items-center gap-2 bg-zinc-800 text-zinc-400 text-xs font-medium px-3 py-1 rounded-full">
+          <span class="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span>
+          {% trans "Now in early access — start free" %}
+        </div>
+
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight">
+          {% trans "Your entire inventory," %}<br>
+          <span class="text-zinc-400">{% trans "under control." %}</span>
+        </h1>
+
+        <p class="text-zinc-400 text-lg leading-relaxed max-w-lg">
+          {% trans "Monium replaces spreadsheets with a clean, fast system for tracking assets, loans, and maintenance — so your team spends less time looking for things and more time using them." %}
+        </p>
+
+        <div class="flex flex-wrap gap-3">
+          <a href="{% url 'account:register' %}"
+             class="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-white text-zinc-950 font-semibold hover:bg-zinc-100 transition text-sm">
+            {% trans "Start for free" %}
+            <span class="material-symbols-outlined text-base leading-none">arrow_forward</span>
+          </a>
+          <a href="{% url 'billing:plans' %}"
+             class="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-zinc-700 text-zinc-300 hover:bg-zinc-800 hover:text-white transition text-sm">
+            {% trans "See plans" %}
+          </a>
+        </div>
+
+        <p class="text-zinc-600 text-xs">{% trans "No credit card required. Free forever up to 50 items." %}</p>
+      </div>
+
+      <!-- Dashboard mockup -->
+      <div class="hidden lg:block">
+        <div class="rounded-2xl border border-zinc-800 bg-zinc-900 overflow-hidden shadow-2xl shadow-black/60">
+          <!-- Fake titlebar -->
+          <div class="flex items-center gap-1.5 px-4 py-3 bg-zinc-950 border-b border-zinc-800">
+            <span class="w-2.5 h-2.5 rounded-full bg-zinc-700"></span>
+            <span class="w-2.5 h-2.5 rounded-full bg-zinc-700"></span>
+            <span class="w-2.5 h-2.5 rounded-full bg-zinc-700"></span>
+            <span class="ml-3 text-zinc-600 text-xs">monium.app/inventory</span>
+          </div>
+          <!-- Fake stat cards -->
+          <div class="p-4 grid grid-cols-2 gap-3">
+            <div class="bg-zinc-800 rounded-lg p-3">
+              <p class="text-zinc-500 text-xs">{% trans "Total items" %}</p>
+              <p class="text-white text-2xl font-bold mt-1">248</p>
+              <p class="text-zinc-600 text-xs mt-0.5">{% trans "across 12 sectors" %}</p>
+            </div>
+            <div class="bg-green-950/50 border border-green-900/40 rounded-lg p-3">
+              <p class="text-zinc-500 text-xs">{% trans "Active" %}</p>
+              <p class="text-green-400 text-2xl font-bold mt-1">212</p>
+              <p class="text-zinc-600 text-xs mt-0.5">85.5%</p>
+            </div>
+            <div class="bg-amber-950/40 border border-amber-900/40 rounded-lg p-3">
+              <p class="text-zinc-500 text-xs">{% trans "Maintenance" %}</p>
+              <p class="text-amber-400 text-2xl font-bold mt-1">23</p>
+              <p class="text-zinc-600 text-xs mt-0.5">{% trans "open tickets" %}</p>
+            </div>
+            <div class="bg-red-950/40 border border-red-900/40 rounded-lg p-3">
+              <p class="text-zinc-500 text-xs">{% trans "Overdue loans" %}</p>
+              <p class="text-red-400 text-2xl font-bold mt-1">3</p>
+              <p class="text-zinc-600 text-xs mt-0.5">{% trans "past due date" %}</p>
+            </div>
+          </div>
+          <!-- Fake table -->
+          <div class="px-4 pb-4">
+            <div class="rounded-lg border border-zinc-800 overflow-hidden text-xs">
+              <div class="bg-zinc-800 grid grid-cols-3 px-3 py-2 text-zinc-500 font-medium">
+                <span>{% trans "Item" %}</span>
+                <span>{% trans "Sector" %}</span>
+                <span>{% trans "Status" %}</span>
+              </div>
+              {% for item in "ABC" %}
+              <div class="grid grid-cols-3 px-3 py-2 border-t border-zinc-800/60 text-zinc-400">
+                <span class="text-zinc-300">{% if forloop.counter == 1 %}MacBook Pro 14"{% elif forloop.counter == 2 %}Projector HD{% else %}Office Chair{% endif %}</span>
+                <span>{% if forloop.counter == 1 %}IT{% elif forloop.counter == 2 %}Meeting Room{% else %}HR{% endif %}</span>
+                <span class="{% if forloop.counter == 1 %}text-green-400{% elif forloop.counter == 2 %}text-amber-400{% else %}text-green-400{% endif %}">
+                  {% if forloop.counter == 1 %}Active{% elif forloop.counter == 2 %}Maintenance{% else %}Active{% endif %}
+                </span>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── STATS BAR ──────────────────────────────────────────────────── -->
+  <section class="border-y border-zinc-800 bg-zinc-900/50">
+    <div class="max-w-4xl mx-auto px-4 py-8 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+      <div>
+        <p class="text-2xl font-bold text-white">10k+</p>
+        <p class="text-zinc-500 text-sm">{% trans "assets tracked" %}</p>
+      </div>
+      <div>
+        <p class="text-2xl font-bold text-white">500+</p>
+        <p class="text-zinc-500 text-sm">{% trans "teams onboarded" %}</p>
+      </div>
+      <div>
+        <p class="text-2xl font-bold text-white">98%</p>
+        <p class="text-zinc-500 text-sm">{% trans "satisfaction rate" %}</p>
+      </div>
+      <div>
+        <p class="text-2xl font-bold text-white">< 2min</p>
+        <p class="text-zinc-500 text-sm">{% trans "avg. item lookup" %}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── DIFFERENTIALS ──────────────────────────────────────────────── -->
+  <section class="max-w-6xl mx-auto px-4 py-20 space-y-12">
+    <div class="text-center space-y-2">
+      <h2 class="text-3xl font-bold text-white">{% trans "Why Monium?" %}</h2>
+      <p class="text-zinc-400 text-sm max-w-lg mx-auto">
+        {% trans "Built for teams that are tired of spreadsheets and too-complex ERPs." %}
+      </p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      {% for diff in differentials %}
+      <div class="bg-zinc-900 border border-zinc-800 rounded-2xl p-6 space-y-3">
+        <div class="w-10 h-10 rounded-xl bg-zinc-800 flex items-center justify-center">
+          <span class="material-symbols-outlined text-white text-lg leading-none">{{ diff.icon }}</span>
+        </div>
+        <h3 class="text-white font-semibold">{{ diff.title }}</h3>
+        <p class="text-zinc-400 text-sm leading-relaxed">{{ diff.description }}</p>
+      </div>
+      {% endfor %}
+    </div>
+  </section>
+
+  <!-- ── SERVICES PREVIEW ───────────────────────────────────────────── -->
+  <section class="border-t border-zinc-800 bg-zinc-900/30">
+    <div class="max-w-6xl mx-auto px-4 py-20 space-y-10">
+      <div class="flex items-end justify-between flex-wrap gap-4">
+        <div class="space-y-1">
+          <h2 class="text-3xl font-bold text-white">{% trans "Everything you need" %}</h2>
+          <p class="text-zinc-400 text-sm">{% trans "One platform. All your asset management needs." %}</p>
+        </div>
+        <a href="{% url 'pages:services' %}"
+           class="text-sm text-zinc-400 hover:text-white flex items-center gap-1 transition">
+          {% trans "View all services" %}
+          <span class="material-symbols-outlined text-sm leading-none">arrow_forward</span>
+        </a>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        {% for service in services %}
+        <a href="{% url 'pages:service_detail' service.slug %}"
+           class="group bg-zinc-900 border border-zinc-800 rounded-2xl p-6 space-y-4 hover:border-zinc-600 transition">
+          <div class="w-10 h-10 rounded-xl bg-zinc-800 group-hover:bg-zinc-700 transition flex items-center justify-center">
+            <span class="material-symbols-outlined text-white text-lg leading-none">{{ service.icon }}</span>
+          </div>
+          <div>
+            <h3 class="text-white font-semibold">{{ service.name }}</h3>
+            <p class="text-zinc-500 text-sm mt-1">{{ service.tagline }}</p>
+          </div>
+          <span class="text-zinc-500 group-hover:text-zinc-300 text-xs flex items-center gap-1 transition">
+            {% trans "Learn more" %}
+            <span class="material-symbols-outlined text-xs leading-none">arrow_forward</span>
+          </span>
+        </a>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PLANS PREVIEW ─────────────────────────────────────────────── -->
+  <section class="max-w-6xl mx-auto px-4 py-20 space-y-10">
+    <div class="text-center space-y-2">
+      <h2 class="text-3xl font-bold text-white">{% trans "Simple pricing" %}</h2>
+      <p class="text-zinc-400 text-sm">{% trans "Start free. No credit card. Upgrade when you're ready." %}</p>
+    </div>
+
+    <div class="grid sm:grid-cols-3 gap-5 max-w-3xl mx-auto">
+      <div class="bg-zinc-900 border border-zinc-800 rounded-2xl p-6 text-center space-y-3">
+        <p class="text-zinc-400 font-semibold">Free</p>
+        <p class="text-3xl font-bold text-white">R$0</p>
+        <p class="text-zinc-500 text-xs">{% trans "Up to 50 items" %}</p>
+        <a href="{% url 'account:register' %}" class="block w-full py-2 rounded-lg bg-zinc-800 text-zinc-200 text-sm hover:bg-zinc-700 transition">{% trans "Get started" %}</a>
+      </div>
+      <div class="bg-zinc-800 border border-white/10 rounded-2xl p-6 text-center space-y-3 relative">
+        <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-white text-zinc-950 text-xs font-semibold px-3 py-0.5 rounded-full">{% trans "Popular" %}</div>
+        <p class="text-white font-semibold">Pro</p>
+        <p class="text-3xl font-bold text-white">R$149<span class="text-sm text-zinc-500">/{% trans "month" %}</span></p>
+        <p class="text-zinc-500 text-xs">{% trans "Unlimited items + API" %}</p>
+        <a href="{% url 'account:register' %}" class="block w-full py-2 rounded-lg bg-white text-zinc-950 text-sm font-medium hover:bg-zinc-100 transition">{% trans "Get Pro" %}</a>
+      </div>
+      <div class="bg-zinc-900 border border-zinc-800 rounded-2xl p-6 text-center space-y-3">
+        <p class="text-zinc-400 font-semibold">Enterprise</p>
+        <p class="text-3xl font-bold text-white">{% trans "Custom" %}</p>
+        <p class="text-zinc-500 text-xs">{% trans "Unlimited + SLA + SSO" %}</p>
+        <a href="mailto:contact@monium.app" class="block w-full py-2 rounded-lg bg-zinc-800 text-zinc-200 text-sm hover:bg-zinc-700 transition">{% trans "Talk to us" %}</a>
+      </div>
+    </div>
+
+    <div class="text-center">
+      <a href="{% url 'billing:plans' %}" class="text-zinc-500 hover:text-zinc-300 text-sm underline transition">
+        {% trans "Compare all plans in detail" %}
+      </a>
+    </div>
+  </section>
+
+  <!-- ── FINAL CTA ──────────────────────────────────────────────────── -->
+  <section class="border-t border-zinc-800 bg-zinc-900/30">
+    <div class="max-w-3xl mx-auto px-4 py-20 text-center space-y-6">
+      <h2 class="text-3xl font-bold text-white">{% trans "Ready to take control of your inventory?" %}</h2>
+      <p class="text-zinc-400 text-sm">
+        {% trans "Join 500+ teams already using Monium. Set up your account in under 5 minutes." %}
+      </p>
+      <div class="flex flex-wrap justify-center gap-3">
+        <a href="{% url 'account:register' %}"
+           class="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-white text-zinc-950 font-semibold hover:bg-zinc-100 transition text-sm">
+          {% trans "Create free account" %}
+          <span class="material-symbols-outlined text-base leading-none">arrow_forward</span>
+        </a>
+        <a href="{% url 'pages:faq' %}"
+           class="px-6 py-3 rounded-lg border border-zinc-700 text-zinc-300 hover:bg-zinc-800 transition text-sm">
+          {% trans "Read FAQ" %}
+        </a>
+      </div>
+    </div>
+  </section>
+
+</div>
+{% endblock %}

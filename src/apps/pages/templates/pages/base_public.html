@@ -1,0 +1,116 @@
+{% extends 'common/layouts/base.html' %}
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+
+{% block header %}
+<header class="fixed w-full z-50 bg-zinc-950/80 backdrop-blur border-b border-zinc-800/60">
+  <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
+
+    <a href="{% url 'pages:home' %}" class="text-xl font-bold text-white shrink-0">Monium</a>
+
+    <!-- Desktop nav -->
+    <nav class="hidden md:flex items-center gap-1 text-sm flex-1">
+      <a href="{% url 'pages:services' %}"
+         class="px-3 py-1.5 rounded text-zinc-400 hover:text-white hover:bg-zinc-800 transition">
+        {% trans "Services" %}
+      </a>
+      <a href="{% url 'billing:plans' %}"
+         class="px-3 py-1.5 rounded text-zinc-400 hover:text-white hover:bg-zinc-800 transition">
+        {% trans "Plans" %}
+      </a>
+      <a href="{% url 'pages:faq' %}"
+         class="px-3 py-1.5 rounded text-zinc-400 hover:text-white hover:bg-zinc-800 transition">
+        FAQ
+      </a>
+    </nav>
+
+    <!-- Right side: auth + lang + mobile toggle -->
+    <div class="flex items-center gap-2 shrink-0">
+
+      {% if user.is_authenticated %}
+        <a href="{% url 'inventory:home' %}"
+           class="hidden md:inline-flex items-center gap-1.5 px-4 py-1.5 rounded text-sm font-medium bg-white text-zinc-950 hover:bg-zinc-100 transition">
+          <span class="material-symbols-outlined text-sm leading-none">dashboard</span>
+          {% trans "Go to app" %}
+        </a>
+      {% else %}
+        <a href="{% url 'account:login' %}"
+           class="hidden md:inline-flex px-3 py-1.5 rounded text-sm text-zinc-400 hover:text-white hover:bg-zinc-800 transition">
+          {% trans "Log in" %}
+        </a>
+        <a href="{% url 'account:register' %}"
+           class="hidden md:inline-flex px-4 py-1.5 rounded text-sm font-medium bg-white text-zinc-950 hover:bg-zinc-100 transition">
+          {% trans "Get started" %}
+        </a>
+      {% endif %}
+
+      <!-- Language switcher — desktop -->
+      <div class="hidden md:flex items-center gap-0.5 border-l border-zinc-800 pl-3 ml-1">
+        <form action="{% url 'set_language' %}" method="post" class="flex items-center gap-0.5">
+          {% csrf_token %}
+          <input type="hidden" name="next" value="{{ request.path }}">
+          <button type="submit" name="language" value="pt-br"
+                  class="text-xs font-medium px-1.5 py-0.5 rounded transition
+                         {% if LANGUAGE_CODE == 'pt-br' %}text-white bg-zinc-700{% else %}text-zinc-500 hover:text-zinc-300{% endif %}">
+            PT
+          </button>
+          <span class="text-zinc-700 text-xs select-none">|</span>
+          <button type="submit" name="language" value="en"
+                  class="text-xs font-medium px-1.5 py-0.5 rounded transition
+                         {% if LANGUAGE_CODE == 'en' %}text-white bg-zinc-700{% else %}text-zinc-500 hover:text-zinc-300{% endif %}">
+            EN
+          </button>
+        </form>
+      </div>
+
+      <!-- Mobile menu toggle -->
+      <button id="mobile-nav-toggle"
+              class="md:hidden p-1.5 rounded text-zinc-400 hover:text-white hover:bg-zinc-800 transition">
+        <span class="material-symbols-outlined text-xl leading-none">menu</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile dropdown -->
+  <div id="mobile-nav"
+       class="hidden md:hidden border-t border-zinc-800 bg-zinc-950 px-4 py-3 flex flex-col gap-1 text-sm">
+    <a href="{% url 'pages:services' %}" class="px-3 py-2 rounded text-zinc-400 hover:text-white hover:bg-zinc-800 transition">{% trans "Services" %}</a>
+    <a href="{% url 'billing:plans' %}" class="px-3 py-2 rounded text-zinc-400 hover:text-white hover:bg-zinc-800 transition">{% trans "Plans" %}</a>
+    <a href="{% url 'pages:faq' %}" class="px-3 py-2 rounded text-zinc-400 hover:text-white hover:bg-zinc-800 transition">FAQ</a>
+
+    <div class="border-t border-zinc-800 my-2"></div>
+
+    {% if user.is_authenticated %}
+      <a href="{% url 'inventory:home' %}" class="px-3 py-2 rounded text-zinc-200 hover:bg-zinc-800 transition">{% trans "Go to app" %}</a>
+    {% else %}
+      <a href="{% url 'account:login' %}" class="px-3 py-2 rounded text-zinc-400 hover:text-white hover:bg-zinc-800 transition">{% trans "Log in" %}</a>
+      <a href="{% url 'account:register' %}" class="px-3 py-2 rounded font-medium bg-white text-zinc-950 text-center transition">{% trans "Get started" %}</a>
+    {% endif %}
+
+    <div class="border-t border-zinc-800 my-2"></div>
+
+    <!-- Language switcher — mobile -->
+    <form action="{% url 'set_language' %}" method="post" class="flex items-center gap-2 px-3 py-1">
+      {% csrf_token %}
+      <input type="hidden" name="next" value="{{ request.path }}">
+      <span class="material-symbols-outlined text-zinc-500 text-base leading-none">language</span>
+      <button type="submit" name="language" value="pt-br"
+              class="text-xs font-medium px-2 py-1 rounded transition
+                     {% if LANGUAGE_CODE == 'pt-br' %}bg-zinc-700 text-white{% else %}text-zinc-500 hover:text-zinc-200{% endif %}">
+        Português
+      </button>
+      <button type="submit" name="language" value="en"
+              class="text-xs font-medium px-2 py-1 rounded transition
+                     {% if LANGUAGE_CODE == 'en' %}bg-zinc-700 text-white{% else %}text-zinc-500 hover:text-zinc-200{% endif %}">
+        English
+      </button>
+    </form>
+  </div>
+</header>
+
+<script>
+  document.getElementById('mobile-nav-toggle').addEventListener('click', function () {
+    document.getElementById('mobile-nav').classList.toggle('hidden');
+  });
+</script>
+{% endblock %}
