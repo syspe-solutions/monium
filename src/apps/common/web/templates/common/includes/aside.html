@@ -117,6 +117,13 @@
                     <span class="material-symbols-outlined text-sm shrink-0">workspace_premium</span>
                     <span class="sidebar-text text-sm overflow-hidden whitespace-nowrap">{% trans "Plans" %}</span>
                 </a>
+                <a href="{% url 'organizations:create' %}"
+                   class="nav-item flex items-center gap-3 p-3 rounded-lg transition-all
+                          {% if request.resolver_match.url_name == 'create' %}bg-zinc-800 text-white{% else %}hover:bg-zinc-800{% endif %}"
+                   title="{% trans 'New organization' %}">
+                    <span class="material-symbols-outlined text-sm shrink-0">add_business</span>
+                    <span class="sidebar-text text-sm overflow-hidden whitespace-nowrap">{% trans "New organization" %}</span>
+                </a>
             </nav>
         </div>
 
@@ -124,6 +131,20 @@
         <div class="shrink-0">
             <h3 class="sidebar-header text-zinc-500 uppercase text-xs font-semibold mb-2 px-3">{% trans "Account" %}</h3>
             <nav class="flex flex-col gap-1">
+
+                <a href="{% url 'pages:faq' %}"
+                   class="nav-item flex items-center gap-3 p-3 rounded hover:bg-zinc-800 transition-all"
+                   title="{% trans 'Help & FAQ' %}">
+                    <span class="material-symbols-outlined text-sm shrink-0 text-zinc-500">help</span>
+                    <span class="sidebar-text text-sm overflow-hidden whitespace-nowrap">{% trans "Help & FAQ" %}</span>
+                </a>
+
+                <a href="{% url 'pages:home' %}"
+                   class="nav-item flex items-center gap-3 p-3 rounded hover:bg-zinc-800 transition-all"
+                   title="{% trans 'Visit website' %}">
+                    <span class="material-symbols-outlined text-sm shrink-0 text-zinc-500">open_in_new</span>
+                    <span class="sidebar-text text-sm overflow-hidden whitespace-nowrap">{% trans "Visit website" %}</span>
+                </a>
 
                 <!-- Language switcher -->
                 <div class="nav-item flex items-center gap-3 p-3 rounded" title="{% trans 'Language' %}">
