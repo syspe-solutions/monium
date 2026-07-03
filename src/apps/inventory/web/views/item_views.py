@@ -4,6 +4,7 @@ from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
 from django.views import View
 
+from apps.billing import services as billing_services
 from apps.inventory.forms.item_form import ItemForm, ItemSpecForm
 from apps.inventory.models import Brand
 
@@ -37,6 +38,14 @@ class ItemCreateView(LoginRequiredMixin, View):
             return render(request, self.template_name,
                           self._context(form, spec_form, brand_id))
 
+        organization = request.user.organization
+        if not billing_services.is_within_item_limit(organization):
+            messages.error(
+                request,
+                "Você atingiu o limite de itens do seu plano atual. Faça upgrade para continuar cadastrando.",
+            )
+            return redirect("billing:plans")
+
         # Resolve brand
         brand_instance = None
         brand_error = ""
@@ -64,6 +73,7 @@ class ItemCreateView(LoginRequiredMixin, View):
 
         # Save item
         item = form.save(commit=False)
+        item.organization = organization
         item.created_by = request.user
         item.updated_by = request.user
         item.save()

@@ -65,16 +65,22 @@
                            bg-zinc-800 text-zinc-500 border border-zinc-700 cursor-default">
                 {% trans plan.cta %}
             </button>
-            {% elif plan.highlight %}
-            <button class="w-full py-2 px-4 rounded-lg text-sm font-medium mb-6
-                           bg-white text-zinc-950 hover:bg-zinc-100 transition">
+            {% elif plan.id == "enterprise" %}
+            <a href="mailto:contact@monium.app"
+               class="block text-center w-full py-2 px-4 rounded-lg text-sm font-medium mb-6
+                      bg-zinc-800 text-zinc-200 border border-zinc-700 hover:bg-zinc-700 transition">
                 {% trans plan.cta %}
-            </button>
+            </a>
             {% else %}
-            <button class="w-full py-2 px-4 rounded-lg text-sm font-medium mb-6
-                           bg-zinc-800 text-zinc-200 border border-zinc-700 hover:bg-zinc-700 transition">
-                {% trans plan.cta %}
-            </button>
+            <form method="post" action="{% url 'billing:subscribe' plan.id %}">
+                {% csrf_token %}
+                <button type="submit"
+                        class="w-full py-2 px-4 rounded-lg text-sm font-medium mb-6 transition
+                               {% if plan.highlight %}bg-white text-zinc-950 hover:bg-zinc-100
+                               {% else %}bg-zinc-800 text-zinc-200 border border-zinc-700 hover:bg-zinc-700{% endif %}">
+                    {% trans plan.cta %}
+                </button>
+            </form>
             {% endif %}
 
             <!-- Features -->

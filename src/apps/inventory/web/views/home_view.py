@@ -26,48 +26,54 @@ class HomeView(LoginRequiredMixin, TemplateView):
         now = timezone.now()
         today = now.date()
         seven_days_ago = today - timedelta(days=7)
+        organization = self.request.user.organization
 
         # ── Resumo de status ─────────────────────────────────────────────────
-        total = Item.objects.count()
+        items = Item.objects.filter(organization=organization)
+        total = items.count()
         ctx["total_items"] = total
-        ctx["active_items"] = Item.objects.filter(status=ItemStatus.ACTIVE).count()
-        ctx["maintenance_items"] = Item.objects.filter(status=ItemStatus.MAINTENANCE).count()
-        ctx["missing_items"] = Item.objects.filter(status=ItemStatus.MISSING).count()
-        ctx["written_off_items"] = Item.objects.filter(status=ItemStatus.WRITTEN_OFF).count()
+        ctx["active_items"] = items.filter(status=ItemStatus.ACTIVE).count()
+        ctx["maintenance_items"] = items.filter(status=ItemStatus.MAINTENANCE).count()
+        ctx["missing_items"] = items.filter(status=ItemStatus.MISSING).count()
+        ctx["written_off_items"] = items.filter(status=ItemStatus.WRITTEN_OFF).count()
 
         # ── Alertas ───────────────────────────────────────────────────────────
-        ctx["overdue_loans"] = Loan.objects.filter(
+        org_loans = Loan.objects.filter(item__organization=organization)
+
+        ctx["overdue_loans"] = org_loans.filter(
             status=LoanStatus.OVERDUE
         ).select_related("item")[:5]
 
-        ctx["overdue_loans_count"] = Loan.objects.filter(
+        ctx["overdue_loans_count"] = org_loans.filter(
             status=LoanStatus.OVERDUE
         ).count()
 
-        # Empréstimos ativos com prazo vencido (não marcados como atrasado ainda)
-        ctx["loans_past_due"] = Loan.objects.filter(
+        # Empréstimos ativos com prazo vencido (o Celery beat transiciona pra "atrasado" 1x/dia)
+        ctx["loans_past_due"] = org_loans.filter(
             status=LoanStatus.ACTIVE,
             expected_return__lt=today,
         ).select_related("item").count()
 
         ctx["open_maintenances"] = Maintenance.objects.filter(
+            item__organization=organization,
             status__in=[MaintenanceStatus.OPEN, MaintenanceStatus.IN_PROGRESS],
             started_at__lte=seven_days_ago,
         ).select_related("item")[:5]
 
         ctx["open_maintenances_count"] = Maintenance.objects.filter(
+            item__organization=organization,
             status__in=[MaintenanceStatus.OPEN, MaintenanceStatus.IN_PROGRESS],
             started_at__lte=seven_days_ago,
         ).count()
 
-        ctx["poor_condition_active"] = Item.objects.filter(
+        ctx["poor_condition_active"] = items.filter(
             condition=ItemCondition.POOR,
             status=ItemStatus.ACTIVE,
         ).count()
 
         # ── Atividade recente ────────────────────────────────────────────────
         ctx["recent_items"] = (
-            Item.objects
+            items
             .select_related("category", "sector")
             .order_by("-created_at")[:8]
         )
@@ -75,7 +81,7 @@ class HomeView(LoginRequiredMixin, TemplateView):
         # ── Distribuição por categoria ────────────────────────────────────────
         ctx["categories_dist"] = (
             Category.objects
-            .annotate(item_count=Count("items"))
+            .annotate(item_count=Count("items", filter=Q(items__organization=organization)))
             .filter(item_count__gt=0)
             .order_by("-item_count")[:6]
         )
@@ -84,7 +90,7 @@ class HomeView(LoginRequiredMixin, TemplateView):
         # ── Top setores ───────────────────────────────────────────────────────
         ctx["sectors_dist"] = (
             Sector.objects
-            .annotate(item_count=Count("items"))
+            .annotate(item_count=Count("items", filter=Q(items__organization=organization)))
             .filter(item_count__gt=0)
             .order_by("-item_count")[:5]
         )

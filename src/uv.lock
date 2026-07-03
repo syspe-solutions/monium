@@ -1537,6 +1537,18 @@ wheels = [
 ]
 
 [[package]]
+name = "mercadopago"
+version = "3.3.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "requests" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/c1/c2/b6c28748fcdb0031c7a38483fc7486112b912ffd72639da3cf8bf6fce5f1/mercadopago-3.3.0.tar.gz", hash = "sha256:e9fc79a7544d5e438e6e117f3818bf2ecd93b12c108ad1d17a2e320001cee9ed", size = 47711, upload-time = "2026-06-30T22:51:51.6Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/7f/a0/c3bfff77f94463483b42f91edd45a63898e64b7aff956e9157d36e34320f/mercadopago-3.3.0-py3-none-any.whl", hash = "sha256:6f54addf04af4e6e6b09a665bd9c29df1053b2fbfbfb34fb48805606fce79788", size = 61715, upload-time = "2026-06-30T22:51:50.475Z" },
+]
+
+[[package]]
 name = "packaging"
 version = "26.2"
 source = { registry = "https://pypi.org/simple" }
@@ -2653,6 +2665,7 @@ dependencies = [
     { name = "markdown-it-py" },
     { name = "markupsafe" },
     { name = "mdurl" },
+    { name = "mercadopago" },
     { name = "packaging" },
     { name = "passlib" },
     { name = "pillow" },
@@ -2792,6 +2805,7 @@ requires-dist = [
     { name = "markdown-it-py", specifier = ">=3.0.0" },
     { name = "markupsafe", specifier = ">=3.0.1" },
     { name = "mdurl", specifier = ">=0.1.2" },
+    { name = "mercadopago", specifier = ">=3.3.0" },
     { name = "packaging", specifier = ">=24.2" },
     { name = "passlib", specifier = ">=1.7.4" },
     { name = "pillow", specifier = ">=11.3.0" },

@@ -1,97 +1,21 @@
+import logging
+
+from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.utils.translation import gettext_lazy as _
+from django.http import HttpResponse, HttpResponseBadRequest
+from django.shortcuts import redirect
+from django.urls import reverse
+from django.utils.decorators import method_decorator
+from django.views import View
+from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import TemplateView
 
-PLANS = [
-    {
-        "id": "free",
-        "name": _("Free"),
-        "price": None,
-        "period": None,
-        "description": _("For individuals getting started with inventory control."),
-        "cta": _("Current plan"),
-        "cta_disabled": True,
-        "highlight": False,
-        "badge": None,
-        "features": [
-            ("check", _("Up to 50 items")),
-            ("check", _("1 user")),
-            ("check", _("Basic dashboard")),
-            ("check", _("Export CSV (50 rows/month)")),
-            ("close", _("Overdue alerts")),
-            ("close", _("PDF reports")),
-            ("close", _("QR code labels")),
-            ("close", _("API access")),
-            ("close", _("Priority support")),
-        ],
-    },
-    {
-        "id": "starter",
-        "name": _("Starter"),
-        "price": "49",
-        "period": _("month"),
-        "description": _("For small teams that need more items and basic automation."),
-        "cta": _("Get Starter"),
-        "cta_disabled": False,
-        "highlight": False,
-        "badge": None,
-        "features": [
-            ("check", _("Up to 500 items")),
-            ("check", _("Up to 3 users")),
-            ("check", _("Full dashboard")),
-            ("check", _("Unlimited CSV export")),
-            ("check", _("Overdue loan alerts by email")),
-            ("close", _("PDF reports")),
-            ("close", _("QR code labels")),
-            ("close", _("API access")),
-            ("close", _("Priority support")),
-        ],
-    },
-    {
-        "id": "pro",
-        "name": _("Pro"),
-        "price": "149",
-        "period": _("month"),
-        "description": _("For growing teams with complete control and integrations."),
-        "cta": _("Get Pro"),
-        "cta_disabled": False,
-        "highlight": True,
-        "badge": _("Most popular"),
-        "features": [
-            ("check", _("Unlimited items")),
-            ("check", _("Up to 10 users")),
-            ("check", _("Full dashboard")),
-            ("check", _("Unlimited CSV export")),
-            ("check", _("Overdue loan alerts by email")),
-            ("check", _("PDF reports")),
-            ("check", _("QR code labels (print-ready)")),
-            ("check", _("REST API access")),
-            ("check", _("Priority support")),
-        ],
-    },
-    {
-        "id": "enterprise",
-        "name": _("Enterprise"),
-        "price": None,
-        "period": None,
-        "description": _("For organizations with custom requirements and SLA."),
-        "cta": _("Talk to us"),
-        "cta_disabled": False,
-        "highlight": False,
-        "badge": None,
-        "features": [
-            ("check", _("Unlimited items")),
-            ("check", _("Unlimited users")),
-            ("check", _("All Pro features")),
-            ("check", _("Custom integrations (ERP, SAP)")),
-            ("check", _("On-premise deployment option")),
-            ("check", _("SSO / Active Directory")),
-            ("check", _("SLA agreement")),
-            ("check", _("Dedicated account manager")),
-            ("check", _("Custom branding (white-label)")),
-        ],
-    },
-]
+from apps.billing import services
+from apps.billing.gateways import mercadopago_gateway
+from apps.billing.models import Subscription, SubscriptionStatus
+from apps.billing.plans import PLANS, PLANS_BY_ID
+
+logger = logging.getLogger(__name__)
 
 
 class PlansView(LoginRequiredMixin, TemplateView):
@@ -99,5 +23,74 @@ class PlansView(LoginRequiredMixin, TemplateView):
 
     def get_context_data(self, **kwargs):
         ctx = super().get_context_data(**kwargs)
-        ctx["plans"] = PLANS
+        current_plan_id = services.get_plan_for_organization(self.request.user.organization)["id"]
+        ctx["plans"] = [
+            {**plan, "cta_disabled": plan["id"] == current_plan_id}
+            for plan in PLANS
+        ]
         return ctx
+
+
+class SubscribeView(LoginRequiredMixin, View):
+    def post(self, request, plan_id):
+        plan = PLANS_BY_ID.get(plan_id)
+        if not plan or not plan.get("price"):
+            messages.error(request, "Plano inválido para assinatura online. Fale com nosso time.")
+            return redirect("billing:plans")
+
+        organization = request.user.organization
+        back_url = request.build_absolute_uri(reverse("billing:plans"))
+
+        try:
+            checkout_url = mercadopago_gateway.create_preapproval(
+                organization=organization,
+                plan=plan,
+                payer_email=request.user.email,
+                back_url=back_url,
+            )
+        except Exception:
+            logger.exception("Falha ao criar preapproval no Mercado Pago para org=%s plan=%s", organization.id, plan_id)
+            messages.error(request, "Não foi possível iniciar o checkout agora. Tente novamente em instantes.")
+            return redirect("billing:plans")
+
+        return redirect(checkout_url)
+
+
+@method_decorator(csrf_exempt, name="dispatch")
+class MercadoPagoWebhookView(View):
+    def post(self, request):
+        if not mercadopago_gateway.verify_webhook_signature(request):
+            return HttpResponseBadRequest("invalid signature")
+
+        topic = request.GET.get("topic") or request.GET.get("type")
+        preapproval_id = request.GET.get("id") or request.GET.get("data.id")
+
+        if topic != "preapproval" or not preapproval_id:
+            return HttpResponse(status=200)
+
+        try:
+            preapproval = mercadopago_gateway.get_preapproval(preapproval_id)
+        except Exception:
+            logger.exception("Falha ao buscar preapproval %s no Mercado Pago", preapproval_id)
+            return HttpResponse(status=200)
+
+        organization_id = preapproval.get("external_reference")
+        mp_status = preapproval.get("status")
+        if not organization_id:
+            return HttpResponse(status=200)
+
+        status_map = {
+            "authorized": SubscriptionStatus.ACTIVE,
+            "paused": SubscriptionStatus.PAST_DUE,
+            "cancelled": SubscriptionStatus.CANCELED,
+        }
+        status = status_map.get(mp_status)
+        if status is None:
+            return HttpResponse(status=200)
+
+        Subscription.objects.filter(organization_id=organization_id).update(
+            status=status,
+            mp_preapproval_id=preapproval_id,
+        )
+
+        return HttpResponse(status=200)

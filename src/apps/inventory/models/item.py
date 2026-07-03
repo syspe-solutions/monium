@@ -22,7 +22,13 @@ class ItemCondition(models.TextChoices):
 
 class Item(BaseModelAbstract):
     # Identidade
-    code = models.CharField(max_length=50, unique=True, verbose_name="Código / Patrimônio")
+    organization = models.ForeignKey(
+        "organizations.Organization",
+        on_delete=models.CASCADE,
+        related_name="items",
+        verbose_name="Organização",
+    )
+    code = models.CharField(max_length=50, verbose_name="Código / Patrimônio")
     name = models.CharField(max_length=255, verbose_name="Nome")
     description = models.TextField(blank=True, verbose_name="Descrição")
     category = models.ForeignKey(
@@ -66,6 +72,9 @@ class Item(BaseModelAbstract):
         verbose_name = "Item"
         verbose_name_plural = "Itens"
         ordering = ["name"]
+        constraints = [
+            models.UniqueConstraint(fields=["organization", "code"], name="unique_item_code_per_organization"),
+        ]
 
     def __str__(self):
         return f"[{self.code}] {self.name}"
