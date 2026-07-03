@@ -36,7 +36,7 @@
                             {% trans "Code / Asset Number" %} <span class="text-red-500">*</span>
                         </label>
                         {{ form.code }}
-                        {% if form.code.errors %}<p class="text-red-500 text-xs mt-1">{{ form.code.errors.0 }}</p>{% endif %}
+                        {% if form.code.errors %}<p class="text-red-400 text-xs mt-1">{{ form.code.errors }}</p>{% endif %}
                     </div>
 
                     <div>
@@ -44,20 +44,20 @@
                             {% trans "Name" %} <span class="text-red-500">*</span>
                         </label>
                         {{ form.name }}
-                        {% if form.name.errors %}<p class="text-red-500 text-xs mt-1">{{ form.name.errors.0 }}</p>{% endif %}
+                        {% if form.name.errors %}<p class="text-red-400 text-xs mt-1">{{ form.name.errors }}</p>{% endif %}
                     </div>
                 </div>
 
                 <div>
                     <label class="block font-medium text-xs sm:text-sm mb-1 text-zinc-400">{% trans "Category" %} <span class="text-red-500">*</span></label>
                     {{ form.category }}
-                    {% if form.category.errors %}<p class="text-red-500 text-xs mt-1">{{ form.category.errors.0 }}</p>{% endif %}
+                    {% if form.category.errors %}<p class="text-red-400 text-xs mt-1">{{ form.category.errors }}</p>{% endif %}
                 </div>
 
                 <div>
                     <label class="block font-medium text-xs sm:text-sm mb-1 text-zinc-400">{% trans "Description" %}</label>
                     {{ form.description }}
-                    {% if form.description.errors %}<p class="text-red-500 text-xs mt-1">{{ form.description.errors.0 }}</p>{% endif %}
+                    {% if form.description.errors %}<p class="text-red-400 text-xs mt-1">{{ form.description.errors }}</p>{% endif %}
                 </div>
             </div>
 
@@ -72,19 +72,19 @@
                     <div>
                         <label class="block font-medium text-xs sm:text-sm mb-1 text-zinc-400">{% trans "Sector" %} <span class="text-red-500">*</span></label>
                         {{ form.sector }}
-                        {% if form.sector.errors %}<p class="text-red-500 text-xs mt-1">{{ form.sector.errors.0 }}</p>{% endif %}
+                        {% if form.sector.errors %}<p class="text-red-400 text-xs mt-1">{{ form.sector.errors }}</p>{% endif %}
                     </div>
 
                     <div>
                         <label class="block font-medium text-xs sm:text-sm mb-1 text-zinc-400">{% trans "Specific location" %}</label>
                         {{ form.location }}
-                        {% if form.location.errors %}<p class="text-red-500 text-xs mt-1">{{ form.location.errors.0 }}</p>{% endif %}
+                        {% if form.location.errors %}<p class="text-red-400 text-xs mt-1">{{ form.location.errors }}</p>{% endif %}
                     </div>
 
                     <div>
                         <label class="block font-medium text-xs sm:text-sm mb-1 text-zinc-400">{% trans "Responsible" %}</label>
                         {{ form.responsible }}
-                        {% if form.responsible.errors %}<p class="text-red-500 text-xs mt-1">{{ form.responsible.errors.0 }}</p>{% endif %}
+                        {% if form.responsible.errors %}<p class="text-red-400 text-xs mt-1">{{ form.responsible.errors }}</p>{% endif %}
                     </div>
                 </div>
             </div>
@@ -100,20 +100,20 @@
                     <div>
                         <label class="block font-medium text-xs sm:text-sm mb-1 text-zinc-400">{% trans "Status" %}</label>
                         {{ form.status }}
-                        {% if form.status.errors %}<p class="text-red-500 text-xs mt-1">{{ form.status.errors.0 }}</p>{% endif %}
+                        {% if form.status.errors %}<p class="text-red-400 text-xs mt-1">{{ form.status.errors }}</p>{% endif %}
                     </div>
 
                     <div>
                         <label class="block font-medium text-xs sm:text-sm mb-1 text-zinc-400">{% trans "Condition" %}</label>
                         {{ form.condition }}
-                        {% if form.condition.errors %}<p class="text-red-500 text-xs mt-1">{{ form.condition.errors.0 }}</p>{% endif %}
+                        {% if form.condition.errors %}<p class="text-red-400 text-xs mt-1">{{ form.condition.errors }}</p>{% endif %}
                     </div>
                 </div>
 
                 <div>
                     <label class="block font-medium text-xs sm:text-sm mb-1 text-zinc-400">{% trans "Notes" %}</label>
                     {{ form.notes }}
-                    {% if form.notes.errors %}<p class="text-red-500 text-xs mt-1">{{ form.notes.errors.0 }}</p>{% endif %}
+                    {% if form.notes.errors %}<p class="text-red-400 text-xs mt-1">{{ form.notes.errors }}</p>{% endif %}
                 </div>
             </div>
 
@@ -163,7 +163,7 @@
                     </div>
 
                     {% if brand_error %}
-                    <p class="text-red-500 text-xs mt-1">{{ brand_error }}</p>
+                    <p class="text-red-400 text-xs mt-1">{{ brand_error }}</p>
                     {% endif %}
                 </div>
 
@@ -171,20 +171,20 @@
                     <div>
                         <label class="block font-medium text-xs sm:text-sm mb-1 text-zinc-400">{% trans "Model" %}</label>
                         {{ spec_form.model_name }}
-                        {% if spec_form.model_name.errors %}<p class="text-red-500 text-xs mt-1">{{ spec_form.model_name.errors.0 }}</p>{% endif %}
+                        {% if spec_form.model_name.errors %}<p class="text-red-400 text-xs mt-1">{{ spec_form.model_name.errors }}</p>{% endif %}
                     </div>
 
                     <div>
                         <label class="block font-medium text-xs sm:text-sm mb-1 text-zinc-400">{% trans "Serial Number" %}</label>
                         {{ spec_form.serial_number }}
-                        {% if spec_form.serial_number.errors %}<p class="text-red-500 text-xs mt-1">{{ spec_form.serial_number.errors.0 }}</p>{% endif %}
+                        {% if spec_form.serial_number.errors %}<p class="text-red-400 text-xs mt-1">{{ spec_form.serial_number.errors }}</p>{% endif %}
                     </div>
                 </div>
 
                 <div>
                     <label class="block font-medium text-xs sm:text-sm mb-1 text-zinc-400">{% trans "Image" %}</label>
                     {{ spec_form.image }}
-                    {% if spec_form.image.errors %}<p class="text-red-500 text-xs mt-1">{{ spec_form.image.errors.0 }}</p>{% endif %}
+                    {% if spec_form.image.errors %}<p class="text-red-400 text-xs mt-1">{{ spec_form.image.errors }}</p>{% endif %}
                 </div>
             </div>
 
