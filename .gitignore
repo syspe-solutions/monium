@@ -12,3 +12,4 @@ logs/
 *.egg-info/
 .pytest_cache
 .ruff_cache
+media/
