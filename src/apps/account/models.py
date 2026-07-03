@@ -14,6 +14,11 @@ class User(BaseModelAbstract, AbstractUser):
         verbose_name = "Usuário"
         verbose_name_plural = "Usuários"
 
+    @property
+    def organization(self):
+        membership = self.memberships.select_related("organization").order_by("created_at").first()
+        return membership.organization if membership else None
+
 class UserDeletionSchedule(BaseModelAbstract):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     requested_at = models.DateTimeField(auto_now_add=True)

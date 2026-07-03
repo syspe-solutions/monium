@@ -1,0 +1,62 @@
+{% extends 'common/layouts/base.html' %}
+{% load widget_tweaks %}
+{% load i18n %}
+
+{% block header %}
+<header class="fixed w-full bg-zinc-950 border-b border-zinc-800 z-50">
+  <div class="px-4 py-3 flex items-center justify-start">
+    <span class="text-xl font-bold text-white">Monium</span>
+  </div>
+</header>
+{% endblock %}
+
+{% block footer %}{% endblock %}
+
+{% block content %}
+<main class="min-h-screen px-4 pt-20 pb-4 flex flex-col items-center justify-center">
+    <div class="flex flex-col w-full max-w-md justify-center gap-4">
+
+        <div class="flex flex-col justify-center text-center">
+            <h1 class="text-white text-2xl font-bold text-center">
+                {% if is_first %}{% trans "Create your organization" %}{% else %}{% trans "Create another organization" %}{% endif %}
+            </h1>
+            <p class="text-zinc-400 text-sm">
+                {% if is_first %}
+                    {% trans "You need an organization to start using Monium." %}
+                {% else %}
+                    {% trans "This will use one more slot from your current plan's organization limit." %}
+                {% endif %}
+            </p>
+        </div>
+
+        <form method="post" class="border rounded-xl flex flex-col gap-3 p-4 border-zinc-800 bg-zinc-900">
+            {% csrf_token %}
+
+            {% if form.non_field_errors %}
+            {% for error in form.non_field_errors %}
+            <div class="flex items-center gap-2 px-3 py-2 rounded bg-red-950 border border-red-800 text-red-400 text-sm">
+                <span class="material-symbols-outlined text-base leading-none">error</span>
+                {{ error }}
+            </div>
+            {% endfor %}
+            {% endif %}
+
+            {% for field in form %}
+            <div>
+                <label for="{{ field.id_for_label }}" class="block font-medium text-xs sm:text-sm mb-1 text-zinc-400">
+                    {{ field.label }}
+                </label>
+                {{ field }}
+                {% if field.errors %}
+                <p class="text-red-400 text-xs mt-1">{{ field.errors }}</p>
+                {% endif %}
+            </div>
+            {% endfor %}
+
+            <button type="submit" class="w-full bg-white text-zinc-950 py-2 px-4 rounded hover:bg-zinc-200 transition font-medium">
+                {% trans "Create organization" %}
+            </button>
+        </form>
+    </div>
+</main>
+{% endblock %}
