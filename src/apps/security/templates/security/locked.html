@@ -15,29 +15,29 @@
     >
 
     <div class="flex items-start md:items-center gap-3 sm:gap-4 justify-center flex-col text-center max-w-md sm:max-w-xl">
-        <h4 class="flex gap-3 text-start md:text-center items-center px-3 py-2 text-blue-500 font-bold text-lg sm:text-2xl">
-            <span class="material-symbols-outlined font-bold rounded-full text-blue-500 text-xl sm:text-2xl">
+        <h4 class="flex gap-3 text-start md:text-center items-center px-3 py-2 text-white font-bold text-lg sm:text-2xl">
+            <span class="material-symbols-outlined font-bold rounded-full text-red-400 text-xl sm:text-2xl">
                 block
             </span>
             Acesso temporariamente bloqueado
         </h4>
 
-        <p class="text-sm text-start md:text-center sm:text-base leading-snug sm:leading-relaxed text-gray-700">
+        <p class="text-sm text-start md:text-center sm:text-base leading-snug sm:leading-relaxed text-zinc-400">
             Detectamos múltiplas tentativas de login sem sucesso.
             <br>
             Por razões de segurança, seu acesso foi temporariamente bloqueado.
         </p>
 
-        <p class="text-sm text-start md:text-center sm:text-base leading-snug sm:leading-relaxed text-gray-700">
+        <p class="text-sm text-start md:text-center sm:text-base leading-snug sm:leading-relaxed text-zinc-400">
             Aguarde alguns minutos e tente novamente.
             <br>
             Se você esqueceu sua senha, use a
-            <a href="{% url 'account:reset' %}" class="outlined text-blue-500 cursor-pointer">
+            <a href="{% url 'account:recovery' %}" class="outlined text-white hover:underline cursor-pointer">
                 recuperação de senha
             </a>
         </p>
 
-        <small class="text-xs text-start md:text-center sm:text-sm text-gray-400 leading-snug sm:leading-normal">
+        <small class="text-xs text-start md:text-center sm:text-sm text-zinc-500 leading-snug sm:leading-normal">
             Se acredita que isso é um erro, entre em contato com o suporte.
         </small>
     </div>
