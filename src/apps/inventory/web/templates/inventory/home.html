@@ -1,6 +1,7 @@
 {% extends "common/layouts/base-aside.html" %}
 {% load static %}
 {% load i18n %}
+{% load inventory_status %}
 
 {% block title %}{% trans "Home" %} — Monium{% endblock %}
 
@@ -21,6 +22,26 @@
             {% trans "New Item" %}
         </a>
     </div>
+
+    {% if not total_items %}
+    <!-- Onboarding: primeira organização sem itens ainda -->
+    <div class="border border-zinc-800 rounded-xl bg-zinc-900 p-6 flex flex-col sm:flex-row items-start sm:items-center gap-4 justify-between">
+        <div class="flex items-start gap-3">
+            <span class="material-symbols-outlined text-white text-2xl leading-none shrink-0">rocket_launch</span>
+            <div>
+                <h2 class="text-white font-semibold">{% trans "Let's get your inventory started" %}</h2>
+                <p class="text-sm text-zinc-500 mt-1">
+                    {% trans "You haven't registered any items yet. Add your first one to see your dashboard come to life." %}
+                </p>
+            </div>
+        </div>
+        <a href="{% url 'inventory:item_create' %}"
+           class="shrink-0 flex items-center gap-2 bg-white text-zinc-950 text-sm font-medium px-4 py-2.5 rounded hover:bg-zinc-100 transition">
+            <span class="material-symbols-outlined text-base leading-none">add</span>
+            {% trans "Register your first item" %}
+        </a>
+    </div>
+    {% endif %}
 
     <!-- Summary cards -->
     <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
@@ -253,11 +274,7 @@
                         <td class="px-5 py-3 text-zinc-400 hidden sm:table-cell">{{ item.category.name }}</td>
                         <td class="px-5 py-3 text-zinc-400 hidden md:table-cell">{{ item.sector.name }}</td>
                         <td class="px-5 py-3">
-                            <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium
-                                {% if item.status == 'ativo' %}bg-green-950 text-green-400
-                                {% elif item.status == 'em_manutencao' %}bg-amber-950 text-amber-400
-                                {% elif item.status == 'extraviado' %}bg-red-950 text-red-400
-                                {% else %}bg-zinc-800 text-zinc-400{% endif %}">
+                            <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium {{ item.status|status_badge_class }}">
                                 {{ item.get_status_display }}
                             </span>
                         </td>
