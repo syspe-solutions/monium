@@ -193,6 +193,7 @@ INSTALLED_APPS = [
     # Local apps
     "apps.common",
     "apps.account",
+    "apps.organizations",
     "apps.inventory",
     "apps.security",
     "apps.audit",
@@ -217,6 +218,7 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "axes.middleware.AxesMiddleware",
+    "apps.organizations.middleware.RequireOrganizationMiddleware",
 ]
 
 # ================================================================
@@ -388,6 +390,13 @@ except KeyError as e:
 
 except ValueError as e:
     raise RuntimeError(f"Erro na configuração de e-mail: {e}")
+
+# ================================================================
+# MERCADO PAGO
+# ================================================================
+MERCADO_PAGO_PUBLIC_KEY = os.environ.get("MERCADO_PAGO_PUBLIC_KEY")
+MERCADO_PAGO_ACCESS_TOKEN = os.environ.get("MERCADO_PAGO_ACCESS_TOKEN")
+MERCADO_PAGO_WEBHOOK_SECRET = os.environ.get("MERCADO_PAGO_WEBHOOK_SECRET")
 
 
 REDIS_URL = os.environ.get("REDIS_URL", "redis://localhost:6379/0")
