@@ -1,0 +1,24 @@
+<script>
+    setTimeout(() => {
+        document.querySelectorAll('.flash-message').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(-8px)';
+            setTimeout(() => el.remove(), 500);
+        });
+    }, 4000);
+
+    // Loading state genérico: desabilita o botão de submit e mostra um spinner
+    // enquanto o form está em voo, pra qualquer form da aplicação.
+    document.addEventListener('submit', function (e) {
+        const form = e.target;
+        if (!(form instanceof HTMLFormElement)) return;
+        const btn = e.submitter || form.querySelector('button[type="submit"]');
+        if (!btn || btn.tagName !== 'BUTTON' || btn.disabled) return;
+        btn.disabled = true;
+        btn.classList.add('opacity-70', 'cursor-wait');
+        btn.insertAdjacentHTML(
+            'beforeend',
+            '<span class="inline-block w-4 h-4 border-2 border-current/30 border-t-current rounded-full animate-spin ml-2 align-middle"></span>'
+        );
+    });
+</script>
