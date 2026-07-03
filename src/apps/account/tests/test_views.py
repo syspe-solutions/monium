@@ -7,6 +7,18 @@ from django.urls import reverse
 from apps.account.models import User
 from apps.account.services.image_service import ImageService
 from apps.common.utils import CommonUtils
+from apps.organizations.models import Membership, MembershipRole, Organization
+
+
+def give_organization(user):
+    """Provisiona uma Organization pro usuário, como o onboarding faria — necessário
+    porque RequireOrganizationMiddleware bloqueia usuários sem organização."""
+    organization = Organization.objects.create(
+        name=user.username, slug=f"org-{user.username}",
+        industry="technology", size="1-10", primary_goal="it_equipment",
+    )
+    Membership.objects.create(organization=organization, user=user, role=MembershipRole.OWNER)
+    return organization
 
 
 class RegisterViewTests(TestCase):
@@ -76,6 +88,7 @@ class UserLoginViewTests(TestCase):
         CommonUtils().disable_welcome_signal()
         self.user = User.objects.create_user(
             username="testuser", password="12345")
+        give_organization(self.user)
 
     def test_login_page_loads_successfully(self):
         response = self.client.get(reverse("account:login"))
@@ -102,6 +115,7 @@ class LogoutViewTests(TestCase):
         CommonUtils().disable_welcome_signal()
         self.user = User.objects.create_user(
             username="logoutuser", password="12345")
+        give_organization(self.user)
 
     def test_logout_redirects_to_login(self):
         self.client.force_login(self.user)
@@ -119,11 +133,13 @@ class AuthenticatedTestCase(TestCase):
     def _create_user(self):
         User = get_user_model()
 
-        return User.objects.create_user(
+        user = User.objects.create_user(
             username="testuser",
             email="test@example.com",
             password="strong-pass"
         )
+        give_organization(user)
+        return user
 
 
 class UploadAvatarViewTests(AuthenticatedTestCase):
