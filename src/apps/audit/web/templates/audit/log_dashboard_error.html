@@ -14,10 +14,10 @@
 const ts = log.timestamp ? new Date(log.timestamp).toLocaleString('pt-BR') : "-";
 const data = log.data || {};
 return `
-<tr class="hover:bg-zinc-50 transition">
-    <td class="p-3 text-zinc-500 whitespace-nowrap border-r border-zinc-50">${ts}</td>
-    <td class="p-3 border-r border-zinc-50">${toSafeTextFn(data.error_type || log.level)}</td>
-    <td class="p-3 border-r border-zinc-50 break-all">${toSafeTextFn(data.message || log.message)}</td>
+<tr class="hover:bg-zinc-800/60 transition">
+    <td class="p-3 text-zinc-500 whitespace-nowrap border-r border-zinc-800">${ts}</td>
+    <td class="p-3 border-r border-zinc-800">${toSafeTextFn(data.error_type || log.level)}</td>
+    <td class="p-3 border-r border-zinc-800 break-all">${toSafeTextFn(data.message || log.message)}</td>
     <td class="p-3 break-all">${toSafeTextFn(data.context || data.stack_trace)}</td>
 </tr>`;
 {% endblock %}

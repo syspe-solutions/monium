@@ -16,12 +16,12 @@
 const ts = log.timestamp ? new Date(log.timestamp).toLocaleString('pt-BR') : "-";
 const data = log.data || {};
 return `
-<tr class="hover:bg-zinc-50 transition">
-    <td class="p-3 text-zinc-500 whitespace-nowrap border-r border-zinc-50">${ts}</td>
-    <td class="p-3 border-r border-zinc-50">${toSafeTextFn(data.action)}</td>
-    <td class="p-3 border-r border-zinc-50">${toSafeTextFn(data.status)}</td>
-    <td class="p-3 border-r border-zinc-50">${toSafeTextFn(data.user)}</td>
-    <td class="p-3 border-r border-zinc-50">${toSafeTextFn(data.ip_address)}</td>
+<tr class="hover:bg-zinc-800/60 transition">
+    <td class="p-3 text-zinc-500 whitespace-nowrap border-r border-zinc-800">${ts}</td>
+    <td class="p-3 border-r border-zinc-800">${toSafeTextFn(data.action)}</td>
+    <td class="p-3 border-r border-zinc-800">${toSafeTextFn(data.status)}</td>
+    <td class="p-3 border-r border-zinc-800">${toSafeTextFn(data.user)}</td>
+    <td class="p-3 border-r border-zinc-800">${toSafeTextFn(data.ip_address)}</td>
     <td class="p-3 break-all">${toSafeTextFn(data.reason)}</td>
 </tr>`;
 {% endblock %}

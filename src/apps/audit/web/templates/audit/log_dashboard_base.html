@@ -3,28 +3,28 @@
 {% block content %}
 <main class="min-h-screen p-4 flex gap-4 flex-col">
     <header class="flex flex-col gap-4">
-        <div class="flex justify-between items-center bg-white p-4 border border-zinc-200 rounded shadow-sm">
+        <div class="flex justify-between items-center bg-zinc-900 p-4 border border-zinc-800 rounded shadow-sm">
             <div>
-                <h1 class="text-xl font-bold text-blue-600">{% block dashboard_title %}Logs{% endblock %}</h1>
+                <h1 class="text-xl font-bold text-white">{% block dashboard_title %}Logs{% endblock %}</h1>
                 <p class="text-sm text-zinc-500">{% block dashboard_subtitle %}Visualizacao detalhada da camada{% endblock %}</p>
             </div>
             <div class="flex gap-2">
-                <a href="{% url 'audit:log-export' current_layer %}" class="flex items-center gap-2 px-3 py-2 bg-white border border-zinc-200 rounded text-sm font-medium text-zinc-700 hover:bg-zinc-50 transition shadow-sm">
+                <a href="{% url 'audit:log-export' current_layer %}" class="flex items-center gap-2 px-3 py-2 bg-zinc-800 border border-zinc-700 rounded text-sm font-medium text-zinc-200 hover:bg-zinc-700 transition shadow-sm">
                     <span class="material-symbols-outlined text-sm">download</span>
                     Exportar
                 </a>
-                <button id="auto-refresh-btn" class="flex items-center gap-2 px-3 py-2 bg-white border border-zinc-200 rounded text-sm font-medium text-zinc-700 hover:bg-zinc-50 transition shadow-sm">
+                <button id="auto-refresh-btn" class="flex items-center gap-2 px-3 py-2 bg-zinc-800 border border-zinc-700 rounded text-sm font-medium text-zinc-200 hover:bg-zinc-700 transition shadow-sm">
                     <span class="material-symbols-outlined text-sm">pause_circle</span>
                     <span id="auto-refresh-text">Pausar</span>
                 </button>
             </div>
         </div>
 
-        <div class="flex border-b border-zinc-200 overflow-x-auto">
+        <div class="flex border-b border-zinc-800 overflow-x-auto">
             {% for layer in layers %}
                 <a href="{% url 'audit:log-layer-dashboard' layer %}"
                    class="px-6 py-3 border-b-2 text-sm font-semibold transition-all whitespace-nowrap
-                   {% if current_layer == layer %}border-blue-600 text-blue-600{% else %}border-transparent text-zinc-500 hover:text-zinc-700{% endif %}">
+                   {% if current_layer == layer %}border-white text-white{% else %}border-transparent text-zinc-500 hover:text-zinc-300{% endif %}">
                     {{ layer|upper }}
                 </a>
             {% endfor %}
@@ -32,46 +32,46 @@
     </header>
 
     <div class="grid gap-4 grid-cols-[repeat(auto-fit,minmax(220px,1fr))]">
-        <div class="bg-white border flex flex-col gap-2 border-zinc-200 rounded p-4">
-            <h2 class="text-md font-semibold text-blue-600">Total de Entradas</h2>
-            <p class="text-3xl font-bold text-blue-600" id="metric-total">{{ metrics.total_count }}</p>
-            <p class="text-sm text-zinc-600">Registros totais (arquivo + snapshot)</p>
+        <div class="bg-zinc-900 border flex flex-col gap-2 border-zinc-800 rounded p-4">
+            <h2 class="text-md font-semibold text-zinc-300">Total de Entradas</h2>
+            <p class="text-3xl font-bold text-white" id="metric-total">{{ metrics.total_count }}</p>
+            <p class="text-sm text-zinc-500">Registros totais (arquivo + snapshot)</p>
         </div>
-        <div class="bg-white border flex flex-col gap-2 border-zinc-200 rounded p-4">
-            <h2 class="text-md font-semibold text-blue-600">Taxa de Erro</h2>
-            <p class="text-3xl font-bold text-red-600" id="metric-error-rate">{{ metrics.error_rate }}</p>
-            <p class="text-sm text-zinc-600">Percentual de falhas</p>
+        <div class="bg-zinc-900 border flex flex-col gap-2 border-zinc-800 rounded p-4">
+            <h2 class="text-md font-semibold text-zinc-300">Taxa de Erro</h2>
+            <p class="text-3xl font-bold text-red-400" id="metric-error-rate">{{ metrics.error_rate }}</p>
+            <p class="text-sm text-zinc-500">Percentual de falhas</p>
         </div>
-        <div class="bg-white border flex flex-col gap-2 border-zinc-200 rounded p-4">
-            <h2 class="text-md font-semibold text-blue-600">Eventos / Minuto</h2>
-            <p class="text-3xl font-bold text-blue-600" id="metric-rpm">{{ metrics.requests_per_minute }}</p>
-            <p class="text-sm text-zinc-600">Frequencia em tempo real</p>
+        <div class="bg-zinc-900 border flex flex-col gap-2 border-zinc-800 rounded p-4">
+            <h2 class="text-md font-semibold text-zinc-300">Eventos / Minuto</h2>
+            <p class="text-3xl font-bold text-white" id="metric-rpm">{{ metrics.requests_per_minute }}</p>
+            <p class="text-sm text-zinc-500">Frequencia em tempo real</p>
         </div>
-        <div class="bg-white border flex flex-col gap-2 border-zinc-200 rounded p-4">
-            <h2 class="text-md font-semibold text-blue-600">Incidentes Críticos</h2>
-            <p class="text-3xl font-bold text-red-600" id="metric-critical">{{ metrics.critical_incidents }}</p>
-            <p class="text-sm text-zinc-600">Casos que requerem atencao</p>
+        <div class="bg-zinc-900 border flex flex-col gap-2 border-zinc-800 rounded p-4">
+            <h2 class="text-md font-semibold text-zinc-300">Incidentes Críticos</h2>
+            <p class="text-3xl font-bold text-red-400" id="metric-critical">{{ metrics.critical_incidents }}</p>
+            <p class="text-sm text-zinc-500">Casos que requerem atencao</p>
         </div>
     </div>
 
-    <section class="bg-white border border-zinc-200 rounded p-4 shadow-sm flex flex-col gap-3">
+    <section class="bg-zinc-900 border border-zinc-800 rounded p-4 shadow-sm flex flex-col gap-3">
 
         <div class="flex items-center gap-2">
             <div class="relative flex-1">
-                <span class="material-symbols-outlined absolute left-2 top-1/2 -translate-y-1/2 text-zinc-400 text-sm">search</span>
+                <span class="material-symbols-outlined absolute left-2 top-1/2 -translate-y-1/2 text-zinc-500 text-sm">search</span>
                 <input type="text" id="q-filter" placeholder="Palavra-chave na mensagem..."
-                       class="w-full p-2 pl-8 border border-zinc-300 rounded text-sm focus:ring-1 focus:ring-blue-500 outline-none transition">
+                       class="w-full p-2 pl-8 border border-zinc-700 rounded text-sm bg-zinc-950 text-white placeholder:text-zinc-600 focus:ring-1 focus:ring-zinc-500 outline-none transition">
             </div>
 
             <button type="button" id="filter-toggle"
-                    class="relative lg:hidden flex items-center gap-1 px-3 py-2 border border-zinc-300 rounded text-xs text-zinc-600 hover:bg-zinc-50 transition shrink-0">
+                    class="relative lg:hidden flex items-center gap-1 px-3 py-2 border border-zinc-700 rounded text-xs text-zinc-300 hover:bg-zinc-800 transition shrink-0">
                 <span class="material-symbols-outlined text-sm">tune</span>
                 <span>Filtros</span>
-                <span id="filter-dot" class="absolute -top-1 -right-1 w-2 h-2 bg-blue-600 rounded-full hidden"></span>
+                <span id="filter-dot" class="absolute -top-1 -right-1 w-2 h-2 bg-white rounded-full hidden"></span>
             </button>
 
             <button id="apply-filters"
-                    class="hidden lg:flex items-center gap-1 bg-blue-600 text-white px-4 py-2 rounded text-sm font-medium hover:bg-blue-700 transition shrink-0">
+                    class="hidden lg:flex items-center gap-1 bg-white text-zinc-950 px-4 py-2 rounded text-sm font-medium hover:bg-zinc-200 transition shrink-0">
                 Filtrar
             </button>
         </div>
@@ -81,7 +81,7 @@
             <div class="col-span-1">
                 <label class="block text-xs font-medium text-zinc-500 uppercase tracking-wide mb-1">Level</label>
                 <select id="level-filter"
-                        class="w-full p-2 border border-zinc-300 rounded text-sm outline-none focus:ring-1 focus:ring-blue-500 bg-white transition">
+                        class="w-full p-2 border border-zinc-700 rounded text-sm outline-none focus:ring-1 focus:ring-zinc-500 bg-zinc-950 text-white transition">
                     <option value="">Todos</option>
                     <option value="INFO">INFO</option>
                     <option value="WARNING">WARNING</option>
@@ -93,12 +93,12 @@
             <div class="col-span-1">
                 <label class="block text-xs font-medium text-zinc-500 uppercase tracking-wide mb-1">Trace ID</label>
                 <input type="text" id="trace-id-filter" placeholder="UUID..."
-                       class="w-full p-2 border border-zinc-300 rounded text-sm outline-none focus:ring-1 focus:ring-blue-500 transition">
+                       class="w-full p-2 border border-zinc-700 rounded text-sm bg-zinc-950 text-white placeholder:text-zinc-600 outline-none focus:ring-1 focus:ring-zinc-500 transition">
             </div>
 
             <div class="col-span-2 sm:col-span-3 lg:hidden flex justify-end">
                 <button id="apply-filters-mobile"
-                        class="bg-blue-600 text-white px-4 py-2 rounded text-sm font-medium hover:bg-blue-700 transition">
+                        class="bg-white text-zinc-950 px-4 py-2 rounded text-sm font-medium hover:bg-zinc-200 transition">
                     Filtrar
                 </button>
             </div>
@@ -106,10 +106,10 @@
 
     </section>
 
-    <div class="bg-white border border-zinc-200 rounded flex-1 flex flex-col min-h-[400px]">
-        <div class="p-4 border-b border-zinc-100 flex justify-between items-center">
-            <h3 class="font-bold text-zinc-800">Eventos Recentes</h3>
-            <select id="limit-select" class="p-1 border border-zinc-300 rounded text-xs outline-none">
+    <div class="bg-zinc-900 border border-zinc-800 rounded flex-1 flex flex-col min-h-[400px]">
+        <div class="p-4 border-b border-zinc-800 flex justify-between items-center">
+            <h3 class="font-bold text-white">Eventos Recentes</h3>
+            <select id="limit-select" class="p-1 border border-zinc-700 rounded text-xs bg-zinc-950 text-white outline-none">
                 <option value="50">50 linhas</option>
                 <option value="100">100 linhas</option>
                 <option value="500">500 linhas</option>
@@ -118,11 +118,11 @@
         <div class="overflow-x-auto flex-1">
             <table class="w-full text-left text-xs border-collapse">
                 <thead>
-                    <tr class="bg-blue-50 text-blue-900 border-b border-blue-100">
+                    <tr class="bg-zinc-800 text-zinc-300 border-b border-zinc-700">
                         {% block table_headers %}{% endblock %}
                     </tr>
                 </thead>
-                <tbody id="log-table-body" class="divide-y divide-zinc-100 font-mono"></tbody>
+                <tbody id="log-table-body" class="divide-y divide-zinc-800 font-mono text-zinc-300"></tbody>
             </table>
         </div>
     </div>
@@ -143,13 +143,13 @@ $(document).ready(function() {
     function getLevelBadge(level) {
         level = (level || "INFO").toUpperCase();
         const classes = {
-            INFO: 'bg-blue-100 text-blue-700',
-            WARNING: 'bg-yellow-100 text-yellow-700',
-            ERROR: 'bg-red-100 text-red-700',
+            INFO: 'bg-blue-950 text-blue-400',
+            WARNING: 'bg-amber-950 text-amber-400',
+            ERROR: 'bg-red-950 text-red-400',
             CRITICAL: 'bg-red-600 text-white',
-            DEBUG: 'bg-zinc-100 text-zinc-600'
+            DEBUG: 'bg-zinc-800 text-zinc-400'
         };
-        return classes[level] || 'bg-zinc-100 text-zinc-700';
+        return classes[level] || 'bg-zinc-800 text-zinc-300';
     }
 
     function toSafeText(value) {

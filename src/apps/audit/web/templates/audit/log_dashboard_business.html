@@ -19,11 +19,11 @@ const action = toSafeTextFn(data.action || log.message);
 const entity = toSafeTextFn(data.entity);
 const details = toSafeTextFn(data.details || data);
 return `
-<tr class="hover:bg-zinc-50 transition">
-    <td class="p-3 text-zinc-500 whitespace-nowrap border-r border-zinc-50">${ts}</td>
-    <td class="p-3 text-center border-r border-zinc-50"><span class="px-2 py-0.5 rounded-full font-bold text-[10px] ${getLevelBadgeFn(level)}">${level}</span></td>
-    <td class="p-3 border-r border-zinc-50">${action}</td>
-    <td class="p-3 border-r border-zinc-50">${entity}</td>
-    <td class="p-3 text-zinc-700 break-all">${details}</td>
+<tr class="hover:bg-zinc-800/60 transition">
+    <td class="p-3 text-zinc-500 whitespace-nowrap border-r border-zinc-800">${ts}</td>
+    <td class="p-3 text-center border-r border-zinc-800"><span class="px-2 py-0.5 rounded-full font-bold text-[10px] ${getLevelBadgeFn(level)}">${level}</span></td>
+    <td class="p-3 border-r border-zinc-800">${action}</td>
+    <td class="p-3 border-r border-zinc-800">${entity}</td>
+    <td class="p-3 text-zinc-300 break-all">${details}</td>
 </tr>`;
 {% endblock %}
