@@ -1,5 +1,6 @@
 from django.conf import settings
 from django.db import models
+from django.utils import timezone
 
 from apps.common.models import BaseModelAbstract
 
@@ -44,3 +45,7 @@ class Loan(BaseModelAbstract):
 
     def __str__(self):
         return f"{self.item} → {self.loaned_to}"
+
+    @property
+    def is_overdue(self):
+        return self.status == LoanStatus.ACTIVE and self.expected_return < timezone.now().date()

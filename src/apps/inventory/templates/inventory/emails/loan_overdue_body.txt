@@ -1,0 +1,5 @@
+O empréstimo do item "{{ item.name }}" ({{ item.code }}), emprestado para {{ loan.loaned_to }}, está em atraso.
+
+Previsão de retorno: {{ loan.expected_return }}
+
+Acesse o Monium para regularizar a devolução.
