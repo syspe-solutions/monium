@@ -23,7 +23,7 @@ class PlansView(LoginRequiredMixin, TemplateView):
 
     def get_context_data(self, **kwargs):
         ctx = super().get_context_data(**kwargs)
-        current_plan_id = services.get_plan_for_organization(self.request.user.organization)["id"]
+        current_plan_id = services.get_plan_for_user(self.request.user)["id"]
         ctx["plans"] = [
             {**plan, "cta_disabled": plan["id"] == current_plan_id}
             for plan in PLANS
@@ -38,18 +38,17 @@ class SubscribeView(LoginRequiredMixin, View):
             messages.error(request, "Plano inválido para assinatura online. Fale com nosso time.")
             return redirect("billing:plans")
 
-        organization = request.user.organization
         back_url = request.build_absolute_uri(reverse("billing:plans"))
 
         try:
             checkout_url = mercadopago_gateway.create_preapproval(
-                organization=organization,
+                user=request.user,
                 plan=plan,
                 payer_email=request.user.email,
                 back_url=back_url,
             )
         except Exception:
-            logger.exception("Falha ao criar preapproval no Mercado Pago para org=%s plan=%s", organization.id, plan_id)
+            logger.exception("Falha ao criar preapproval no Mercado Pago para user=%s plan=%s", request.user.id, plan_id)
             messages.error(request, "Não foi possível iniciar o checkout agora. Tente novamente em instantes.")
             return redirect("billing:plans")
 
@@ -74,9 +73,10 @@ class MercadoPagoWebhookView(View):
             logger.exception("Falha ao buscar preapproval %s no Mercado Pago", preapproval_id)
             return HttpResponse(status=200)
 
-        organization_id = preapproval.get("external_reference")
+        external_reference = preapproval.get("external_reference") or ""
+        user_id, _, referenced_plan_id = external_reference.partition(":")
         mp_status = preapproval.get("status")
-        if not organization_id:
+        if not user_id:
             return HttpResponse(status=200)
 
         status_map = {
@@ -88,9 +88,12 @@ class MercadoPagoWebhookView(View):
         if status is None:
             return HttpResponse(status=200)
 
-        Subscription.objects.filter(organization_id=organization_id).update(
-            status=status,
-            mp_preapproval_id=preapproval_id,
-        )
+        update_fields = {"status": status, "mp_preapproval_id": preapproval_id}
+        if status == SubscriptionStatus.ACTIVE and referenced_plan_id:
+            update_fields["plan_id"] = referenced_plan_id
+        elif status == SubscriptionStatus.CANCELED:
+            update_fields["plan_id"] = "free"
+
+        Subscription.objects.filter(user_id=user_id).update(**update_fields)
 
         return HttpResponse(status=200)

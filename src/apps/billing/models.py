@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.db import models
 
 from apps.common.models import BaseModelAbstract
@@ -10,11 +11,11 @@ class SubscriptionStatus(models.TextChoices):
 
 
 class Subscription(BaseModelAbstract):
-    organization = models.OneToOneField(
-        "organizations.Organization",
+    user = models.OneToOneField(
+        settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
         related_name="subscription",
-        verbose_name="Organização",
+        verbose_name="Usuário",
     )
     plan_id = models.CharField(max_length=30, default="free", verbose_name="Plano")
     status = models.CharField(
@@ -31,4 +32,4 @@ class Subscription(BaseModelAbstract):
         verbose_name_plural = "Assinaturas"
 
     def __str__(self):
-        return f"{self.organization} — {self.plan_id} ({self.status})"
+        return f"{self.user} — {self.plan_id} ({self.status})"

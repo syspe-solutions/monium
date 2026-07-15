@@ -9,12 +9,15 @@ def _client() -> mercadopago.SDK:
     return mercadopago.SDK(settings.MERCADO_PAGO_ACCESS_TOKEN)
 
 
-def create_preapproval(organization, plan: dict, payer_email: str, back_url: str) -> str:
-    """Cria uma assinatura recorrente (preapproval) no Mercado Pago e retorna a URL de checkout."""
+def create_preapproval(user, plan: dict, payer_email: str, back_url: str) -> str:
+    """Cria uma assinatura recorrente (preapproval) no Mercado Pago e retorna a URL de checkout.
+
+    external_reference carrega user_id e plan_id (separados por ':') pra o webhook
+    saber pra qual plano promover a assinatura quando o pagamento for confirmado."""
     sdk = _client()
     preference_data = {
         "reason": f"Monium — Plano {plan['name']}",
-        "external_reference": str(organization.id),
+        "external_reference": f"{user.id}:{plan['id']}",
         "payer_email": payer_email,
         "back_url": back_url,
         "auto_recurring": {
