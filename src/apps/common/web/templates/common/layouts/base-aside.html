@@ -27,6 +27,20 @@
             <span class="text-xl font-bold">Monium</span>
         </header>
 
+        {% if locked_organizations %}
+        <div class="bg-amber-950/60 border-b border-amber-800 text-amber-300 text-sm px-4 py-3 flex flex-wrap items-center gap-2">
+            <span class="material-symbols-outlined text-base leading-none shrink-0">warning</span>
+            <span>
+                {% trans "Your plan no longer covers these organizations — they're read-only until you delete one or upgrade:" %}
+                {% for org in locked_organizations %}
+                    <strong class="text-white">{{ org.name }}</strong>
+                    <a href="{% url 'organizations:delete' org.id %}" class="text-red-400 hover:underline">({% trans "delete" %})</a>{% if not forloop.last %}, {% endif %}
+                {% endfor %}
+            </span>
+            <a href="{% url 'billing:plans' %}" class="text-white hover:underline shrink-0 ml-auto font-medium">{% trans "Upgrade plan" %}</a>
+        </div>
+        {% endif %}
+
         {% block header %}{% endblock %}
         {% block content %}{% endblock %}
         {% block footer %}{% endblock %}

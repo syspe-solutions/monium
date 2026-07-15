@@ -89,6 +89,14 @@
         <div class="mb-4 shrink-0">
             <h3 class="sidebar-header text-zinc-500 uppercase text-xs font-semibold p-3">{% trans "Inventory" %}</h3>
             <nav class="flex flex-col gap-1">
+                <a href="{% url 'inventory:item_list' %}"
+                   class="nav-item flex items-center gap-3 p-3 rounded transition-all
+                          {% if request.resolver_match.url_name == 'item_list' or request.resolver_match.url_name == 'item_detail' %}bg-zinc-800 text-white{% else %}hover:bg-zinc-800{% endif %}"
+                   title="{% trans 'All Items' %}">
+                    <span class="material-symbols-outlined text-sm shrink-0">inventory_2</span>
+                    <span class="sidebar-text text-sm overflow-hidden whitespace-nowrap">{% trans "All Items" %}</span>
+                </a>
+
                 <a href="{% url 'inventory:dashboard' %}"
                    class="nav-item flex items-center gap-3 p-3 rounded transition-all
                           {% if request.resolver_match.url_name == 'dashboard' %}bg-zinc-800 text-white{% else %}hover:bg-zinc-800{% endif %}"
@@ -104,6 +112,22 @@
                     <span class="material-symbols-outlined text-sm shrink-0">add_box</span>
                     <span class="sidebar-text text-sm overflow-hidden whitespace-nowrap">{% trans "Register Item" %}</span>
                 </a>
+
+                <a href="{% url 'inventory:imovel_list' %}"
+                   class="nav-item flex items-center gap-3 p-3 rounded transition-all
+                          {% if request.resolver_match.url_name == 'imovel_list' or request.resolver_match.url_name == 'imovel_detail' %}bg-zinc-800 text-white{% else %}hover:bg-zinc-800{% endif %}"
+                   title="{% trans 'Real Estate' %}">
+                    <span class="material-symbols-outlined text-sm shrink-0">home_work</span>
+                    <span class="sidebar-text text-sm overflow-hidden whitespace-nowrap">{% trans "Real Estate" %}</span>
+                </a>
+
+                <a href="{% url 'inventory:imovel_create' %}"
+                   class="nav-item flex items-center gap-3 p-3 rounded transition-all
+                          {% if request.resolver_match.url_name == 'imovel_create' %}bg-zinc-800 text-white{% else %}hover:bg-zinc-800{% endif %}"
+                   title="{% trans 'Register Real Estate' %}">
+                    <span class="material-symbols-outlined text-sm shrink-0">add_home</span>
+                    <span class="sidebar-text text-sm overflow-hidden whitespace-nowrap">{% trans "Register Real Estate" %}</span>
+                </a>
             </nav>
         </div>
 
@@ -117,6 +141,22 @@
                     <span class="material-symbols-outlined text-sm shrink-0">workspace_premium</span>
                     <span class="sidebar-text text-sm overflow-hidden whitespace-nowrap">{% trans "Plans" %}</span>
                 </a>
+                {% if is_organization_owner %}
+                <a href="{% url 'organizations:settings' %}"
+                   class="nav-item flex items-center gap-3 p-3 rounded-lg transition-all
+                          {% if request.resolver_match.url_name == 'settings' %}bg-zinc-800 text-white{% else %}hover:bg-zinc-800{% endif %}"
+                   title="{% trans 'Organization settings' %}">
+                    <span class="material-symbols-outlined text-sm shrink-0">domain</span>
+                    <span class="sidebar-text text-sm overflow-hidden whitespace-nowrap">{% trans "Organization settings" %}</span>
+                </a>
+                <a href="{% url 'organizations:members' %}"
+                   class="nav-item flex items-center gap-3 p-3 rounded-lg transition-all
+                          {% if request.resolver_match.url_name == 'members' %}bg-zinc-800 text-white{% else %}hover:bg-zinc-800{% endif %}"
+                   title="{% trans 'Members' %}">
+                    <span class="material-symbols-outlined text-sm shrink-0">group</span>
+                    <span class="sidebar-text text-sm overflow-hidden whitespace-nowrap">{% trans "Members" %}</span>
+                </a>
+                {% endif %}
                 <a href="{% url 'organizations:create' %}"
                    class="nav-item flex items-center gap-3 p-3 rounded-lg transition-all
                           {% if request.resolver_match.url_name == 'create' %}bg-zinc-800 text-white{% else %}hover:bg-zinc-800{% endif %}"
@@ -126,6 +166,30 @@
                 </a>
             </nav>
         </div>
+
+        {% if has_multiple_organizations %}
+        <!-- Organização ativa -->
+        <div class="mb-4 shrink-0">
+            <h3 class="sidebar-header text-zinc-500 uppercase text-xs font-semibold mb-2 px-3">{% trans "Organization" %}</h3>
+            <nav class="flex flex-col gap-1">
+                {% for org in user_organizations %}
+                <form method="post" action="{% url 'organizations:switch' org.id %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="next" value="{{ request.path }}">
+                    <button type="submit"
+                            class="nav-item w-full flex items-center gap-3 p-3 rounded-lg transition-all text-left
+                                   {% if org == current_organization %}bg-zinc-800 text-white{% else %}hover:bg-zinc-800 text-zinc-400{% endif %}"
+                            title="{{ org.name }}">
+                        <span class="material-symbols-outlined text-sm shrink-0">
+                            {% if org == current_organization %}check_circle{% else %}business{% endif %}
+                        </span>
+                        <span class="sidebar-text text-sm overflow-hidden whitespace-nowrap truncate">{{ org.name }}</span>
+                    </button>
+                </form>
+                {% endfor %}
+            </nav>
+        </div>
+        {% endif %}
 
         <!-- Conta -->
         <div class="shrink-0">
