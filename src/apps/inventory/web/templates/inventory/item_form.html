@@ -96,7 +96,7 @@
                     {% trans "Condition" %}
                 </p>
 
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
                     <div>
                         <label class="block font-medium text-xs sm:text-sm mb-1 text-zinc-400">{% trans "Status" %}</label>
                         {{ form.status }}
@@ -107,6 +107,12 @@
                         <label class="block font-medium text-xs sm:text-sm mb-1 text-zinc-400">{% trans "Condition" %}</label>
                         {{ form.condition }}
                         {% if form.condition.errors %}<p class="text-red-400 text-xs mt-1">{{ form.condition.errors }}</p>{% endif %}
+                    </div>
+
+                    <div>
+                        <label class="block font-medium text-xs sm:text-sm mb-1 text-zinc-400">{% trans "Ownership" %}</label>
+                        {{ form.ownership }}
+                        {% if form.ownership.errors %}<p class="text-red-400 text-xs mt-1">{{ form.ownership.errors }}</p>{% endif %}
                     </div>
                 </div>
 

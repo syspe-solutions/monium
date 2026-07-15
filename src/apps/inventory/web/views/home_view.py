@@ -7,13 +7,14 @@ from django.views.generic import TemplateView
 
 from apps.inventory.models import (
     Category,
-    Item,
+    Imovel,
     ItemCondition,
-    ItemStatus,
     Loan,
     LoanStatus,
     Maintenance,
     MaintenanceStatus,
+    Movel,
+    MovelStatus,
     Sector,
 )
 
@@ -26,16 +27,19 @@ class HomeView(LoginRequiredMixin, TemplateView):
         now = timezone.now()
         today = now.date()
         seven_days_ago = today - timedelta(days=7)
-        organization = self.request.user.organization
+        organization = self.request.organization
 
-        # ── Resumo de status ─────────────────────────────────────────────────
-        items = Item.objects.filter(organization=organization)
+        # ── Resumo de status (bens móveis) ──────────────────────────────────
+        items = Movel.objects.filter(organization=organization)
         total = items.count()
         ctx["total_items"] = total
-        ctx["active_items"] = items.filter(status=ItemStatus.ACTIVE).count()
-        ctx["maintenance_items"] = items.filter(status=ItemStatus.MAINTENANCE).count()
-        ctx["missing_items"] = items.filter(status=ItemStatus.MISSING).count()
-        ctx["written_off_items"] = items.filter(status=ItemStatus.WRITTEN_OFF).count()
+        ctx["active_items"] = items.filter(status=MovelStatus.IN_USE).count()
+        ctx["maintenance_items"] = items.filter(status=MovelStatus.MAINTENANCE).count()
+        ctx["missing_items"] = items.filter(status=MovelStatus.MISSING).count()
+        ctx["written_off_items"] = items.filter(status=MovelStatus.DISCARDED).count()
+
+        # ── Resumo de imóveis ─────────────────────────────────────────────────
+        ctx["total_imoveis"] = Imovel.objects.filter(organization=organization).count()
 
         # ── Alertas ───────────────────────────────────────────────────────────
         org_loans = Loan.objects.filter(item__organization=organization)
@@ -68,7 +72,7 @@ class HomeView(LoginRequiredMixin, TemplateView):
 
         ctx["poor_condition_active"] = items.filter(
             condition=ItemCondition.POOR,
-            status=ItemStatus.ACTIVE,
+            status=MovelStatus.IN_USE,
         ).count()
 
         # ── Atividade recente ────────────────────────────────────────────────

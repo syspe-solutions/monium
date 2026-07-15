@@ -5,13 +5,14 @@ from django.urls import reverse_lazy
 from django.views import View
 
 from apps.billing import services as billing_services
-from apps.inventory.forms.item_form import ItemForm, ItemSpecForm
+from apps.inventory.forms.movel_form import MovelForm, MovelSpecForm
 from apps.inventory.models import Brand
+from apps.organizations.mixins import OrganizationNotLockedRequiredMixin
 
 from .brand_views import find_similar_brands
 
 
-class ItemCreateView(LoginRequiredMixin, View):
+class MovelCreateView(LoginRequiredMixin, OrganizationNotLockedRequiredMixin, View):
     template_name = "inventory/item_form.html"
     success_url = reverse_lazy("inventory:dashboard")
 
@@ -26,11 +27,11 @@ class ItemCreateView(LoginRequiredMixin, View):
 
     def get(self, request):
         return render(request, self.template_name,
-                      self._context(ItemForm(), ItemSpecForm()))
+                      self._context(MovelForm(), MovelSpecForm()))
 
     def post(self, request):
-        form = ItemForm(request.POST)
-        spec_form = ItemSpecForm(request.POST, request.FILES)
+        form = MovelForm(request.POST)
+        spec_form = MovelSpecForm(request.POST, request.FILES)
         brand_id = request.POST.get("brand_id", "").strip()
         new_brand_name = request.POST.get("new_brand_name", "").strip()
 
@@ -38,7 +39,7 @@ class ItemCreateView(LoginRequiredMixin, View):
             return render(request, self.template_name,
                           self._context(form, spec_form, brand_id))
 
-        organization = request.user.organization
+        organization = request.organization
         if not billing_services.is_within_item_limit(organization):
             messages.error(
                 request,
@@ -87,7 +88,7 @@ class ItemCreateView(LoginRequiredMixin, View):
         ])
         if has_spec:
             spec = spec_form.save(commit=False)
-            spec.item = item
+            spec.movel = item
             spec.brand = brand_instance
             spec.created_by = request.user
             spec.updated_by = request.user

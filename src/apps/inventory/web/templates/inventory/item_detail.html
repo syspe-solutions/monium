@@ -1,0 +1,122 @@
+{% extends "common/layouts/base-aside.html" %}
+{% load i18n %}
+{% load inventory_status %}
+
+{% block title %}{{ item.name }} — Monium{% endblock %}
+
+{% block content %}
+<div class="p-6 max-w-4xl mx-auto space-y-6">
+
+    <!-- Header -->
+    <div class="flex items-center gap-2">
+        <a href="{% url 'inventory:item_list' %}" class="text-zinc-400 hover:text-zinc-300 transition">
+            <span class="material-symbols-outlined text-xl leading-none">arrow_back</span>
+        </a>
+        <div>
+            <h1 class="text-white text-xl sm:text-2xl font-bold">{{ item.name }}</h1>
+            <p class="text-zinc-500 text-sm font-mono">{{ item.code }}</p>
+        </div>
+        <span class="ml-auto inline-flex items-center px-2.5 py-1 rounded text-xs font-medium {{ item.status|status_badge_class }}">
+            {{ item.get_status_display }}
+        </span>
+    </div>
+
+    <!-- Item info -->
+    <div class="border border-zinc-800 rounded-xl bg-zinc-900 p-5">
+        <div class="flex items-center gap-2 pb-3 mb-4 border-b border-zinc-800">
+            <span class="material-symbols-outlined text-zinc-500 text-xl leading-none">inventory_2</span>
+            <h2 class="text-sm font-semibold text-white">{% trans "Item Information" %}</h2>
+        </div>
+        <dl class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-4 text-sm">
+            <div>
+                <dt class="text-xs text-zinc-500 uppercase tracking-wide">{% trans "Category" %}</dt>
+                <dd class="text-zinc-100 mt-0.5">{{ item.category.name }}</dd>
+            </div>
+            <div>
+                <dt class="text-xs text-zinc-500 uppercase tracking-wide">{% trans "Sector" %}</dt>
+                <dd class="text-zinc-100 mt-0.5">{{ item.sector.name }}</dd>
+            </div>
+            <div>
+                <dt class="text-xs text-zinc-500 uppercase tracking-wide">{% trans "Location" %}</dt>
+                <dd class="text-zinc-100 mt-0.5">{{ item.location.name|default:"—" }}</dd>
+            </div>
+            <div>
+                <dt class="text-xs text-zinc-500 uppercase tracking-wide">{% trans "Responsible" %}</dt>
+                <dd class="text-zinc-100 mt-0.5">{{ item.responsible|default:"—" }}</dd>
+            </div>
+            <div>
+                <dt class="text-xs text-zinc-500 uppercase tracking-wide">{% trans "Condition" %}</dt>
+                <dd class="text-zinc-100 mt-0.5">{{ item.get_condition_display }}</dd>
+            </div>
+            <div>
+                <dt class="text-xs text-zinc-500 uppercase tracking-wide">{% trans "Ownership" %}</dt>
+                <dd class="text-zinc-100 mt-0.5">{{ item.get_ownership_display }}</dd>
+            </div>
+            <div>
+                <dt class="text-xs text-zinc-500 uppercase tracking-wide">{% trans "Brand" %}</dt>
+                <dd class="text-zinc-100 mt-0.5">{{ item.spec.brand.name|default:"—" }}</dd>
+            </div>
+            <div>
+                <dt class="text-xs text-zinc-500 uppercase tracking-wide">{% trans "Registered at" %}</dt>
+                <dd class="text-zinc-100 mt-0.5">{{ item.created_at|date:"d/m/Y H:i" }}</dd>
+            </div>
+        </dl>
+        {% if item.description %}
+        <div class="mt-4 pt-4 border-t border-zinc-800">
+            <dt class="text-xs text-zinc-500 uppercase tracking-wide">{% trans "Description" %}</dt>
+            <dd class="text-zinc-300 mt-1 text-sm leading-relaxed">{{ item.description }}</dd>
+        </div>
+        {% endif %}
+        {% if item.notes %}
+        <div class="mt-4 pt-4 border-t border-zinc-800">
+            <dt class="text-xs text-zinc-500 uppercase tracking-wide">{% trans "Notes" %}</dt>
+            <dd class="text-zinc-300 mt-1 text-sm leading-relaxed">{{ item.notes }}</dd>
+        </div>
+        {% endif %}
+    </div>
+
+    <!-- Possession history -->
+    <div class="border border-zinc-800 rounded-xl bg-zinc-900 overflow-hidden">
+        <div class="flex items-center gap-2 px-5 py-4 border-b border-zinc-800">
+            <span class="material-symbols-outlined text-zinc-500 text-xl leading-none">history</span>
+            <h2 class="text-sm font-semibold text-white">{% trans "Possession History" %}</h2>
+        </div>
+
+        {% if loans %}
+        <div class="overflow-x-auto">
+            <table class="w-full text-sm">
+                <thead>
+                    <tr class="text-left text-xs text-zinc-500 font-semibold uppercase tracking-wide bg-zinc-800 border-b border-zinc-700">
+                        <th class="px-5 py-3">{% trans "Borrower" %}</th>
+                        <th class="px-5 py-3 hidden sm:table-cell">{% trans "Loaned at" %}</th>
+                        <th class="px-5 py-3 hidden md:table-cell">{% trans "Expected return" %}</th>
+                        <th class="px-5 py-3 hidden md:table-cell">{% trans "Returned at" %}</th>
+                        <th class="px-5 py-3">{% trans "Status" %}</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-zinc-800">
+                    {% for loan in loans %}
+                    <tr class="hover:bg-zinc-800/50 transition">
+                        <td class="px-5 py-3 font-medium text-zinc-100">{{ loan.loaned_to }}</td>
+                        <td class="px-5 py-3 text-zinc-400 hidden sm:table-cell">{{ loan.loaned_at|date:"d/m/Y H:i" }}</td>
+                        <td class="px-5 py-3 text-zinc-400 hidden md:table-cell">{{ loan.expected_return|date:"d/m/Y" }}</td>
+                        <td class="px-5 py-3 text-zinc-400 hidden md:table-cell">{{ loan.returned_at|date:"d/m/Y H:i"|default:"—" }}</td>
+                        <td class="px-5 py-3">
+                            <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium {{ loan.status|loan_status_badge_class }}">
+                                {{ loan.get_status_display }}
+                            </span>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <div class="px-5 py-8 text-center text-sm text-zinc-500">
+            {% trans "No loan history for this item yet." %}
+        </div>
+        {% endif %}
+    </div>
+
+</div>
+{% endblock %}

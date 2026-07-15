@@ -184,6 +184,11 @@
                     <span class="material-symbols-outlined text-zinc-500 text-base leading-none group-hover:text-zinc-200">category</span>
                     {% trans "View items by category" %}
                 </a>
+                <a href="{% url 'inventory:imovel_list' %}"
+                   class="flex items-center gap-3 px-4 py-3 border border-zinc-800 rounded-lg hover:border-zinc-600 hover:bg-zinc-800 transition text-sm text-zinc-200 group">
+                    <span class="material-symbols-outlined text-zinc-500 text-base leading-none group-hover:text-zinc-200">home_work</span>
+                    {% blocktrans count count=total_imoveis %}View real estate ({{ count }}){% plural %}View real estate ({{ count }}){% endblocktrans %}
+                </a>
             </div>
         </div>
 
@@ -250,7 +255,7 @@
                 <span class="material-symbols-outlined text-zinc-400 text-base leading-none">history</span>
                 <h2 class="text-sm font-semibold text-white">{% trans "Latest Registered Items" %}</h2>
             </div>
-            <a href="{% url 'inventory:dashboard' %}" class="text-xs text-zinc-500 hover:text-zinc-300 hover:underline">{% trans "View all" %}</a>
+            <a href="{% url 'inventory:item_list' %}" class="text-xs text-zinc-500 hover:text-zinc-300 hover:underline">{% trans "View all" %}</a>
         </div>
 
         {% if recent_items %}
@@ -270,7 +275,9 @@
                     {% for item in recent_items %}
                     <tr class="hover:bg-zinc-800/50 transition">
                         <td class="px-5 py-3 font-mono text-xs text-zinc-500">{{ item.code }}</td>
-                        <td class="px-5 py-3 font-medium text-zinc-100">{{ item.name }}</td>
+                        <td class="px-5 py-3 font-medium">
+                            <a href="{% url 'inventory:item_detail' item.id %}" class="text-zinc-100 hover:text-white hover:underline">{{ item.name }}</a>
+                        </td>
                         <td class="px-5 py-3 text-zinc-400 hidden sm:table-cell">{{ item.category.name }}</td>
                         <td class="px-5 py-3 text-zinc-400 hidden md:table-cell">{{ item.sector.name }}</td>
                         <td class="px-5 py-3">

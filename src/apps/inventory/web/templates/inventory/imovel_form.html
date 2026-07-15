@@ -1,0 +1,177 @@
+{% extends "common/layouts/base-aside.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "New Real Estate — Inventory" %}{% endblock %}
+
+{% block content %}
+<main class="min-h-screen p-4 w-full flex items-start justify-center pt-10">
+    <div class="flex flex-col w-full max-w-2xl gap-4">
+
+        <!-- Header -->
+        <div class="flex items-center gap-2">
+            <a href="{% url 'inventory:imovel_list' %}"
+               class="text-zinc-400 hover:text-zinc-300 transition">
+                <span class="material-symbols-outlined text-xl leading-none">arrow_back</span>
+            </a>
+            <div>
+                <h1 class="text-white text-xl sm:text-2xl font-bold">{% trans "New Real Estate" %}</h1>
+                <p class="text-zinc-400 text-sm">{% trans "Fill in the details to register a real estate property" %}</p>
+            </div>
+        </div>
+
+        <form method="post" class="flex flex-col gap-4" novalidate>
+            {% csrf_token %}
+
+            <!-- Identification -->
+            <div class="border rounded-xl flex flex-col gap-3 p-4 border-zinc-800 bg-zinc-900">
+                <p class="font-medium text-sm text-zinc-300 flex items-center gap-1.5">
+                    <span class="material-symbols-outlined text-zinc-700 text-base leading-none">badge</span>
+                    {% trans "Identification" %}
+                </p>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                        <label class="block font-medium text-xs sm:text-sm mb-1 text-zinc-400">
+                            {% trans "Code / Asset Number" %} <span class="text-red-500">*</span>
+                        </label>
+                        {{ form.code }}
+                        {% if form.code.errors %}<p class="text-red-400 text-xs mt-1">{{ form.code.errors }}</p>{% endif %}
+                    </div>
+
+                    <div>
+                        <label class="block font-medium text-xs sm:text-sm mb-1 text-zinc-400">
+                            {% trans "Name" %} <span class="text-red-500">*</span>
+                        </label>
+                        {{ form.name }}
+                        {% if form.name.errors %}<p class="text-red-400 text-xs mt-1">{{ form.name.errors }}</p>{% endif %}
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                        <label class="block font-medium text-xs sm:text-sm mb-1 text-zinc-400">{% trans "Category" %} <span class="text-red-500">*</span></label>
+                        {{ form.category }}
+                        {% if form.category.errors %}<p class="text-red-400 text-xs mt-1">{{ form.category.errors }}</p>{% endif %}
+                    </div>
+
+                    <div>
+                        <label class="block font-medium text-xs sm:text-sm mb-1 text-zinc-400">{% trans "Responsible" %}</label>
+                        {{ form.responsible }}
+                        {% if form.responsible.errors %}<p class="text-red-400 text-xs mt-1">{{ form.responsible.errors }}</p>{% endif %}
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block font-medium text-xs sm:text-sm mb-1 text-zinc-400">{% trans "Description" %}</label>
+                    {{ form.description }}
+                    {% if form.description.errors %}<p class="text-red-400 text-xs mt-1">{{ form.description.errors }}</p>{% endif %}
+                </div>
+            </div>
+
+            <!-- Location -->
+            <div class="border rounded-xl flex flex-col gap-3 p-4 border-zinc-800 bg-zinc-900">
+                <p class="font-medium text-sm text-zinc-300 flex items-center gap-1.5">
+                    <span class="material-symbols-outlined text-zinc-700 text-base leading-none">location_on</span>
+                    {% trans "Location" %}
+                </p>
+
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                    <div class="sm:col-span-2">
+                        <label class="block font-medium text-xs sm:text-sm mb-1 text-zinc-400">{% trans "Address" %}</label>
+                        {{ form.address }}
+                        {% if form.address.errors %}<p class="text-red-400 text-xs mt-1">{{ form.address.errors }}</p>{% endif %}
+                    </div>
+
+                    <div>
+                        <label class="block font-medium text-xs sm:text-sm mb-1 text-zinc-400">{% trans "CEP" %}</label>
+                        {{ form.cep }}
+                        {% if form.cep.errors %}<p class="text-red-400 text-xs mt-1">{{ form.cep.errors }}</p>{% endif %}
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                    <div>
+                        <label class="block font-medium text-xs sm:text-sm mb-1 text-zinc-400">{% trans "Zone" %}</label>
+                        {{ form.zone }}
+                        {% if form.zone.errors %}<p class="text-red-400 text-xs mt-1">{{ form.zone.errors }}</p>{% endif %}
+                    </div>
+
+                    <div>
+                        <label class="block font-medium text-xs sm:text-sm mb-1 text-zinc-400">{% trans "Latitude" %}</label>
+                        {{ form.latitude }}
+                        {% if form.latitude.errors %}<p class="text-red-400 text-xs mt-1">{{ form.latitude.errors }}</p>{% endif %}
+                    </div>
+
+                    <div>
+                        <label class="block font-medium text-xs sm:text-sm mb-1 text-zinc-400">{% trans "Longitude" %}</label>
+                        {{ form.longitude }}
+                        {% if form.longitude.errors %}<p class="text-red-400 text-xs mt-1">{{ form.longitude.errors }}</p>{% endif %}
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                        <label class="block font-medium text-xs sm:text-sm mb-1 text-zinc-400">{% trans "Total area" %} (m²)</label>
+                        {{ form.total_area }}
+                        {% if form.total_area.errors %}<p class="text-red-400 text-xs mt-1">{{ form.total_area.errors }}</p>{% endif %}
+                    </div>
+
+                    <div>
+                        <label class="block font-medium text-xs sm:text-sm mb-1 text-zinc-400">{% trans "Built area" %} (m²)</label>
+                        {{ form.built_area }}
+                        {% if form.built_area.errors %}<p class="text-red-400 text-xs mt-1">{{ form.built_area.errors }}</p>{% endif %}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Legal & condition -->
+            <div class="border rounded-xl flex flex-col gap-3 p-4 border-zinc-800 bg-zinc-900">
+                <p class="font-medium text-sm text-zinc-300 flex items-center gap-1.5">
+                    <span class="material-symbols-outlined text-zinc-700 text-base leading-none">gavel</span>
+                    {% trans "Legal & Condition" %}
+                </p>
+
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                    <div>
+                        <label class="block font-medium text-xs sm:text-sm mb-1 text-zinc-400">{% trans "Registry status" %}</label>
+                        {{ form.cartorio_situacao }}
+                        {% if form.cartorio_situacao.errors %}<p class="text-red-400 text-xs mt-1">{{ form.cartorio_situacao.errors }}</p>{% endif %}
+                    </div>
+
+                    <div>
+                        <label class="block font-medium text-xs sm:text-sm mb-1 text-zinc-400">{% trans "Ownership" %}</label>
+                        {{ form.ownership }}
+                        {% if form.ownership.errors %}<p class="text-red-400 text-xs mt-1">{{ form.ownership.errors }}</p>{% endif %}
+                    </div>
+
+                    <div>
+                        <label class="block font-medium text-xs sm:text-sm mb-1 text-zinc-400">{% trans "Condition" %}</label>
+                        {{ form.condition }}
+                        {% if form.condition.errors %}<p class="text-red-400 text-xs mt-1">{{ form.condition.errors }}</p>{% endif %}
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block font-medium text-xs sm:text-sm mb-1 text-zinc-400">{% trans "Notes" %}</label>
+                    {{ form.notes }}
+                    {% if form.notes.errors %}<p class="text-red-400 text-xs mt-1">{{ form.notes.errors }}</p>{% endif %}
+                </div>
+            </div>
+
+            <!-- Actions -->
+            <div class="flex items-center justify-end gap-3">
+                <a href="{% url 'inventory:imovel_list' %}"
+                   class="text-sm text-zinc-500 hover:text-zinc-300 transition px-4 py-2">
+                    {% trans "Cancel" %}
+                </a>
+                <button type="submit"
+                        class="bg-white text-zinc-950 py-2 px-6 rounded hover:bg-zinc-200 transition text-sm font-medium flex items-center gap-1.5">
+                    <span class="material-symbols-outlined text-base leading-none">save</span>
+                    {% trans "Save Real Estate" %}
+                </button>
+            </div>
+
+        </form>
+    </div>
+</main>
+{% endblock %}
