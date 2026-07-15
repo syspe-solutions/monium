@@ -17,6 +17,8 @@ services:
     depends_on:
       redis:
         condition: service_healthy
+      postgres:
+        condition: service_healthy
     healthcheck:
       test: ["CMD-SHELL", "curl -s -o /dev/null -w '%{http_code}' http://localhost:8000/admin/ | grep -qE '^[23]'"]
       interval: 15s
@@ -107,6 +109,25 @@ services:
       retries: 10
       start_period: 5s
 
+  postgres:
+    image: postgres:17
+    container_name: monium-postgres
+    env_file:
+      - ./src/.env
+    restart: always
+    ports:
+      - "127.0.0.1:5435:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - monium_net
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 5s
+
 networks:
   monium_net:
     driver: bridge
@@ -114,4 +135,5 @@ networks:
 volumes:
   static_volume:
   redis_data:
+  postgres_data:
 
