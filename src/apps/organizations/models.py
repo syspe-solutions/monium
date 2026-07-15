@@ -1,5 +1,9 @@
+import secrets
+from datetime import timedelta
+
 from django.conf import settings
 from django.db import models
+from django.utils import timezone
 
 from apps.common.models import BaseModelAbstract
 
@@ -93,3 +97,72 @@ class Membership(BaseModelAbstract):
 
     def __str__(self):
         return f"{self.user} @ {self.organization}"
+
+
+class InvitationStatus(models.TextChoices):
+    PENDING = "pending", "Pendente"
+    ACCEPTED = "accepted", "Aceito"
+    REVOKED = "revoked", "Revogado"
+
+
+INVITATION_EXPIRY_DAYS = 7
+
+
+def default_invitation_expiry():
+    return timezone.now() + timedelta(days=INVITATION_EXPIRY_DAYS)
+
+
+class Invitation(BaseModelAbstract):
+    organization = models.ForeignKey(
+        Organization,
+        on_delete=models.CASCADE,
+        related_name="invitations",
+        verbose_name="Organização",
+    )
+    email = models.EmailField(verbose_name="E-mail")
+    role = models.CharField(
+        max_length=20,
+        choices=MembershipRole.choices,
+        default=MembershipRole.MEMBER,
+        verbose_name="Papel",
+    )
+    token = models.CharField(max_length=64, unique=True, editable=False)
+    status = models.CharField(
+        max_length=20,
+        choices=InvitationStatus.choices,
+        default=InvitationStatus.PENDING,
+        verbose_name="Status",
+    )
+    expires_at = models.DateTimeField(default=default_invitation_expiry, verbose_name="Expira em")
+    accepted_at = models.DateTimeField(null=True, blank=True)
+    accepted_by = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name="accepted_invitations",
+    )
+
+    class Meta:
+        verbose_name = "Convite"
+        verbose_name_plural = "Convites"
+        constraints = [
+            models.UniqueConstraint(
+                fields=["organization", "email"],
+                condition=models.Q(status=InvitationStatus.PENDING),
+                name="unique_pending_invitation_per_org_email",
+            ),
+        ]
+
+    def __str__(self):
+        return f"{self.email} -> {self.organization} ({self.status})"
+
+    @property
+    def is_expired(self) -> bool:
+        return self.status == InvitationStatus.PENDING and timezone.now() > self.expires_at
+
+    def save(self, *args, **kwargs):
+        if not self.token:
+            self.token = secrets.token_urlsafe(32)
+        self.email = self.email.strip().lower()
+        super().save(*args, **kwargs)
