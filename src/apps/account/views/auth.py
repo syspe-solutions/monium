@@ -14,6 +14,7 @@ from django.http import HttpRequest, HttpResponse
 from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
 from django.utils import timezone
+from django.utils.http import url_has_allowed_host_and_scheme
 from django.utils.translation import gettext_lazy as translate
 from django.views import View
 
@@ -76,6 +77,10 @@ class UserLoginView(View):
             return render(request, self.template_name, {"form": form}, status=400)
 
         login(request, result.user)
+
+        next_url = request.POST.get("next") or request.GET.get("next")
+        if next_url and url_has_allowed_host_and_scheme(next_url, allowed_hosts={request.get_host()}):
+            return redirect(next_url)
         return redirect("inventory:home")
 
     def _handle_error(self, request, error_code):

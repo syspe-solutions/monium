@@ -27,6 +27,9 @@
 
         <form method="post" class="border rounded-xl flex flex-col gap-3 p-4 border-zinc-800 bg-zinc-900">
             {% csrf_token %}
+            {% if request.GET.next %}
+            <input type="hidden" name="next" value="{{ request.GET.next }}">
+            {% endif %}
 
             {% if messages %}
             {% for message in messages %}
