@@ -1,8 +1,0 @@
-Você foi convidado para fazer parte da organização "{{ organization.name }}" no Monium.
-
-Acesse o link abaixo para aceitar o convite:
-{{ accept_url }}
-
-Este convite expira em {{ invitation.expires_at|date:"d/m/Y" }}.
-
-Se você não esperava este convite, pode ignorar este e-mail.
