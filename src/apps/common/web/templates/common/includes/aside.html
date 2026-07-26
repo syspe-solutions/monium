@@ -72,182 +72,136 @@
             <span id="logo-compact" class="text-3xl font-bold">M</span>
         </a>
 
-        <!-- Principal -->
-        <div class="mb-4 shrink-0">
-            <nav class="flex flex-col gap-1">
-                <a href="{% url 'inventory:home' %}"
-                   class="nav-item flex items-center gap-3 p-3 rounded-lg transition-all
-                          {% if request.resolver_match.url_name == 'home' %}bg-zinc-800 text-white{% else %}hover:bg-zinc-800{% endif %}"
-                   title="{% trans 'Home' %}">
-                    <span class="material-symbols-outlined text-sm shrink-0">home</span>
-                    <span class="sidebar-text text-sm overflow-hidden whitespace-nowrap">{% trans "Home" %}</span>
-                </a>
-            </nav>
-        </div>
+        <nav class="flex flex-col gap-1 mb-4 shrink-0">
+            <a href="{% url 'inventory:home' %}"
+               class="nav-item flex items-center gap-3 p-3 rounded-lg transition-all
+                      {% if request.resolver_match.url_name == 'home' %}bg-zinc-800 text-white{% else %}hover:bg-zinc-800{% endif %}"
+               title="{% trans 'Home' %}">
+                <span class="material-symbols-outlined text-sm shrink-0">home</span>
+                <span class="sidebar-text text-sm overflow-hidden whitespace-nowrap">{% trans "Home" %}</span>
+            </a>
 
-        <!-- Inventário -->
-        <div class="mb-4 shrink-0">
-            <h3 class="sidebar-header text-zinc-500 uppercase text-xs font-semibold p-3">{% trans "Inventory" %}</h3>
-            <nav class="flex flex-col gap-1">
-                <a href="{% url 'inventory:item_list' %}"
-                   class="nav-item flex items-center gap-3 p-3 rounded transition-all
-                          {% if request.resolver_match.url_name == 'item_list' or request.resolver_match.url_name == 'item_detail' %}bg-zinc-800 text-white{% else %}hover:bg-zinc-800{% endif %}"
-                   title="{% trans 'All Items' %}">
-                    <span class="material-symbols-outlined text-sm shrink-0">inventory_2</span>
-                    <span class="sidebar-text text-sm overflow-hidden whitespace-nowrap">{% trans "All Items" %}</span>
-                </a>
+            <a href="{% url 'inventory:patrimonio_list' %}"
+               class="nav-item flex items-center gap-3 p-3 rounded-lg transition-all
+                      {% if request.resolver_match.url_name in 'patrimonio_list,patrimonio_choice,item_list,item_detail,item_create,imovel_list,imovel_detail,imovel_create,dashboard' %}bg-zinc-800 text-white{% else %}hover:bg-zinc-800{% endif %}"
+               title="{% trans 'Assets' %}">
+                <span class="material-symbols-outlined text-sm shrink-0">inventory_2</span>
+                <span class="sidebar-text text-sm overflow-hidden whitespace-nowrap">{% trans "Assets" %}</span>
+            </a>
 
-                <a href="{% url 'inventory:dashboard' %}"
-                   class="nav-item flex items-center gap-3 p-3 rounded transition-all
-                          {% if request.resolver_match.url_name == 'dashboard' %}bg-zinc-800 text-white{% else %}hover:bg-zinc-800{% endif %}"
-                   title="{% trans 'Categories' %}">
-                    <span class="material-symbols-outlined text-sm shrink-0">category</span>
-                    <span class="sidebar-text text-sm overflow-hidden whitespace-nowrap">{% trans "Categories" %}</span>
-                </a>
-
-                <a href="{% url 'inventory:item_create' %}"
-                   class="nav-item flex items-center gap-3 p-3 rounded transition-all
-                          {% if request.resolver_match.url_name == 'item_create' %}bg-zinc-800 text-white{% else %}hover:bg-zinc-800{% endif %}"
-                   title="{% trans 'Register Item' %}">
-                    <span class="material-symbols-outlined text-sm shrink-0">add_box</span>
-                    <span class="sidebar-text text-sm overflow-hidden whitespace-nowrap">{% trans "Register Item" %}</span>
-                </a>
-
-                <a href="{% url 'inventory:imovel_list' %}"
-                   class="nav-item flex items-center gap-3 p-3 rounded transition-all
-                          {% if request.resolver_match.url_name == 'imovel_list' or request.resolver_match.url_name == 'imovel_detail' %}bg-zinc-800 text-white{% else %}hover:bg-zinc-800{% endif %}"
-                   title="{% trans 'Real Estate' %}">
-                    <span class="material-symbols-outlined text-sm shrink-0">home_work</span>
-                    <span class="sidebar-text text-sm overflow-hidden whitespace-nowrap">{% trans "Real Estate" %}</span>
-                </a>
-
-                <a href="{% url 'inventory:imovel_create' %}"
-                   class="nav-item flex items-center gap-3 p-3 rounded transition-all
-                          {% if request.resolver_match.url_name == 'imovel_create' %}bg-zinc-800 text-white{% else %}hover:bg-zinc-800{% endif %}"
-                   title="{% trans 'Register Real Estate' %}">
-                    <span class="material-symbols-outlined text-sm shrink-0">add_home</span>
-                    <span class="sidebar-text text-sm overflow-hidden whitespace-nowrap">{% trans "Register Real Estate" %}</span>
-                </a>
-            </nav>
-        </div>
-
-        <!-- Planos -->
-        <div class="mb-4 shrink-0">
-            <nav class="flex flex-col gap-1">
-                <a href="{% url 'billing:plans' %}"
-                   class="nav-item flex items-center gap-3 p-3 rounded-lg transition-all
-                          {% if request.resolver_match.url_name == 'plans' %}bg-zinc-800 text-white{% else %}hover:bg-zinc-800{% endif %}"
-                   title="{% trans 'Plans' %}">
-                    <span class="material-symbols-outlined text-sm shrink-0">workspace_premium</span>
-                    <span class="sidebar-text text-sm overflow-hidden whitespace-nowrap">{% trans "Plans" %}</span>
-                </a>
-                {% if is_organization_owner %}
-                <a href="{% url 'organizations:settings' %}"
-                   class="nav-item flex items-center gap-3 p-3 rounded-lg transition-all
-                          {% if request.resolver_match.url_name == 'settings' %}bg-zinc-800 text-white{% else %}hover:bg-zinc-800{% endif %}"
-                   title="{% trans 'Organization settings' %}">
-                    <span class="material-symbols-outlined text-sm shrink-0">domain</span>
-                    <span class="sidebar-text text-sm overflow-hidden whitespace-nowrap">{% trans "Organization settings" %}</span>
-                </a>
-                <a href="{% url 'organizations:members' %}"
-                   class="nav-item flex items-center gap-3 p-3 rounded-lg transition-all
-                          {% if request.resolver_match.url_name == 'members' %}bg-zinc-800 text-white{% else %}hover:bg-zinc-800{% endif %}"
-                   title="{% trans 'Members' %}">
-                    <span class="material-symbols-outlined text-sm shrink-0">group</span>
-                    <span class="sidebar-text text-sm overflow-hidden whitespace-nowrap">{% trans "Members" %}</span>
-                </a>
-                {% endif %}
-                <a href="{% url 'organizations:create' %}"
-                   class="nav-item flex items-center gap-3 p-3 rounded-lg transition-all
-                          {% if request.resolver_match.url_name == 'create' %}bg-zinc-800 text-white{% else %}hover:bg-zinc-800{% endif %}"
-                   title="{% trans 'New organization' %}">
-                    <span class="material-symbols-outlined text-sm shrink-0">add_business</span>
-                    <span class="sidebar-text text-sm overflow-hidden whitespace-nowrap">{% trans "New organization" %}</span>
-                </a>
-            </nav>
-        </div>
-
-        {% if has_multiple_organizations %}
-        <!-- Organização ativa -->
-        <div class="mb-4 shrink-0">
-            <h3 class="sidebar-header text-zinc-500 uppercase text-xs font-semibold mb-2 px-3">{% trans "Organization" %}</h3>
-            <nav class="flex flex-col gap-1">
-                {% for org in user_organizations %}
-                <form method="post" action="{% url 'organizations:switch' org.id %}">
-                    {% csrf_token %}
-                    <input type="hidden" name="next" value="{{ request.path }}">
-                    <button type="submit"
-                            class="nav-item w-full flex items-center gap-3 p-3 rounded-lg transition-all text-left
-                                   {% if org == current_organization %}bg-zinc-800 text-white{% else %}hover:bg-zinc-800 text-zinc-400{% endif %}"
-                            title="{{ org.name }}">
-                        <span class="material-symbols-outlined text-sm shrink-0">
-                            {% if org == current_organization %}check_circle{% else %}business{% endif %}
+            <!-- Organizações -->
+            <div class="relative">
+                <div class="nav-item flex items-center gap-1 rounded-lg transition-all
+                            {% if request.resolver_match.url_name in 'members,member_create,member_remove,member_role_update,create,delete' %}bg-zinc-800 text-white{% else %}hover:bg-zinc-800{% endif %}">
+                    <button type="button" id="org-menu-name-toggle"
+                            class="flex items-center gap-3 flex-1 p-3 rounded-lg text-left overflow-hidden">
+                        <span class="material-symbols-outlined text-sm shrink-0">domain</span>
+                        <span class="sidebar-text text-sm overflow-hidden whitespace-nowrap truncate">
+                            {% if current_organization %}{{ current_organization.name }}{% else %}{% trans "Organizations" %}{% endif %}
                         </span>
-                        <span class="sidebar-text text-sm overflow-hidden whitespace-nowrap truncate">{{ org.name }}</span>
                     </button>
-                </form>
-                {% endfor %}
-            </nav>
-        </div>
-        {% endif %}
-
-        <!-- Conta -->
-        <div class="shrink-0">
-            <h3 class="sidebar-header text-zinc-500 uppercase text-xs font-semibold mb-2 px-3">{% trans "Account" %}</h3>
-            <nav class="flex flex-col gap-1">
-
-                <a href="{% url 'pages:faq' %}"
-                   class="nav-item flex items-center gap-3 p-3 rounded hover:bg-zinc-800 transition-all"
-                   title="{% trans 'Help & FAQ' %}">
-                    <span class="material-symbols-outlined text-sm shrink-0 text-zinc-500">help</span>
-                    <span class="sidebar-text text-sm overflow-hidden whitespace-nowrap">{% trans "Help & FAQ" %}</span>
-                </a>
-
-                <a href="{% url 'pages:home' %}"
-                   class="nav-item flex items-center gap-3 p-3 rounded hover:bg-zinc-800 transition-all"
-                   title="{% trans 'Visit website' %}">
-                    <span class="material-symbols-outlined text-sm shrink-0 text-zinc-500">open_in_new</span>
-                    <span class="sidebar-text text-sm overflow-hidden whitespace-nowrap">{% trans "Visit website" %}</span>
-                </a>
-
-                <!-- Language switcher -->
-                <div class="nav-item flex items-center gap-3 p-3 rounded" title="{% trans 'Language' %}">
-                    <span class="material-symbols-outlined text-sm shrink-0 text-zinc-500">language</span>
-                    <div class="sidebar-text flex items-center gap-1">
-                        {% get_current_language as LANGUAGE_CODE %}
-                        <form action="{% url 'set_language' %}" method="post" class="flex items-center gap-1">
-                            {% csrf_token %}
-                            <input type="hidden" name="next" value="{{ request.path }}">
-                            <button type="submit" name="language" value="pt-br"
-                                    class="text-xs px-2 py-0.5 rounded transition
-                                           {% if LANGUAGE_CODE == 'pt-br' %}bg-zinc-700 text-white{% else %}text-zinc-500 hover:text-zinc-200{% endif %}">
-                                PT
-                            </button>
-                            <span class="text-zinc-700 text-xs">|</span>
-                            <button type="submit" name="language" value="en"
-                                    class="text-xs px-2 py-0.5 rounded transition
-                                           {% if LANGUAGE_CODE == 'en' %}bg-zinc-700 text-white{% else %}text-zinc-500 hover:text-zinc-200{% endif %}">
-                                EN
-                            </button>
-                        </form>
-                    </div>
+                    <button type="button" id="org-menu-arrow-toggle"
+                            class="sidebar-text shrink-0 p-2 mr-1 rounded hover:bg-zinc-700 transition"
+                            aria-label="{% trans 'Switch organization' %}" title="{% trans 'Switch organization' %}">
+                        <span class="material-symbols-outlined text-sm shrink-0">unfold_more</span>
+                    </button>
                 </div>
 
-                <form method="post" action="{% url 'account:logout' %}" class="m-0">
-                    {% csrf_token %}
-                    <button type="submit"
-                            class="nav-item w-full flex items-center gap-3 p-3 rounded hover:bg-red-900/30 transition-all text-red-500 font-semibold text-left"
-                            title="{% trans 'Logout' %}">
-                        <span class="material-symbols-outlined text-sm shrink-0">logout</span>
-                        <span class="sidebar-text text-sm overflow-hidden whitespace-nowrap">{% trans "Logout" %}</span>
-                    </button>
-                </form>
-            </nav>
-        </div>
+                <div id="org-menu-panel"
+                     class="hidden sidebar-text mt-1 ml-2 border border-zinc-800 rounded-lg bg-zinc-950 overflow-hidden">
+                    {% for org in user_organizations %}
+                    <div class="flex items-center justify-between gap-2 px-3 py-2 border-b border-zinc-800 last:border-b-0
+                                {% if org == current_organization %}bg-zinc-800{% endif %}">
+                        <form method="post" action="{% url 'organizations:switch' org.id %}" class="flex-1 min-w-0">
+                            {% csrf_token %}
+                            <input type="hidden" name="next" value="{{ request.path }}">
+                            <button type="submit" class="w-full text-left text-xs text-zinc-300 hover:text-white truncate">
+                                {{ org.name }}
+                                {% if org == current_organization %}<span class="text-zinc-500">({% trans "current" %})</span>{% endif %}
+                            </button>
+                        </form>
+                        {% if org.id in owner_organization_ids %}
+                        <form method="post" action="{% url 'organizations:switch' org.id %}">
+                            {% csrf_token %}
+                            <input type="hidden" name="next" value="{% url 'organizations:settings' %}">
+                            <button type="submit" class="text-zinc-500 hover:text-white shrink-0" title="{% trans 'Edit' %}">
+                                <span class="material-symbols-outlined text-sm leading-none">edit</span>
+                            </button>
+                        </form>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+                    {% if can_manage_members %}
+                    <a href="{% url 'organizations:members' %}"
+                       class="flex items-center gap-2 px-3 py-2 text-xs text-zinc-400 hover:text-white hover:bg-zinc-800 transition border-t border-zinc-800">
+                        <span class="material-symbols-outlined text-sm leading-none">group</span>
+                        {% trans "Members" %}
+                    </a>
+                    {% endif %}
+                    <a href="{% url 'organizations:create' %}"
+                       class="flex items-center gap-2 px-3 py-2 text-xs text-zinc-400 hover:text-white hover:bg-zinc-800 transition border-t border-zinc-800">
+                        <span class="material-symbols-outlined text-sm leading-none">add</span>
+                        {% trans "New organization" %}
+                    </a>
+                </div>
+            </div>
 
-        <div class="mt-auto border-t border-zinc-800 pt-4 shrink-0">
+            <a href="{% url 'pages:faq' %}"
+               class="nav-item flex items-center gap-3 p-3 rounded-lg transition-all
+                      {% if request.resolver_match.url_name == 'faq' %}bg-zinc-800 text-white{% else %}hover:bg-zinc-800{% endif %}"
+               title="{% trans 'Help & FAQ' %}">
+                <span class="material-symbols-outlined text-sm shrink-0">help</span>
+                <span class="sidebar-text text-sm overflow-hidden whitespace-nowrap">{% trans "Help & FAQ" %}</span>
+            </a>
+
+            {% if is_organization_owner %}
+            <a href="{% url 'organizations:settings' %}"
+               class="nav-item flex items-center gap-3 p-3 rounded-lg transition-all
+                      {% if request.resolver_match.url_name == 'settings' %}bg-zinc-800 text-white{% else %}hover:bg-zinc-800{% endif %}"
+               title="{% trans 'Settings' %}">
+                <span class="material-symbols-outlined text-sm shrink-0">settings</span>
+                <span class="sidebar-text text-sm overflow-hidden whitespace-nowrap">{% trans "Settings" %}</span>
+            </a>
+            {% endif %}
+
+            {% if request.user.is_staff %}
+            <a href="{% url 'settings:email_settings' %}"
+               class="nav-item flex items-center gap-3 p-3 rounded-lg transition-all
+                      {% if request.resolver_match.url_name == 'email_settings' %}bg-zinc-800 text-white{% else %}hover:bg-zinc-800{% endif %}"
+               title="{% trans 'System settings' %}">
+                <span class="material-symbols-outlined text-sm shrink-0">admin_panel_settings</span>
+                <span class="sidebar-text text-sm overflow-hidden whitespace-nowrap">{% trans "System settings" %}</span>
+            </a>
+            {% endif %}
+
+            <!-- Language switcher -->
+            <div class="nav-item flex items-center gap-3 p-3 rounded-lg" title="{% trans 'Language' %}">
+                <span class="material-symbols-outlined text-sm shrink-0">language</span>
+                <div class="sidebar-text flex items-center gap-1">
+                    {% get_current_language as LANGUAGE_CODE %}
+                    <form action="{% url 'set_language' %}" method="post" class="flex items-center gap-1">
+                        {% csrf_token %}
+                        <input type="hidden" name="next" value="{{ request.path }}">
+                        <button type="submit" name="language" value="pt-br"
+                                class="text-xs px-2 py-0.5 rounded transition
+                                       {% if LANGUAGE_CODE == 'pt-br' %}bg-zinc-700 text-white{% else %}text-zinc-500 hover:text-zinc-200{% endif %}">
+                            PT
+                        </button>
+                        <span class="text-zinc-700 text-xs">|</span>
+                        <button type="submit" name="language" value="en"
+                                class="text-xs px-2 py-0.5 rounded transition
+                                       {% if LANGUAGE_CODE == 'en' %}bg-zinc-700 text-white{% else %}text-zinc-500 hover:text-zinc-200{% endif %}">
+                            EN
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+
+        <div class="mt-auto border-t border-zinc-800 pt-4 shrink-0 flex flex-col gap-1">
             <a href="{% url 'account:profile_edit' %}"
-               class="nav-item flex items-center gap-3 p-2 rounded hover:bg-zinc-800 transition-all">
+               class="nav-item flex items-center gap-3 p-2 rounded hover:bg-zinc-800 transition-all"
+               title="{% trans 'My profile' %}">
                 <div class="w-10 h-10 rounded-full bg-zinc-700 flex items-center justify-center font-bold text-lg shrink-0">
                     {{ request.user.first_name|default:request.user.username|first|upper }}
                 </div>
@@ -260,6 +214,15 @@
                     </span>
                 </div>
             </a>
+            <form method="post" action="{% url 'account:logout' %}" class="m-0">
+                {% csrf_token %}
+                <button type="submit"
+                        class="nav-item w-full flex items-center gap-3 p-2 rounded hover:bg-red-900/30 transition-all text-red-500 font-semibold text-left"
+                        title="{% trans 'Logout' %}">
+                    <span class="material-symbols-outlined text-sm shrink-0">logout</span>
+                    <span class="sidebar-text text-sm overflow-hidden whitespace-nowrap">{% trans "Logout" %}</span>
+                </button>
+            </form>
         </div>
 
     </div>
@@ -306,5 +269,23 @@ document.addEventListener('DOMContentLoaded', function () {
     if (hamburger) hamburger.addEventListener('click', openMobileSidebar);
     backdrop.addEventListener('click', closeMobileSidebar);
     window.addEventListener('resize', function () { if (window.innerWidth >= 1024) closeMobileSidebar(); });
+
+    // Organizations dropdown
+    const orgPanel = document.getElementById('org-menu-panel');
+    const orgNameToggle = document.getElementById('org-menu-name-toggle');
+    const orgArrowToggle = document.getElementById('org-menu-arrow-toggle');
+
+    function toggleOrgPanel() { orgPanel.classList.toggle('hidden'); }
+
+    if (orgPanel && orgNameToggle && orgArrowToggle) {
+        orgNameToggle.addEventListener('click', toggleOrgPanel);
+        orgArrowToggle.addEventListener('click', toggleOrgPanel);
+
+        document.addEventListener('click', function (event) {
+            if (!orgPanel.contains(event.target) && !orgNameToggle.contains(event.target) && !orgArrowToggle.contains(event.target)) {
+                orgPanel.classList.add('hidden');
+            }
+        });
+    }
 });
 </script>
