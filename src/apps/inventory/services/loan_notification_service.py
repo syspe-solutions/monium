@@ -1,8 +1,11 @@
 import logging
 
-from django.conf import settings
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
+
+from apps.settings.services.email_configuration_resolver_service import (
+    EmailConfigurationResolverService,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -24,6 +27,7 @@ def send_overdue_notice(loan) -> None:
     body = render_to_string(BODY_TEMPLATE, context)
 
     try:
-        send_mail(subject, body, settings.DEFAULT_FROM_EMAIL, recipients)
+        from_email = EmailConfigurationResolverService().resolve().default_from_email
+        send_mail(subject, body, from_email, recipients)
     except Exception:
         logger.exception("Falha ao enviar alerta de atraso para o empréstimo %s", loan.id)

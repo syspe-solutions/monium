@@ -9,16 +9,13 @@ services:
     restart: always
     extra_hosts:
       - "host.docker.internal:host-gateway"
+    ports:
+      - "${APP_PORT:-8088}:8000"
     volumes:
       - ./src/logs:/usr/src/logs
-      - static_volume:/usr/share/nginx/html
+      - app_data:/usr/src/data
     networks:
       - monium_net
-    depends_on:
-      redis:
-        condition: service_healthy
-      postgres:
-        condition: service_healthy
     healthcheck:
       test: ["CMD-SHELL", "curl -s -o /dev/null -w '%{http_code}' http://localhost:8000/admin/ | grep -qE '^[23]'"]
       interval: 15s
@@ -26,114 +23,9 @@ services:
       retries: 5
       start_period: 60s
 
-  nginx:
-    container_name: nginx
-    env_file:
-      - ./src/.env
-    build:
-      context: ./infra/nginx
-      dockerfile: Dockerfile
-    restart: always
-    ports:
-      - "${APP_PORT:-8088}:80"
-    volumes:
-      - ./infra/nginx/monium.dev.conf:/etc/nginx/conf.d/default.conf
-      - ./infra/nginx/whitelist.conf:/etc/nginx/whitelist.conf:ro
-      - ./infra/nginx/maintenance.html:/usr/share/nginx/html/maintenance.html:ro
-      - ./infra/nginx/maintenance.flag:/usr/share/nginx/html/maintenance.flag
-      - static_volume:/usr/share/nginx/html
-    depends_on:
-      monium:
-        condition: service_healthy
-    networks:
-      - monium_net
-
-  celery_worker:
-    container_name: monium-celery-worker
-    env_file:
-      - ./src/.env
-    build:
-      context: ./src
-      dockerfile: Dockerfile
-    command: celery -A core.celery worker -l info
-    working_dir: /usr/src
-    volumes:
-      - ./src:/usr/src
-    environment:
-      - PYTHONPATH=/usr/src
-    depends_on:
-      monium:
-        condition: service_healthy
-    networks:
-      - monium_net
-    restart: always
-
-  celery_beat:
-    container_name: monium-celery-beat
-    env_file:
-      - ./src/.env
-    build:
-      context: ./src
-      dockerfile: Dockerfile
-    command: celery -A core.celery beat -l info
-    working_dir: /usr/src
-    volumes:
-      - ./src:/usr/src
-    depends_on:
-      monium:
-        condition: service_healthy
-    networks:
-      - monium_net
-    restart: always
-
-  redis:
-    image: redis:7.0-alpine
-    container_name: monium-redis
-    env_file:
-      - ./src/.env
-    restart: always
-    command: >
-      redis-server --appendonly yes
-                  --maxmemory 256mb
-                  --maxmemory-policy allkeys-lru
-    ports:
-      - "6390:6379"
-    volumes:
-      - redis_data:/data
-    networks:
-      - monium_net
-    healthcheck:
-      test: ["CMD", "redis-cli", "ping"]
-      interval: 5s
-      timeout: 3s
-      retries: 10
-      start_period: 5s
-
-  postgres:
-    image: postgres:17
-    container_name: monium-postgres
-    env_file:
-      - ./src/.env
-    restart: always
-    ports:
-      - "127.0.0.1:5435:5432"
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-    networks:
-      - monium_net
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
-      interval: 5s
-      timeout: 5s
-      retries: 10
-      start_period: 5s
-
 networks:
   monium_net:
     driver: bridge
 
 volumes:
-  static_volume:
-  redis_data:
-  postgres_data:
-
+  app_data:

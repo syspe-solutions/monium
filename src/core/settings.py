@@ -23,11 +23,26 @@ BACKEND_BASE_URL = os.environ.get("BACKEND_BASE_URL", "")
 # ================================================================
 loadenv(dotenv_path=BASE_DIR / ".env")
 
+# Diretório persistente (montado como volume Docker) onde o instalador guarda a
+# configuração de banco escolhida pelo operador, sobrevivendo a recriações do
+# container. Carregado só depois do .env e sem sobrescrevê-lo (override=False):
+# quem já define DB_ENGINE no .env configurou o banco manualmente e pula o
+# instalador inteiramente.
+APP_DATA_DIR = Path(os.environ.get("APP_DATA_DIR", BASE_DIR / "data"))
+os.makedirs(APP_DATA_DIR, exist_ok=True)
+
+RUNTIME_DB_CONFIG_PATH = APP_DATA_DIR / "database.env"
+loadenv(dotenv_path=RUNTIME_DB_CONFIG_PATH, override=False)
+
+DATABASE_SETUP_REQUIRED = not bool(os.environ.get("DB_ENGINE"))
+
 
 # ================================================================
 # SECURITY
 # ================================================================
 SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY")
+
+ENCRYPTION_KEY = os.environ.get("DJANGO_ENCRYPTION_KEY")
 
 DEBUG = True if os.environ.get("DJANGO_DEBUG", "FALSE") == "TRUE" else False
 
@@ -186,7 +201,6 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     # Third-party apps
     "widget_tweaks",
-    "django_celery_beat",
     "axes",
     "channels",
     "import_export",
@@ -197,8 +211,9 @@ INSTALLED_APPS = [
     "apps.inventory",
     "apps.security",
     "apps.audit",
-    "apps.billing",
     "apps.pages",
+    "apps.settings",
+    "apps.setup",
 ]
 
 # ================================================================
@@ -209,12 +224,21 @@ MIDDLEWARE = [
     "apps.audit.view_logging_middleware.ProjectViewLoggingMiddleware",
     "corsheaders.middleware.CorsMiddleware",
     "django.middleware.security.SecurityMiddleware",
+    # Serve estáticos direto do processo Django/gunicorn — sem Nginx/volume
+    # compartilhado na frente.
+    "whitenoise.middleware.WhiteNoiseMiddleware",
+    # Instalador de primeiro uso: enquanto o banco não foi escolhido/testado ou
+    # não existe superusuário, redireciona tudo pra /setup/. Cedo na cadeia —
+    # não depende de sessão/auth, que podem não ter tabelas prontas ainda.
+    "apps.setup.middleware.SetupRequiredMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+    # Precisa vir logo após a sessão e antes do CommonMiddleware (que já
+    # precisa do idioma ativo pra resolver a URL) — ordem exigida pelo Django.
+    "django.middleware.locale.LocaleMiddleware",
     "apps.security.middleware.ExponentialBanMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
-    "django.middleware.locale.LocaleMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "axes.middleware.AxesMiddleware",
@@ -267,7 +291,7 @@ TEMPLATES = [
 DATABASES = {
     "default": {
         "ENGINE": f"django.db.backends.{os.getenv('DB_ENGINE', 'sqlite3')}",
-        "NAME": os.getenv("DB_NAME", "db.sqlite3"),
+        "NAME": os.getenv("DB_NAME", str(APP_DATA_DIR / "db.sqlite3")),
         "USER": os.getenv("DB_USER", ""),
         "PASSWORD": os.getenv("DB_PASSWORD", ""),
         "HOST": os.getenv("DB_HOST", ""),
@@ -282,6 +306,10 @@ if "test" in sys.argv:
             "NAME": ":memory:",
         }
     }
+    # Testes não devem depender do DB_ENGINE do .env de quem está rodando —
+    # o instalador (apps.setup) é testado à parte, sem interferir na suíte inteira.
+    DATABASE_SETUP_REQUIRED = False
+    TEST_RUNNER = "core.test_runner.MoniumTestRunner"
 
 
 # ================================================================
@@ -328,6 +356,11 @@ LOCALE_PATHS = [
     BASE_DIR / "locale",
 ]
 
+# Sem isso, LANGUAGE_COOKIE_AGE é None e o cookie de idioma vira "de sessão"
+# (expira ao fechar o navegador) — troca de idioma parecia não persistir em
+# alguns navegadores/recarregamentos. 1 ano, como o cookie de sessão do Django.
+LANGUAGE_COOKIE_AGE = 60 * 60 * 24 * 365
+
 # ================================================================
 # STATIC & MEDIA FILES
 # ================================================================
@@ -335,7 +368,7 @@ MEDIA_URL = "media/"
 MEDIA_ROOT = BASE_DIR / "media"
 
 STATIC_URL = "static/"
-STATIC_ROOT = os.environ.get("DJANGO_STATIC_ROOT", "/usr/share/nginx/html")
+STATIC_ROOT = os.environ.get("DJANGO_STATIC_ROOT", str(BASE_DIR / "staticfiles"))
 
 STATICFILES_DIRS = [
     p
@@ -348,67 +381,23 @@ STATICFILES_FINDERS = [
     "django.contrib.staticfiles.finders.AppDirectoriesFinder",
 ]
 
-STATICFILES_STORAGE = "django.contrib.staticfiles.storage.ManifestStaticFilesStorage"
-
-# ================================================================
-# CELERY CONFIGURATION
-# ================================================================
-CELERY_BROKER_URL = os.environ.get("CELERY_BROKER_URL")
-
-CELERY_BROKER_URL = os.getenv("CELERY_BROKER_URL")
-CELERY_RESULT_BACKEND = os.getenv("CELERY_RESULT_BACKEND")
-
-CELERY_ACCEPT_CONTENT = ["json"]
-CELERY_TASK_SERIALIZER = "json"
-CELERY_RESULT_SERIALIZER = "json"
-
-CELERY_TIMEZONE = "America/Sao_Paulo"
-CELERY_TRACK_STARTED = True
-CELERY_IGNORE_RESULT = False
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 # ================================================================
 # EMAIL CONFIGURATION
 # ================================================================
-EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+# Configuração SMTP via variáveis de ambiente foi desabilitada: o único cadastro
+# válido é feito pela interface em Configurações > E-mail (apps.settings).
+# DynamicSMTPEmailBackend resolve host/porta/credenciais a partir do banco a cada
+# envio e falha explicitamente (EmailNotConfiguredError) se nada estiver ativado.
+EMAIL_BACKEND = "apps.settings.backends.dynamic_smtp_email_backend.DynamicSMTPEmailBackend"
 
-try:
-    EMAIL_HOST = os.environ.get("DJANGO_EMAIL_HOST")
-    EMAIL_PORT = int(os.environ.get("DJANGO_EMAIL_PORT", 465))
-    EMAIL_USE_SSL = os.environ.get("DJANGO_EMAIL_USE_SSL", "").lower() in [
-        "true", "1", "yes"]
-    EMAIL_USE_TLS = os.environ.get("DJANGO_EMAIL_USE_TLS", "").lower() in [
-        "true", "1", "yes"]
-    EMAIL_HOST_USER = os.environ.get("DJANGO_EMAIL_HOST_USER")
-    EMAIL_HOST_PASSWORD = os.environ.get("DJANGO_EMAIL_HOST_PASSWORD")
-    DEFAULT_FROM_EMAIL = os.environ.get(
-        "DJANGO_DEFAULT_FROM_EMAIL", EMAIL_HOST_USER)
-
-except KeyError as e:
-    missing_key = e.args[0]
-    raise RuntimeError(
-        f"Configuração de e-mail ausente: a variável de ambiente '{missing_key}' não foi definida."
-    )
-
-except ValueError as e:
-    raise RuntimeError(f"Erro na configuração de e-mail: {e}")
-
-# ================================================================
-# MERCADO PAGO
-# ================================================================
-MERCADO_PAGO_PUBLIC_KEY = os.environ.get("MERCADO_PAGO_PUBLIC_KEY")
-MERCADO_PAGO_ACCESS_TOKEN = os.environ.get("MERCADO_PAGO_ACCESS_TOKEN")
-MERCADO_PAGO_WEBHOOK_SECRET = os.environ.get("MERCADO_PAGO_WEBHOOK_SECRET")
-
-
-REDIS_URL = os.environ.get("REDIS_URL", "redis://localhost:6379/0")
-
+# Cache no próprio Postgres (tabela criada pela migration common.0002_create_cache_table),
+# eliminando a dependência de um serviço Redis separado para self-hosting.
 CACHES = {
     "default": {
-        "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": REDIS_URL,
-        "OPTIONS": {
-            "CLIENT_CLASS": "django_redis.client.DefaultClient",
-        },
+        "BACKEND": "django.core.cache.backends.db.DatabaseCache",
+        "LOCATION": "django_cache",
     }
 }
 
@@ -428,12 +417,12 @@ AXES_LOCKOUT_TEMPLATE = "security/locked.html"
 # ================================================================
 # CHANNELS
 # ================================================================
+# Broadcast de logs em tempo real (apps.security não tem consumer/rota ASGI
+# ligados ainda — ver core/utilities/structured_logging.WebSocketHandler).
+# Camada em memória: sem Redis, funciona por processo.
 CHANNEL_LAYERS = {
     "default": {
-        "BACKEND": "channels_redis.core.RedisChannelLayer",
-        "CONFIG": {
-            "hosts": [(REDIS_URL, 6379)],
-        },
+        "BACKEND": "channels.layers.InMemoryChannelLayer",
     },
 }
 

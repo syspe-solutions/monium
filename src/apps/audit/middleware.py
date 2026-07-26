@@ -1,7 +1,7 @@
 from time import time
+
 from django.conf import settings
 from django.db import connection, transaction
-from django.utils import timezone
 from python_ipware import IpWare
 
 from apps.audit.tasks import record_request_audit
@@ -10,7 +10,8 @@ ipw = IpWare(precedence=("X_FORWARDED_FOR", "HTTP_X_FORWARDED_FOR"))
 
 class AuditorMiddleware:
     """
-    Decoupled auditor middleware that logs to stdout and offloads DB persistence to Celery.
+    Middleware de auditoria: mede tempo/queries da request e persiste um registro
+    de Audit logo após o commit da transação.
     """
     def __init__(self, get_response):
         self.get_response = get_response
@@ -58,7 +59,8 @@ class AuditorMiddleware:
             "port": request.get_port(),
         }
 
-        # Async persistence for request audit model
-        transaction.on_commit(lambda: record_request_audit.delay(audit_data))
+        # Persistência do log de auditoria após o commit da transação da request
+        # (sem worker separado: roda inline, é um único INSERT simples).
+        transaction.on_commit(lambda: record_request_audit(audit_data))
 
         return response

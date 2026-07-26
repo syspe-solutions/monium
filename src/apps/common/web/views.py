@@ -1,7 +1,7 @@
 import os
-from datetime import datetime
 import platform
 import shutil
+from datetime import datetime
 
 import requests
 from django.conf import settings
@@ -39,12 +39,12 @@ def handler_404(request, exception):
 class HealthCheckView(View):
     """
     Enhanced Health Check View (Requirement 5)
-    Includes Redis connection pool status and disk space availability.
+    Includes cache backend status and disk space availability.
     """
     def get(self, request):
         services = {
             "database": self._check_database(),
-            "cache_redis": self._check_redis(),
+            "cache": self._check_cache(),
             "disk_logs": self._check_disk_space(),
             "file_store": self._check_file_store(),
         }
@@ -74,26 +74,15 @@ class HealthCheckView(View):
         except Exception as e:
             return {"status": "down", "error": str(e)}
 
-    def _check_redis(self):
+    def _check_cache(self):
         try:
             from django.core.cache import cache
-            client = cache.client.get_client()
-            pool = client.connection_pool
-            
-            # Simple SET/GET check
             cache.set('health_check', 'ok', timeout=5)
             if cache.get('health_check') == 'ok':
-                return {
-                    "status": "up",
-                    "pool": {
-                        "max_connections": getattr(pool, 'max_connections', 'unknown'),
-                        "in_use": len(getattr(pool, '_in_use_connections', [])),
-                        "available": len(getattr(pool, '_available_connections', [])),
-                    }
-                }
+                return {"status": "up", "backend": cache.__class__.__name__}
             return {"status": "down", "error": "Cache operations failed"}
         except Exception as e:
-            return {"status": "down", "error": f"Redis error: {str(e)}"}
+            return {"status": "down", "error": f"Cache error: {str(e)}"}
 
     def _check_file_store(self):
         try:

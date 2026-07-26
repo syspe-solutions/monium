@@ -79,4 +79,4 @@ COPY --from=frontend_builder /build/apps/ /usr/src/apps/
 
 EXPOSE 8000
 
-CMD ["sh", "-c", "python manage.py migrate --noinput && python manage.py collectstatic --noinput && gunicorn core.wsgi:application --bind 0.0.0.0:8000 --timeout 60"]
+CMD ["sh", "-c", "python manage.py migrate --noinput && python manage.py collectstatic --noinput && gunicorn core.wsgi:application -c gunicorn.conf.py --bind 0.0.0.0:8000 --timeout 60"]

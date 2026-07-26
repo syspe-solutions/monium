@@ -4,48 +4,43 @@ import uuid
 from datetime import timedelta
 from urllib.parse import urlparse
 
-import redis
-
 from django.conf import settings
-from django.utils import timezone
 from django.contrib.auth.hashers import check_password, make_password
+from django.core.cache import cache
+from django.utils import timezone
 
 from apps.account.models import User
 from apps.security.models import PasswordResetOTP, PasswordResetTimeToken
 
 BASE_DELAY = 15
-
-
-class RedisConnectionService:
-    @staticmethod
-    def get_redis_client():
-        return redis.Redis.from_url(settings.REDIS_URL)
+# Sem contagem de tentativas por 24h, o backoff exponencial reseta — evita que o
+# contador cresça pra sempre numa tabela de cache no Postgres (o Redis antigo
+# dependia de LRU eviction pra isso; aqui expiramos explicitamente).
+COUNT_WINDOW_SECONDS = 60 * 60 * 24
 
 
 class ExponentialBanService:
     @staticmethod
     def register_lockout(username):
-        key = f"ban:{username}:count"
-
-        client = RedisConnectionService.get_redis_client()
-        count = client.incr(key)
+        count_key = f"ban:{username}:count"
+        count = (cache.get(count_key) or 0) + 1
+        cache.set(count_key, count, timeout=COUNT_WINDOW_SECONDS)
 
         delay = BASE_DELAY * (2 ** (count - 1))
 
         ban_key = f"ban:{username}:until"
-        client.setex(ban_key, delay, int(time.time()) + delay)
+        cache.set(ban_key, int(time.time()) + delay, timeout=delay)
 
         return delay
 
     @staticmethod
     def get_ban_remaining(username):
-        client = RedisConnectionService.get_redis_client()
         ban_key = f"ban:{username}:until"
-        ts = client.get(ban_key)
-        if not ts:
+        until_timestamp = cache.get(ban_key)
+        if not until_timestamp:
             return 0
         now = int(time.time())
-        return max(0, int(ts) - now)
+        return max(0, int(until_timestamp) - now)
 
 
 class WebSocketOriginService:

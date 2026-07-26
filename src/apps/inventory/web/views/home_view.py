@@ -52,7 +52,7 @@ class HomeView(LoginRequiredMixin, TemplateView):
             status=LoanStatus.OVERDUE
         ).count()
 
-        # Empréstimos ativos com prazo vencido (o Celery beat transiciona pra "atrasado" 1x/dia)
+        # Empréstimos ativos com prazo vencido (check_overdue_loans transiciona pra "atrasado" periodicamente)
         ctx["loans_past_due"] = org_loans.filter(
             status=LoanStatus.ACTIVE,
             expected_return__lt=today,
