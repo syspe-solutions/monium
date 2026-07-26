@@ -6,29 +6,15 @@
 {% block content %}
 <div class="p-6 space-y-6">
 
-    <div>
-        <h1 class="text-2xl font-bold text-white">{% trans "Members" %}</h1>
-        <p class="text-sm text-zinc-500 mt-0.5">{{ current_organization.name }}</p>
-    </div>
-
-    <!-- Convidar -->
-    <div class="border border-zinc-800 rounded-xl bg-zinc-900 p-4">
-        <h2 class="text-sm font-semibold text-white mb-3">{% trans "Invite a member" %}</h2>
-        {% if is_within_user_limit %}
-        <form method="post" action="{% url 'organizations:invite_create' %}" class="flex gap-2 flex-col sm:flex-row">
-            {% csrf_token %}
-            <input type="email" name="email" required placeholder="{% trans 'Email address' %}"
-                   class="flex-1 p-2 border border-zinc-700 rounded text-sm bg-zinc-950 text-white placeholder:text-zinc-600 focus:outline-none focus:ring-2 focus:ring-zinc-600">
-            <button type="submit" class="bg-white text-zinc-950 text-sm font-medium px-4 py-2 rounded hover:bg-zinc-200 transition shrink-0">
-                {% trans "Send invite" %}
-            </button>
-        </form>
-        {% else %}
-        <p class="text-sm text-zinc-500">
-            {% trans "You've reached your plan's member limit." %}
-            <a href="{% url 'billing:plans' %}" class="text-white hover:underline">{% trans "Upgrade your plan" %}</a>
-        </p>
-        {% endif %}
+    <div class="flex items-center justify-between gap-4">
+        <div>
+            <h1 class="text-2xl font-bold text-white">{% trans "Members" %}</h1>
+            <p class="text-sm text-zinc-500 mt-0.5">{{ current_organization.name }}</p>
+        </div>
+        <a href="{% url 'organizations:member_create' %}"
+           class="bg-white text-zinc-950 text-sm font-medium px-4 py-2.5 rounded hover:bg-zinc-100 transition shrink-0">
+            {% trans "Add member" %}
+        </a>
     </div>
 
     <!-- Membros -->
@@ -40,16 +26,33 @@
             <tbody class="divide-y divide-zinc-800">
                 {% for membership in members %}
                 <tr class="hover:bg-zinc-800/50 transition">
-                    <td class="px-5 py-3 text-zinc-100">{{ membership.user.email }}</td>
-                    <td class="px-5 py-3 text-zinc-500 text-xs uppercase tracking-wide">{{ membership.get_role_display }}</td>
+                    <td class="px-5 py-3 text-zinc-100">
+                        {{ membership.user.email }}
+                        {% if membership.user_id == request.user.id %}
+                        <span class="text-zinc-600 text-xs ml-1">({% trans "you" %})</span>
+                        {% endif %}
+                    </td>
+                    <td class="px-5 py-3">
+                        {% if membership.role == "owner" or membership.user_id == request.user.id %}
+                        <span class="text-zinc-500 text-xs uppercase tracking-wide">{{ membership.get_role_display }}</span>
+                        {% else %}
+                        <form method="post" action="{% url 'organizations:member_role_update' membership.id %}">
+                            {% csrf_token %}
+                            <select name="role" onchange="this.form.submit()"
+                                    class="p-1.5 border border-zinc-700 rounded text-xs bg-zinc-900 text-white focus:outline-none focus:ring-2 focus:ring-zinc-600">
+                                {% for role in assignable_roles %}
+                                <option value="{{ role.value }}" {% if role.value == membership.role %}selected{% endif %}>{{ role.label }}</option>
+                                {% endfor %}
+                            </select>
+                        </form>
+                        {% endif %}
+                    </td>
                     <td class="px-5 py-3 text-right">
-                        {% if membership.user_id != request.user.id %}
+                        {% if membership.role != "owner" and membership.user_id != request.user.id %}
                         <form method="post" action="{% url 'organizations:member_remove' membership.id %}">
                             {% csrf_token %}
                             <button type="submit" class="text-red-400 hover:underline text-xs">{% trans "Remove" %}</button>
                         </form>
-                        {% else %}
-                        <span class="text-zinc-600 text-xs">{% trans "You" %}</span>
                         {% endif %}
                     </td>
                 </tr>
@@ -57,37 +60,6 @@
             </tbody>
         </table>
     </div>
-
-    <!-- Convites pendentes -->
-    {% if pending_invitations %}
-    <div class="border border-zinc-800 rounded-xl bg-zinc-900 overflow-hidden">
-        <div class="px-5 py-4 border-b border-zinc-800">
-            <h2 class="text-sm font-semibold text-white">{% trans "Pending invitations" %}</h2>
-        </div>
-        <table class="w-full text-sm">
-            <tbody class="divide-y divide-zinc-800">
-                {% for invitation in pending_invitations %}
-                <tr class="hover:bg-zinc-800/50 transition">
-                    <td class="px-5 py-3 text-zinc-100">{{ invitation.email }}</td>
-                    <td class="px-5 py-3 text-zinc-500 text-xs">
-                        {% if invitation.is_expired %}
-                            <span class="text-amber-400">{% trans "Expired" %}</span>
-                        {% else %}
-                            {% trans "Sent" %} {{ invitation.created_at|date:"d/m/Y" }}
-                        {% endif %}
-                    </td>
-                    <td class="px-5 py-3 text-right">
-                        <form method="post" action="{% url 'organizations:invitation_revoke' invitation.id %}">
-                            {% csrf_token %}
-                            <button type="submit" class="text-red-400 hover:underline text-xs">{% trans "Revoke" %}</button>
-                        </form>
-                    </td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
-    {% endif %}
 
 </div>
 {% endblock %}

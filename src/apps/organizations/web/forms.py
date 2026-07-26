@@ -3,10 +3,10 @@ import uuid
 from django import forms
 from django.contrib.auth import get_user_model
 from django.utils.text import slugify
-from django.utils.translation import gettext_lazy as translate
+from django.utils.translation import gettext_lazy as _
 
 from apps.account.utils import AuthenticationUtils
-from apps.organizations.models import Organization
+from apps.organizations.models import ASSIGNABLE_MEMBERSHIP_ROLES, Membership, Organization
 
 _INPUT = "w-full p-2 border border-zinc-700 rounded text-sm bg-zinc-900 text-white placeholder:text-zinc-600 focus:outline-none focus:ring-2 focus:ring-zinc-600"
 _SELECT = "w-full p-2 border border-zinc-700 rounded text-sm bg-zinc-900 text-white focus:outline-none focus:ring-2 focus:ring-zinc-600"
@@ -42,51 +42,47 @@ class OrganizationForm(forms.ModelForm):
         return organization
 
 
-class InvitationForm(forms.Form):
+class MemberCreateForm(forms.Form):
+    """Cria diretamente a conta de um novo membro da organização, já com papel
+    definido — substitui o antigo fluxo de convite por e-mail."""
+
+    username = forms.CharField(
+        label=_("Username"),
+        widget=forms.TextInput(attrs={"class": _INPUT, "placeholder": _("Username")}),
+    )
     email = forms.EmailField(
-        label=translate("Email address"),
+        label=_("Email address"),
         widget=forms.EmailInput(attrs={"class": _INPUT, "placeholder": "email@exemplo.com"}),
+    )
+    password = forms.CharField(
+        label=_("Password"),
+        widget=forms.PasswordInput(attrs={"class": _PASSWORD, "placeholder": _("Password")}),
+    )
+    confirm_password = forms.CharField(
+        label=_("Confirm password"),
+        widget=forms.PasswordInput(attrs={"class": _PASSWORD, "placeholder": _("Confirm password")}),
+    )
+    role = forms.ChoiceField(
+        label=_("Role"),
+        choices=[(role.value, role.label) for role in ASSIGNABLE_MEMBERSHIP_ROLES],
+        widget=forms.Select(attrs={"class": _SELECT}),
     )
 
     def __init__(self, *args, organization=None, **kwargs):
         self.organization = organization
         super().__init__(*args, **kwargs)
 
-    def clean_email(self):
-        email = self.cleaned_data["email"].strip().lower()
-
-        if self.organization.memberships.filter(user__email__iexact=email).exists():
-            raise forms.ValidationError(translate("This person is already a member of this organization."))
-
-        if self.organization.invitations.filter(email=email, status="pending").exists():
-            raise forms.ValidationError(translate("There's already a pending invitation for this email."))
-
-        return email
-
-
-class InvitationSignupForm(forms.Form):
-    """Cria a conta de quem aceita um convite sem ainda ter usuário no Monium.
-    Duplica username/password/confirm_password de CustomRegisterForm de propósito
-    (e-mail é fixo, vindo do convite) pra não acoplar organizations a account."""
-
-    username = forms.CharField(
-        label=translate("Username"),
-        widget=forms.TextInput(attrs={"class": _INPUT, "placeholder": translate("Your username")}),
-    )
-    password = forms.CharField(
-        label=translate("Password"),
-        widget=forms.PasswordInput(attrs={"class": _PASSWORD, "placeholder": translate("Your secure password")}),
-    )
-    confirm_password = forms.CharField(
-        label=translate("Confirm password"),
-        widget=forms.PasswordInput(attrs={"class": _PASSWORD, "placeholder": translate("Confirm your password")}),
-    )
-
     def clean_username(self):
         username = self.cleaned_data["username"]
         if get_user_model().objects.filter(username=username).exists():
-            raise forms.ValidationError(translate("This username is already taken."))
+            raise forms.ValidationError(_("This username is already taken."))
         return username
+
+    def clean_email(self):
+        email = self.cleaned_data["email"].strip().lower()
+        if get_user_model().objects.filter(email__iexact=email).exists():
+            raise forms.ValidationError(_("An account with this email already exists."))
+        return email
 
     def clean_password(self):
         password = self.cleaned_data.get("password")
@@ -98,6 +94,24 @@ class InvitationSignupForm(forms.Form):
 
     def clean(self):
         cleaned_data = super().clean()
-        if cleaned_data.get("password") != cleaned_data.get("confirm_password"):
-            raise forms.ValidationError(translate("Passwords do not match."))
+        password = cleaned_data.get("password")
+        confirm_password = cleaned_data.get("confirm_password")
+        # Se clean_password() já rejeitou a senha (ex.: curta demais), ela some
+        # de cleaned_data — comparar None com confirm_password sempre dispararia
+        # "as senhas não coincidem" por cima do erro real.
+        if password and confirm_password and password != confirm_password:
+            raise forms.ValidationError(_("Passwords do not match."))
         return cleaned_data
+
+    def save(self, created_by) -> Membership:
+        user = get_user_model().objects.create_user(
+            username=self.cleaned_data["username"],
+            email=self.cleaned_data["email"],
+            password=self.cleaned_data["password"],
+        )
+        return Membership.objects.create(
+            organization=self.organization,
+            user=user,
+            role=self.cleaned_data["role"],
+            created_by=created_by,
+        )

@@ -1,0 +1,125 @@
+{% extends "common/layouts/base-aside.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Add member" %} — Monium{% endblock %}
+
+{% block content %}
+<div class="p-6 lg:p-10">
+    <div class="flex flex-col lg:flex-row gap-9 items-start justify-center max-w-3xl mx-auto">
+
+        <div class="w-full lg:w-[400px] shrink-0">
+            <h1 class="text-2xl font-bold text-white">{% trans "Add member" %}</h1>
+            <p class="text-sm text-zinc-500 mt-0.5 mb-5">{{ current_organization.name }}</p>
+
+            <form method="post" class="bg-zinc-900 border border-zinc-800 rounded-xl p-6 flex flex-col gap-4">
+                {% csrf_token %}
+
+                {% if form.non_field_errors %}
+                {% for error in form.non_field_errors %}
+                <div class="flex items-center gap-2 px-3 py-2 rounded-lg bg-red-950 border border-red-800 text-red-400 text-sm">
+                    <span class="material-symbols-outlined text-base leading-none">error</span>
+                    {{ error }}
+                </div>
+                {% endfor %}
+                {% endif %}
+
+                {% for field in form %}
+                <div>
+                    <label for="{{ field.id_for_label }}" class="block font-medium text-xs mb-1.5 text-zinc-400">
+                        {{ field.label }}
+                    </label>
+                    {{ field }}
+                    {% if field.help_text %}
+                    <p class="text-zinc-600 text-xs mt-1">{{ field.help_text }}</p>
+                    {% endif %}
+                    {% if field.errors %}
+                    <p class="text-red-400 text-xs mt-1">{{ field.errors }}</p>
+                    {% endif %}
+                </div>
+                {% endfor %}
+
+                <div class="flex gap-2 mt-2">
+                    <a href="{% url 'organizations:members' %}"
+                       class="flex-1 text-center border border-zinc-700 text-zinc-300 py-2.5 px-4 rounded-lg hover:bg-zinc-800 transition font-medium text-sm">
+                        {% trans "Cancel" %}
+                    </a>
+                    <button type="submit"
+                            class="flex-1 bg-white text-zinc-950 py-2.5 px-4 rounded-lg hover:bg-zinc-100 transition font-medium text-sm">
+                        {% trans "Create user" %}
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <div class="w-full lg:w-[280px] shrink-0 bg-indigo-500/10 border border-indigo-400/20 rounded-xl p-5" id="role-preview">
+            <p class="text-xs font-semibold text-indigo-300 mb-4" id="role-preview-title">
+                {% trans "What this role can do" %}
+            </p>
+            <div id="role-preview-perms" class="flex flex-col gap-2.5 text-xs text-zinc-300"></div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    var rolePermissions = {
+        admin: {
+            allowed: [
+                '{% trans "Manage members and invitations" %}',
+                '{% trans "Create, edit and delete assets" %}',
+                '{% trans "Access organization settings" %}'
+            ],
+            denied: ['{% trans "Delete the organization" %}']
+        },
+        manager: {
+            allowed: [
+                '{% trans "Create and edit assets" %}',
+                '{% trans "Register maintenance and loans" %}',
+                '{% trans "View sector reports" %}'
+            ],
+            denied: ['{% trans "Manage members and billing" %}']
+        },
+        operator: {
+            allowed: [
+                '{% trans "Create and edit assets" %}',
+                '{% trans "Register maintenance and movements" %}'
+            ],
+            denied: [
+                '{% trans "View organization-wide reports" %}',
+                '{% trans "Manage members and billing" %}'
+            ]
+        },
+        viewer: {
+            allowed: ['{% trans "View assets and reports" %}'],
+            denied: [
+                '{% trans "Create or edit assets" %}',
+                '{% trans "Manage members and billing" %}'
+            ]
+        }
+    };
+
+    var roleSelect = document.getElementById('id_role');
+    var permsContainer = document.getElementById('role-preview-perms');
+    if (!roleSelect || !permsContainer) return;
+
+    function renderPermissions() {
+        var permissions = rolePermissions[roleSelect.value];
+        permsContainer.innerHTML = '';
+        if (!permissions) return;
+
+        permissions.allowed.forEach(function (label) {
+            permsContainer.insertAdjacentHTML('beforeend',
+                '<div class="flex items-start gap-2"><span class="text-green-400">✓</span><span>' + label + '</span></div>');
+        });
+        permissions.denied.forEach(function (label) {
+            permsContainer.insertAdjacentHTML('beforeend',
+                '<div class="flex items-start gap-2 text-zinc-500"><span>✕</span><span>' + label + '</span></div>');
+        });
+    }
+
+    roleSelect.addEventListener('change', renderPermissions);
+    renderPermissions();
+});
+</script>
+{% endblock %}

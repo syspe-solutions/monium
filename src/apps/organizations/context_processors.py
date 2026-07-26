@@ -6,13 +6,9 @@ def organization_context(request):
     if not user or not user.is_authenticated:
         return {}
 
-    from apps.billing import services as billing_services
-
-    locked_organizations = billing_services.get_locked_organizations(user)
-
     organization = getattr(request, "organization", None)
     if organization is None:
-        return {"current_organization": None, "locked_organizations": locked_organizations}
+        return {"current_organization": None}
 
     membership = user.memberships.filter(organization=organization).first()
     user_organizations = list(
@@ -20,11 +16,15 @@ def organization_context(request):
         .order_by("memberships__created_at")
         .distinct()
     )
+    owner_organization_ids = set(
+        user.memberships.filter(role=MembershipRole.OWNER).values_list("organization_id", flat=True)
+    )
 
     return {
         "current_organization": organization,
         "is_organization_owner": bool(membership and membership.role == MembershipRole.OWNER),
+        "can_manage_members": bool(membership and membership.can_manage_members()),
         "user_organizations": user_organizations,
+        "owner_organization_ids": owner_organization_ids,
         "has_multiple_organizations": len(user_organizations) > 1,
-        "locked_organizations": locked_organizations,
     }

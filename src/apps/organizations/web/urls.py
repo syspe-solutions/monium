@@ -1,10 +1,9 @@
 from django.urls import path
 
 from .views import (
-    InvitationAcceptView,
-    InvitationCreateView,
-    InvitationRevokeView,
+    MemberCreateView,
     MemberRemoveView,
+    MemberRoleUpdateView,
     OrganizationCreateView,
     OrganizationDeleteView,
     OrganizationMembersView,
@@ -19,9 +18,8 @@ urlpatterns = [
     path("switch/<uuid:organization_id>/", SwitchOrganizationView.as_view(), name="switch"),
     path("settings/", OrganizationSettingsView.as_view(), name="settings"),
     path("members/", OrganizationMembersView.as_view(), name="members"),
-    path("members/invite/", InvitationCreateView.as_view(), name="invite_create"),
+    path("members/create/", MemberCreateView.as_view(), name="member_create"),
     path("members/<uuid:membership_id>/remove/", MemberRemoveView.as_view(), name="member_remove"),
-    path("invitations/<uuid:invitation_id>/revoke/", InvitationRevokeView.as_view(), name="invitation_revoke"),
-    path("invitations/accept/<str:token>/", InvitationAcceptView.as_view(), name="invitation_accept"),
+    path("members/<uuid:membership_id>/role/", MemberRoleUpdateView.as_view(), name="member_role_update"),
     path("<uuid:organization_id>/delete/", OrganizationDeleteView.as_view(), name="delete"),
 ]

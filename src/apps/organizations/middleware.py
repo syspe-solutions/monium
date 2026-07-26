@@ -5,7 +5,6 @@ ACTIVE_ORG_SESSION_KEY = "active_organization_id"
 
 EXEMPT_URL_NAMES = {
     "organizations:create",
-    "organizations:invitation_accept",
     "account:login",
     "account:logout",
     "account:register",

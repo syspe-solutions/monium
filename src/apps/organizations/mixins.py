@@ -1,6 +1,4 @@
-from django.contrib import messages
 from django.contrib.auth.mixins import UserPassesTestMixin
-from django.shortcuts import redirect
 
 from apps.audit.dtos import SecurityAction, SecurityStatus
 from apps.audit.loggers.security_logger import SecurityLogger
@@ -8,9 +6,13 @@ from apps.audit.loggers.security_logger import SecurityLogger
 from .models import Membership, MembershipRole
 
 
-class OrganizationOwnerRequiredMixin(UserPassesTestMixin):
+class _MembershipRoleRequiredMixin(UserPassesTestMixin):
+    """Base para mixins que exigem um dos papéis permitidos na organização ativa.
+    Subclasses definem `allowed_roles`."""
+
     raise_exception = True
     security_logger = SecurityLogger()
+    allowed_roles: frozenset = frozenset()
 
     def test_func(self):
         user = self.request.user
@@ -23,12 +25,12 @@ class OrganizationOwnerRequiredMixin(UserPassesTestMixin):
             self._log_unauthorized("User has no active organization")
             return False
 
-        is_owner = Membership.objects.filter(
-            organization=organization, user=user, role=MembershipRole.OWNER
+        has_required_role = Membership.objects.filter(
+            organization=organization, user=user, role__in=self.allowed_roles
         ).exists()
-        if not is_owner:
-            self._log_unauthorized(f"User is not OWNER of organization {organization.id}")
-        return is_owner
+        if not has_required_role:
+            self._log_unauthorized(f"User lacks required role in organization {organization.id}")
+        return has_required_role
 
     def _log_unauthorized(self, reason):
         self.security_logger.log_event(
@@ -40,24 +42,23 @@ class OrganizationOwnerRequiredMixin(UserPassesTestMixin):
         )
 
 
-class OrganizationNotLockedRequiredMixin(UserPassesTestMixin):
-    """Bloqueia escrita (itens, convites, etc.) em organizações que excedem o
-    org_limit do plano atual do dono — diferente de OrganizationOwnerRequiredMixin,
-    isso não é "sem permissão" (403), é "resolva o excesso do seu plano primeiro"."""
+class OrganizationOwnerRequiredMixin(_MembershipRoleRequiredMixin):
+    allowed_roles = frozenset({MembershipRole.OWNER})
 
-    def test_func(self):
-        organization = getattr(self.request, "organization", None)
-        if organization is None:
-            return True
 
-        from apps.billing import services as billing_services
+class MemberManagementRequiredMixin(_MembershipRoleRequiredMixin):
+    """Permite gestão de membros (criar, remover, trocar papel) a OWNER e ADMIN."""
 
-        return not billing_services.is_organization_locked(organization)
+    allowed_roles = frozenset({MembershipRole.OWNER, MembershipRole.ADMIN})
 
-    def handle_no_permission(self):
-        messages.error(
-            self.request,
-            "Esta organização está bloqueada por exceder o limite de organizações do seu "
-            "plano atual. Apague uma organização mais recente ou faça upgrade para continuar.",
-        )
-        return redirect("organizations:members")
+
+class InventoryWriteRequiredMixin(_MembershipRoleRequiredMixin):
+    """Permite cadastro/importação de itens e imóveis a OWNER, ADMIN, MANAGER e OPERATOR —
+    exclui VIEWER, que tem acesso somente leitura."""
+
+    allowed_roles = frozenset({
+        MembershipRole.OWNER,
+        MembershipRole.ADMIN,
+        MembershipRole.MANAGER,
+        MembershipRole.OPERATOR,
+    })
