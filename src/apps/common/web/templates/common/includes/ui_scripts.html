@@ -14,11 +14,18 @@
         if (!(form instanceof HTMLFormElement)) return;
         const btn = e.submitter || form.querySelector('button[type="submit"]');
         if (!btn || btn.tagName !== 'BUTTON' || btn.disabled) return;
-        btn.disabled = true;
-        btn.classList.add('opacity-70', 'cursor-wait');
-        btn.insertAdjacentHTML(
-            'beforeend',
-            '<span class="inline-block w-4 h-4 border-2 border-current/30 border-t-current rounded-full animate-spin ml-2 align-middle"></span>'
-        );
+        // setTimeout(0): desabilitar o botão *dentro* do listener de submit,
+        // antes do navegador montar o corpo da requisição, remove o próprio
+        // name/value do botão clicado do POST (afeta qualquer botão que carregue
+        // dado via name/value, como o seletor de idioma — name="language").
+        // Adiando pro próximo tick, o navegador já capturou o submitter.
+        setTimeout(function () {
+            btn.disabled = true;
+            btn.classList.add('opacity-70', 'cursor-wait');
+            btn.insertAdjacentHTML(
+                'beforeend',
+                '<span class="inline-block w-4 h-4 border-2 border-current/30 border-t-current rounded-full animate-spin ml-2 align-middle"></span>'
+            );
+        }, 0);
     });
 </script>
