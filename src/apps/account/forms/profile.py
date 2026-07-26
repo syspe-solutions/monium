@@ -4,29 +4,32 @@ from apps.account.models import UserProfile
 from apps.account.services.image_processor_service import ImageProcessor
 from apps.account.services.image_validator_service import ImageValidator
 
+_INPUT = "w-full p-2 border border-zinc-700 rounded text-sm bg-zinc-900 text-white placeholder:text-zinc-600 focus:outline-none focus:ring-2 focus:ring-zinc-600"
+_TEXTAREA = _INPUT + " resize-none"
+
 
 class ProfileForm(forms.ModelForm):
     first_name = forms.CharField(
-        max_length=150, 
+        max_length=150,
         required=False,
-        widget=forms.TextInput(attrs={"class": "form-control"})
+        widget=forms.TextInput(attrs={"class": _INPUT})
     )
     last_name = forms.CharField(
-        max_length=150, 
+        max_length=150,
         required=False,
-        widget=forms.TextInput(attrs={"class": "form-control"})
+        widget=forms.TextInput(attrs={"class": _INPUT})
     )
 
     class Meta:
         model = UserProfile
         fields = ["bio", "website", "location", "birth_date", "avatar"]
         widgets = {
-            "bio": forms.Textarea(attrs={"class": "form-control", "rows": 3}),
-            "website": forms.URLInput(attrs={"class": "form-control"}),
-            "location": forms.TextInput(attrs={"class": "form-control"}),
+            "bio": forms.Textarea(attrs={"class": _TEXTAREA, "rows": 3}),
+            "website": forms.URLInput(attrs={"class": _INPUT}),
+            "location": forms.TextInput(attrs={"class": _INPUT}),
             "birth_date": forms.DateInput(
                 format="%Y-%m-%d",
-                attrs={"class": "form-control", "type": "date"}
+                attrs={"class": _INPUT, "type": "date"}
             ),
         }
 
@@ -54,18 +57,18 @@ class ProfileForm(forms.ModelForm):
 
     def save(self, commit=True):
         profile = super().save(commit=False)
-        
+
         if not hasattr(profile, 'user') or not profile.user:
             profile.user = self.user
-            
+
         user = profile.user
         if 'first_name' in self.cleaned_data:
             user.first_name = self.cleaned_data['first_name']
         if 'last_name' in self.cleaned_data:
             user.last_name = self.cleaned_data['last_name']
-        
+
         if commit:
             user.save()
             profile.save()
-            
+
         return profile

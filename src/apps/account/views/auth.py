@@ -15,7 +15,7 @@ from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
 from django.utils import timezone
 from django.utils.http import url_has_allowed_host_and_scheme
-from django.utils.translation import gettext_lazy as translate
+from django.utils.translation import gettext_lazy as _
 from django.views import View
 
 from apps.account.dtos.create_user_dto import CreateUserDTO
@@ -85,11 +85,11 @@ class UserLoginView(View):
 
     def _handle_error(self, request, error_code):
         errors = {
-            "invalid_credentials": translate("Usuário ou senha inválidos."),
-            "inactive_user": translate("Sua conta foi encerrada."),
+            "invalid_credentials": _("Usuário ou senha inválidos."),
+            "inactive_user": _("Sua conta foi encerrada."),
         }
         messages.error(request, errors.get(
-            error_code, translate("Erro inesperado.")))
+            error_code, _("Erro inesperado.")))
 
 
 class UserLogoutView(View):

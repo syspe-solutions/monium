@@ -1,17 +1,16 @@
 {% extends 'common/layouts/base-aside.html' %}
 {% load static %}
-{% load widget_tweaks %}
 {% load i18n %}
 
 {% block title %}{% trans "My Profile" %} — Monium{% endblock %}
 
 {% block content %}
-<div class="p-6 w-full max-w-4xl mx-auto flex flex-col gap-8">
+<div class="p-6 max-w-4xl mx-auto space-y-6">
 
   <!-- Header -->
   <div class="flex flex-col gap-1">
     <h1 class="text-2xl font-bold text-white">{% trans "My Profile" %}</h1>
-    <p class="text-zinc-500 text-sm">{% trans "Manage your personal information and account settings" %}</p>
+    <p class="text-sm text-zinc-500 mt-0.5">{% trans "Manage your personal information and account settings" %}</p>
   </div>
 
   {% if messages %}
@@ -87,19 +86,19 @@
         <div class="grid grid-cols-2 gap-4">
           <div class="flex flex-col gap-1.5">
             <label class="text-xs font-medium text-zinc-400">{% trans "First Name" %}</label>
-            {{ form.first_name|add_class:"w-full p-2 border text-sm rounded bg-zinc-900 text-white border-zinc-700 focus:outline-none focus:ring-2 focus:ring-zinc-600 placeholder:text-zinc-600" }}
+            {{ form.first_name }}
             {% if form.first_name.errors %}<p class="text-red-400 text-xs mt-1">{{ form.first_name.errors }}</p>{% endif %}
           </div>
           <div class="flex flex-col gap-1.5">
             <label class="text-xs font-medium text-zinc-400">{% trans "Last Name" %}</label>
-            {{ form.last_name|add_class:"w-full p-2 border text-sm rounded bg-zinc-900 text-white border-zinc-700 focus:outline-none focus:ring-2 focus:ring-zinc-600 placeholder:text-zinc-600" }}
+            {{ form.last_name }}
             {% if form.last_name.errors %}<p class="text-red-400 text-xs mt-1">{{ form.last_name.errors }}</p>{% endif %}
           </div>
         </div>
 
         <div class="flex flex-col gap-1.5">
           <label class="text-xs font-medium text-zinc-400">{% trans "Date of Birth" %}</label>
-          {{ form.birth_date|add_class:"w-full p-2 border text-sm rounded bg-zinc-900 text-white border-zinc-700 focus:outline-none focus:ring-2 focus:ring-zinc-600" }}
+          {{ form.birth_date }}
           {% if form.birth_date.errors %}<p class="text-red-400 text-xs mt-1">{{ form.birth_date.errors }}</p>{% endif %}
         </div>
       </div>
@@ -113,7 +112,7 @@
 
         <div class="flex flex-col gap-1.5">
           <label class="text-xs font-medium text-zinc-400">{% trans "Bio" %}</label>
-          {{ form.bio|add_class:"w-full p-2 border text-sm rounded bg-zinc-900 text-white border-zinc-700 focus:outline-none focus:ring-2 focus:ring-zinc-600 placeholder:text-zinc-600 resize-none" }}
+          {{ form.bio }}
           {% if form.bio.errors %}<p class="text-red-400 text-xs mt-1">{{ form.bio.errors }}</p>{% endif %}
         </div>
       </div>
@@ -122,12 +121,12 @@
       <div class="md:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-4">
         <div class="flex flex-col gap-1.5">
           <label class="text-xs font-medium text-zinc-400">{% trans "Website / Link" %}</label>
-          {{ form.website|add_class:"w-full p-2 border text-sm rounded bg-zinc-900 text-white border-zinc-700 focus:outline-none focus:ring-2 focus:ring-zinc-600 placeholder:text-zinc-600" }}
+          {{ form.website }}
           {% if form.website.errors %}<p class="text-red-400 text-xs mt-1">{{ form.website.errors }}</p>{% endif %}
         </div>
         <div class="flex flex-col gap-1.5">
           <label class="text-xs font-medium text-zinc-400">{% trans "Location" %}</label>
-          {{ form.location|add_class:"w-full p-2 border text-sm rounded bg-zinc-900 text-white border-zinc-700 focus:outline-none focus:ring-2 focus:ring-zinc-600 placeholder:text-zinc-600" }}
+          {{ form.location }}
           {% if form.location.errors %}<p class="text-red-400 text-xs mt-1">{{ form.location.errors }}</p>{% endif %}
         </div>
       </div>
@@ -140,7 +139,7 @@
         {% trans "Back" %}
       </a>
       <button type="submit" id="save-profile-btn"
-              class="btn justify-center bg-white text-zinc-950 hover:bg-zinc-200 transition">
+              class="btn justify-center bg-white text-zinc-950 hover:bg-zinc-100 transition">
         <span class="material-symbols-outlined text-base leading-none">save</span>
         {% trans "Save Changes" %}
       </button>

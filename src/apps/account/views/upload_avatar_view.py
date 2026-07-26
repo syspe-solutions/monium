@@ -1,6 +1,7 @@
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import redirect
+from django.utils.translation import gettext as _
 from django.views import View
 
 from apps.account.models import UserProfile
@@ -17,7 +18,7 @@ class UploadAvatarView(LoginRequiredMixin, View):
         image = request.FILES.get("image")
 
         if not image:
-            messages.error(request, "Image is required.")
+            messages.error(request, _("Image is required."))
             return redirect("account:profile_edit")
 
         try:
@@ -31,7 +32,7 @@ class UploadAvatarView(LoginRequiredMixin, View):
 
             processed_image = processor.resize(image)
 
-            profile, _ = UserProfile.objects.get_or_create(
+            profile, _created = UserProfile.objects.get_or_create(
                 user=request.user
             )
 
@@ -41,7 +42,7 @@ class UploadAvatarView(LoginRequiredMixin, View):
                 save=True
             )
 
-            messages.success(request, "Avatar updated successfully.")
+            messages.success(request, _("Avatar updated successfully."))
 
         except ValueError as error:
 

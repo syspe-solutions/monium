@@ -1,7 +1,7 @@
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
-from django.utils.translation import gettext_lazy as translate
+from django.utils.translation import gettext_lazy as _
 from django.views.generic import UpdateView
 
 from apps.account.forms.profile import ProfileForm
@@ -24,5 +24,5 @@ class UserProfileUpdateView(LoginRequiredMixin, UpdateView):
         return kwargs
 
     def form_valid(self, form):
-        messages.success(self.request, translate("Profile updated successfully."))
+        messages.success(self.request, _("Profile updated successfully."))
         return super().form_valid(form)
