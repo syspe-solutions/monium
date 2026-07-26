@@ -1,0 +1,17 @@
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+<form action="{% url 'set_language' %}" method="post"
+      class="flex items-center gap-1 bg-zinc-900 border border-zinc-800 rounded-full p-1">
+    {% csrf_token %}
+    <input type="hidden" name="next" value="{{ request.get_full_path }}">
+    <button type="submit" name="language" value="pt-br"
+            class="px-3 py-1 rounded-full text-xs font-semibold transition
+                   {% if LANGUAGE_CODE == 'pt-br' %}bg-white text-zinc-950{% else %}text-zinc-400 hover:text-white{% endif %}">
+        PT
+    </button>
+    <button type="submit" name="language" value="en"
+            class="px-3 py-1 rounded-full text-xs font-semibold transition
+                   {% if LANGUAGE_CODE == 'en' %}bg-white text-zinc-950{% else %}text-zinc-400 hover:text-white{% endif %}">
+        EN
+    </button>
+</form>
