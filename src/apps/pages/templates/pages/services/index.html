@@ -41,15 +41,11 @@
     <!-- Bottom CTA -->
     <div class="border border-zinc-800 bg-zinc-900 rounded-2xl p-8 text-center space-y-4">
       <h3 class="text-white text-xl font-bold">{% trans "Ready to get started?" %}</h3>
-      <p class="text-zinc-400 text-sm">{% trans "All features available on the Free plan — no credit card needed." %}</p>
+      <p class="text-zinc-400 text-sm">{% trans "All features included, free and open source — no credit card needed." %}</p>
       <div class="flex justify-center gap-3">
         <a href="{% url 'account:register' %}"
            class="px-5 py-2.5 rounded-lg bg-white text-zinc-950 font-semibold hover:bg-zinc-100 transition text-sm">
           {% trans "Create free account" %}
-        </a>
-        <a href="{% url 'billing:plans' %}"
-           class="px-5 py-2.5 rounded-lg border border-zinc-700 text-zinc-300 hover:bg-zinc-800 transition text-sm">
-          {% trans "View plans" %}
         </a>
       </div>
     </div>

@@ -14,10 +14,6 @@
          class="px-3 py-1.5 rounded text-zinc-400 hover:text-white hover:bg-zinc-800 transition">
         {% trans "Services" %}
       </a>
-      <a href="{% url 'billing:plans' %}"
-         class="px-3 py-1.5 rounded text-zinc-400 hover:text-white hover:bg-zinc-800 transition">
-        {% trans "Plans" %}
-      </a>
       <a href="{% url 'pages:faq' %}"
          class="px-3 py-1.5 rounded text-zinc-400 hover:text-white hover:bg-zinc-800 transition">
         FAQ
@@ -75,7 +71,6 @@
   <div id="mobile-nav"
        class="hidden md:hidden border-t border-zinc-800 bg-zinc-950 px-4 py-3 flex flex-col gap-1 text-sm">
     <a href="{% url 'pages:services' %}" class="px-3 py-2 rounded text-zinc-400 hover:text-white hover:bg-zinc-800 transition">{% trans "Services" %}</a>
-    <a href="{% url 'billing:plans' %}" class="px-3 py-2 rounded text-zinc-400 hover:text-white hover:bg-zinc-800 transition">{% trans "Plans" %}</a>
     <a href="{% url 'pages:faq' %}" class="px-3 py-2 rounded text-zinc-400 hover:text-white hover:bg-zinc-800 transition">FAQ</a>
 
     <div class="border-t border-zinc-800 my-2"></div>

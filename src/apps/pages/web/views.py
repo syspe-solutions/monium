@@ -154,9 +154,10 @@ SERVICES = [
         "icon": "group",
         "tagline": _("Collaborate with your entire team, with proper access control."),
         "description": _(
-            "Invite team members and assign roles to control what each person can see and do. "
-            "Operators can register and update items, while managers get full reporting access. "
-            "Every action is logged with the responsible user for full accountability."
+            "Create accounts for your team directly, with a role assigned right away to control "
+            "what each person can see and do. Operators can register items, while managers and "
+            "admins get broader access. Every action is logged with the responsible user for full "
+            "accountability."
         ),
         "for_whom": [
             _("Organizations with multiple departments accessing inventory"),
@@ -165,7 +166,7 @@ SERVICES = [
             _("Businesses with external auditors needing read-only access"),
         ],
         "steps": [
-            {"icon": "person_add",      "title": _("Invite"),  "desc": _("Add team members by email — they receive a setup link instantly.")},
+            {"icon": "person_add",      "title": _("Create"),  "desc": _("Create an account for each team member directly from the Members page.")},
             {"icon": "manage_accounts", "title": _("Assign"),  "desc": _("Set roles: Admin, Manager, Operator, or Viewer.")},
             {"icon": "verified_user",   "title": _("Control"), "desc": _("Each role sees and can do only what's relevant to their function.")},
             {"icon": "history",         "title": _("Audit"),   "desc": _("Full action log: who changed what, when, and from where.")},
@@ -209,107 +210,73 @@ DIFFERENTIALS = [
     },
     {
         "icon": "support_agent",
-        "title": _("Real humans behind support"),
-        "description": _("We answer emails, not bots. Priority support for Pro users with guaranteed response times and onboarding assistance for Enterprise."),
+        "title": _("Community-driven support"),
+        "description": _("Open an issue on GitHub or contribute a fix yourself — the codebase is open for anyone to read, audit, and improve."),
     },
 ]
 
 FAQ_ITEMS = [
     {
-        "question": _("How does the free plan work?"),
+        "question": _("Is Monium really free?"),
         "answer": _(
-            "The Free plan is available indefinitely — no credit card required. "
-            "You can register up to 50 items and 1 user. When your needs grow, "
-            "you can upgrade to Starter or Pro at any time from the Plans page."
+            "Yes. Monium is open source and free to use, with no usage limits, no paid "
+            "tiers, and no credit card required. You self-host it on your own "
+            "infrastructure, so there's no subscription to manage."
         ),
     },
     {
-        "question": _("Can I upgrade or downgrade my plan at any time?"),
+        "question": _("How do I self-host Monium?"),
         "answer": _(
-            "Yes. Plan changes take effect immediately. When upgrading, you pay the "
-            "prorated difference for the current billing cycle. When downgrading, the "
-            "new plan takes effect at the start of the next cycle."
+            "Monium ships with a Docker Compose setup covering the app, PostgreSQL, "
+            "and a background worker. Clone the repository, configure your "
+            "environment variables, and run it with Docker Compose to have your own "
+            "instance running in minutes."
         ),
     },
     {
-        "question": _("How does billing work? Which payment methods are accepted?"),
+        "question": _("Where is my data stored?"),
         "answer": _(
-            "Billing is monthly and automatic via credit card (Visa, Mastercard, Amex). "
-            "You will receive an invoice by email on each renewal date. "
-            "Annual billing with a 20% discount is available for Pro and Starter plans."
+            "Entirely on the infrastructure you choose to run Monium on. Since it's "
+            "self-hosted, no data is sent to or stored by a third-party service — you "
+            "have full control over your database and backups."
         ),
     },
     {
-        "question": _("Is there a minimum contract or commitment?"),
+        "question": _("Are there limits on items, users, or organizations?"),
         "answer": _(
-            "No. All plans are month-to-month with no lock-in. "
-            "You can cancel at any time from your account settings. "
-            "Access continues until the end of the paid period."
+            "No. Monium has no built-in limits on the number of items, users, or "
+            "organizations you can create. The only constraints are the resources of "
+            "the server you run it on."
         ),
     },
     {
-        "question": _("What happens to my data if I cancel?"),
+        "question": _("How is my data protected?"),
         "answer": _(
-            "Your data is kept for 30 days after cancellation. During this period, "
-            "you can export a full CSV of your inventory. After 30 days, all data "
-            "is permanently deleted from our servers."
-        ),
-    },
-    {
-        "question": _("How is my data stored and protected?"),
-        "answer": _(
-            "All data is stored in encrypted databases hosted in Brazil, complying with "
-            "LGPD requirements. Data in transit is protected by TLS 1.3. "
-            "Automated backups run daily with 30-day retention."
+            "Monium supports TLS in transit when deployed behind a reverse proxy like "
+            "Nginx, and stores data in PostgreSQL, which you can back up on your own "
+            "schedule. Since you control the infrastructure, security and backup "
+            "policies are up to you."
         ),
     },
     {
         "question": _("Can I import my existing inventory from Excel or CSV?"),
         "answer": _(
-            "Yes. Monium supports bulk import via CSV. Download our template, fill it in "
-            "with your existing data, and upload — items are created in seconds. "
-            "Our support team can assist with large or complex migrations."
+            "Yes. Monium supports bulk import via CSV. Download the template, fill it "
+            "in with your existing data, and upload — items are created in seconds."
         ),
     },
     {
         "question": _("Does Monium have a mobile app?"),
         "answer": _(
             "Monium is a fully responsive web app that works on any smartphone browser. "
-            "A native iOS and Android app is on the roadmap for 2026. "
             "QR code label scanning works via any mobile camera without installing an app."
         ),
     },
     {
-        "question": _("How many users can I add?"),
+        "question": _("Can I contribute or request a feature?"),
         "answer": _(
-            "Free: 1 user. Starter: up to 3 users. Pro: up to 10 users. "
-            "Enterprise: unlimited users with custom roles and SSO. "
-            "Additional user seats can also be purchased as an add-on."
-        ),
-    },
-    {
-        "question": _("Is there a discount for NGOs, schools, or public institutions?"),
-        "answer": _(
-            "Yes. We offer a 40% discount for registered NGOs, public schools, and "
-            "universities. Contact us at contact@monium.app with your institution's "
-            "documentation to apply."
-        ),
-    },
-    {
-        "question": _("Does Monium offer an API for integrations?"),
-        "answer": _(
-            "A REST API is available on the Pro and Enterprise plans. "
-            "You can integrate Monium with ERP systems, procurement platforms, or "
-            "internal tools. API documentation and sandbox access are available after signup."
-        ),
-    },
-    {
-        "question": _("What support options are available?"),
-        "answer": _(
-            "Free: community forum and documentation. "
-            "Starter: email support with 48h response time. "
-            "Pro: priority email support with 8h response time. "
-            "Enterprise: dedicated account manager with phone/video support and SLA."
+            "Yes. Monium is open source — issues and pull requests are welcome on the "
+            "project's repository."
         ),
     },
 ]

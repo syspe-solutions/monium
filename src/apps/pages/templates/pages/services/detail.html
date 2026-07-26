@@ -30,10 +30,6 @@
           {% trans "Start for free" %}
           <span class="material-symbols-outlined text-sm leading-none">arrow_forward</span>
         </a>
-        <a href="{% url 'billing:plans' %}"
-           class="px-5 py-2.5 rounded-lg border border-zinc-700 text-zinc-300 hover:bg-zinc-800 transition text-sm">
-          {% trans "View plans" %}
-        </a>
       </div>
     </div>
 
@@ -113,7 +109,7 @@
     <!-- CTA -->
     <div class="bg-zinc-900 border border-zinc-800 rounded-2xl p-8 text-center space-y-4">
       <h3 class="text-white text-xl font-bold">{% trans "Get started today" %}</h3>
-      <p class="text-zinc-400 text-sm">{% trans "Free plan available. No credit card required." %}</p>
+      <p class="text-zinc-400 text-sm">{% trans "Free and open source. No credit card required." %}</p>
       <a href="{% url 'account:register' %}"
          class="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-white text-zinc-950 font-semibold hover:bg-zinc-100 transition text-sm">
         {% trans "Create your free account" %}

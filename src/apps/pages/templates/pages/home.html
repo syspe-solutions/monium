@@ -19,7 +19,7 @@
       <div class="space-y-6">
         <div class="inline-flex items-center gap-2 bg-zinc-800 text-zinc-400 text-xs font-medium px-3 py-1 rounded-full">
           <span class="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span>
-          {% trans "Now in early access — start free" %}
+          {% trans "Open source & self-hosted" %}
         </div>
 
         <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight">
@@ -28,22 +28,22 @@
         </h1>
 
         <p class="text-zinc-400 text-lg leading-relaxed max-w-lg">
-          {% trans "Monium replaces spreadsheets with a clean, fast system for tracking assets, loans, and maintenance — so your team spends less time looking for things and more time using them." %}
+          {% trans "Monium replaces spreadsheets with a clean, fast system for tracking assets, loans, and maintenance — self-hosted on your own infrastructure, so your data never leaves your control." %}
         </p>
 
         <div class="flex flex-wrap gap-3">
           <a href="{% url 'account:register' %}"
              class="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-white text-zinc-950 font-semibold hover:bg-zinc-100 transition text-sm">
-            {% trans "Start for free" %}
+            {% trans "Create an account" %}
             <span class="material-symbols-outlined text-base leading-none">arrow_forward</span>
           </a>
-          <a href="{% url 'billing:plans' %}"
+          <a href="{% url 'pages:services' %}"
              class="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-zinc-700 text-zinc-300 hover:bg-zinc-800 hover:text-white transition text-sm">
-            {% trans "See plans" %}
+            {% trans "See what it does" %}
           </a>
         </div>
 
-        <p class="text-zinc-600 text-xs">{% trans "No credit card required. Free forever up to 50 items." %}</p>
+        <p class="text-zinc-600 text-xs">{% trans "Free and open source. No credit card, no vendor lock-in." %}</p>
       </div>
 
       <!-- Dashboard mockup -->
@@ -54,7 +54,7 @@
             <span class="w-2.5 h-2.5 rounded-full bg-zinc-700"></span>
             <span class="w-2.5 h-2.5 rounded-full bg-zinc-700"></span>
             <span class="w-2.5 h-2.5 rounded-full bg-zinc-700"></span>
-            <span class="ml-3 text-zinc-600 text-xs">monium.app/inventory</span>
+            <span class="ml-3 text-zinc-600 text-xs">your-server.com/inventory</span>
           </div>
           <!-- Fake stat cards -->
           <div class="p-4 grid grid-cols-2 gap-3">
@@ -108,16 +108,16 @@
   <section class="border-y border-zinc-800 bg-zinc-900/50">
     <div class="max-w-4xl mx-auto px-4 py-8 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
       <div>
-        <p class="text-2xl font-bold text-white">10k+</p>
-        <p class="text-zinc-500 text-sm">{% trans "assets tracked" %}</p>
+        <p class="text-2xl font-bold text-white">100%</p>
+        <p class="text-zinc-500 text-sm">{% trans "open source" %}</p>
       </div>
       <div>
-        <p class="text-2xl font-bold text-white">500+</p>
-        <p class="text-zinc-500 text-sm">{% trans "teams onboarded" %}</p>
+        <p class="text-2xl font-bold text-white">0</p>
+        <p class="text-zinc-500 text-sm">{% trans "usage limits" %}</p>
       </div>
       <div>
-        <p class="text-2xl font-bold text-white">98%</p>
-        <p class="text-zinc-500 text-sm">{% trans "satisfaction rate" %}</p>
+        <p class="text-2xl font-bold text-white">1</p>
+        <p class="text-zinc-500 text-sm">{% trans "docker compose up" %}</p>
       </div>
       <div>
         <p class="text-2xl font-bold text-white">< 2min</p>
@@ -184,39 +184,31 @@
     </div>
   </section>
 
-  <!-- ── PLANS PREVIEW ─────────────────────────────────────────────── -->
+  <!-- ── OPEN SOURCE ───────────────────────────────────────────────── -->
   <section class="max-w-6xl mx-auto px-4 py-20 space-y-10">
     <div class="text-center space-y-2">
-      <h2 class="text-3xl font-bold text-white">{% trans "Simple pricing" %}</h2>
-      <p class="text-zinc-400 text-sm">{% trans "Start free. No credit card. Upgrade when you're ready." %}</p>
+      <h2 class="text-3xl font-bold text-white">{% trans "Free, forever" %}</h2>
+      <p class="text-zinc-400 text-sm max-w-lg mx-auto">
+        {% trans "Monium is open source. Self-host it on your own server with Docker Compose — no subscriptions, no per-seat pricing, no usage limits." %}
+      </p>
     </div>
 
     <div class="grid sm:grid-cols-3 gap-5 max-w-3xl mx-auto">
-      <div class="bg-zinc-900 border border-zinc-800 rounded-2xl p-6 text-center space-y-3">
-        <p class="text-zinc-400 font-semibold">Free</p>
-        <p class="text-3xl font-bold text-white">R$0</p>
-        <p class="text-zinc-500 text-xs">{% trans "Up to 50 items" %}</p>
-        <a href="{% url 'account:register' %}" class="block w-full py-2 rounded-lg bg-zinc-800 text-zinc-200 text-sm hover:bg-zinc-700 transition">{% trans "Get started" %}</a>
+      <div class="bg-zinc-900 border border-zinc-800 rounded-2xl p-6 text-center space-y-2">
+        <span class="material-symbols-outlined text-white text-2xl leading-none">code</span>
+        <p class="text-white font-semibold text-sm">{% trans "Open source" %}</p>
+        <p class="text-zinc-500 text-xs">{% trans "Read, audit, and modify every line." %}</p>
       </div>
-      <div class="bg-zinc-800 border border-white/10 rounded-2xl p-6 text-center space-y-3 relative">
-        <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-white text-zinc-950 text-xs font-semibold px-3 py-0.5 rounded-full">{% trans "Popular" %}</div>
-        <p class="text-white font-semibold">Pro</p>
-        <p class="text-3xl font-bold text-white">R$149<span class="text-sm text-zinc-500">/{% trans "month" %}</span></p>
-        <p class="text-zinc-500 text-xs">{% trans "Unlimited items + API" %}</p>
-        <a href="{% url 'account:register' %}" class="block w-full py-2 rounded-lg bg-white text-zinc-950 text-sm font-medium hover:bg-zinc-100 transition">{% trans "Get Pro" %}</a>
+      <div class="bg-zinc-900 border border-zinc-800 rounded-2xl p-6 text-center space-y-2">
+        <span class="material-symbols-outlined text-white text-2xl leading-none">dns</span>
+        <p class="text-white font-semibold text-sm">{% trans "Self-hosted" %}</p>
+        <p class="text-zinc-500 text-xs">{% trans "Your data stays on your own infrastructure." %}</p>
       </div>
-      <div class="bg-zinc-900 border border-zinc-800 rounded-2xl p-6 text-center space-y-3">
-        <p class="text-zinc-400 font-semibold">Enterprise</p>
-        <p class="text-3xl font-bold text-white">{% trans "Custom" %}</p>
-        <p class="text-zinc-500 text-xs">{% trans "Unlimited + SLA + SSO" %}</p>
-        <a href="mailto:contact@monium.app" class="block w-full py-2 rounded-lg bg-zinc-800 text-zinc-200 text-sm hover:bg-zinc-700 transition">{% trans "Talk to us" %}</a>
+      <div class="bg-zinc-900 border border-zinc-800 rounded-2xl p-6 text-center space-y-2">
+        <span class="material-symbols-outlined text-white text-2xl leading-none">all_inclusive</span>
+        <p class="text-white font-semibold text-sm">{% trans "No limits" %}</p>
+        <p class="text-zinc-500 text-xs">{% trans "Unlimited items, users, and organizations." %}</p>
       </div>
-    </div>
-
-    <div class="text-center">
-      <a href="{% url 'billing:plans' %}" class="text-zinc-500 hover:text-zinc-300 text-sm underline transition">
-        {% trans "Compare all plans in detail" %}
-      </a>
     </div>
   </section>
 
@@ -225,7 +217,7 @@
     <div class="max-w-3xl mx-auto px-4 py-20 text-center space-y-6">
       <h2 class="text-3xl font-bold text-white">{% trans "Ready to take control of your inventory?" %}</h2>
       <p class="text-zinc-400 text-sm">
-        {% trans "Join 500+ teams already using Monium. Set up your account in under 5 minutes." %}
+        {% trans "Set up your own Monium instance in under 5 minutes." %}
       </p>
       <div class="flex flex-wrap justify-center gap-3">
         <a href="{% url 'account:register' %}"
@@ -234,7 +226,7 @@
           <span class="material-symbols-outlined text-base leading-none">arrow_forward</span>
         </a>
         <a href="{% url 'pages:faq' %}"
-           class="px-6 py-3 rounded-lg border border-zinc-700 text-zinc-300 hover:bg-zinc-800 transition text-sm">
+           class="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-zinc-700 text-zinc-300 hover:bg-zinc-800 hover:text-white transition text-sm">
           {% trans "Read FAQ" %}
         </a>
       </div>
