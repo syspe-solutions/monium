@@ -1,0 +1,115 @@
+{% extends "common/layouts/base-aside.html" %}
+{% load i18n %}
+{% load inventory_status %}
+
+{% block title %}{% trans "Assets" %} — Monium{% endblock %}
+
+{% block content %}
+<div class="p-6 space-y-6">
+
+    <!-- Header -->
+    <div class="flex items-center justify-between flex-wrap gap-3">
+        <div>
+            <h1 class="text-2xl font-bold text-white">{% trans "Assets" %}</h1>
+            <p class="text-sm text-zinc-500 mt-0.5">
+                {% blocktrans count count=total_count %}{{ count }} asset{% plural %}{{ count }} assets{% endblocktrans %}
+            </p>
+        </div>
+        <div class="flex items-center gap-2">
+            <a href="{% url 'inventory:patrimonio_choice' %}"
+               class="flex items-center gap-2 bg-white text-zinc-950 text-sm font-medium px-4 py-2.5 rounded hover:bg-zinc-100 transition">
+                <span class="material-symbols-outlined text-base leading-none">add</span>
+                {% trans "Register asset" %}
+            </a>
+        </div>
+    </div>
+
+    <!-- Filters -->
+    <form method="get" class="border border-zinc-800 rounded-xl bg-zinc-900 p-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 items-end">
+        <div class="lg:col-span-2 flex flex-col gap-1.5">
+            <label class="text-xs font-medium text-zinc-400">{{ form.q.label }}</label>
+            {{ form.q }}
+        </div>
+        <div class="flex flex-col gap-1.5">
+            <label class="text-xs font-medium text-zinc-400">{{ form.tipo.label }}</label>
+            {{ form.tipo }}
+        </div>
+        <div class="flex flex-col gap-1.5">
+            <label class="text-xs font-medium text-zinc-400">{{ form.condition.label }}</label>
+            {{ form.condition }}
+        </div>
+        <div class="flex items-center gap-3 lg:col-span-4">
+            <button type="submit"
+                    class="flex items-center gap-2 bg-white text-zinc-950 text-sm font-medium px-4 py-2 rounded hover:bg-zinc-100 transition">
+                <span class="material-symbols-outlined text-base leading-none">filter_alt</span>
+                {% trans "Filter" %}
+            </button>
+            <a href="{% url 'inventory:patrimonio_list' %}" class="text-sm text-zinc-500 hover:text-zinc-300 transition">
+                {% trans "Clear filters" %}
+            </a>
+        </div>
+    </form>
+
+    <!-- Assets table -->
+    <div class="border border-zinc-800 rounded-xl bg-zinc-900 overflow-hidden">
+        {% if rows %}
+        <div class="overflow-x-auto">
+            <table class="w-full text-sm">
+                <thead>
+                    <tr class="text-left text-xs text-zinc-500 font-semibold uppercase tracking-wide bg-zinc-800 border-b border-zinc-700">
+                        <th class="px-5 py-3">{% trans "Code" %}</th>
+                        <th class="px-5 py-3">{% trans "Name" %}</th>
+                        <th class="px-5 py-3">{% trans "Type" %}</th>
+                        <th class="px-5 py-3 hidden sm:table-cell">{% trans "Category" %}</th>
+                        <th class="px-5 py-3 hidden lg:table-cell">{% trans "Condition" %}</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-zinc-800">
+                    {% for row in rows %}
+                    <tr class="hover:bg-zinc-800/50 transition">
+                        <td class="px-5 py-3 font-mono text-xs text-zinc-500">{{ row.item.code }}</td>
+                        <td class="px-5 py-3 font-medium">
+                            <a href="{% url row.detail_url_name row.item.id %}" class="text-zinc-100 hover:text-white hover:underline">
+                                {{ row.item.name }}
+                            </a>
+                        </td>
+                        <td class="px-5 py-3">
+                            <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium {{ row.tipo|tipo_badge_class }}">
+                                {{ row.tipo_label }}
+                            </span>
+                        </td>
+                        <td class="px-5 py-3 text-zinc-400 hidden sm:table-cell">{{ row.categoria_nome }}</td>
+                        <td class="px-5 py-3 text-zinc-400 hidden lg:table-cell">{{ row.item.get_condition_display }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        {% if page_obj.has_other_pages %}
+        <div class="flex items-center justify-between px-5 py-3 border-t border-zinc-800 text-sm">
+            <span class="text-zinc-500 text-xs">
+                {% blocktrans with current=page_obj.number total=page_obj.paginator.num_pages %}Page {{ current }} of {{ total }}{% endblocktrans %}
+            </span>
+            <div class="flex items-center gap-2">
+                {% if page_obj.has_previous %}
+                <a href="?{% if filter_querystring %}{{ filter_querystring }}&{% endif %}page={{ page_obj.previous_page_number }}"
+                   class="px-3 py-1.5 border border-zinc-700 rounded text-zinc-300 hover:bg-zinc-800 transition">{% trans "Previous" %}</a>
+                {% endif %}
+                {% if page_obj.has_next %}
+                <a href="?{% if filter_querystring %}{{ filter_querystring }}&{% endif %}page={{ page_obj.next_page_number }}"
+                   class="px-3 py-1.5 border border-zinc-700 rounded text-zinc-300 hover:bg-zinc-800 transition">{% trans "Next" %}</a>
+                {% endif %}
+            </div>
+        </div>
+        {% endif %}
+
+        {% else %}
+        <div class="px-5 py-8 text-center text-sm text-zinc-500">
+            {% trans "No assets found." %}
+        </div>
+        {% endif %}
+    </div>
+
+</div>
+{% endblock %}

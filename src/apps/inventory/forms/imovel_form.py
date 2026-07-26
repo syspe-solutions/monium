@@ -18,7 +18,7 @@ class ImovelForm(forms.ModelForm):
             "condition", "notes",
         ]
         widgets = {
-            "code":              forms.TextInput(attrs={"class": _INPUT, "placeholder": "Ex: IMV-0001"}),
+            "code":              forms.TextInput(attrs={"class": _INPUT, "placeholder": "Ex: IMV-0001", "autofocus": True}),
             "name":              forms.TextInput(attrs={"class": _INPUT, "placeholder": "Nome do imóvel"}),
             "description":       forms.Textarea(attrs={"class": _TEXTAREA, "rows": 3, "placeholder": "Descrição opcional"}),
             "category":          forms.Select(attrs={"class": _SELECT}),

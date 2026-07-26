@@ -9,6 +9,7 @@ from .item_export_view import MovelExportView
 from .item_import_view import ItemImportTemplateView, ItemImportView
 from .item_list_view import MovelListView
 from .item_views import MovelCreateView
+from .patrimonio_views import PatrimonioChoiceView, PatrimonioListView
 
 __all__ = [
     "BrandSimilarityCheckView",
@@ -23,4 +24,6 @@ __all__ = [
     "MovelExportView",
     "MovelListView",
     "MovelsByCategoryView",
+    "PatrimonioChoiceView",
+    "PatrimonioListView",
 ]

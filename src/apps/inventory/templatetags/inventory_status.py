@@ -19,6 +19,11 @@ _LOAN_STATUS_BADGE_CLASSES = {
     LoanStatus.OVERDUE: "bg-red-950 text-red-400",
 }
 
+_TIPO_BADGE_CLASSES = {
+    "movel": "bg-blue-950 text-blue-400",
+    "imovel": "bg-purple-950 text-purple-400",
+}
+
 
 @register.filter
 def status_badge_class(status: str) -> str:
@@ -30,3 +35,9 @@ def status_badge_class(status: str) -> str:
 def loan_status_badge_class(status: str) -> str:
     """Mapeia um valor de LoanStatus para as classes Tailwind do badge correspondente."""
     return _LOAN_STATUS_BADGE_CLASSES.get(status, _DEFAULT_BADGE_CLASSES)
+
+
+@register.filter
+def tipo_badge_class(tipo: str) -> str:
+    """Mapeia "movel"/"imovel" para as classes Tailwind do badge correspondente."""
+    return _TIPO_BADGE_CLASSES.get(tipo, _DEFAULT_BADGE_CLASSES)

@@ -2,17 +2,17 @@ from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
+from django.utils.translation import gettext as _
 from django.views import View
 
-from apps.billing import services as billing_services
 from apps.inventory.forms.movel_form import MovelForm, MovelSpecForm
 from apps.inventory.models import Brand
-from apps.organizations.mixins import OrganizationNotLockedRequiredMixin
+from apps.organizations.mixins import InventoryWriteRequiredMixin
 
 from .brand_views import find_similar_brands
 
 
-class MovelCreateView(LoginRequiredMixin, OrganizationNotLockedRequiredMixin, View):
+class MovelCreateView(LoginRequiredMixin, InventoryWriteRequiredMixin, View):
     template_name = "inventory/item_form.html"
     success_url = reverse_lazy("inventory:dashboard")
 
@@ -40,12 +40,6 @@ class MovelCreateView(LoginRequiredMixin, OrganizationNotLockedRequiredMixin, Vi
                           self._context(form, spec_form, brand_id))
 
         organization = request.organization
-        if not billing_services.is_within_item_limit(organization):
-            messages.error(
-                request,
-                "Você atingiu o limite de itens do seu plano atual. Faça upgrade para continuar cadastrando.",
-            )
-            return redirect("billing:plans")
 
         # Resolve brand
         brand_instance = None
@@ -55,12 +49,15 @@ class MovelCreateView(LoginRequiredMixin, OrganizationNotLockedRequiredMixin, Vi
             try:
                 brand_instance = Brand.objects.get(id=brand_id)
             except Brand.DoesNotExist:
-                brand_error = "Marca selecionada não encontrada."
+                brand_error = _("Selected brand not found.")
         elif new_brand_name:
             similar = find_similar_brands(new_brand_name)
             if similar:
                 closest = similar[0][0].name
-                brand_error = f'Marca muito similar já existe: "{closest}". Selecione-a na lista ou escolha um nome diferente.'
+                brand_error = _(
+                    'A very similar brand already exists: "%(name)s". Select it from the list or choose a '
+                    "different name."
+                ) % {"name": closest}
             else:
                 brand_instance = Brand.objects.create(
                     name=new_brand_name,
@@ -94,5 +91,5 @@ class MovelCreateView(LoginRequiredMixin, OrganizationNotLockedRequiredMixin, Vi
             spec.updated_by = request.user
             spec.save()
 
-        messages.success(request, f'Item "{item.name}" cadastrado com sucesso.')
+        messages.success(request, _('Item "%(name)s" registered successfully.') % {"name": item.name})
         return redirect(self.success_url)

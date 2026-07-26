@@ -34,8 +34,6 @@ def _resolve_choice(raw_value: str, by_label: dict, by_value: dict):
 
 
 def import_items_from_csv(organization, csv_file, user) -> ImportResult:
-    from apps.billing import services as billing_services
-
     result = ImportResult()
 
     try:
@@ -118,13 +116,6 @@ def import_items_from_csv(organization, csv_file, user) -> ImportResult:
                 _('Row %(row)s: unknown condition "%(value)s".') % {"row": row_number, "value": condition_raw}
             )
             continue
-
-        if not billing_services.is_within_item_limit(organization):
-            result.errors.append(
-                _("Row %(row)s: plan item limit reached — remaining rows were not imported.")
-                % {"row": row_number}
-            )
-            break
 
         item = Movel.objects.create(
             organization=organization,

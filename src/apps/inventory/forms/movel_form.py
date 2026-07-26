@@ -16,7 +16,7 @@ class MovelForm(forms.ModelForm):
             "status", "condition", "notes",
         ]
         widgets = {
-            "code":        forms.TextInput(attrs={"class": _INPUT, "placeholder": "Ex: PAT-0001"}),
+            "code":        forms.TextInput(attrs={"class": _INPUT, "placeholder": "Ex: PAT-0001", "autofocus": True}),
             "name":        forms.TextInput(attrs={"class": _INPUT, "placeholder": "Nome do item"}),
             "description": forms.Textarea(attrs={"class": _TEXTAREA, "rows": 3, "placeholder": "Descrição opcional"}),
             "category":    forms.Select(attrs={"class": _SELECT}),
@@ -48,5 +48,5 @@ class MovelSpecForm(forms.ModelForm):
         widgets = {
             "model_name":    forms.TextInput(attrs={"class": _INPUT, "placeholder": "Ex: Inspiron 15"}),
             "serial_number": forms.TextInput(attrs={"class": _INPUT, "placeholder": "Número de série"}),
-            "image":         forms.ClearableFileInput(attrs={"class": "text-sm text-zinc-500 file:mr-3 file:py-1.5 file:px-3 file:rounded file:border-0 file:text-sm file:font-medium file:bg-zinc-800 file:text-zinc-200 hover:file:bg-zinc-700"}),
+            "image":         forms.ClearableFileInput(attrs={"class": "hidden", "accept": "image/*"}),
         }

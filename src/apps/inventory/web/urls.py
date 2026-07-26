@@ -13,12 +13,16 @@ from .views import (
     MovelExportView,
     MovelListView,
     MovelsByCategoryView,
+    PatrimonioChoiceView,
+    PatrimonioListView,
 )
 
 app_name = "inventory"
 
 urlpatterns = [
     path("", HomeView.as_view(), name="home"),
+    path("patrimonios/", PatrimonioListView.as_view(), name="patrimonio_list"),
+    path("patrimonios/novo/", PatrimonioChoiceView.as_view(), name="patrimonio_choice"),
     path("categories/", MovelsByCategoryView.as_view(), name="dashboard"),
     path("items/", MovelListView.as_view(), name="item_list"),
     path("items/add/", MovelCreateView.as_view(), name="item_create"),

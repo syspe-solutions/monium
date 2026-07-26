@@ -5,14 +5,15 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
+from django.utils.translation import ngettext
 from django.views import View
 
 from apps.inventory.forms.item_import_form import ItemImportForm
 from apps.inventory.services.item_import import IMPORT_COLUMNS, import_items_from_csv
-from apps.organizations.mixins import OrganizationNotLockedRequiredMixin
+from apps.organizations.mixins import InventoryWriteRequiredMixin
 
 
-class ItemImportView(LoginRequiredMixin, OrganizationNotLockedRequiredMixin, View):
+class ItemImportView(LoginRequiredMixin, InventoryWriteRequiredMixin, View):
     template_name = "inventory/item_import.html"
     success_url = reverse_lazy("inventory:item_list")
 
@@ -29,7 +30,12 @@ class ItemImportView(LoginRequiredMixin, OrganizationNotLockedRequiredMixin, Vie
         if result.created_count:
             messages.success(
                 request,
-                f"{result.created_count} item(ns) importado(s) com sucesso.",
+                ngettext(
+                    "%(count)s item imported successfully.",
+                    "%(count)s items imported successfully.",
+                    result.created_count,
+                )
+                % {"count": result.created_count},
             )
         if result.has_errors:
             return render(request, self.template_name, {"form": ItemImportForm(), "result": result})
