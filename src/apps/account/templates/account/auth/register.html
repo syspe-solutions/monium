@@ -40,14 +40,14 @@
 
     <!-- Form panel -->
     <div class="flex-1 flex items-center justify-center p-6 sm:p-10">
-        <div class="w-full max-w-sm">
+        <div class="w-full max-w-md">
 
             <div class="text-center mb-6">
                 <h1 class="text-white text-2xl font-bold">{% trans "Create your account!" %}</h1>
                 <p class="text-zinc-400 text-sm mt-1">{% trans "Join us! Create your account today" %}</p>
             </div>
 
-            <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-6">
+            <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-6 shadow-xl shadow-black/20">
                 <form method="post" class="flex flex-col gap-4">
                     {% csrf_token %}
 

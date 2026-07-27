@@ -24,7 +24,7 @@
     </div>
 
     <!-- Filters -->
-    <form method="get" class="border border-zinc-800 rounded-xl bg-zinc-900 p-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 items-end">
+    <form method="get" class="border border-zinc-800 rounded-xl bg-zinc-900 p-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 items-end shadow-xl shadow-black/20">
         <div class="lg:col-span-2 flex flex-col gap-1.5">
             <label class="text-xs font-medium text-zinc-400">{{ form.q.label }}</label>
             {{ form.q }}
@@ -54,7 +54,7 @@
     </form>
 
     <!-- Imoveis table -->
-    <div class="border border-zinc-800 rounded-xl bg-zinc-900 overflow-hidden">
+    <div class="border border-zinc-800 rounded-xl bg-zinc-900 overflow-hidden shadow-xl shadow-black/20">
         {% if imoveis %}
         <div class="overflow-x-auto">
             <table class="w-full text-sm">

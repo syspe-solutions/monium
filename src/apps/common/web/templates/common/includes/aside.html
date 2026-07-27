@@ -92,24 +92,24 @@
 
             <!-- Organizações -->
             <div class="relative">
-                <div class="nav-item flex items-center gap-1 rounded-lg transition-all
+                <div class="nav-item flex items-center gap-1 justify-between rounded-lg transition-all
                             {% if request.resolver_match.url_name in 'members,member_create,member_remove,member_role_update,create,delete' %}bg-zinc-800 text-white{% else %}hover:bg-zinc-800{% endif %}">
                     <button type="button" id="org-menu-name-toggle"
-                            class="flex items-center gap-3 flex-1 p-3 rounded-lg text-left overflow-hidden">
+                            class="flex items-center justify-left gap-3 flex p-3 rounded-lg text-left overflow-hidden">
                         <span class="material-symbols-outlined text-sm shrink-0">domain</span>
                         <span class="sidebar-text text-sm overflow-hidden whitespace-nowrap truncate">
                             {% if current_organization %}{{ current_organization.name }}{% else %}{% trans "Organizations" %}{% endif %}
                         </span>
                     </button>
                     <button type="button" id="org-menu-arrow-toggle"
-                            class="sidebar-text shrink-0 p-2 mr-1 rounded hover:bg-zinc-700 transition"
+                            class="sidebar-text shrink-0 p-2 rounded hover:bg-zinc-700 transition"
                             aria-label="{% trans 'Switch organization' %}" title="{% trans 'Switch organization' %}">
-                        <span class="material-symbols-outlined text-sm shrink-0">unfold_more</span>
+                        <span class="material-symbols-outlined w-4 h-auto text-sm shrink-0">unfold_more</span>
                     </button>
                 </div>
 
                 <div id="org-menu-panel"
-                     class="hidden sidebar-text mt-1 ml-2 border border-zinc-800 rounded-lg bg-zinc-950 overflow-hidden">
+                     class="hidden sidebar-text border border-zinc-800 rounded-lg bg-zinc-950 overflow-hidden">
                     {% for org in user_organizations %}
                     <div class="flex items-center justify-between gap-2 px-3 py-2 border-b border-zinc-800 last:border-b-0
                                 {% if org == current_organization %}bg-zinc-800{% endif %}">

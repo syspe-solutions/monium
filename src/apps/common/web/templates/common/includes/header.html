@@ -12,13 +12,13 @@
       <!-- Language switcher (desktop) -->
       <div class="hidden sm:block relative group">
         <div class="cursor-pointer flex items-center gap-1 px-3 py-1.5
-                    border border-zinc-700 rounded-md bg-zinc-900 hover:bg-zinc-800
+                    border border-zinc-700 rounded-lg bg-zinc-900 hover:bg-zinc-800
                     transition select-none text-sm text-zinc-300">
           <span class="material-symbols-outlined text-zinc-500 text-base leading-none">translate</span>
           <span class="font-medium">{% if request.LANGUAGE_CODE == "pt-br" %}PT{% else %}EN{% endif %}</span>
           <span class="material-symbols-outlined text-zinc-600 text-sm leading-none">expand_more</span>
         </div>
-        <div class="absolute right-0 mt-1 w-36 bg-zinc-900 border border-zinc-700 rounded-md shadow-lg
+        <div class="absolute right-0 mt-1 w-36 bg-zinc-900 border border-zinc-700 rounded-lg shadow-lg
                     opacity-0 invisible group-hover:opacity-100 group-hover:visible
                     transition-all duration-150 overflow-hidden">
           <form method="post" action="{% url 'set_language' %}" class="flex flex-col">

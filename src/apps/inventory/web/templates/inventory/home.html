@@ -25,7 +25,7 @@
 
     {% if not total_items %}
     <!-- Onboarding: primeira organização sem itens ainda -->
-    <div class="border border-zinc-800 rounded-xl bg-zinc-900 p-6 flex flex-col sm:flex-row items-start sm:items-center gap-4 justify-between">
+    <div class="border border-zinc-800 rounded-xl bg-zinc-900 p-6 flex flex-col sm:flex-row items-start sm:items-center gap-4 justify-between shadow-xl shadow-black/20">
         <div class="flex items-start gap-3">
             <span class="material-symbols-outlined text-white text-2xl leading-none shrink-0">rocket_launch</span>
             <div>
@@ -46,13 +46,13 @@
     <!-- Summary cards -->
     <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
 
-        <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-4 flex flex-col gap-1">
+        <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-4 flex flex-col gap-1 shadow-xl shadow-black/20">
             <span class="text-xs font-semibold text-zinc-500 uppercase tracking-wide">{% trans "Total" %}</span>
             <span class="text-3xl font-bold text-white">{{ total_items }}</span>
             <span class="text-xs text-zinc-500">{% trans "registered items" %}</span>
         </div>
 
-        <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-4 flex flex-col gap-1">
+        <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-4 flex flex-col gap-1 shadow-xl shadow-black/20">
             <span class="text-xs font-semibold text-green-500 uppercase tracking-wide">{% trans "Active" %}</span>
             <span class="text-3xl font-bold text-green-400">{{ active_items }}</span>
             <div class="w-full bg-zinc-800 rounded-full h-1 mt-1">
@@ -60,19 +60,19 @@
             </div>
         </div>
 
-        <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-4 flex flex-col gap-1">
+        <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-4 flex flex-col gap-1 shadow-xl shadow-black/20">
             <span class="text-xs font-semibold text-amber-500 uppercase tracking-wide">{% trans "Maintenance" %}</span>
             <span class="text-3xl font-bold text-amber-400">{{ maintenance_items }}</span>
             <span class="text-xs text-zinc-500">{% trans "in maintenance" %}</span>
         </div>
 
-        <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-4 flex flex-col gap-1">
+        <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-4 flex flex-col gap-1 shadow-xl shadow-black/20">
             <span class="text-xs font-semibold text-red-400 uppercase tracking-wide">{% trans "Missing" %}</span>
             <span class="text-3xl font-bold text-red-400">{{ missing_items }}</span>
             <span class="text-xs text-zinc-500">{% trans "missing" %}</span>
         </div>
 
-        <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-4 flex flex-col gap-1">
+        <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-4 flex flex-col gap-1 shadow-xl shadow-black/20">
             <span class="text-xs font-semibold text-zinc-500 uppercase tracking-wide">{% trans "Written Off" %}</span>
             <span class="text-3xl font-bold text-zinc-400">{{ written_off_items }}</span>
             <span class="text-xs text-zinc-500">{% trans "written off" %}</span>
@@ -84,7 +84,7 @@
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
 
         <!-- Alerts -->
-        <div class="border border-zinc-800 rounded-xl bg-zinc-900 overflow-hidden">
+        <div class="border border-zinc-800 rounded-xl bg-zinc-900 overflow-hidden shadow-xl shadow-black/20">
             <div class="flex items-center gap-2 px-5 py-4 border-b border-zinc-800">
                 <span class="material-symbols-outlined text-amber-500 text-base leading-none">warning</span>
                 <h2 class="text-sm font-semibold text-white">{% trans "Alerts & Pending" %}</h2>
@@ -168,7 +168,7 @@
         </div>
 
         <!-- Quick actions -->
-        <div class="border border-zinc-800 rounded-xl bg-zinc-900 overflow-hidden">
+        <div class="border border-zinc-800 rounded-xl bg-zinc-900 overflow-hidden shadow-xl shadow-black/20">
             <div class="flex items-center gap-2 px-5 py-4 border-b border-zinc-800">
                 <span class="material-symbols-outlined text-zinc-400 text-base leading-none">bolt</span>
                 <h2 class="text-sm font-semibold text-white">{% trans "Quick Actions" %}</h2>
@@ -203,7 +203,7 @@
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
 
         <!-- Items by category -->
-        <div class="border border-zinc-800 rounded-xl bg-zinc-900 overflow-hidden">
+        <div class="border border-zinc-800 rounded-xl bg-zinc-900 overflow-hidden shadow-xl shadow-black/20">
             <div class="flex items-center gap-2 px-5 py-4 border-b border-zinc-800">
                 <span class="material-symbols-outlined text-zinc-400 text-base leading-none">donut_small</span>
                 <h2 class="text-sm font-semibold text-white">{% trans "Items by Category" %}</h2>
@@ -227,7 +227,7 @@
         </div>
 
         <!-- Top sectors -->
-        <div class="border border-zinc-800 rounded-xl bg-zinc-900 overflow-hidden">
+        <div class="border border-zinc-800 rounded-xl bg-zinc-900 overflow-hidden shadow-xl shadow-black/20">
             <div class="flex items-center gap-2 px-5 py-4 border-b border-zinc-800">
                 <span class="material-symbols-outlined text-zinc-400 text-base leading-none">apartment</span>
                 <h2 class="text-sm font-semibold text-white">{% trans "Top Sectors" %}</h2>
@@ -254,7 +254,7 @@
     </div>
 
     <!-- Latest registered items -->
-    <div class="border border-zinc-800 rounded-xl bg-zinc-900 overflow-hidden">
+    <div class="border border-zinc-800 rounded-xl bg-zinc-900 overflow-hidden shadow-xl shadow-black/20">
         <div class="flex items-center justify-between px-5 py-4 border-b border-zinc-800">
             <div class="flex items-center gap-2">
                 <span class="material-symbols-outlined text-zinc-400 text-base leading-none">history</span>
