@@ -19,7 +19,7 @@ class OrganizationCreateView(LoginRequiredMixin, View):
 
     def post(self, request):
         is_first = request.user.organization is None
-        form = OrganizationForm(request.POST)
+        form = OrganizationForm(request.POST, request.FILES)
         if not form.is_valid():
             return render(request, self.template_name, {"form": form, "is_first": is_first})
 

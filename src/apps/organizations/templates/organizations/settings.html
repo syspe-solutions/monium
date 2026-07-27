@@ -28,7 +28,7 @@
   </div>
   {% endif %}
 
-  <form id="organization-form" method="post" class="flex flex-col gap-8">
+  <form id="organization-form" method="post" enctype="multipart/form-data" class="flex flex-col gap-8">
     {% csrf_token %}
 
     {% if form.non_field_errors %}
@@ -51,10 +51,33 @@
           <h2 class="text-sm font-semibold">{% trans "Organization Information" %}</h2>
         </div>
 
-        <div class="flex flex-col gap-1.5">
-          <label for="{{ form.name.id_for_label }}" class="text-xs font-medium text-zinc-400">{{ form.name.label }}</label>
-          {{ form.name }}
-          {% if form.name.errors %}<p class="text-red-400 text-xs mt-1">{{ form.name.errors }}</p>{% endif %}
+        <div class="flex flex-col sm:flex-row items-start gap-5">
+          <div class="flex flex-col items-center gap-2 shrink-0">
+            <label for="{{ form.logo.id_for_label }}" id="org-logo-dropzone"
+                   class="relative flex items-center justify-center w-20 h-20 rounded-xl
+                          border-2 border-dashed border-zinc-700 bg-zinc-950/40 hover:border-zinc-500
+                          hover:bg-zinc-800/40 transition cursor-pointer overflow-hidden">
+              <div id="org-logo-placeholder" class="flex items-center justify-center {% if current_organization.logo %}hidden{% endif %}">
+                <span class="material-symbols-outlined text-xl leading-none text-zinc-600">add_photo_alternate</span>
+              </div>
+              {% if current_organization.logo %}
+              <img id="org-logo-current" src="{{ current_organization.logo.url }}" alt="{% trans 'Logo' %}" class="absolute inset-0 w-full h-full object-cover">
+              {% endif %}
+              <img id="org-logo-preview" alt="{% trans 'Preview' %}" class="hidden absolute inset-0 w-full h-full object-cover">
+            </label>
+            <div class="hidden">{{ form.logo }}</div>
+            <button type="button" id="remove-org-logo" class="hidden text-[11px] text-red-400 hover:text-red-300 hover:underline">
+              {% trans "Remove image" %}
+            </button>
+          </div>
+
+          <div class="flex-1 flex flex-col gap-1.5 w-full">
+            <label for="{{ form.name.id_for_label }}" class="text-xs font-medium text-zinc-400">{{ form.name.label }}</label>
+            {{ form.name }}
+            {% if form.name.errors %}<p class="text-red-400 text-xs mt-1">{{ form.name.errors }}</p>{% endif %}
+            <p class="text-[11px] text-zinc-600">{% trans "Square image, PNG or JPG — up to 5MB" %}</p>
+            {% if form.logo.errors %}<p class="text-red-400 text-xs">{{ form.logo.errors }}</p>{% endif %}
+          </div>
         </div>
       </div>
 
@@ -151,5 +174,65 @@
       {% trans "Saving..." %}
     `;
   });
+
+  // Logo dropzone: preview, remove, drag & drop
+  const logoInput = document.getElementById('{{ form.logo.id_for_label }}');
+  const logoDropzone = document.getElementById('org-logo-dropzone');
+  const logoPlaceholder = document.getElementById('org-logo-placeholder');
+  const logoCurrent = document.getElementById('org-logo-current');
+  const logoPreview = document.getElementById('org-logo-preview');
+  const removeLogoBtn = document.getElementById('remove-org-logo');
+
+  function showLogo(file) {
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = e => {
+      logoPreview.src = e.target.result;
+      logoPreview.classList.remove('hidden');
+      logoPlaceholder.classList.add('hidden');
+      if (logoCurrent) logoCurrent.classList.add('hidden');
+      removeLogoBtn.classList.remove('hidden');
+    };
+    reader.readAsDataURL(file);
+  }
+
+  if (logoInput) {
+    logoInput.addEventListener('change', function () {
+      if (this.files && this.files[0]) showLogo(this.files[0]);
+    });
+
+    removeLogoBtn.addEventListener('click', function (event) {
+      event.preventDefault();
+      logoInput.value = '';
+      logoPreview.classList.add('hidden');
+      if (logoCurrent) {
+        logoCurrent.classList.remove('hidden');
+      } else {
+        logoPlaceholder.classList.remove('hidden');
+      }
+      this.classList.add('hidden');
+    });
+
+    ['dragenter', 'dragover'].forEach(eventName => {
+      logoDropzone.addEventListener(eventName, function (event) {
+        event.preventDefault();
+        logoDropzone.classList.add('border-zinc-500', 'bg-zinc-800/40');
+      });
+    });
+    ['dragleave', 'drop'].forEach(eventName => {
+      logoDropzone.addEventListener(eventName, function (event) {
+        event.preventDefault();
+        logoDropzone.classList.remove('border-zinc-500', 'bg-zinc-800/40');
+      });
+    });
+    logoDropzone.addEventListener('drop', function (event) {
+      event.preventDefault();
+      const file = event.dataTransfer.files && event.dataTransfer.files[0];
+      if (file) {
+        logoInput.files = event.dataTransfer.files;
+        showLogo(file);
+      }
+    });
+  }
 </script>
 {% endblock %}

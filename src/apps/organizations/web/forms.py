@@ -2,9 +2,12 @@ import uuid
 
 from django import forms
 from django.contrib.auth import get_user_model
+from django.core.files.uploadedfile import UploadedFile
 from django.utils.text import slugify
 from django.utils.translation import gettext_lazy as _
 
+from apps.account.services.image_processor_service import ImageProcessor
+from apps.account.services.image_validator_service import ImageValidator
 from apps.account.utils import AuthenticationUtils
 from apps.organizations.models import ASSIGNABLE_MEMBERSHIP_ROLES, Membership, Organization
 
@@ -16,19 +19,42 @@ _PASSWORD = _INPUT
 class OrganizationForm(forms.ModelForm):
     class Meta:
         model = Organization
-        fields = ["name", "industry", "size", "primary_goal"]
+        fields = ["name", "logo", "industry", "size", "primary_goal"]
         labels = {
             "name": "Nome da organização",
+            "logo": "Logo",
             "industry": "Setor de atuação",
             "size": "Porte da equipe",
             "primary_goal": "O que você pretende controlar?",
         }
         widgets = {
             "name": forms.TextInput(attrs={"class": _INPUT, "placeholder": "Ex: Minha Empresa"}),
+            "logo": forms.ClearableFileInput(attrs={"class": "hidden", "accept": "image/*"}),
             "industry": forms.Select(attrs={"class": _SELECT}),
             "size": forms.Select(attrs={"class": _SELECT}),
             "primary_goal": forms.Select(attrs={"class": _SELECT}),
         }
+
+    def clean_logo(self):
+        logo = self.cleaned_data.get("logo")
+        # Só valida/reprocessa em upload novo — sem isso, editar qualquer outro campo
+        # reprocessaria e regravaria a logo já salva a cada save (recompressão JPEG
+        # perdendo qualidade a cada vez, sem necessidade).
+        if not logo or not isinstance(logo, UploadedFile):
+            return logo
+        try:
+            ImageValidator.validate_size(logo)
+            ImageValidator.validate_extension(logo.name)
+            ImageValidator.validate_image(logo)
+            logo.seek(0)
+        except ValueError as error:
+            raise forms.ValidationError(str(error))
+        processed = ImageProcessor().resize_square(logo)
+        # resize_square sempre regrava como JPEG — o nome precisa refletir isso,
+        # senão o arquivo fica com extensão .png/.webp contendo bytes JPEG.
+        base_name = logo.name.rsplit(".", 1)[0]
+        processed.name = f"{base_name}.jpg"
+        return processed
 
     def save(self, commit=True):
         organization = super().save(commit=False)

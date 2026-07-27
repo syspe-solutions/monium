@@ -1,7 +1,14 @@
+import uuid
+
 from django.conf import settings
 from django.db import models
 
 from apps.common.models import BaseModelAbstract
+
+
+def organization_logo_upload_path(instance, filename):
+    ext = filename.split(".")[-1].lower()
+    return f"organizations/{instance.id}/{uuid.uuid4().hex}.{ext}"
 
 
 class OrganizationIndustry(models.TextChoices):
@@ -35,6 +42,12 @@ class OrganizationGoal(models.TextChoices):
 class Organization(BaseModelAbstract):
     name = models.CharField(max_length=150, verbose_name="Nome")
     slug = models.SlugField(max_length=160, unique=True, verbose_name="Slug")
+    logo = models.ImageField(
+        upload_to=organization_logo_upload_path,
+        null=True,
+        blank=True,
+        verbose_name="Logo",
+    )
     industry = models.CharField(
         max_length=30,
         choices=OrganizationIndustry.choices,

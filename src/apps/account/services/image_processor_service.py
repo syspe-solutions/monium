@@ -33,5 +33,28 @@ class ImageProcessor:
         
         content_file = ContentFile(buffer.getvalue())
         content_file.content_type = content_type # Isso ajuda o S3 a identificar o arquivo corretamente
-        
+
+        return content_file
+
+    def resize_square(self, image_file, size=512):
+        """Recorta para 1:1 (centralizado no menor lado) e reduz para um quadrado
+        de até `size`px — usado por logos/ícones que precisam ser sempre quadrados."""
+        image = Image.open(image_file)
+
+        if image.mode in ("RGBA", "P"):
+            image = image.convert("RGB")
+
+        width, height = image.size
+        side = min(width, height)
+        left = (width - side) // 2
+        top = (height - side) // 2
+        image = image.crop((left, top, left + side, top + side))
+        image.thumbnail((size, size), Image.LANCZOS)
+
+        buffer = BytesIO()
+        image.save(buffer, format="JPEG", quality=90)
+
+        content_file = ContentFile(buffer.getvalue())
+        content_file.content_type = "image/jpeg"
+
         return content_file

@@ -2,61 +2,180 @@
 {% load widget_tweaks %}
 {% load i18n %}
 
-{% block header %}
-<header class="fixed w-full bg-zinc-950 border-b border-zinc-800 z-50">
-  <div class="px-4 py-3 flex items-center justify-start">
-    <span class="text-xl font-bold text-white">Monium</span>
-  </div>
-</header>
-{% endblock %}
+{% block title %}{% trans "Create organization" %} — Monium{% endblock %}
 
+{% block header %}{% endblock %}
 {% block footer %}{% endblock %}
 
 {% block content %}
-<main class="min-h-screen px-4 pt-20 pb-4 flex flex-col items-center justify-center">
-    <div class="flex flex-col w-full max-w-md justify-center gap-4">
+<div class="min-h-screen flex flex-col lg:flex-row">
 
-        <div class="flex flex-col justify-center text-center">
-            <h1 class="text-white text-2xl font-bold text-center">
-                {% if is_first %}{% trans "Create your organization" %}{% else %}{% trans "Create another organization" %}{% endif %}
-            </h1>
-            <p class="text-zinc-400 text-sm">
-                {% if is_first %}
-                    {% trans "You need an organization to start using Monium." %}
-                {% else %}
-                    {% trans "You can create as many organizations as you need." %}
-                {% endif %}
+    <!-- Brand panel -->
+    <div class="w-full lg:w-1/2 flex flex-col justify-between gap-10 p-6 sm:p-10 lg:p-12
+                bg-gradient-to-br from-zinc-900 to-zinc-950 border-b lg:border-b-0 lg:border-r border-zinc-800">
+        <a href="{% url 'inventory:home' %}" class="w-fit">
+            {% include "common/includes/logo.html" %}
+        </a>
+
+        <div class="max-w-md">
+            <h2 class="text-2xl lg:text-3xl font-bold text-white leading-tight mb-3">
+                {% trans "One organization per team, all in one place." %}
+            </h2>
+            <p class="text-zinc-400 text-sm leading-relaxed">
+                {% trans "Keep inventory, loans and maintenance separated per organization — no limit on organizations or members." %}
             </p>
         </div>
 
-        <form method="post" class="border rounded-xl flex flex-col gap-3 p-4 border-zinc-800 bg-zinc-900">
-            {% csrf_token %}
-
-            {% if form.non_field_errors %}
-            {% for error in form.non_field_errors %}
-            <div class="flex items-center gap-2 px-3 py-2 rounded bg-red-950 border border-red-800 text-red-400 text-sm">
-                <span class="material-symbols-outlined text-base leading-none">error</span>
-                {{ error }}
+        <div class="flex gap-3 max-w-md">
+            <div class="flex-1 bg-zinc-800/50 border border-zinc-800 rounded-lg p-4">
+                <p class="text-green-400 text-lg font-bold">100%</p>
+                <p class="text-zinc-500 text-xs">{% trans "open source" %}</p>
             </div>
-            {% endfor %}
-            {% endif %}
-
-            {% for field in form %}
-            <div>
-                <label for="{{ field.id_for_label }}" class="block font-medium text-xs sm:text-sm mb-1 text-zinc-400">
-                    {{ field.label }}
-                </label>
-                {{ field }}
-                {% if field.errors %}
-                <p class="text-red-400 text-xs mt-1">{{ field.errors }}</p>
-                {% endif %}
+            <div class="flex-1 bg-zinc-800/50 border border-zinc-800 rounded-lg p-4">
+                <p class="text-white text-lg font-bold">0</p>
+                <p class="text-zinc-500 text-xs">{% trans "usage limits" %}</p>
             </div>
-            {% endfor %}
-
-            <button type="submit" class="w-full bg-white text-zinc-950 py-2 px-4 rounded hover:bg-zinc-200 transition font-medium">
-                {% trans "Create organization" %}
-            </button>
-        </form>
+        </div>
     </div>
-</main>
+
+    <!-- Form panel -->
+    <div class="flex-1 flex items-center justify-center p-6 sm:p-10">
+        <div class="w-full max-w-md">
+
+            <div class="text-center mb-6">
+                <h1 class="text-white text-2xl font-bold">
+                    {% if is_first %}{% trans "Create your organization" %}{% else %}{% trans "Create another organization" %}{% endif %}
+                </h1>
+                <p class="text-zinc-400 text-sm mt-1">
+                    {% if is_first %}
+                        {% trans "You need an organization to start using Monium." %}
+                    {% else %}
+                        {% trans "You can create as many organizations as you need." %}
+                    {% endif %}
+                </p>
+            </div>
+
+            <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-6 shadow-xl shadow-black/20">
+                <form method="post" enctype="multipart/form-data" class="flex flex-col gap-4">
+                    {% csrf_token %}
+
+                    {% if form.non_field_errors %}
+                    {% for error in form.non_field_errors %}
+                    <div class="flex items-center gap-2 px-3 py-2 rounded-lg bg-red-950 border border-red-800 text-red-400 text-sm">
+                        <span class="material-symbols-outlined text-base leading-none">error</span>
+                        {{ error }}
+                    </div>
+                    {% endfor %}
+                    {% endif %}
+
+                    <!-- Logo -->
+                    <div class="flex flex-col items-center gap-2">
+                        <label for="{{ form.logo.id_for_label }}" id="org-logo-dropzone"
+                               class="relative flex flex-col items-center justify-center gap-1 w-24 h-24 rounded-xl
+                                      border-2 border-dashed border-zinc-700 bg-zinc-950/40 hover:border-zinc-500
+                                      hover:bg-zinc-800/40 transition cursor-pointer overflow-hidden shrink-0">
+                            <div id="org-logo-placeholder" class="flex flex-col items-center gap-1 text-center px-2">
+                                <span class="material-symbols-outlined text-2xl leading-none text-zinc-600">add_photo_alternate</span>
+                                <span class="text-[10px] font-medium text-zinc-500">{% trans "Logo" %}</span>
+                            </div>
+                            <img id="org-logo-preview" alt="{% trans 'Preview' %}" class="hidden absolute inset-0 w-full h-full object-cover">
+                        </label>
+                        <div class="hidden">{{ form.logo }}</div>
+                        <button type="button" id="remove-org-logo"
+                                class="hidden text-xs text-red-400 hover:text-red-300 hover:underline">
+                            {% trans "Remove image" %}
+                        </button>
+                        <p class="text-[11px] text-zinc-600">{% trans "Square image, PNG or JPG — up to 5MB" %}</p>
+                        {% if form.logo.errors %}<p class="text-red-400 text-xs">{{ form.logo.errors }}</p>{% endif %}
+                    </div>
+
+                    {% for field in form %}
+                    {% if field.name != "logo" %}
+                    <div>
+                        <label for="{{ field.id_for_label }}" class="block font-medium text-xs mb-1.5 text-zinc-400">
+                            {{ field.label }}
+                        </label>
+                        {{ field }}
+                        {% if field.errors %}
+                        <p class="text-red-400 text-xs mt-1">{{ field.errors }}</p>
+                        {% endif %}
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+
+                    <button type="submit"
+                            class="bg-white text-zinc-950 text-center py-2.5 rounded-lg font-semibold text-sm hover:bg-zinc-100 transition">
+                        {% trans "Create organization" %}
+                    </button>
+                </form>
+            </div>
+
+            {% if not is_first %}
+            <p class="text-center mt-5 text-sm text-zinc-500">
+                <a href="{% url 'inventory:dashboard' %}" class="hover:text-zinc-300 hover:underline">
+                    {% trans "Back to dashboard" %}
+                </a>
+            </p>
+            {% endif %}
+        </div>
+    </div>
+
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+  const logoInput = document.getElementById('{{ form.logo.id_for_label }}');
+  const logoDropzone = document.getElementById('org-logo-dropzone');
+  const logoPlaceholder = document.getElementById('org-logo-placeholder');
+  const logoPreview = document.getElementById('org-logo-preview');
+  const removeLogoBtn = document.getElementById('remove-org-logo');
+
+  function showLogo(file) {
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = e => {
+      logoPreview.src = e.target.result;
+      logoPreview.classList.remove('hidden');
+      logoPlaceholder.classList.add('hidden');
+      removeLogoBtn.classList.remove('hidden');
+    };
+    reader.readAsDataURL(file);
+  }
+
+  if (logoInput) {
+    logoInput.addEventListener('change', function () {
+      if (this.files && this.files[0]) showLogo(this.files[0]);
+    });
+
+    removeLogoBtn.addEventListener('click', function (event) {
+      event.preventDefault();
+      logoInput.value = '';
+      logoPreview.classList.add('hidden');
+      logoPlaceholder.classList.remove('hidden');
+      this.classList.add('hidden');
+    });
+
+    ['dragenter', 'dragover'].forEach(eventName => {
+      logoDropzone.addEventListener(eventName, function (event) {
+        event.preventDefault();
+        logoDropzone.classList.add('border-zinc-500', 'bg-zinc-800/40');
+      });
+    });
+    ['dragleave', 'drop'].forEach(eventName => {
+      logoDropzone.addEventListener(eventName, function (event) {
+        event.preventDefault();
+        logoDropzone.classList.remove('border-zinc-500', 'bg-zinc-800/40');
+      });
+    });
+    logoDropzone.addEventListener('drop', function (event) {
+      event.preventDefault();
+      const file = event.dataTransfer.files && event.dataTransfer.files[0];
+      if (file) {
+        logoInput.files = event.dataTransfer.files;
+        showLogo(file);
+      }
+    });
+  }
+</script>
 {% endblock %}

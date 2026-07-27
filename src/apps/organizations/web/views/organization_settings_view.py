@@ -24,7 +24,7 @@ class OrganizationSettingsView(LoginRequiredMixin, OrganizationOwnerRequiredMixi
         return render(request, self.template_name, self._context(form))
 
     def post(self, request):
-        form = OrganizationForm(request.POST, instance=request.organization)
+        form = OrganizationForm(request.POST, request.FILES, instance=request.organization)
         if not form.is_valid():
             return render(request, self.template_name, self._context(form))
 
