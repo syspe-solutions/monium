@@ -4,7 +4,9 @@
 {% block header %}
 <header class="fixed w-full bg-zinc-950 border-b border-zinc-800 z-50">
   <div class="px-4 py-3 flex items-center justify-start">
-    <a href="{% url 'inventory:home' %}" class="text-xl font-bold text-white">Monium</a>
+    <a href="{% url 'inventory:home' %}">
+      {% include "common/includes/logo.html" %}
+    </a>
   </div>
 </header>
 {% endblock %}

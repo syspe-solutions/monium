@@ -3,7 +3,7 @@
     <div class="w-full max-w-6xl mx-auto px-6 py-10 grid grid-cols-1 md:grid-cols-3 gap-8 text-sm text-zinc-400">
         <div class="flex flex-col gap-3">
             <a href="{% url 'inventory:dashboard' %}" class="flex items-center gap-2">
-                <span class="text-xl font-extrabold text-white">Monium</span>
+                {% include "common/includes/logo.html" %}
             </a>
             <p class="text-zinc-500 leading-relaxed">
                 {% trans "Simplify your management with style. Track performance and reach with Monium." %}

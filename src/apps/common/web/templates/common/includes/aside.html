@@ -1,4 +1,5 @@
 {% load i18n %}
+{% load static %}
 <script>
     (function() {
         const isCollapsed = localStorage.getItem('sidebar-collapsed') === 'true';
@@ -67,9 +68,9 @@
     <div id="sidebar-content" class="flex flex-col flex-1 overflow-y-auto overflow-x-hidden p-4">
 
         <!-- Logo -->
-        <a href="{% url 'inventory:home' %}" class="flex justify-center mb-8 shrink-0">
-            <span id="logo-full" class="text-3xl font-bold text-center">Monium</span>
-            <span id="logo-compact" class="text-3xl font-bold">M</span>
+        <a href="{% url 'inventory:home' %}" class="flex justify-center mt-4 mb-6 shrink-0">
+            <img id="logo-full" src="{% static 'common/svg/logo/horizontal-letter-white.svg' %}" alt="Monium" class="h-6 w-auto">
+            <img id="logo-compact" src="{% static 'common/svg/logo/vertical-letter-white.svg' %}" alt="Monium" class="h-10 w-auto">
         </a>
 
         <nav class="flex flex-col gap-1 mb-4 shrink-0">
