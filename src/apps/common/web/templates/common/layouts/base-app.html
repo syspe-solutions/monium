@@ -1,0 +1,28 @@
+{% load static %}
+{% load assets %}
+{% load i18n %}
+
+<!DOCTYPE html>
+<html lang="{{ request.LANGUAGE_CODE|default:'pt-br' }}">
+<head>
+    <title>{% block title %}Monium{% endblock %}</title>
+    {% include "common/includes/builtin.html" %}
+    {% block extrahead %}{% endblock %}
+</head>
+
+<body class="bg-zinc-950 min-h-screen flex flex-col font-[Inter]">
+
+    {% include "common/includes/app_header.html" %}
+
+    <main class="flex-1 w-full max-w-6xl mx-auto pt-14">
+        {% block content %}{% endblock %}
+    </main>
+
+    {% include "common/includes/messages.html" %}
+
+    {% block scripts %}{% endblock %}
+
+    <script src="{% ts 'common/js/utilities.ts' %}"></script>
+    {% include "common/includes/ui_scripts.html" %}
+</body>
+</html>
