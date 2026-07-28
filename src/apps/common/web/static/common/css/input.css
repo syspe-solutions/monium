@@ -9,7 +9,13 @@
 
 @layer components {
     .btn {
-        @apply w-fit flex items-center gap-1 px-4 py-2.5 text-sm font-medium rounded transition;
+        @apply w-fit flex items-center gap-1 px-4 py-2.5 text-sm font-medium rounded transition ease-apple;
+    }
+
+    /* Card padrão: fundo/borda/sombra usados em ~30 telas (auth, dashboard,
+       forms). Centraliza o que antes era repetido classe a classe. */
+    .card {
+        @apply bg-zinc-900 border border-zinc-800 rounded-xl shadow-card;
     }
 
     /* Django gera <ul class="errorlist" id="..._error"> pra cada campo com
@@ -17,5 +23,23 @@
        contra o fundo escuro dos formulários. */
     .errorlist {
         @apply list-none m-0 mt-1 p-0 flex flex-col gap-0.5 text-red-400 text-xs;
+    }
+
+    /* Tooltip custom (substitui o title= nativo do navegador, que tem delay
+       e estilo inconsistentes entre browsers) — uso: <el class="tooltip" data-tooltip="Texto">. */
+    .tooltip {
+        @apply relative;
+    }
+
+    .tooltip::after {
+        content: attr(data-tooltip);
+        @apply pointer-events-none absolute left-full top-1/2 z-[70] ml-2 -translate-y-1/2 whitespace-nowrap
+               rounded-md bg-zinc-800 px-2 py-1 text-xs font-medium text-white opacity-0 shadow-card
+               transition ease-apple;
+    }
+
+    .tooltip:hover::after,
+    .tooltip:focus-visible::after {
+        @apply opacity-100;
     }
 }

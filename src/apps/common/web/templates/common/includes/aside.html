@@ -75,28 +75,29 @@
 
         <nav class="flex flex-col gap-1 mb-4 shrink-0">
             <a href="{% url 'inventory:home' %}"
-               class="nav-item flex items-center gap-3 p-3 rounded-lg transition-all
-                      {% if request.resolver_match.url_name == 'home' %}bg-zinc-800 text-white{% else %}hover:bg-zinc-800{% endif %}"
-               title="{% trans 'Home' %}">
-                <span class="material-symbols-outlined text-sm shrink-0">home</span>
+               class="nav-item tooltip flex items-center gap-3 p-3 rounded-lg transition-all ease-apple
+                      {% if request.resolver_match.url_name == 'home' %}bg-white/10 text-white{% else %}hover:bg-zinc-800{% endif %}"
+               data-tooltip="{% trans 'Home' %}">
+                <span class="material-symbols-outlined text-base shrink-0">home</span>
                 <span class="sidebar-text text-sm overflow-hidden whitespace-nowrap">{% trans "Home" %}</span>
             </a>
 
             <a href="{% url 'inventory:patrimonio_list' %}"
-               class="nav-item flex items-center gap-3 p-3 rounded-lg transition-all
-                      {% if request.resolver_match.url_name in 'patrimonio_list,patrimonio_choice,item_list,item_detail,item_create,imovel_list,imovel_detail,imovel_create,dashboard' %}bg-zinc-800 text-white{% else %}hover:bg-zinc-800{% endif %}"
-               title="{% trans 'Assets' %}">
-                <span class="material-symbols-outlined text-sm shrink-0">inventory_2</span>
+               class="nav-item tooltip flex items-center gap-3 p-3 rounded-lg transition-all ease-apple
+                      {% if request.resolver_match.url_name in 'patrimonio_list,patrimonio_choice,item_list,item_detail,item_create,imovel_list,imovel_detail,imovel_create,dashboard' %}bg-white/10 text-white{% else %}hover:bg-zinc-800{% endif %}"
+               data-tooltip="{% trans 'Assets' %}">
+                <span class="material-symbols-outlined text-base shrink-0">inventory_2</span>
                 <span class="sidebar-text text-sm overflow-hidden whitespace-nowrap">{% trans "Assets" %}</span>
             </a>
 
             <!-- Organizações -->
             <div class="relative">
-                <div class="nav-item flex items-center gap-1 justify-between rounded-lg transition-all
-                            {% if request.resolver_match.url_name in 'members,member_create,member_remove,member_role_update,create,delete' %}bg-zinc-800 text-white{% else %}hover:bg-zinc-800{% endif %}">
+                <div class="nav-item flex items-center gap-1 justify-between rounded-lg transition-all ease-apple
+                            {% if request.resolver_match.url_name in 'members,member_create,member_remove,member_role_update,create,delete' %}bg-white/10 text-white{% else %}hover:bg-zinc-800{% endif %}">
                     <button type="button" id="org-menu-name-toggle"
-                            class="flex items-center justify-left gap-3 flex p-3 rounded-lg text-left overflow-hidden">
-                        <span class="material-symbols-outlined text-sm shrink-0">domain</span>
+                            class="tooltip flex items-center justify-left gap-3 flex p-3 rounded-lg text-left overflow-hidden"
+                            data-tooltip="{% if current_organization %}{{ current_organization.name }}{% else %}{% trans 'Organizations' %}{% endif %}">
+                        <span class="material-symbols-outlined text-base shrink-0">domain</span>
                         <span class="sidebar-text text-sm overflow-hidden whitespace-nowrap truncate">
                             {% if current_organization %}{{ current_organization.name }}{% else %}{% trans "Organizations" %}{% endif %}
                         </span>
@@ -112,13 +113,15 @@
                      class="hidden sidebar-text border border-zinc-800 rounded-lg bg-zinc-950 overflow-hidden">
                     {% for org in user_organizations %}
                     <div class="flex items-center justify-between gap-2 px-3 py-2 border-b border-zinc-800 last:border-b-0
-                                {% if org == current_organization %}bg-zinc-800{% endif %}">
+                                {% if org == current_organization %}bg-white/10{% endif %}">
                         <form method="post" action="{% url 'organizations:switch' org.id %}" class="flex-1 min-w-0">
                             {% csrf_token %}
                             <input type="hidden" name="next" value="{{ request.path }}">
-                            <button type="submit" class="w-full text-left text-xs text-zinc-300 hover:text-white truncate">
-                                {{ org.name }}
-                                {% if org == current_organization %}<span class="text-zinc-500">({% trans "current" %})</span>{% endif %}
+                            <button type="submit" class="w-full flex items-center gap-1.5 text-left text-xs text-zinc-300 hover:text-white">
+                                <span class="truncate">{{ org.name }}</span>
+                                {% if org == current_organization %}
+                                <span class="material-symbols-outlined text-sm leading-none text-white shrink-0 ml-auto" aria-label="{% trans 'current' %}">check</span>
+                                {% endif %}
                             </button>
                         </form>
                         {% if org.id in owner_organization_ids %}
@@ -148,36 +151,36 @@
             </div>
 
             <a href="{% url 'pages:faq' %}"
-               class="nav-item flex items-center gap-3 p-3 rounded-lg transition-all
-                      {% if request.resolver_match.url_name == 'faq' %}bg-zinc-800 text-white{% else %}hover:bg-zinc-800{% endif %}"
-               title="{% trans 'Help & FAQ' %}">
-                <span class="material-symbols-outlined text-sm shrink-0">help</span>
+               class="nav-item tooltip flex items-center gap-3 p-3 rounded-lg transition-all ease-apple
+                      {% if request.resolver_match.url_name == 'faq' %}bg-white/10 text-white{% else %}hover:bg-zinc-800{% endif %}"
+               data-tooltip="{% trans 'Help & FAQ' %}">
+                <span class="material-symbols-outlined text-base shrink-0">help</span>
                 <span class="sidebar-text text-sm overflow-hidden whitespace-nowrap">{% trans "Help & FAQ" %}</span>
             </a>
 
             {% if is_organization_owner %}
             <a href="{% url 'organizations:settings' %}"
-               class="nav-item flex items-center gap-3 p-3 rounded-lg transition-all
-                      {% if request.resolver_match.url_name == 'settings' %}bg-zinc-800 text-white{% else %}hover:bg-zinc-800{% endif %}"
-               title="{% trans 'Settings' %}">
-                <span class="material-symbols-outlined text-sm shrink-0">settings</span>
+               class="nav-item tooltip flex items-center gap-3 p-3 rounded-lg transition-all ease-apple
+                      {% if request.resolver_match.url_name == 'settings' %}bg-white/10 text-white{% else %}hover:bg-zinc-800{% endif %}"
+               data-tooltip="{% trans 'Settings' %}">
+                <span class="material-symbols-outlined text-base shrink-0">settings</span>
                 <span class="sidebar-text text-sm overflow-hidden whitespace-nowrap">{% trans "Settings" %}</span>
             </a>
             {% endif %}
 
             {% if request.user.is_staff %}
             <a href="{% url 'settings:email_settings' %}"
-               class="nav-item flex items-center gap-3 p-3 rounded-lg transition-all
-                      {% if request.resolver_match.url_name == 'email_settings' %}bg-zinc-800 text-white{% else %}hover:bg-zinc-800{% endif %}"
-               title="{% trans 'System settings' %}">
-                <span class="material-symbols-outlined text-sm shrink-0">admin_panel_settings</span>
+               class="nav-item tooltip flex items-center gap-3 p-3 rounded-lg transition-all ease-apple
+                      {% if request.resolver_match.url_name == 'email_settings' %}bg-white/10 text-white{% else %}hover:bg-zinc-800{% endif %}"
+               data-tooltip="{% trans 'System settings' %}">
+                <span class="material-symbols-outlined text-base shrink-0">admin_panel_settings</span>
                 <span class="sidebar-text text-sm overflow-hidden whitespace-nowrap">{% trans "System settings" %}</span>
             </a>
             {% endif %}
 
             <!-- Language switcher -->
-            <div class="nav-item flex items-center gap-3 p-3 rounded-lg" title="{% trans 'Language' %}">
-                <span class="material-symbols-outlined text-sm shrink-0">language</span>
+            <div class="nav-item tooltip flex items-center gap-3 p-3 rounded-lg" data-tooltip="{% trans 'Language' %}">
+                <span class="material-symbols-outlined text-base shrink-0">language</span>
                 <div class="sidebar-text flex items-center gap-1">
                     {% get_current_language as LANGUAGE_CODE %}
                     <form action="{% url 'set_language' %}" method="post" class="flex items-center gap-1">
@@ -201,8 +204,8 @@
 
         <div class="mt-auto border-t border-zinc-800 pt-4 shrink-0 flex flex-col gap-1">
             <a href="{% url 'account:profile_edit' %}"
-               class="nav-item flex items-center gap-3 p-2 rounded hover:bg-zinc-800 transition-all"
-               title="{% trans 'My profile' %}">
+               class="nav-item tooltip flex items-center gap-3 p-2 rounded hover:bg-zinc-800 transition-all ease-apple"
+               data-tooltip="{% trans 'My profile' %}">
                 <div class="w-10 h-10 rounded-full bg-zinc-700 flex items-center justify-center font-bold text-lg shrink-0">
                     {{ request.user.first_name|default:request.user.username|first|upper }}
                 </div>
@@ -218,9 +221,9 @@
             <form method="post" action="{% url 'account:logout' %}" class="m-0">
                 {% csrf_token %}
                 <button type="submit"
-                        class="nav-item w-full flex items-center gap-3 p-2 rounded hover:bg-red-900/30 transition-all text-red-500 font-semibold text-left"
-                        title="{% trans 'Logout' %}">
-                    <span class="material-symbols-outlined text-sm shrink-0">logout</span>
+                        class="nav-item tooltip w-full flex items-center gap-3 p-2 rounded hover:bg-red-900/30 transition-all ease-apple text-red-500 font-semibold text-left"
+                        data-tooltip="{% trans 'Logout' %}">
+                    <span class="material-symbols-outlined text-base shrink-0">logout</span>
                     <span class="sidebar-text text-sm overflow-hidden whitespace-nowrap">{% trans "Logout" %}</span>
                 </button>
             </form>

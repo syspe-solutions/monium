@@ -3,9 +3,10 @@ from django.utils.translation import gettext_lazy as _
 
 from apps.account.models import User
 from apps.account.utils import AuthenticationUtils
+from apps.common.forms import widget_styles
 
-_INPUT = "w-full p-2 border border-zinc-700 rounded text-sm bg-zinc-900 text-white placeholder:text-zinc-600 focus:outline-none focus:ring-2 focus:ring-zinc-600"
-_PASSWORD = _INPUT
+_INPUT = widget_styles.INPUT
+_PASSWORD = widget_styles.PASSWORD
 
 
 class CustomRegisterForm(forms.ModelForm):

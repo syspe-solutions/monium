@@ -9,11 +9,12 @@ from django.utils.translation import gettext_lazy as _
 from apps.account.services.image_processor_service import ImageProcessor
 from apps.account.services.image_validator_service import ImageValidator
 from apps.account.utils import AuthenticationUtils
+from apps.common.forms import widget_styles
 from apps.organizations.models import ASSIGNABLE_MEMBERSHIP_ROLES, Membership, Organization
 
-_INPUT = "w-full p-2 border border-zinc-700 rounded text-sm bg-zinc-900 text-white placeholder:text-zinc-600 focus:outline-none focus:ring-2 focus:ring-zinc-600"
-_SELECT = "w-full p-2 border border-zinc-700 rounded text-sm bg-zinc-900 text-white focus:outline-none focus:ring-2 focus:ring-zinc-600"
-_PASSWORD = _INPUT
+_INPUT = widget_styles.INPUT
+_SELECT = widget_styles.SELECT
+_PASSWORD = widget_styles.PASSWORD
 
 
 class OrganizationForm(forms.ModelForm):

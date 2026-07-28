@@ -55,7 +55,7 @@
                 </p>
             </div>
 
-            <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-6 shadow-xl shadow-black/20">
+            <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-6 shadow-card">
                 <form method="post" enctype="multipart/form-data" class="flex flex-col gap-4">
                     {% csrf_token %}
 
@@ -112,8 +112,8 @@
 
             {% if not is_first %}
             <p class="text-center mt-5 text-sm text-zinc-500">
-                <a href="{% url 'inventory:dashboard' %}" class="hover:text-zinc-300 hover:underline">
-                    {% trans "Back to dashboard" %}
+                <a href="{% url 'inventory:home' %}" class="hover:text-zinc-300 hover:underline">
+                    {% trans "Back to home" %}
                 </a>
             </p>
             {% endif %}

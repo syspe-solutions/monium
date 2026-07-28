@@ -18,7 +18,7 @@
     </div>
 
     <!-- Membros -->
-    <div class="border border-zinc-800 rounded-xl bg-zinc-900 overflow-hidden shadow-xl shadow-black/20">
+    <div class="border border-zinc-800 rounded-xl bg-zinc-900 overflow-hidden shadow-card">
         <div class="px-5 py-4 border-b border-zinc-800">
             <h2 class="text-sm font-semibold text-white">{% trans "Current members" %}</h2>
         </div>
@@ -39,7 +39,7 @@
                         <form method="post" action="{% url 'organizations:member_role_update' membership.id %}">
                             {% csrf_token %}
                             <select name="role" onchange="this.form.submit()"
-                                    class="p-1.5 border border-zinc-700 rounded text-xs bg-zinc-900 text-white focus:outline-none focus:ring-2 focus:ring-zinc-600">
+                                    class="p-1.5 border border-zinc-700 rounded text-xs bg-zinc-900 text-white focus:outline-none focus:ring-2 focus:ring-white/60">
                                 {% for role in assignable_roles %}
                                 <option value="{{ role.value }}" {% if role.value == membership.role %}selected{% endif %}>{{ role.label }}</option>
                                 {% endfor %}

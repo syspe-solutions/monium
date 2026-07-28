@@ -1,10 +1,11 @@
 from django import forms
 from django.utils.translation import gettext_lazy as _
 
+from apps.common.forms import widget_styles
 from apps.inventory.models import CartorioSituacao, ImovelCategory, ZonaTipo
 
-_INPUT = "w-full p-2 border border-zinc-700 rounded text-sm bg-zinc-900 text-white placeholder:text-zinc-600 focus:outline-none focus:ring-2 focus:ring-zinc-600"
-_SELECT = "w-full p-2 border border-zinc-700 rounded text-sm bg-zinc-900 text-white focus:outline-none focus:ring-2 focus:ring-zinc-600"
+_INPUT = widget_styles.INPUT
+_SELECT = widget_styles.SELECT
 
 
 class ImovelFilterForm(forms.Form):

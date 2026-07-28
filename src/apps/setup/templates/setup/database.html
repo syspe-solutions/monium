@@ -13,7 +13,7 @@
   </p>
 </div>
 
-<div class="bg-zinc-900 border border-zinc-800 rounded-xl p-6 shadow-xl shadow-black/20">
+<div class="bg-zinc-900 border border-zinc-800 rounded-xl p-6 shadow-card">
   <form method="post" id="database-setup-form" class="flex flex-col gap-5">
     {% csrf_token %}
 
@@ -37,7 +37,7 @@
           </span>
         </span>
         <input type="radio" name="engine" value="sqlite3" checked
-               class="mt-1 w-4 h-4 border-zinc-700 bg-zinc-900 text-white focus:ring-2 focus:ring-zinc-600">
+               class="mt-1 w-4 h-4 border-zinc-700 bg-zinc-900 text-white focus:ring-2 focus:ring-white/60">
       </label>
 
       <label class="engine-option flex items-start gap-3 p-4 border border-zinc-700 rounded-xl cursor-pointer hover:border-zinc-500 transition"
@@ -50,7 +50,7 @@
           </span>
         </span>
         <input type="radio" name="engine" value="postgresql"
-               class="mt-1 w-4 h-4 border-zinc-700 bg-zinc-900 text-white focus:ring-2 focus:ring-zinc-600">
+               class="mt-1 w-4 h-4 border-zinc-700 bg-zinc-900 text-white focus:ring-2 focus:ring-white/60">
       </label>
     </div>
 

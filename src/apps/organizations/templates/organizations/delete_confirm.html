@@ -11,27 +11,44 @@
         <p class="text-sm text-zinc-500 mt-0.5">{{ organization.name }}</p>
     </div>
 
-    <div class="border border-red-800 rounded-xl bg-red-950/30 p-4 flex flex-col gap-3 shadow-xl shadow-black/20">
+    <div class="border border-red-800 rounded-xl bg-red-950/30 p-4 flex flex-col gap-3 shadow-card">
         <p class="text-sm text-red-400">
             {% trans "This will permanently delete this organization, all its items, loans and members. This cannot be undone." %}
         </p>
 
-        <form method="post" class="flex flex-col gap-3">
+        <form method="post" class="flex flex-col gap-3" id="delete-org-form">
             {% csrf_token %}
             <div>
                 <label class="block font-medium text-xs sm:text-sm mb-1 text-zinc-400">
                     {% blocktrans with name=organization.name %}Type "{{ name }}" to confirm{% endblocktrans %}
                 </label>
-                <input type="text" name="confirmation_name" required
+                <input type="text" name="confirmation_name" id="confirmation_name" required autocomplete="off"
                        class="w-full p-2 border border-zinc-700 rounded text-sm bg-zinc-900 text-white placeholder:text-zinc-600 focus:outline-none focus:ring-2 focus:ring-red-600">
             </div>
-            <button type="submit" class="w-full bg-red-600 text-white px-4 py-2.5 rounded hover:bg-red-700 transition font-medium text-sm">
+            <button type="submit" id="confirm-delete-btn" disabled
+                    class="w-full bg-red-600 text-white px-4 py-2.5 rounded hover:bg-red-700 transition font-medium text-sm
+                           disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-red-600">
                 {% trans "Permanently delete" %}
             </button>
             <a href="{% url 'organizations:members' %}" class="text-center text-zinc-500 hover:text-zinc-300 text-sm">
                 {% trans "Cancel" %}
             </a>
         </form>
+
+        <script>
+            (function () {
+                const expectedName = "{{ organization.name|escapejs }}";
+                const input = document.getElementById('confirmation_name');
+                const confirmBtn = document.getElementById('confirm-delete-btn');
+
+                input.addEventListener('input', function () {
+                    const matches = input.value === expectedName;
+                    confirmBtn.disabled = !matches;
+                    input.classList.toggle('border-red-600', input.value.length > 0 && !matches);
+                    input.classList.toggle('border-green-600', matches);
+                });
+            })();
+        </script>
     </div>
 </div>
 {% endblock %}

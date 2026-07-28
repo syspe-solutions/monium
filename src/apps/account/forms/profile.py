@@ -3,9 +3,10 @@ from django import forms
 from apps.account.models import UserProfile
 from apps.account.services.image_processor_service import ImageProcessor
 from apps.account.services.image_validator_service import ImageValidator
+from apps.common.forms import widget_styles
 
-_INPUT = "w-full p-2 border border-zinc-700 rounded text-sm bg-zinc-900 text-white placeholder:text-zinc-600 focus:outline-none focus:ring-2 focus:ring-zinc-600"
-_TEXTAREA = _INPUT + " resize-none"
+_INPUT = widget_styles.INPUT
+_TEXTAREA = widget_styles.TEXTAREA
 
 
 class ProfileForm(forms.ModelForm):
