@@ -2,7 +2,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Count, Q
 from django.views.generic import TemplateView
 
-from apps.inventory.models import Category, Movel, MovelStatus
+from apps.inventory.models import Category, MovelStatus
+from apps.inventory.services.movel_status_summary import get_movel_status_summary
 
 
 class MovelsByCategoryView(LoginRequiredMixin, TemplateView):
@@ -12,14 +13,8 @@ class MovelsByCategoryView(LoginRequiredMixin, TemplateView):
         ctx = super().get_context_data(**kwargs)
 
         organization = self.request.organization
-        items = Movel.objects.filter(organization=organization)
-        total = items.count()
-
-        ctx["total_items"] = total
-        ctx["active_items"] = items.filter(status=MovelStatus.IN_USE).count()
-        ctx["maintenance_items"] = items.filter(status=MovelStatus.MAINTENANCE).count()
-        ctx["missing_items"] = items.filter(status=MovelStatus.MISSING).count()
-        ctx["written_off_items"] = items.filter(status=MovelStatus.DISCARDED).count()
+        ctx.update(get_movel_status_summary(organization))
+        total = ctx["total_items"]
 
         ctx["categories"] = (
             Category.objects

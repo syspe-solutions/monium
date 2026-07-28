@@ -1,7 +1,7 @@
 {% extends "common/layouts/base-aside.html" %}
 {% load i18n %}
 
-{% block title %}{% trans "New Item — Inventory" %}{% endblock %}
+{% block title %}{% if item %}{% trans "Edit Item" %}{% else %}{% trans "New Item" %}{% endif %} — Inventory{% endblock %}
 
 {% block content %}
 <div class="p-6 space-y-6">
@@ -9,13 +9,15 @@
     <!-- Header -->
     <div class="flex items-center justify-between flex-wrap gap-3">
         <div class="flex items-center gap-2">
-            <a href="{% url 'inventory:dashboard' %}"
+            <a href="{% if item %}{% url 'inventory:item_detail' item.id %}{% else %}{% url 'inventory:item_list' %}{% endif %}"
                class="text-zinc-400 hover:text-zinc-300 transition">
                 <span class="material-symbols-outlined text-xl leading-none">arrow_back</span>
             </a>
             <div>
-                <h1 class="text-2xl font-bold text-white">{% trans "New Item" %}</h1>
-                <p class="text-sm text-zinc-500 mt-0.5">{% trans "Fill in the details to register an item in the inventory" %}</p>
+                <h1 class="text-2xl font-bold text-white">{% if item %}{% trans "Edit Item" %}{% else %}{% trans "New Item" %}{% endif %}</h1>
+                <p class="text-sm text-zinc-500 mt-0.5">
+                    {% if item %}{% trans "Update this item's details" %}{% else %}{% trans "Fill in the details to register an item in the inventory" %}{% endif %}
+                </p>
             </div>
         </div>
         <p class="text-xs text-zinc-600"><span class="text-red-500">*</span> {% trans "Required fields" %}</p>
@@ -30,7 +32,7 @@
             <div class="lg:col-span-2 flex flex-col gap-4">
 
                 <!-- Identification -->
-                <div class="border rounded-xl flex flex-col gap-3 p-4 border-zinc-800 bg-zinc-900 shadow-xl shadow-black/20">
+                <div class="border rounded-xl flex flex-col gap-3 p-4 border-zinc-800 bg-zinc-900 shadow-card">
                     <p class="font-medium text-sm text-zinc-300 flex items-center gap-1.5">
                         <span class="material-symbols-outlined text-zinc-700 text-base leading-none">badge</span>
                         {% trans "Identification" %}
@@ -74,7 +76,7 @@
                 </div>
 
                 <!-- Location -->
-                <div class="border rounded-xl flex flex-col gap-3 p-4 border-zinc-800 bg-zinc-900 shadow-xl shadow-black/20">
+                <div class="border rounded-xl flex flex-col gap-3 p-4 border-zinc-800 bg-zinc-900 shadow-card">
                     <p class="font-medium text-sm text-zinc-300 flex items-center gap-1.5">
                         <span class="material-symbols-outlined text-zinc-700 text-base leading-none">location_on</span>
                         {% trans "Location" %}
@@ -108,7 +110,7 @@
                 </div>
 
                 <!-- Condition -->
-                <div class="border rounded-xl flex flex-col gap-3 p-4 border-zinc-800 bg-zinc-900 shadow-xl shadow-black/20">
+                <div class="border rounded-xl flex flex-col gap-3 p-4 border-zinc-800 bg-zinc-900 shadow-card">
                     <p class="font-medium text-sm text-zinc-300 flex items-center gap-1.5">
                         <span class="material-symbols-outlined text-zinc-700 text-base leading-none">fact_check</span>
                         {% trans "Condition" %}
@@ -143,7 +145,7 @@
                 </div>
 
                 <!-- Technical specifications -->
-                <div class="border rounded-xl flex flex-col gap-3 p-4 border-zinc-800 bg-zinc-900 shadow-xl shadow-black/20">
+                <div class="border rounded-xl flex flex-col gap-3 p-4 border-zinc-800 bg-zinc-900 shadow-card">
                     <p class="font-medium text-sm text-zinc-300 flex items-center gap-1.5">
                         <span class="material-symbols-outlined text-zinc-700 text-base leading-none">settings</span>
                         {% trans "Technical Specifications" %}
@@ -155,7 +157,7 @@
                         <label class="block font-medium text-xs sm:text-sm mb-1 text-zinc-400">{% trans "Brand" %}</label>
 
                         <select id="brand_select" name="brand_id"
-                                class="w-full p-2 border border-zinc-700 rounded text-sm focus:outline-none focus:ring-2 focus:ring-zinc-600 bg-zinc-900 text-white">
+                                class="w-full p-2 border border-zinc-700 rounded text-sm focus:outline-none focus:ring-2 focus:ring-white/60 bg-zinc-900 text-white">
                             <option value="">{% trans "Select a brand" %}</option>
                             {% for brand in brands %}
                             <option value="{{ brand.id }}"
@@ -178,7 +180,7 @@
                                    value="{{ request.POST.new_brand_name|default:'' }}"
                                    placeholder="{% trans 'Enter the name of the new brand' %}"
                                    autocomplete="off"
-                                   class="w-full p-2 border border-zinc-700 rounded text-sm bg-zinc-900 text-white focus:outline-none focus:ring-2 focus:ring-zinc-600">
+                                   class="w-full p-2 border border-zinc-700 rounded text-sm bg-zinc-900 text-white focus:outline-none focus:ring-2 focus:ring-white/60">
 
                             <!-- Similarity warning (filled by JS) -->
                             <div id="similarity_warning" class="hidden flex items-start gap-2 px-3 py-2 bg-amber-950/40 border border-amber-800 rounded text-xs text-amber-400">
@@ -213,7 +215,7 @@
             <div class="flex flex-col gap-4 lg:sticky lg:top-6 self-start w-full">
 
                 <!-- Photo -->
-                <div class="border rounded-xl flex flex-col gap-3 p-4 border-zinc-800 bg-zinc-900 shadow-xl shadow-black/20">
+                <div class="border rounded-xl flex flex-col gap-3 p-4 border-zinc-800 bg-zinc-900 shadow-card">
                     <p class="font-medium text-sm text-zinc-300 flex items-center gap-1.5">
                         <span class="material-symbols-outlined text-zinc-700 text-base leading-none">photo_camera</span>
                         {% trans "Photo" %}
@@ -222,24 +224,27 @@
 
                     <label for="{{ spec_form.image.id_for_label }}" id="item_image_dropzone"
                            class="relative flex flex-col items-center justify-center gap-1.5 aspect-square w-full rounded-lg border-2 border-dashed border-zinc-700 bg-zinc-950/40 hover:border-zinc-500 hover:bg-zinc-800/40 transition cursor-pointer overflow-hidden">
-                        <div id="item_image_placeholder" class="flex flex-col items-center gap-1.5 text-center px-4">
+                        <div id="item_image_placeholder" class="flex flex-col items-center gap-1.5 text-center px-4 {% if item.spec.image %}hidden{% endif %}">
                             <span class="material-symbols-outlined text-4xl leading-none text-zinc-600">add_photo_alternate</span>
                             <span class="text-xs font-medium text-zinc-400">{% trans "Click or drag a photo here" %}</span>
                             <span class="text-[11px] text-zinc-600">PNG, JPG — {% trans "up to" %} 5MB</span>
                         </div>
+                        {% if item.spec.image %}
+                        <img id="item_image_current" src="{{ item.spec.image.url }}" alt="" class="absolute inset-0 w-full h-full object-cover">
+                        {% endif %}
                         <img id="item_image_preview" alt="{% trans 'Preview' %}" class="hidden absolute inset-0 w-full h-full object-cover">
                     </label>
                     {{ spec_form.image }}
 
                     <button type="button" id="remove_item_image"
-                            class="hidden w-fit mx-auto text-xs text-red-400 hover:text-red-300 hover:underline">
+                            class="{% if not item.spec.image %}hidden{% endif %} w-fit mx-auto text-xs text-red-400 hover:text-red-300 hover:underline">
                         {% trans "Remove photo" %}
                     </button>
                     {% if spec_form.image.errors %}<p class="text-red-400 text-xs mt-1">{{ spec_form.image.errors }}</p>{% endif %}
                 </div>
 
                 <!-- Live preview -->
-                <div class="border rounded-xl flex flex-col gap-3 p-4 border-zinc-800 bg-zinc-900 shadow-xl shadow-black/20">
+                <div class="border rounded-xl flex flex-col gap-3 p-4 border-zinc-800 bg-zinc-900 shadow-card">
                     <p class="font-medium text-sm text-zinc-300 flex items-center gap-1.5">
                         <span class="material-symbols-outlined text-zinc-700 text-base leading-none">visibility</span>
                         {% trans "Preview" %}
@@ -247,11 +252,15 @@
 
                     <div class="flex items-center gap-3">
                         <div id="preview_thumb" class="w-12 h-12 rounded-lg bg-zinc-800 border border-zinc-700 flex items-center justify-center overflow-hidden shrink-0">
+                            {% if item.spec.image %}
+                            <img src="{{ item.spec.image.url }}" alt="" class="w-full h-full object-cover">
+                            {% else %}
                             <span class="material-symbols-outlined text-lg text-zinc-600">inventory_2</span>
+                            {% endif %}
                         </div>
                         <div class="min-w-0 flex-1">
-                            <p id="preview_name" class="text-sm font-semibold text-white truncate">{% trans "Item name" %}</p>
-                            <p id="preview_code" class="text-xs text-zinc-500 font-mono truncate">—</p>
+                            <p id="preview_name" class="text-sm font-semibold text-white truncate">{% if item %}{{ item.name }}{% else %}{% trans "Item name" %}{% endif %}</p>
+                            <p id="preview_code" class="text-xs text-zinc-500 font-mono truncate">{{ item.code|default:"—" }}</p>
                         </div>
                     </div>
 
@@ -262,7 +271,7 @@
                 </div>
 
                 <!-- Tips -->
-                <div class="border rounded-xl flex flex-col gap-2 p-4 border-zinc-800 bg-zinc-900 shadow-xl shadow-black/20">
+                <div class="border rounded-xl flex flex-col gap-2 p-4 border-zinc-800 bg-zinc-900 shadow-card">
                     <p class="font-medium text-sm text-zinc-300 flex items-center gap-1.5">
                         <span class="material-symbols-outlined text-zinc-700 text-base leading-none">lightbulb</span>
                         {% trans "Tips" %}
@@ -280,14 +289,14 @@
 
         <!-- Actions -->
         <div class="flex items-center justify-end gap-3">
-            <a href="{% url 'inventory:dashboard' %}"
+            <a href="{% if item %}{% url 'inventory:item_detail' item.id %}{% else %}{% url 'inventory:item_list' %}{% endif %}"
                class="text-sm text-zinc-500 hover:text-zinc-300 transition px-4 py-2">
                 {% trans "Cancel" %}
             </a>
             <button type="submit" id="save_item_btn"
                     class="bg-white text-zinc-950 px-4 py-2.5 rounded hover:bg-zinc-100 transition text-sm font-medium flex items-center gap-1.5">
                 <span class="material-symbols-outlined text-base leading-none">save</span>
-                {% trans "Save Item" %}
+                {% if item %}{% trans "Save Changes" %}{% else %}{% trans "Save Item" %}{% endif %}
             </button>
         </div>
 
@@ -344,6 +353,7 @@
     const imageInput = document.getElementById('{{ spec_form.image.id_for_label }}');
     const dropzone = document.getElementById('item_image_dropzone');
     const imagePlaceholder = document.getElementById('item_image_placeholder');
+    const imageCurrent = document.getElementById('item_image_current');
     const imagePreview = document.getElementById('item_image_preview');
     const removeImageBtn = document.getElementById('remove_item_image');
     const previewThumb = document.getElementById('preview_thumb');
@@ -355,6 +365,7 @@
             imagePreview.src = e.target.result;
             imagePreview.classList.remove('hidden');
             imagePlaceholder.classList.add('hidden');
+            if (imageCurrent) imageCurrent.classList.add('hidden');
             previewThumb.innerHTML = `<img src="${e.target.result}" alt="" class="w-full h-full object-cover">`;
             removeImageBtn.classList.remove('hidden');
         };
@@ -370,6 +381,7 @@
             event.preventDefault();
             imageInput.value = '';
             imagePreview.classList.add('hidden');
+            if (imageCurrent) imageCurrent.classList.add('hidden');
             imagePlaceholder.classList.remove('hidden');
             previewThumb.innerHTML = '<span class="material-symbols-outlined text-lg text-zinc-600">inventory_2</span>';
             this.classList.add('hidden');

@@ -17,6 +17,7 @@ from apps.inventory.models import (
     MovelStatus,
     Sector,
 )
+from apps.inventory.services.movel_status_summary import get_movel_status_summary
 
 
 class HomeView(LoginRequiredMixin, TemplateView):
@@ -32,11 +33,7 @@ class HomeView(LoginRequiredMixin, TemplateView):
         # ── Resumo de status (bens móveis) ──────────────────────────────────
         items = Movel.objects.filter(organization=organization)
         total = items.count()
-        ctx["total_items"] = total
-        ctx["active_items"] = items.filter(status=MovelStatus.IN_USE).count()
-        ctx["maintenance_items"] = items.filter(status=MovelStatus.MAINTENANCE).count()
-        ctx["missing_items"] = items.filter(status=MovelStatus.MISSING).count()
-        ctx["written_off_items"] = items.filter(status=MovelStatus.DISCARDED).count()
+        ctx.update(get_movel_status_summary(organization))
 
         # ── Resumo de imóveis ─────────────────────────────────────────────────
         ctx["total_imoveis"] = Imovel.objects.filter(organization=organization).count()

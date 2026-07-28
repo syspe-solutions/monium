@@ -1,16 +1,23 @@
 {% extends "common/layouts/base-aside.html" %}
 {% load i18n %}
 
-{% block title %}{% trans "Inventory" %} — Monium{% endblock %}
+{% block title %}{% trans "Items by Category" %} — Monium{% endblock %}
 
 {% block content %}
 <div class="p-6 space-y-6">
 
     <!-- Header -->
-    <div class="flex items-center justify-between">
-        <div>
-            <h1 class="text-2xl font-bold text-white">{% trans "Inventory" %}</h1>
-            <p class="text-sm text-zinc-500 mt-0.5">{% trans "Management view of items by category" %}</p>
+    <div class="flex items-center justify-between flex-wrap gap-3">
+        <div class="flex items-center gap-2">
+            <a href="{% url 'inventory:home' %}" class="text-zinc-400 hover:text-zinc-300 transition">
+                <span class="material-symbols-outlined text-xl leading-none">arrow_back</span>
+            </a>
+            <div>
+                <h1 class="text-2xl font-bold text-white">{% trans "Items by Category" %}</h1>
+                <p class="text-sm text-zinc-500 mt-0.5">
+                    {% blocktrans with total=total_items cat_count=categories|length %}{{ total }} items across {{ cat_count }} categories{% endblocktrans %}
+                </p>
+            </div>
         </div>
         <a href="{% url 'inventory:item_create' %}"
            class="flex items-center gap-2 bg-white text-zinc-950 text-sm font-medium px-4 py-2.5 rounded hover:bg-zinc-100 transition">
@@ -19,63 +26,8 @@
         </a>
     </div>
 
-    <!-- Summary cards -->
-    <div class="grid grid-cols-2 lg:grid-cols-5 gap-4">
-
-        <div class="col-span-2 lg:col-span-1 bg-zinc-900 rounded-xl border border-zinc-800 p-4 flex items-center gap-4 shadow-xl shadow-black/20">
-            <div class="w-10 h-10 rounded-lg bg-zinc-800 flex items-center justify-center shrink-0">
-                <span class="material-symbols-outlined text-zinc-400 text-xl">inventory_2</span>
-            </div>
-            <div>
-                <p class="text-xs text-zinc-500 uppercase tracking-wide">{% trans "Total" %}</p>
-                <p class="text-2xl font-bold text-white">{{ total_items }}</p>
-            </div>
-        </div>
-
-        <div class="bg-zinc-900 rounded-xl border border-zinc-800 p-4 flex items-center gap-4 shadow-xl shadow-black/20">
-            <div class="w-10 h-10 rounded-lg bg-green-950 flex items-center justify-center shrink-0">
-                <span class="material-symbols-outlined text-green-400 text-xl">check_circle</span>
-            </div>
-            <div>
-                <p class="text-xs text-zinc-500 uppercase tracking-wide">{% trans "Active" %}</p>
-                <p class="text-2xl font-bold text-green-400">{{ active_items }}</p>
-            </div>
-        </div>
-
-        <div class="bg-zinc-900 rounded-xl border border-zinc-800 p-4 flex items-center gap-4 shadow-xl shadow-black/20">
-            <div class="w-10 h-10 rounded-lg bg-amber-950 flex items-center justify-center shrink-0">
-                <span class="material-symbols-outlined text-amber-400 text-xl">build</span>
-            </div>
-            <div>
-                <p class="text-xs text-zinc-500 uppercase tracking-wide">{% trans "Maintenance" %}</p>
-                <p class="text-2xl font-bold text-amber-400">{{ maintenance_items }}</p>
-            </div>
-        </div>
-
-        <div class="bg-zinc-900 rounded-xl border border-zinc-800 p-4 flex items-center gap-4 shadow-xl shadow-black/20">
-            <div class="w-10 h-10 rounded-lg bg-red-950 flex items-center justify-center shrink-0">
-                <span class="material-symbols-outlined text-red-400 text-xl">help</span>
-            </div>
-            <div>
-                <p class="text-xs text-zinc-500 uppercase tracking-wide">{% trans "Missing" %}</p>
-                <p class="text-2xl font-bold text-red-400">{{ missing_items }}</p>
-            </div>
-        </div>
-
-        <div class="bg-zinc-900 rounded-xl border border-zinc-800 p-4 flex items-center gap-4 shadow-xl shadow-black/20">
-            <div class="w-10 h-10 rounded-lg bg-zinc-800 flex items-center justify-center shrink-0">
-                <span class="material-symbols-outlined text-zinc-500 text-xl">archive</span>
-            </div>
-            <div>
-                <p class="text-xs text-zinc-500 uppercase tracking-wide">{% trans "Written Off" %}</p>
-                <p class="text-2xl font-bold text-zinc-400">{{ written_off_items }}</p>
-            </div>
-        </div>
-
-    </div>
-
     <!-- Categories table -->
-    <div class="bg-zinc-900 rounded-xl border border-zinc-800 overflow-hidden shadow-xl shadow-black/20">
+    <div class="bg-zinc-900 rounded-xl border border-zinc-800 overflow-hidden shadow-card">
         <div class="px-6 py-4 border-b border-zinc-800">
             <h2 class="text-sm font-semibold text-white">{% trans "Items by category" %}</h2>
         </div>
