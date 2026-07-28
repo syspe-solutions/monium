@@ -10,6 +10,16 @@ _PASSWORD = widget_styles.PASSWORD
 
 
 class CustomRegisterForm(forms.ModelForm):
+    field_order = ['full_name', 'username', 'email', 'password', 'confirm_password']
+
+    full_name = forms.CharField(
+        label=_("Full name"),
+        widget=forms.TextInput(attrs={
+            'placeholder': _("Your full name"),
+            'class': _INPUT,
+        })
+    )
+
     username = forms.CharField(
         label=_("Username"),
         widget=forms.TextInput(attrs={
@@ -67,6 +77,9 @@ class CustomRegisterForm(forms.ModelForm):
     def save(self, commit=True):
         user = super().save(commit=False)
         user.set_password(self.cleaned_data['password'])
+        first_name, _sep, last_name = self.cleaned_data['full_name'].strip().partition(' ')
+        user.first_name = first_name
+        user.last_name = last_name
         if commit:
             user.save()
         return user

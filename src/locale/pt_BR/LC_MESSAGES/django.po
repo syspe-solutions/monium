@@ -49,6 +49,14 @@ msgstr "{updated} conta(s) foram reativadas com sucesso."
 msgid "Você não tem permissão para excluir usuários."
 msgstr "Você não tem permissão para excluir usuários."
 
+#: apps/account/forms/auth.py:16
+msgid "Full name"
+msgstr "Nome completo"
+
+#: apps/account/forms/auth.py:18
+msgid "Your full name"
+msgstr "Seu nome completo"
+
 #: apps/account/forms/auth.py:13 apps/account/forms/auth.py:76
 #: apps/organizations/web/forms.py:50 apps/organizations/web/forms.py:51
 #: apps/setup/web/forms.py:79 apps/setup/web/forms.py:80

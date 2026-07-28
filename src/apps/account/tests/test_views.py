@@ -29,6 +29,7 @@ class RegisterViewTests(TestCase):
 
     def test_register_creates_user(self):
         data = {
+            "full_name": "New User",
             "username": "newuser",
             "email": "newuser@example.com",
             "password": "Strong@Password123",
@@ -38,7 +39,9 @@ class RegisterViewTests(TestCase):
 
         self.assertEqual(response.status_code, 302)
         self.assertRedirects(response, reverse("account:login"))
-        self.assertTrue(User.objects.filter(username="newuser").exists())
+        user = User.objects.get(username="newuser")
+        self.assertEqual(user.first_name, "New")
+        self.assertEqual(user.last_name, "User")
 
     def test_register_fails_with_mismatched_passwords(self):
         data = {

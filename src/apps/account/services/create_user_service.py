@@ -11,11 +11,15 @@ class CreateUserService:
     @staticmethod
     @transaction.atomic
     def execute(dto: CreateUserDTO) -> User:
+        first_name, _sep, last_name = dto.full_name.strip().partition(' ')
+
         try:
             user = User.objects.create_user(
                 username=dto.username,
                 email=dto.email,
-                password=dto.password
+                password=dto.password,
+                first_name=first_name,
+                last_name=last_name,
             )
         except IntegrityError:
             return User.objects.get(username=dto.username)

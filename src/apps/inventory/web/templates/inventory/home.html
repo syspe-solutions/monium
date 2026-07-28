@@ -11,7 +11,7 @@
     <div class="flex items-center justify-between flex-wrap gap-3">
         <div>
             <h1 class="text-2xl font-bold text-white">
-                {% blocktrans with name=request.user.first_name|default:request.user.username %}Hello, {{ name }} 👋{% endblocktrans %}
+                {% blocktrans with name=request.user.get_full_name|default:request.user.username %}Hello, {{ name }} 👋{% endblocktrans %}
             </h1>
             <p class="text-sm text-zinc-500 mt-0.5">{% trans "Here's an overview of today's inventory." %}</p>
         </div>
