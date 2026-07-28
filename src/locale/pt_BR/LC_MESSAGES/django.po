@@ -3428,3 +3428,50 @@ msgid ""
 msgstr ""
 "Preencha servidor, nome do banco, usuário e senha pra usar um PostgreSQL "
 "externo."
+
+#: apps/organizations/web/views/organization_onboarding_view.py:22
+msgid "Suggestions applied! You're ready to register your first assets."
+msgstr "Sugestões aplicadas! Você já pode cadastrar seus primeiros ativos."
+
+#: apps/organizations/templates/organizations/onboarding.html:5
+msgid "Guided setup"
+msgstr "Configuração guiada"
+
+#: apps/organizations/templates/organizations/onboarding.html:11
+msgid "Let's set up your inventory"
+msgstr "Vamos configurar seu inventário"
+
+#: apps/organizations/templates/organizations/onboarding.html:11
+msgid "Set up this organization"
+msgstr "Configurar esta organização"
+
+#: apps/organizations/templates/organizations/onboarding.html:14
+#, python-format
+msgid "Based on your industry (%(industry)s), here are some starter categories and sectors to speed up your first registrations."
+msgstr "Com base no seu setor de atuação (%(industry)s), preparamos algumas categorias e setores iniciais pra agilizar seus primeiros cadastros."
+
+#: apps/organizations/templates/organizations/onboarding.html:24
+msgid "Suggested categories"
+msgstr "Categorias sugeridas"
+
+#: apps/organizations/templates/organizations/onboarding.html:30
+#: apps/organizations/templates/organizations/onboarding.html:52
+msgid "already available"
+msgstr "já disponível"
+
+#: apps/organizations/templates/organizations/onboarding.html:37
+#: apps/organizations/templates/organizations/onboarding.html:59
+msgid "No suggestions for this industry."
+msgstr "Nenhuma sugestão para este setor de atuação."
+
+#: apps/organizations/templates/organizations/onboarding.html:46
+msgid "Suggested sectors"
+msgstr "Setores sugeridos"
+
+#: apps/organizations/templates/organizations/onboarding.html:66
+msgid "Skip, I'll set this up later"
+msgstr "Pular, eu configuro depois"
+
+#: apps/organizations/templates/organizations/onboarding.html:69
+msgid "Apply suggestions and continue"
+msgstr "Aplicar sugestões e continuar"

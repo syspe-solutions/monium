@@ -38,4 +38,4 @@ class OrganizationCreateView(LoginRequiredMixin, View):
         messages.success(
             request, _('Organization "%(name)s" created successfully.') % {"name": organization.name}
         )
-        return redirect("inventory:home")
+        return redirect("organizations:onboarding")

@@ -7,6 +7,7 @@ from .views import (
     OrganizationCreateView,
     OrganizationDeleteView,
     OrganizationMembersView,
+    OrganizationOnboardingView,
     OrganizationSettingsView,
     SwitchOrganizationView,
 )
@@ -15,6 +16,7 @@ app_name = "organizations"
 
 urlpatterns = [
     path("create/", OrganizationCreateView.as_view(), name="create"),
+    path("onboarding/", OrganizationOnboardingView.as_view(), name="onboarding"),
     path("switch/<uuid:organization_id>/", SwitchOrganizationView.as_view(), name="switch"),
     path("settings/", OrganizationSettingsView.as_view(), name="settings"),
     path("members/", OrganizationMembersView.as_view(), name="members"),

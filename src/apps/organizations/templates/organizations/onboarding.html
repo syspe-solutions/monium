@@ -1,0 +1,82 @@
+{% extends "common/layouts/base-app.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Guided setup" %} — Monium{% endblock %}
+
+{% block content %}
+<div class="p-6 space-y-6">
+
+  <!-- Header -->
+  <div class="flex flex-col gap-1">
+    <h1 class="text-2xl font-bold text-white">
+      {% if is_first %}{% trans "Let's set up your inventory" %}{% else %}{% trans "Set up this organization" %}{% endif %}
+    </h1>
+    <p class="text-sm text-zinc-500 mt-0.5">
+      {% blocktrans with industry=current_organization.get_industry_display %}Based on your industry ({{ industry }}), here are some starter categories and sectors to speed up your first registrations.{% endblocktrans %}
+    </p>
+  </div>
+
+  <form method="post" class="flex flex-col gap-6">
+    {% csrf_token %}
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+      <!-- Categories -->
+      <div class="card p-5 flex flex-col gap-3">
+        <div class="flex items-center gap-2 text-white pb-2 border-b border-zinc-800">
+          <span class="material-symbols-outlined text-zinc-500 text-xl leading-none">category</span>
+          <h2 class="text-sm font-semibold">{% trans "Suggested categories" %}</h2>
+        </div>
+        {% for category in suggestions.categories %}
+        <label class="flex items-center gap-3 text-sm {% if category.exists %}text-zinc-600{% else %}text-zinc-200 cursor-pointer{% endif %}">
+          {% if category.exists %}
+          <span class="material-symbols-outlined text-base leading-none text-green-600">check_circle</span>
+          {{ category.name }}
+          <span class="text-xs text-zinc-600">({% trans "already available" %})</span>
+          {% else %}
+          <input type="checkbox" name="categories" value="{{ category.name }}" checked class="w-4 h-4 rounded border-zinc-700 bg-zinc-900 text-white focus:ring-2 focus:ring-white/60">
+          {{ category.name }}
+          {% endif %}
+        </label>
+        {% empty %}
+        <p class="text-xs text-zinc-500">{% trans "No suggestions for this industry." %}</p>
+        {% endfor %}
+      </div>
+
+      <!-- Sectors -->
+      <div class="card p-5 flex flex-col gap-3">
+        <div class="flex items-center gap-2 text-white pb-2 border-b border-zinc-800">
+          <span class="material-symbols-outlined text-zinc-500 text-xl leading-none">apartment</span>
+          <h2 class="text-sm font-semibold">{% trans "Suggested sectors" %}</h2>
+        </div>
+        {% for sector in suggestions.sectors %}
+        <label class="flex items-center gap-3 text-sm {% if sector.exists %}text-zinc-600{% else %}text-zinc-200 cursor-pointer{% endif %}">
+          {% if sector.exists %}
+          <span class="material-symbols-outlined text-base leading-none text-green-600">check_circle</span>
+          {{ sector.name }}
+          <span class="text-xs text-zinc-600">({% trans "already available" %})</span>
+          {% else %}
+          <input type="checkbox" name="sectors" value="{{ sector.name }}" checked class="w-4 h-4 rounded border-zinc-700 bg-zinc-900 text-white focus:ring-2 focus:ring-white/60">
+          {{ sector.name }}
+          {% endif %}
+        </label>
+        {% empty %}
+        <p class="text-xs text-zinc-500">{% trans "No suggestions for this industry." %}</p>
+        {% endfor %}
+      </div>
+
+    </div>
+
+    <div class="flex items-center justify-between">
+      <a href="{% url 'inventory:home' %}" class="text-sm text-zinc-500 hover:text-zinc-300 hover:underline">
+        {% trans "Skip, I'll set this up later" %}
+      </a>
+      <button type="submit"
+              class="bg-white text-zinc-950 text-center py-2.5 px-5 rounded-lg font-semibold text-sm hover:bg-zinc-100 transition">
+        {% trans "Apply suggestions and continue" %}
+      </button>
+    </div>
+  </form>
+
+</div>
+{% endblock %}
