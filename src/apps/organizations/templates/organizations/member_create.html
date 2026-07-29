@@ -1,11 +1,11 @@
-{% extends "common/layouts/base-app.html" %}
+{% extends "common/layouts/base-aside.html" %}
 {% load i18n %}
 
 {% block title %}{% trans "Add member" %} — Monium{% endblock %}
 
 {% block content %}
-<div class="p-6 space-y-6">
-    <div class="flex flex-col lg:flex-row gap-9 items-start">
+<div class="p-6 lg:p-10">
+    <div class="flex flex-col lg:flex-row gap-9 items-start justify-center max-w-3xl mx-auto">
 
         <div class="w-full lg:w-[400px] shrink-0">
             <h1 class="text-2xl font-bold text-white">{% trans "Add member" %}</h1>

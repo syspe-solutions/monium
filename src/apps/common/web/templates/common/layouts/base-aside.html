@@ -1,0 +1,43 @@
+{% load static %}
+{% load assets %}
+{% load i18n %}
+
+<!DOCTYPE html>
+<html lang="{{ request.LANGUAGE_CODE|default:'pt-br' }}">
+<head>
+    <title>{% block title %}Monium{% endblock %}</title>
+    {% include "common/includes/builtin.html" %}
+    {% block extrahead %}{% endblock %}
+</head>
+
+<body class="bg-zinc-950 h-screen flex font-[Inter] overflow-hidden">
+
+    {% block sidebar %}
+        {% include "common/includes/aside.html" %}
+    {% endblock %}
+
+    <div class="flex flex-col flex-1 h-screen overflow-y-auto">
+
+        <header class="flex lg:!hidden items-center gap-3 h-14 px-4 bg-zinc-950 text-white sticky top-0 z-[60] shrink-0 shadow-md w-full">
+            <button id="mobile-hamburger"
+                    aria-label="{% trans 'Open menu' %}"
+                    class="flex items-center justify-center w-9 h-9 rounded hover:bg-zinc-800 transition">
+                <span class="material-symbols-outlined">menu</span>
+            </button>
+            <span class="text-xl font-bold">Monium</span>
+        </header>
+
+        {% block header %}{% endblock %}
+        {% block content %}{% endblock %}
+        {% block footer %}{% endblock %}
+
+    </div>
+
+    {% include "common/includes/messages.html" %}
+
+    {% block scripts %}{% endblock %}
+
+    <script src="{% ts 'common/js/utilities.ts' %}"></script>
+    {% include "common/includes/ui_scripts.html" %}
+</body>
+</html>
