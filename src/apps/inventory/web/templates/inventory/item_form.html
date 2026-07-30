@@ -32,7 +32,7 @@
             <div class="lg:col-span-2 flex flex-col gap-4">
 
                 <!-- Identification -->
-                <div class="border rounded-xl flex flex-col gap-3 p-4 border-zinc-800 bg-zinc-900 shadow-card">
+                <div class="border rounded-md flex flex-col gap-3 p-4 border-zinc-800 bg-zinc-900 shadow-card">
                     <p class="font-medium text-sm text-zinc-300 flex items-center gap-1.5">
                         <span class="material-symbols-outlined text-zinc-700 text-base leading-none">badge</span>
                         {% trans "Identification" %}
@@ -76,7 +76,7 @@
                 </div>
 
                 <!-- Location -->
-                <div class="border rounded-xl flex flex-col gap-3 p-4 border-zinc-800 bg-zinc-900 shadow-card">
+                <div class="border rounded-md flex flex-col gap-3 p-4 border-zinc-800 bg-zinc-900 shadow-card">
                     <p class="font-medium text-sm text-zinc-300 flex items-center gap-1.5">
                         <span class="material-symbols-outlined text-zinc-700 text-base leading-none">location_on</span>
                         {% trans "Location" %}
@@ -110,7 +110,7 @@
                 </div>
 
                 <!-- Condition -->
-                <div class="border rounded-xl flex flex-col gap-3 p-4 border-zinc-800 bg-zinc-900 shadow-card">
+                <div class="border rounded-md flex flex-col gap-3 p-4 border-zinc-800 bg-zinc-900 shadow-card">
                     <p class="font-medium text-sm text-zinc-300 flex items-center gap-1.5">
                         <span class="material-symbols-outlined text-zinc-700 text-base leading-none">fact_check</span>
                         {% trans "Condition" %}
@@ -144,8 +144,31 @@
                     </div>
                 </div>
 
+                <!-- Acquisition -->
+                <div class="border rounded-md flex flex-col gap-3 p-4 border-zinc-800 bg-zinc-900 shadow-card">
+                    <p class="font-medium text-sm text-zinc-300 flex items-center gap-1.5">
+                        <span class="material-symbols-outlined text-zinc-700 text-base leading-none">payments</span>
+                        {% trans "Acquisition" %}
+                        <span class="text-xs font-normal text-zinc-400">{% trans "(optional)" %}</span>
+                    </p>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div>
+                            <label class="block font-medium text-xs sm:text-sm mb-1 text-zinc-400">{% trans "Acquisition value" %}</label>
+                            {{ acquisition_form.value }}
+                            {% if acquisition_form.value.errors %}<p class="text-red-400 text-xs mt-1">{{ acquisition_form.value.errors }}</p>{% endif %}
+                        </div>
+
+                        <div>
+                            <label class="block font-medium text-xs sm:text-sm mb-1 text-zinc-400">{% trans "Purchase date" %}</label>
+                            {{ acquisition_form.purchase_date }}
+                            {% if acquisition_form.purchase_date.errors %}<p class="text-red-400 text-xs mt-1">{{ acquisition_form.purchase_date.errors }}</p>{% endif %}
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Technical specifications -->
-                <div class="border rounded-xl flex flex-col gap-3 p-4 border-zinc-800 bg-zinc-900 shadow-card">
+                <div class="border rounded-md flex flex-col gap-3 p-4 border-zinc-800 bg-zinc-900 shadow-card">
                     <p class="font-medium text-sm text-zinc-300 flex items-center gap-1.5">
                         <span class="material-symbols-outlined text-zinc-700 text-base leading-none">settings</span>
                         {% trans "Technical Specifications" %}
@@ -215,7 +238,7 @@
             <div class="flex flex-col gap-4 lg:sticky lg:top-6 self-start w-full">
 
                 <!-- Photo -->
-                <div class="border rounded-xl flex flex-col gap-3 p-4 border-zinc-800 bg-zinc-900 shadow-card">
+                <div class="border rounded-md flex flex-col gap-3 p-4 border-zinc-800 bg-zinc-900 shadow-card">
                     <p class="font-medium text-sm text-zinc-300 flex items-center gap-1.5">
                         <span class="material-symbols-outlined text-zinc-700 text-base leading-none">photo_camera</span>
                         {% trans "Photo" %}
@@ -244,7 +267,7 @@
                 </div>
 
                 <!-- Live preview -->
-                <div class="border rounded-xl flex flex-col gap-3 p-4 border-zinc-800 bg-zinc-900 shadow-card">
+                <div class="border rounded-md flex flex-col gap-3 p-4 border-zinc-800 bg-zinc-900 shadow-card">
                     <p class="font-medium text-sm text-zinc-300 flex items-center gap-1.5">
                         <span class="material-symbols-outlined text-zinc-700 text-base leading-none">visibility</span>
                         {% trans "Preview" %}
@@ -271,7 +294,7 @@
                 </div>
 
                 <!-- Tips -->
-                <div class="border rounded-xl flex flex-col gap-2 p-4 border-zinc-800 bg-zinc-900 shadow-card">
+                <div class="border rounded-md flex flex-col gap-2 p-4 border-zinc-800 bg-zinc-900 shadow-card">
                     <p class="font-medium text-sm text-zinc-300 flex items-center gap-1.5">
                         <span class="material-symbols-outlined text-zinc-700 text-base leading-none">lightbulb</span>
                         {% trans "Tips" %}

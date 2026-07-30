@@ -5,6 +5,7 @@ from .imovel_detail_view import ImovelDetailView
 from .imovel_list_view import ImovelListView
 from .imovel_update_view import ImovelUpdateView
 from .imovel_views import ImovelCreateView
+from .item_delete_view import MovelDeleteView
 from .item_detail_view import MovelDetailView
 from .item_export_view import MovelExportView
 from .item_import_view import ItemImportTemplateView, ItemImportView
@@ -23,6 +24,7 @@ __all__ = [
     "ItemImportTemplateView",
     "ItemImportView",
     "MovelCreateView",
+    "MovelDeleteView",
     "MovelDetailView",
     "MovelExportView",
     "MovelListView",

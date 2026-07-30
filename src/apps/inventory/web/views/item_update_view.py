@@ -4,6 +4,7 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.utils.translation import gettext as _
 from django.views import View
 
+from apps.inventory.forms.acquisition_form import AcquisitionForm
 from apps.inventory.forms.movel_form import MovelForm, MovelSpecForm
 from apps.inventory.models import Brand, Movel
 from apps.organizations.mixins import InventoryWriteRequiredMixin
@@ -16,16 +17,17 @@ class MovelUpdateView(LoginRequiredMixin, InventoryWriteRequiredMixin, View):
 
     def _get_item(self, request, pk):
         return get_object_or_404(
-            Movel.objects.select_related("category", "sector", "location").prefetch_related("spec__brand"),
+            Movel.objects.select_related("category", "sector", "location", "acquisition").prefetch_related("spec__brand"),
             pk=pk,
             organization=request.organization,
         )
 
-    def _context(self, item, form, spec_form, selected_brand_id="", brand_error=""):
+    def _context(self, item, form, spec_form, acquisition_form, selected_brand_id="", brand_error=""):
         return {
             "item": item,
             "form": form,
             "spec_form": spec_form,
+            "acquisition_form": acquisition_form,
             "brands": Brand.objects.order_by("name"),
             "selected_brand_id": str(selected_brand_id),
             "brand_error": brand_error,
@@ -34,27 +36,31 @@ class MovelUpdateView(LoginRequiredMixin, InventoryWriteRequiredMixin, View):
     def get(self, request, pk):
         item = self._get_item(request, pk)
         spec = getattr(item, "spec", None)
+        acquisition = getattr(item, "acquisition", None)
         selected_brand_id = spec.brand_id if spec and spec.brand_id else ""
         return render(request, self.template_name, self._context(
-            item, MovelForm(instance=item), MovelSpecForm(instance=spec), selected_brand_id,
+            item, MovelForm(instance=item), MovelSpecForm(instance=spec),
+            AcquisitionForm(instance=acquisition), selected_brand_id,
         ))
 
     def post(self, request, pk):
         item = self._get_item(request, pk)
         spec = getattr(item, "spec", None)
+        acquisition = getattr(item, "acquisition", None)
         form = MovelForm(request.POST, instance=item)
         spec_form = MovelSpecForm(request.POST, request.FILES, instance=spec)
+        acquisition_form = AcquisitionForm(request.POST, instance=acquisition)
         brand_id = request.POST.get("brand_id", "").strip()
         new_brand_name = request.POST.get("new_brand_name", "").strip()
 
-        if not form.is_valid() or not spec_form.is_valid():
+        if not form.is_valid() or not spec_form.is_valid() or not acquisition_form.is_valid():
             return render(request, self.template_name,
-                          self._context(item, form, spec_form, brand_id))
+                          self._context(item, form, spec_form, acquisition_form, brand_id))
 
         brand_instance, brand_error = resolve_brand(brand_id, new_brand_name, request.user)
         if brand_error:
             return render(request, self.template_name,
-                          self._context(item, form, spec_form, "__new__", brand_error))
+                          self._context(item, form, spec_form, acquisition_form, "__new__", brand_error))
 
         item = form.save(commit=False)
         item.updated_by = request.user
@@ -74,6 +80,18 @@ class MovelUpdateView(LoginRequiredMixin, InventoryWriteRequiredMixin, View):
             if not new_spec.created_by_id:
                 new_spec.created_by = request.user
             new_spec.save()
+
+        has_acquisition = any([
+            acquisition_form.cleaned_data.get("value") is not None,
+            acquisition_form.cleaned_data.get("purchase_date"),
+        ])
+        if has_acquisition:
+            new_acquisition = acquisition_form.save(commit=False)
+            new_acquisition.item = item
+            new_acquisition.updated_by = request.user
+            if not new_acquisition.created_by_id:
+                new_acquisition.created_by = request.user
+            new_acquisition.save()
 
         messages.success(request, _('Item "%(name)s" updated successfully.') % {"name": item.name})
         return redirect("inventory:item_detail", pk=item.id)

@@ -1,8 +1,12 @@
+from datetime import date
+from decimal import Decimal
+
 from django.contrib.auth import get_user_model
 from django.test import TestCase
 from django.urls import reverse
+from django.utils import timezone
 
-from apps.inventory.models import Category, Imovel, ImovelCategory, Movel, Sector
+from apps.inventory.models import Acquisition, Category, Imovel, ImovelCategory, Loan, LoanStatus, Movel, Sector
 from apps.organizations.models import (
     Membership,
     MembershipRole,
@@ -83,6 +87,99 @@ class InventoryEditFlowTests(TestCase):
         self.assertEqual(item.name, "Mouse sem fio")
         self.assertEqual(item.status, "em_manutencao")
         self.assertRedirects(post_response, reverse("inventory:item_detail", args=[item.id]))
+
+    def test_movel_create_saves_acquisition_value(self):
+        self.client.post(reverse("inventory:item_create"), self._movel_payload(
+            value="4500.00", purchase_date="2026-01-15",
+        ))
+        item = Movel.objects.get(code="PAT-0001")
+        self.assertEqual(item.acquisition.value, Decimal("4500.00"))
+        self.assertEqual(item.acquisition.purchase_date, date(2026, 1, 15))
+
+    def test_movel_create_without_acquisition_data_creates_no_acquisition(self):
+        self.client.post(reverse("inventory:item_create"), self._movel_payload())
+        item = Movel.objects.get(code="PAT-0001")
+        self.assertFalse(Acquisition.objects.filter(item=item).exists())
+
+    def test_movel_update_sets_acquisition_value(self):
+        item = Movel.objects.create(
+            organization=self.organization, code="PAT-0003", name="Impressora",
+            category=self.category, sector=self.sector, status="em_uso",
+        )
+        self.client.post(
+            reverse("inventory:item_update", args=[item.id]),
+            self._movel_payload(code="PAT-0003", name="Impressora", value="899.90", purchase_date="2026-02-01"),
+        )
+        item.refresh_from_db()
+        self.assertEqual(item.acquisition.value, Decimal("899.90"))
+
+    def test_movel_update_edits_existing_acquisition_value(self):
+        item = Movel.objects.create(
+            organization=self.organization, code="PAT-0004", name="Cadeira",
+            category=self.category, sector=self.sector, status="em_uso",
+        )
+        Acquisition.objects.create(item=item, value=Decimal("100.00"), purchase_date=date(2025, 1, 1))
+
+        self.client.post(
+            reverse("inventory:item_update", args=[item.id]),
+            self._movel_payload(code="PAT-0004", name="Cadeira", value="150.00", purchase_date="2025-06-01"),
+        )
+        item.refresh_from_db()
+        self.assertEqual(item.acquisition.value, Decimal("150.00"))
+        self.assertEqual(Acquisition.objects.filter(item=item).count(), 1)
+
+    def test_movel_delete_confirm_page_loads(self):
+        item = Movel.objects.create(
+            organization=self.organization, code="PAT-0005", name="Teclado",
+            category=self.category, sector=self.sector, status="em_uso",
+        )
+        response = self.client.get(reverse("inventory:item_delete", args=[item.id]))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "PAT-0005")
+
+    def test_movel_delete_requires_matching_code_confirmation(self):
+        item = Movel.objects.create(
+            organization=self.organization, code="PAT-0006", name="Mesa",
+            category=self.category, sector=self.sector, status="em_uso",
+        )
+        response = self.client.post(
+            reverse("inventory:item_delete", args=[item.id]),
+            {"confirmation_code": "WRONG-CODE"},
+        )
+        self.assertEqual(response.status_code, 200)
+        self.assertTrue(Movel.objects.filter(pk=item.id).exists())
+
+    def test_movel_delete_succeeds_with_matching_code(self):
+        item = Movel.objects.create(
+            organization=self.organization, code="PAT-0007", name="Monitor",
+            category=self.category, sector=self.sector, status="em_uso",
+        )
+        Acquisition.objects.create(item=item, value=Decimal("300.00"), purchase_date=date.today())
+
+        response = self.client.post(
+            reverse("inventory:item_delete", args=[item.id]),
+            {"confirmation_code": "PAT-0007"},
+        )
+        self.assertRedirects(response, reverse("inventory:item_list"))
+        self.assertFalse(Movel.objects.filter(pk=item.id).exists())
+        self.assertFalse(Acquisition.objects.filter(item_id=item.id).exists())
+
+    def test_movel_delete_is_blocked_when_item_has_loan_history(self):
+        item = Movel.objects.create(
+            organization=self.organization, code="PAT-0008", name="Notebook Emprestado",
+            category=self.category, sector=self.sector, status="em_uso",
+        )
+        Loan.objects.create(
+            item=item, loaned_to="Fulano", loaned_at=timezone.now(),
+            expected_return=date.today(), status=LoanStatus.RETURNED,
+        )
+
+        response = self.client.post(
+            reverse("inventory:item_delete", args=[item.id]),
+            {"confirmation_code": "PAT-0008"},
+        )
+        self.assertRedirects(response, reverse("inventory:item_detail", args=[item.id]))
+        self.assertTrue(Movel.objects.filter(pk=item.id).exists())
 
     def test_movel_update_view_rejects_other_organizations_item(self):
         other_org = Organization.objects.create(
