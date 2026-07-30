@@ -513,8 +513,10 @@ msgstr "Nova organização"
 msgid "Help & FAQ"
 msgstr "Ajuda e Perguntas Frequentes"
 
-#: apps/common/web/templates/common/includes/aside.html:161
-#: apps/common/web/templates/common/includes/aside.html:163
+#: apps/common/web/templates/common/includes/aside.html:174
+#: apps/common/web/templates/common/includes/aside.html:176
+#: apps/account/templates/account/settings/settings.html:4
+#: apps/account/templates/account/settings/settings.html:11
 msgid "Settings"
 msgstr "Configurações"
 
@@ -524,6 +526,7 @@ msgid "System settings"
 msgstr "Configurações do sistema"
 
 #: apps/common/web/templates/common/includes/aside.html:178
+#: apps/account/templates/account/settings/settings.html:35
 msgid "Language"
 msgstr "Idioma"
 
@@ -568,12 +571,14 @@ msgstr "Serviços"
 #: apps/common/web/templates/common/includes/footer.html:19
 #: apps/pages/templates/pages/privacy.html:11
 #: apps/pages/templates/pages/terms.html:85
+#: apps/account/templates/account/settings/settings.html:113
 msgid "Privacy Policy"
 msgstr "Política de Privacidade"
 
 #: apps/common/web/templates/common/includes/footer.html:20
 #: apps/pages/templates/pages/privacy.html:101
 #: apps/pages/templates/pages/terms.html:11
+#: apps/account/templates/account/settings/settings.html:105
 msgid "Terms of Use"
 msgstr "Termos de Uso"
 
@@ -1056,6 +1061,30 @@ msgstr "Nenhum item cadastrado ainda."
 #: apps/inventory/web/templates/inventory/home.html:304
 msgid "Register now"
 msgstr "Cadastrar agora"
+
+#: apps/inventory/web/templates/inventory/home.html:296
+msgid "Highest Valued Assets"
+msgstr "Bens com Maior Valor"
+
+#: apps/inventory/web/templates/inventory/home.html:307
+msgid "No asset with a registered value yet."
+msgstr "Nenhum bem com valor cadastrado ainda."
+
+#: apps/inventory/web/templates/inventory/home.html:318
+msgid "Collection Value by Period"
+msgstr "Valor do Acervo por Período"
+
+#: apps/inventory/web/templates/inventory/home.html:338
+msgid "No acquisition value registered in this period yet."
+msgstr "Nenhum valor de aquisição registrado neste período ainda."
+
+#: apps/inventory/web/templates/inventory/home.html:353
+msgid "My Wallet"
+msgstr "Minha Carteira"
+
+#: apps/inventory/web/templates/inventory/home.html:357
+msgid "Total collection value"
+msgstr "Valor total do acervo"
 
 #: apps/inventory/web/templates/inventory/imovel_detail.html:29
 msgid "Real Estate Information"
@@ -1756,6 +1785,7 @@ msgstr "Começar"
 # ── FAQ
 # ───────────────────────────────────────────────────────────────────────
 #: apps/pages/templates/pages/faq.html:12
+#: apps/account/templates/account/settings/settings.html:89
 msgid "Frequently Asked Questions"
 msgstr "Perguntas Frequentes"
 
@@ -3475,3 +3505,111 @@ msgstr "Pular, eu configuro depois"
 #: apps/organizations/templates/organizations/onboarding.html:69
 msgid "Apply suggestions and continue"
 msgstr "Aplicar sugestões e continuar"
+
+#: apps/account/templates/account/settings/settings.html:12
+msgid "Manage your language, help resources, and account preferences"
+msgstr "Gerencie o idioma, os recursos de ajuda e as preferências da conta"
+
+#: apps/account/templates/account/settings/settings.html:38
+msgid "Choose the language used across the app."
+msgstr "Escolha o idioma usado em todo o aplicativo."
+
+#: apps/account/templates/account/settings/settings.html:78
+msgid "Help & Support"
+msgstr "Ajuda e Suporte"
+
+#: apps/account/templates/account/settings/settings.html:81
+msgid "Find answers to common questions or get in touch with us."
+msgstr "Encontre respostas para perguntas comuns ou entre em contato conosco."
+
+#: apps/account/templates/account/settings/settings.html:97
+msgid "Contact support"
+msgstr "Contatar o suporte"
+
+#: apps/account/templates/account/settings/settings.html:124
+msgid "Account"
+msgstr "Conta"
+
+#: apps/account/templates/account/settings/settings.html:127
+msgid "Update your personal information, password, and manage your account."
+msgstr "Atualize suas informações pessoais, senha e gerencie sua conta."
+
+#: apps/account/templates/account/settings/settings.html:133
+msgid "Go to my profile"
+msgstr "Ir para meu perfil"
+
+#: apps/common/web/templates/common/includes/aside.html:165
+#: apps/common/web/templates/common/includes/aside.html:167
+#: apps/account/templates/account/settings/settings.html:142
+msgid "Organization"
+msgstr "Organização"
+
+#: apps/account/templates/account/settings/settings.html:145
+msgid "Manage your organization's information, members, and preferences."
+msgstr "Gerencie as informações, os membros e as preferências da sua organização."
+
+#: apps/account/templates/account/settings/settings.html:151
+msgid "Go to organization settings"
+msgstr "Ir para as configurações da organização"
+
+#: apps/inventory/web/templates/inventory/item_form.html:151
+msgid "Acquisition"
+msgstr "Aquisição"
+
+#: apps/inventory/web/templates/inventory/item_form.html:157
+msgid "Acquisition value"
+msgstr "Valor de aquisição"
+
+#: apps/inventory/web/templates/inventory/item_form.html:163
+msgid "Purchase date"
+msgstr "Data da compra"
+
+#: apps/inventory/web/templates/inventory/item_detail.html:36
+msgid "Delete"
+msgstr "Excluir"
+
+#: apps/inventory/web/templates/inventory/item_delete_confirm.html:4
+#: apps/inventory/web/templates/inventory/item_delete_confirm.html:10
+msgid "Delete item"
+msgstr "Excluir item"
+
+#: apps/inventory/web/templates/inventory/item_delete_confirm.html:17
+msgid "This item cannot be permanently deleted because it has loan, maintenance or movement history, kept for audit purposes."
+msgstr "Este item não pode ser excluído permanentemente porque possui histórico de empréstimos, manutenções ou movimentações, preservado para fins de auditoria."
+
+#: apps/inventory/web/templates/inventory/item_delete_confirm.html:20
+msgid "Mark it as \"Written Off\" instead — it stays out of active use, but its history is preserved."
+msgstr "Marque-o como \"Baixado\" em vez disso — ele sai de uso ativo, mas seu histórico é preservado."
+
+#: apps/inventory/web/templates/inventory/item_delete_confirm.html:25
+msgid "Edit item"
+msgstr "Editar item"
+
+#: apps/inventory/web/templates/inventory/item_delete_confirm.html:34
+msgid "This will permanently delete this item, its photo and its acquisition data. This cannot be undone."
+msgstr "Isso excluirá permanentemente este item, sua foto e seus dados de aquisição. Essa ação não pode ser desfeita."
+
+#: apps/inventory/web/templates/inventory/item_delete_confirm.html:41
+#, python-format
+msgid "Type \"%(code)s\" to confirm"
+msgstr "Digite \"%(code)s\" para confirmar"
+
+#: apps/inventory/web/views/item_delete_view.py:39
+#, python-format
+msgid ""
+"Item \"%(name)s\" cannot be permanently deleted because it has loan, "
+"maintenance or movement history. Mark it as \"Written Off\" instead to "
+"keep it out of active use while preserving its history."
+msgstr ""
+"O item \"%(name)s\" não pode ser excluído permanentemente porque possui "
+"histórico de empréstimos, manutenções ou movimentações. Marque-o como "
+"\"Baixado\" em vez disso para tirá-lo de uso ativo preservando seu histórico."
+
+#: apps/inventory/web/views/item_delete_view.py:47
+msgid "The typed code doesn't match. The item was not deleted."
+msgstr "O código digitado não confere. O item não foi excluído."
+
+#: apps/inventory/web/views/item_delete_view.py:56
+#, python-format
+msgid "Item \"%(name)s\" deleted."
+msgstr "Item \"%(name)s\" excluído."
