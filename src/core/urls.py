@@ -14,8 +14,10 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf import settings
 from django.contrib import admin
-from django.urls import include, path
+from django.urls import include, path, re_path
+from django.views.static import serve as serve_media
 
 urlpatterns = [
     path("setup/", include("apps.setup.web.urls")),
@@ -28,4 +30,8 @@ urlpatterns = [
     path("audit/", include("apps.audit.web.urls")),
     path("", include("apps.common.web.urls")),
     path("", include("apps.pages.web.urls")),
+    # Sem Nginx/volume compartilhado na frente (mesma lógica do whitenoise pros
+    # estáticos): uploads (avatars, logos, fotos de item) também precisam ser
+    # servidos direto pelo processo Django/gunicorn, senão retornam 404.
+    re_path(r"^media/(?P<path>.*)$", serve_media, {"document_root": settings.MEDIA_ROOT}),
 ]
