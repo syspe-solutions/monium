@@ -18,6 +18,11 @@ from apps.inventory.models import (
     Sector,
 )
 from apps.inventory.services.movel_status_summary import get_movel_status_summary
+from apps.inventory.services.portfolio_value_summary import (
+    get_portfolio_total_value,
+    get_top_valued_items,
+    get_value_by_month,
+)
 
 
 class HomeView(LoginRequiredMixin, TemplateView):
@@ -95,5 +100,10 @@ class HomeView(LoginRequiredMixin, TemplateView):
             .filter(item_count__gt=0)
             .order_by("-item_count")[:5]
         )
+
+        # ── Carteira (valor do acervo) ───────────────────────────────────────
+        ctx["portfolio_total_value"] = get_portfolio_total_value(organization)
+        ctx["top_valued_items"] = get_top_valued_items(organization, limit=5)
+        ctx["value_by_month"] = get_value_by_month(organization, months=6)
 
         return ctx

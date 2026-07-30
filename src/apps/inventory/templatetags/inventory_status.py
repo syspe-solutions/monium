@@ -1,3 +1,5 @@
+from decimal import Decimal, InvalidOperation
+
 from django import template
 
 from apps.inventory.models import LoanStatus, MovelStatus
@@ -41,3 +43,14 @@ def loan_status_badge_class(status: str) -> str:
 def tipo_badge_class(tipo: str) -> str:
     """Mapeia "movel"/"imovel" para as classes Tailwind do badge correspondente."""
     return _TIPO_BADGE_CLASSES.get(tipo, _DEFAULT_BADGE_CLASSES)
+
+
+@register.filter
+def brl(value) -> str:
+    """Formata um valor monetário como R$ 1.234,56 (pt-BR)."""
+    try:
+        value = Decimal(value)
+    except (InvalidOperation, TypeError):
+        return "R$ 0,00"
+    formatted = f"{value:,.2f}".replace(",", "_").replace(".", ",").replace("_", ".")
+    return f"R$ {formatted}"
