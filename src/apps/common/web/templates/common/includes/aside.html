@@ -65,7 +65,7 @@
         <span class="material-symbols-outlined text-xs leading-none" id="toggle-icon">chevron_left</span>
     </button>
 
-    <div id="sidebar-content" class="flex flex-col flex-1 overflow-y-auto overflow-x-hidden p-4">
+    <div id="sidebar-content" class="flex flex-col h-full justify-between align-center p-4">
 
         <!-- Logo -->
         <a href="{% url 'inventory:home' %}" class="flex justify-center mt-4 mb-6 shrink-0">
@@ -73,10 +73,10 @@
             <img id="logo-compact" src="{% static 'common/svg/logo/vertical-letter-white.svg' %}" alt="Monium" class="h-10 w-auto">
         </a>
 
-        <nav class="flex flex-col gap-1 mb-4 shrink-0">
+        <nav class="flex mb-32 flex-col gap-1 shrink-0">
             <a href="{% url 'inventory:home' %}"
                class="nav-item tooltip flex items-center gap-3 p-3 rounded-lg transition-all ease-apple
-                      {% if request.resolver_match.url_name == 'home' %}bg-white/10 text-white{% else %}hover:bg-zinc-800{% endif %}"
+                      {% if request.resolver_match.url_name == 'home' %}bg-white text-zinc-900{% else %}hover:bg-zinc-800{% endif %}"
                data-tooltip="{% trans 'Home' %}">
                 <span class="material-symbols-outlined text-base shrink-0">home</span>
                 <span class="sidebar-text text-sm overflow-hidden whitespace-nowrap">{% trans "Home" %}</span>
@@ -84,7 +84,7 @@
 
             <a href="{% url 'inventory:patrimonio_list' %}"
                class="nav-item tooltip flex items-center gap-3 p-3 rounded-lg transition-all ease-apple
-                      {% if request.resolver_match.url_name in 'patrimonio_list,patrimonio_choice,item_list,item_detail,item_create,imovel_list,imovel_detail,imovel_create,dashboard' %}bg-white/10 text-white{% else %}hover:bg-zinc-800{% endif %}"
+                      {% if request.resolver_match.url_name in 'patrimonio_list,patrimonio_choice,item_list,item_detail,item_create,imovel_list,imovel_detail,imovel_create,dashboard' %}bg-white text-zinc-900{% else %}hover:bg-zinc-800{% endif %}"
                data-tooltip="{% trans 'Assets' %}">
                 <span class="material-symbols-outlined text-base shrink-0">inventory_2</span>
                 <span class="sidebar-text text-sm overflow-hidden whitespace-nowrap">{% trans "Assets" %}</span>
@@ -93,7 +93,7 @@
             <!-- Organizações -->
             <div class="relative">
                 <div class="nav-item flex items-center gap-1 justify-between rounded-lg transition-all ease-apple
-                            {% if request.resolver_match.url_name in 'members,member_create,member_remove,member_role_update,create,delete' %}bg-white/10 text-white{% else %}hover:bg-zinc-800{% endif %}">
+                            {% if request.resolver_match.url_name in 'members,member_create,member_remove,member_role_update,create,delete' %}bg-white text-zinc-900{% else %}hover:bg-zinc-800{% endif %}">
                     <button type="button" id="org-menu-name-toggle"
                             class="tooltip flex items-center justify-left gap-3 flex p-3 rounded-lg text-left overflow-hidden"
                             data-tooltip="{% if current_organization %}{{ current_organization.name }}{% else %}{% trans 'Organizations' %}{% endif %}">
@@ -152,57 +152,23 @@
 
             <a href="{% url 'pages:faq' %}"
                class="nav-item tooltip flex items-center gap-3 p-3 rounded-lg transition-all ease-apple
-                      {% if request.resolver_match.url_name == 'faq' %}bg-white/10 text-white{% else %}hover:bg-zinc-800{% endif %}"
+                      {% if request.resolver_match.url_name == 'faq' %}bg-white text-zinc-900{% else %}hover:bg-zinc-800{% endif %}"
                data-tooltip="{% trans 'Help & FAQ' %}">
                 <span class="material-symbols-outlined text-base shrink-0">help</span>
                 <span class="sidebar-text text-sm overflow-hidden whitespace-nowrap">{% trans "Help & FAQ" %}</span>
             </a>
 
-            {% if is_organization_owner %}
-            <a href="{% url 'organizations:settings' %}"
+            <a href="{% url 'account:settings' %}"
                class="nav-item tooltip flex items-center gap-3 p-3 rounded-lg transition-all ease-apple
-                      {% if request.resolver_match.url_name == 'settings' %}bg-white/10 text-white{% else %}hover:bg-zinc-800{% endif %}"
+                      {% if request.resolver_match.url_name == 'settings' and request.resolver_match.app_name == 'account' %}bg-white text-zinc-900{% else %}hover:bg-zinc-800{% endif %}"
                data-tooltip="{% trans 'Settings' %}">
                 <span class="material-symbols-outlined text-base shrink-0">settings</span>
                 <span class="sidebar-text text-sm overflow-hidden whitespace-nowrap">{% trans "Settings" %}</span>
             </a>
-            {% endif %}
 
-            {% if request.user.is_staff %}
-            <a href="{% url 'settings:email_settings' %}"
-               class="nav-item tooltip flex items-center gap-3 p-3 rounded-lg transition-all ease-apple
-                      {% if request.resolver_match.url_name == 'email_settings' %}bg-white/10 text-white{% else %}hover:bg-zinc-800{% endif %}"
-               data-tooltip="{% trans 'System settings' %}">
-                <span class="material-symbols-outlined text-base shrink-0">admin_panel_settings</span>
-                <span class="sidebar-text text-sm overflow-hidden whitespace-nowrap">{% trans "System settings" %}</span>
-            </a>
-            {% endif %}
-
-            <!-- Language switcher -->
-            <div class="nav-item tooltip flex items-center gap-3 p-3 rounded-lg" data-tooltip="{% trans 'Language' %}">
-                <span class="material-symbols-outlined text-base shrink-0">language</span>
-                <div class="sidebar-text flex items-center gap-1">
-                    {% get_current_language as LANGUAGE_CODE %}
-                    <form action="{% url 'set_language' %}" method="post" class="flex items-center gap-1">
-                        {% csrf_token %}
-                        <input type="hidden" name="next" value="{{ request.path }}">
-                        <button type="submit" name="language" value="pt-br"
-                                class="text-xs px-2 py-0.5 rounded transition
-                                       {% if LANGUAGE_CODE == 'pt-br' %}bg-zinc-700 text-white{% else %}text-zinc-500 hover:text-zinc-200{% endif %}">
-                            PT
-                        </button>
-                        <span class="text-zinc-700 text-xs">|</span>
-                        <button type="submit" name="language" value="en"
-                                class="text-xs px-2 py-0.5 rounded transition
-                                       {% if LANGUAGE_CODE == 'en' %}bg-zinc-700 text-white{% else %}text-zinc-500 hover:text-zinc-200{% endif %}">
-                            EN
-                        </button>
-                    </form>
-                </div>
-            </div>
         </nav>
 
-        <div class="mt-auto border-t border-zinc-800 pt-4 shrink-0 flex flex-col gap-1">
+        <div class="shrink-0 flex flex-col gap-1">
             <a href="{% url 'account:profile_edit' %}"
                class="nav-item tooltip flex items-center gap-3 p-2 rounded hover:bg-zinc-800 transition-all ease-apple"
                data-tooltip="{% trans 'My profile' %}">
@@ -218,15 +184,6 @@
                     </span>
                 </div>
             </a>
-            <form method="post" action="{% url 'account:logout' %}" class="m-0">
-                {% csrf_token %}
-                <button type="submit"
-                        class="nav-item tooltip w-full flex items-center gap-3 p-2 rounded hover:bg-red-900/30 transition-all ease-apple text-red-500 font-semibold text-left"
-                        data-tooltip="{% trans 'Logout' %}">
-                    <span class="material-symbols-outlined text-base shrink-0">logout</span>
-                    <span class="sidebar-text text-sm overflow-hidden whitespace-nowrap">{% trans "Logout" %}</span>
-                </button>
-            </form>
         </div>
 
     </div>

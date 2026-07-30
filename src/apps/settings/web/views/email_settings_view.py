@@ -27,7 +27,7 @@ class EmailSettingsView(LoginRequiredMixin, StaffRequiredMixin, View):
         email_settings.save()
 
         messages.success(request, _("Email settings updated successfully."))
-        return redirect("settings:email_settings")
+        return redirect(request.POST.get("next") or "settings:email_settings")
 
     def _context(self, form):
         return {"form": form}
