@@ -54,7 +54,7 @@
         <div class="flex flex-col sm:flex-row items-start gap-5">
           <div class="flex flex-col items-center gap-2 shrink-0">
             <label for="{{ form.logo.id_for_label }}" id="org-logo-dropzone"
-                   class="relative flex items-center justify-center w-20 h-20 rounded-xl
+                   class="relative flex items-center justify-center w-20 h-20 rounded-md
                           border-2 border-dashed border-zinc-700 bg-zinc-950/40 hover:border-zinc-500
                           hover:bg-zinc-800/40 transition cursor-pointer overflow-hidden">
               <div id="org-logo-placeholder" class="flex items-center justify-center {% if current_organization.logo %}hidden{% endif %}">
@@ -125,7 +125,7 @@
   <!-- Overview + Danger Zone -->
   <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
-    <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-5 flex flex-col gap-4 shadow-card">
+    <div class="bg-zinc-900 border border-zinc-800 rounded-md p-5 flex flex-col gap-4 shadow-card">
       <div class="flex items-center gap-2">
         <span class="material-symbols-outlined text-zinc-400 text-xl leading-none">domain</span>
         <h2 class="text-sm font-semibold text-white">{% trans "Overview" %}</h2>
@@ -143,7 +143,7 @@
       </div>
     </div>
 
-    <div class="bg-red-950/20 border border-red-900/50 rounded-xl p-5 flex flex-col gap-4 shadow-card">
+    <div class="bg-red-950/20 border border-red-900/50 rounded-md p-5 flex flex-col gap-4 shadow-card">
       <div class="flex items-center gap-2">
         <span class="material-symbols-outlined text-red-500 text-xl leading-none">delete_forever</span>
         <h2 class="text-sm font-semibold text-red-400">{% trans "Danger zone" %}</h2>

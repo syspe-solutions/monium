@@ -13,7 +13,7 @@
   </p>
 </div>
 
-<div class="bg-zinc-900 border border-zinc-800 rounded-xl p-6 shadow-card">
+<div class="bg-zinc-900 border border-zinc-800 rounded-md p-6 shadow-card">
   <form method="post" id="database-setup-form" class="flex flex-col gap-5">
     {% csrf_token %}
 
@@ -27,7 +27,7 @@
     {% endif %}
 
     <div class="flex flex-col gap-3">
-      <label class="engine-option flex items-start gap-3 p-4 border border-zinc-700 rounded-xl cursor-pointer hover:border-zinc-500 transition"
+      <label class="engine-option flex items-start gap-3 p-4 border border-zinc-700 rounded-md cursor-pointer hover:border-zinc-500 transition"
              data-engine="sqlite3">
         <span class="material-symbols-outlined text-zinc-400 text-xl leading-none mt-0.5">bolt</span>
         <span class="flex-1">
@@ -40,7 +40,7 @@
                class="mt-1 w-4 h-4 border-zinc-700 bg-zinc-900 text-white focus:ring-2 focus:ring-white/60">
       </label>
 
-      <label class="engine-option flex items-start gap-3 p-4 border border-zinc-700 rounded-xl cursor-pointer hover:border-zinc-500 transition"
+      <label class="engine-option flex items-start gap-3 p-4 border border-zinc-700 rounded-md cursor-pointer hover:border-zinc-500 transition"
              data-engine="postgresql">
         <span class="material-symbols-outlined text-zinc-400 text-xl leading-none mt-0.5">dns</span>
         <span class="flex-1">

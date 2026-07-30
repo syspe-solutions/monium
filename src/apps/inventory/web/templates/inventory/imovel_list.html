@@ -31,7 +31,7 @@
     </div>
 
     <!-- Filters -->
-    <details id="filters-disclosure" class="border border-zinc-800 rounded-xl bg-zinc-900 shadow-card" {% if filter_querystring %}open{% endif %}>
+    <details id="filters-disclosure" class="border border-zinc-800 rounded-md bg-zinc-900 shadow-card" {% if filter_querystring %}open{% endif %}>
         <summary class="flex items-center gap-2 px-4 py-3 cursor-pointer select-none text-sm font-medium text-zinc-200 hover:text-white">
             <span class="material-symbols-outlined text-base leading-none">filter_alt</span>
             {% trans "Filters" %}
@@ -95,7 +95,7 @@
     </details>
 
     <!-- Imoveis table -->
-    <div class="border border-zinc-800 rounded-xl bg-zinc-900 overflow-hidden shadow-card">
+    <div class="border border-zinc-800 rounded-md bg-zinc-900 overflow-hidden shadow-card">
         {% if imoveis %}
         <div class="overflow-x-auto">
             <table class="w-full text-sm">

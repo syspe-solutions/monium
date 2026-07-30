@@ -18,7 +18,7 @@
     </div>
 
     <!-- Instructions -->
-    <div class="border rounded-xl flex flex-col gap-3 p-4 border-zinc-800 bg-zinc-900 shadow-card">
+    <div class="border rounded-md flex flex-col gap-3 p-4 border-zinc-800 bg-zinc-900 shadow-card">
         <p class="font-medium text-sm text-zinc-300 flex items-center gap-1.5">
             <span class="material-symbols-outlined text-zinc-700 text-base leading-none">description</span>
             {% trans "Expected format" %}
@@ -34,7 +34,7 @@
     </div>
 
     <!-- Upload form -->
-    <form method="post" enctype="multipart/form-data" class="border rounded-xl flex flex-col gap-3 p-4 border-zinc-800 bg-zinc-900 shadow-card">
+    <form method="post" enctype="multipart/form-data" class="border rounded-md flex flex-col gap-3 p-4 border-zinc-800 bg-zinc-900 shadow-card">
         {% csrf_token %}
         <div>
             <label class="block font-medium text-xs sm:text-sm mb-1 text-zinc-400">{{ form.csv_file.label }}</label>
@@ -50,7 +50,7 @@
 
     <!-- Results -->
     {% if result %}
-    <div class="border rounded-xl flex flex-col gap-3 p-4 border-zinc-800 bg-zinc-900 shadow-card">
+    <div class="border rounded-md flex flex-col gap-3 p-4 border-zinc-800 bg-zinc-900 shadow-card">
         <p class="font-medium text-sm text-zinc-300 flex items-center gap-1.5">
             <span class="material-symbols-outlined text-amber-500 text-base leading-none">warning</span>
             {% blocktrans count count=result.errors|length %}{{ count }} row could not be imported{% plural %}{{ count }} rows could not be imported{% endblocktrans %}

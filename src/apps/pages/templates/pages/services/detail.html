@@ -70,7 +70,7 @@
       <h2 class="text-white text-xl font-bold">{% trans "How it works" %}</h2>
       <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
         {% for step in service.steps %}
-        <div class="relative bg-zinc-900 border border-zinc-800 rounded-xl p-5 space-y-3">
+        <div class="relative bg-zinc-900 border border-zinc-800 rounded-md p-5 space-y-3">
           <div class="w-9 h-9 rounded-lg bg-zinc-800 flex items-center justify-center">
             <span class="material-symbols-outlined text-white text-base leading-none">{{ step.icon }}</span>
           </div>
@@ -92,7 +92,7 @@
       <div class="grid sm:grid-cols-3 gap-4">
         {% for other in other_services %}
         <a href="{% url 'pages:service_detail' other.slug %}"
-           class="group bg-zinc-900 border border-zinc-800 rounded-xl p-5 flex items-start gap-3 hover:border-zinc-600 transition">
+           class="group bg-zinc-900 border border-zinc-800 rounded-md p-5 flex items-start gap-3 hover:border-zinc-600 transition">
           <div class="w-8 h-8 rounded-lg bg-zinc-800 group-hover:bg-zinc-700 transition flex items-center justify-center shrink-0">
             <span class="material-symbols-outlined text-white text-sm leading-none">{{ other.icon }}</span>
           </div>

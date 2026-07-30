@@ -55,7 +55,7 @@
                 </p>
             </div>
 
-            <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-6 shadow-card">
+            <div class="bg-zinc-900 border border-zinc-800 rounded-md p-6 shadow-card">
                 <form method="post" enctype="multipart/form-data" class="flex flex-col gap-4">
                     {% csrf_token %}
 
@@ -71,7 +71,7 @@
                     <!-- Logo -->
                     <div class="flex flex-col items-center gap-2">
                         <label for="{{ form.logo.id_for_label }}" id="org-logo-dropzone"
-                               class="relative flex flex-col items-center justify-center gap-1 w-24 h-24 rounded-xl
+                               class="relative flex flex-col items-center justify-center gap-1 w-24 h-24 rounded-md
                                       border-2 border-dashed border-zinc-700 bg-zinc-950/40 hover:border-zinc-500
                                       hover:bg-zinc-800/40 transition cursor-pointer overflow-hidden shrink-0">
                             <div id="org-logo-placeholder" class="flex flex-col items-center gap-1 text-center px-2">

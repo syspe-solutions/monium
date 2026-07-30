@@ -19,7 +19,7 @@
     <!-- FAQ accordion -->
     <div class="space-y-2" id="faq-list">
       {% for item in faq_items %}
-      <div class="faq-item border border-zinc-800 rounded-xl overflow-hidden">
+      <div class="faq-item border border-zinc-800 rounded-md overflow-hidden">
         <button class="faq-trigger w-full flex items-center justify-between gap-4 px-5 py-4 text-left bg-zinc-900 hover:bg-zinc-800/80 transition"
                 aria-expanded="false">
           <span class="text-white text-sm font-medium">{{ item.question }}</span>

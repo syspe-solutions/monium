@@ -15,7 +15,7 @@
     /* Card padrão: fundo/borda/sombra usados em ~30 telas (auth, dashboard,
        forms). Centraliza o que antes era repetido classe a classe. */
     .card {
-        @apply bg-zinc-900 border border-zinc-800 rounded-xl shadow-card;
+        @apply bg-zinc-900 border border-zinc-800 rounded-md shadow-card;
     }
 
     /* Django gera <ul class="errorlist" id="..._error"> pra cada campo com
