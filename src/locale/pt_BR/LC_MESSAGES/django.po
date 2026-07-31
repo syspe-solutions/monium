@@ -3613,3 +3613,41 @@ msgstr "O código digitado não confere. O item não foi excluído."
 #, python-format
 msgid "Item \"%(name)s\" deleted."
 msgstr "Item \"%(name)s\" excluído."
+
+#: apps/common/web/templates/common/errors/400.html:4
+#: apps/common/web/templates/common/errors/400.html:16
+msgid "Invalid request"
+msgstr "Requisição inválida"
+
+#: apps/common/web/templates/common/errors/400.html:20
+msgid "We couldn't process your request. Check the submitted data and try again."
+msgstr "Não foi possível processar sua solicitação. Verifique os dados enviados e tente novamente."
+
+#: apps/common/web/templates/common/errors/403.html:4
+#: apps/common/web/templates/common/errors/403.html:16
+msgid "Access denied"
+msgstr "Acesso negado"
+
+#: apps/common/web/templates/common/errors/403.html:20
+msgid "You don't have permission to access this page or resource."
+msgstr "Você não tem permissão para acessar esta página ou recurso."
+
+#: apps/common/web/templates/common/errors/403.html:24
+msgid "If you believe this is a mistake, contact your organization's administrator."
+msgstr "Se você acredita que isso é um engano, entre em contato com o administrador da sua organização."
+
+#: apps/common/web/templates/common/errors/404.html:20
+msgid "The page you're looking for doesn't exist or may have been moved."
+msgstr "A página que você está procurando não existe ou pode ter sido movida."
+
+#: apps/common/web/templates/common/errors/500.html:7
+msgid "Server error"
+msgstr "Erro no servidor"
+
+#: apps/common/web/templates/common/errors/500.html:20
+msgid "Something went wrong on our end"
+msgstr "Algo deu errado do nosso lado"
+
+#: apps/common/web/templates/common/errors/500.html:24
+msgid "We've been notified and are already looking into it. Please try again in a few minutes."
+msgstr "Já fomos notificados e estamos investigando. Tente novamente em alguns minutos."

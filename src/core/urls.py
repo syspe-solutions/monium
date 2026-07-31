@@ -18,6 +18,16 @@ from django.conf import settings
 from django.urls import include, path, re_path
 from django.views.static import serve as serve_media
 
+from apps.common.web.error_views.bad_request_view import BadRequestView
+from apps.common.web.error_views.not_found_view import NotFoundView
+from apps.common.web.error_views.permission_denied_view import PermissionDeniedView
+from apps.common.web.error_views.server_error_view import ServerErrorView
+
+handler400 = BadRequestView.as_view()
+handler403 = PermissionDeniedView.as_view()
+handler404 = NotFoundView.as_view()
+handler500 = ServerErrorView.as_view()
+
 urlpatterns = [
     path("setup/", include("apps.setup.web.urls")),
     path("i18n/", include("django.conf.urls.i18n")),

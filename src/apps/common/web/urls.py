@@ -1,6 +1,7 @@
 from django.urls import path
 
-from apps.common.web.views import HealthCheckView, NotFoundView, PublicFileProxyView
+from apps.common.web.error_views.not_found_view import NotFoundView
+from apps.common.web.views import HealthCheckView, PublicFileProxyView
 
 app_name = "common"
 

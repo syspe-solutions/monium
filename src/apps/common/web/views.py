@@ -8,7 +8,6 @@ from django.conf import settings
 from django.core import signing
 from django.http import HttpRequest, HttpResponse, JsonResponse, StreamingHttpResponse
 from django.views import View
-from django.views.generic import TemplateView
 
 from apps.common.models import StoredFile
 from apps.common.services.file_store_service import FileStoreService
@@ -19,21 +18,6 @@ SIGNED_URL_MAX_AGE = 300  # 5 minutes
 
 def generate_file_token(relative_path: str) -> str:
     return signing.dumps(relative_path, salt=SIGNED_URL_SALT)
-
-
-class NotFoundView(TemplateView):
-    template_name = "common/404.html"
-
-    def get(self, request, *args, **kwargs):
-        response = super().get(request, *args, **kwargs)
-        response.status_code = 404
-        return response
-
-
-def handler_404(request, exception):
-    response = NotFoundView.as_view()(request)
-    response.status_code = 404
-    return response
 
 
 class HealthCheckView(View):
