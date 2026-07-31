@@ -42,4 +42,30 @@
     .tooltip:focus-visible::after {
         @apply opacity-100;
     }
+
+    /* Checkbox custom: o input nativo ignora bg/border/rounded sem
+       appearance-none, então sem isso o navegador renderiza o checkbox
+       padrão do SO por cima de qualquer classe Tailwind aplicada. */
+    .checkbox {
+        @apply relative w-4 h-4 shrink-0 appearance-none cursor-pointer rounded
+               border border-zinc-700 bg-zinc-900 transition-colors ease-apple duration-150
+               hover:border-zinc-500
+               checked:bg-white checked:border-white
+               focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60
+               focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950
+               disabled:opacity-40 disabled:cursor-not-allowed;
+    }
+
+    .checkbox::after {
+        content: '';
+        @apply absolute inset-0 opacity-0 transition-opacity ease-apple duration-150;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%2309090b' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 8.2l2.8 2.8L12 5.6'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 10px 10px;
+    }
+
+    .checkbox:checked::after {
+        @apply opacity-100;
+    }
 }

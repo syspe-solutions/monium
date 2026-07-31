@@ -17,5 +17,7 @@ TEXTAREA = f"{_BASE} resize-none"
 PASSWORD = f"{_BASE} pr-10"
 
 _CHECK_BASE = "border-zinc-700 bg-zinc-900 text-white focus:ring-2 focus:ring-white/60"
-CHECKBOX = f"w-4 h-4 rounded {_CHECK_BASE}"
+# Checkbox nativo ignora bg/border/rounded sem appearance-none, então usa o
+# componente custom ".checkbox" (input.css) em vez de classes utilitárias soltas.
+CHECKBOX = "checkbox"
 RADIO = f"w-4 h-4 {_CHECK_BASE}"
