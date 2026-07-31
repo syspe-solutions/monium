@@ -1,7 +1,20 @@
-{% load static %}
+{% load static i18n %}
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Open Graph / preview de links (WhatsApp, Slack, Twitter, etc.) -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Monium">
+<meta property="og:title" content="Monium">
+<meta property="og:description" content="{% trans 'Manage your assets for free and securely.' %}">
+<meta property="og:image" content="{{ request.scheme }}://{{ request.get_host }}{% static 'common/images/og-image.png' %}">
+<meta property="og:image:width" content="1481">
+<meta property="og:image:height" content="790">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Monium">
+<meta name="twitter:description" content="{% trans 'Manage your assets for free and securely.' %}">
+<meta name="twitter:image" content="{{ request.scheme }}://{{ request.get_host }}{% static 'common/images/og-image.png' %}">
 
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,0" rel="stylesheet" />
 <link rel="preconnect" href="https://fonts.googleapis.com">

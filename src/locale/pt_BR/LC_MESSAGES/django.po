@@ -3651,3 +3651,8 @@ msgstr "Algo deu errado do nosso lado"
 #: apps/common/web/templates/common/errors/500.html:24
 msgid "We've been notified and are already looking into it. Please try again in a few minutes."
 msgstr "Já fomos notificados e estamos investigando. Tente novamente em alguns minutos."
+
+#: apps/common/web/templates/common/includes/builtin.html:10
+#: apps/common/web/templates/common/includes/builtin.html:16
+msgid "Manage your assets for free and securely."
+msgstr "Gerencie seu patrimônio de forma gratuita e segura."
