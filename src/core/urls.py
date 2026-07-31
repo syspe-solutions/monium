@@ -15,13 +15,11 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.conf import settings
-from django.contrib import admin
 from django.urls import include, path, re_path
 from django.views.static import serve as serve_media
 
 urlpatterns = [
     path("setup/", include("apps.setup.web.urls")),
-    path("admin/", admin.site.urls),
     path("i18n/", include("django.conf.urls.i18n")),
     path("account/", include("apps.account.urls")),
     path("organizations/", include("apps.organizations.web.urls")),

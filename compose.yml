@@ -17,7 +17,7 @@ services:
     networks:
       - monium_net
     healthcheck:
-      test: ["CMD-SHELL", "curl -s -o /dev/null -w '%{http_code}' http://localhost:8000/admin/ | grep -qE '^[23]'"]
+      test: ["CMD-SHELL", "curl -s -o /dev/null -w '%{http_code}' http://localhost:8000/health/ | grep -qE '^[23]'"]
       interval: 15s
       timeout: 10s
       retries: 5
