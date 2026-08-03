@@ -41,6 +41,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libpq-dev \
     default-libmysqlclient-dev \
     pkg-config \
+    libldap2-dev \
+    libsasl2-dev \
     && rm -rf /var/lib/apt/lists/*
 
 # Copia arquivos de definição de dependências primeiro (otimiza cache de camada)
@@ -65,6 +67,8 @@ WORKDIR /usr/src
 RUN apt-get update && apt-get install -y --no-install-recommends \
     libpq5 \
     libmariadb3 \
+    libldap-2.5-0 \
+    libsasl2-2 \
     curl \
     && rm -rf /var/lib/apt/lists/*
 

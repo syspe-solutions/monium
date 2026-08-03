@@ -323,10 +323,53 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-AUTHENTICATION_BACKENDS = [
-    "axes.backends.AxesStandaloneBackend",
-    "django.contrib.auth.backends.ModelBackend",
-]
+AUTHENTICATION_BACKENDS = ["axes.backends.AxesStandaloneBackend"]
+
+# --- LDAP (opcional) ---
+# Deixe LDAP_SERVER_URI vazio para autenticar só localmente (padrão). Ao
+# preencher, o LDAP é tentado primeiro; ModelBackend continua na cadeia como
+# fallback, então login local (ex: o superusuário criado em /setup/) segue
+# funcionando mesmo se o servidor LDAP cair.
+LDAP_SERVER_URI = os.environ.get("LDAP_SERVER_URI", "")
+
+if LDAP_SERVER_URI:
+    import ldap
+    from django_auth_ldap.config import GroupOfNamesType, LDAPSearch
+
+    AUTH_LDAP_SERVER_URI = LDAP_SERVER_URI
+    AUTH_LDAP_BIND_DN = os.environ.get("LDAP_BIND_DN", "")
+    AUTH_LDAP_BIND_PASSWORD = os.environ.get("LDAP_BIND_PASSWORD", "")
+    AUTH_LDAP_USER_SEARCH = LDAPSearch(
+        os.environ.get("LDAP_USER_SEARCH_BASE_DN", ""),
+        ldap.SCOPE_SUBTREE,
+        os.environ.get("LDAP_USER_SEARCH_FILTER", "(uid=%(user)s)"),
+    )
+    AUTH_LDAP_GROUP_SEARCH = LDAPSearch(
+        os.environ.get("LDAP_GROUP_SEARCH_BASE_DN", ""),
+        ldap.SCOPE_SUBTREE,
+        "(objectClass=groupOfNames)",
+    )
+    AUTH_LDAP_GROUP_TYPE = GroupOfNamesType(name_attr="cn")
+    AUTH_LDAP_USER_ATTR_MAP = {
+        "first_name": "givenName",
+        "last_name": "sn",
+        "email": "mail",
+    }
+    AUTH_LDAP_ALWAYS_UPDATE_USER = True
+    AUTH_LDAP_CACHE_TIMEOUT = 3600
+
+    AUTHENTICATION_BACKENDS.append("django_auth_ldap.backend.LDAPBackend")
+
+AUTHENTICATION_BACKENDS.append("django.contrib.auth.backends.ModelBackend")
+
+# Mapeamento de grupo LDAP -> papel de Membership, usado em
+# apps/account/signals.py::sync_ldap_membership. "owner" nunca é atribuído
+# via LDAP (transferência de propriedade é um fluxo manual separado).
+LDAP_TARGET_ORGANIZATION_SLUG = os.environ.get("LDAP_TARGET_ORGANIZATION_SLUG", "")
+LDAP_DEFAULT_ROLE = os.environ.get("LDAP_DEFAULT_ROLE", "viewer")
+LDAP_ROLE_GROUPS_ADMIN = set(filter(None, os.environ.get("LDAP_ROLE_GROUPS_ADMIN", "").split(",")))
+LDAP_ROLE_GROUPS_MANAGER = set(filter(None, os.environ.get("LDAP_ROLE_GROUPS_MANAGER", "").split(",")))
+LDAP_ROLE_GROUPS_OPERATOR = set(filter(None, os.environ.get("LDAP_ROLE_GROUPS_OPERATOR", "").split(",")))
 
 AUTH_USER_MODEL = "user_account.User"
 
