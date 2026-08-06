@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Monium 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-26 20:24-0300\n"
+"POT-Creation-Date: 2026-08-05 22:19-0300\n"
 "PO-Revision-Date: 2026-06-30 00:00-0300\n"
 "Last-Translator: Jonathas Cardoso\n"
 "Language-Team: Portuguese (Brazil)\n"
@@ -57,49 +57,49 @@ msgstr "Nome completo"
 msgid "Your full name"
 msgstr "Seu nome completo"
 
-#: apps/account/forms/auth.py:13 apps/account/forms/auth.py:76
-#: apps/organizations/web/forms.py:50 apps/organizations/web/forms.py:51
-#: apps/setup/web/forms.py:79 apps/setup/web/forms.py:80
+#: apps/account/forms/auth.py:24 apps/account/forms/auth.py:90
+#: apps/organizations/web/forms.py:77 apps/organizations/web/forms.py:78
+#: apps/setup/web/forms.py:80 apps/setup/web/forms.py:81
 msgid "Username"
 msgstr "Nome de usuário"
 
-#: apps/account/forms/auth.py:15 apps/account/forms/auth.py:78
+#: apps/account/forms/auth.py:26 apps/account/forms/auth.py:92
 msgid "Your username"
 msgstr "Seu nome de usuário"
 
-#: apps/account/forms/auth.py:21
+#: apps/account/forms/auth.py:32
 msgid "E-mail address"
 msgstr "Endereço de e-mail"
 
-#: apps/account/forms/auth.py:23
+#: apps/account/forms/auth.py:34
 msgid "example@email.com"
 msgstr "exemplo@email.com"
 
-#: apps/account/forms/auth.py:29 apps/account/forms/auth.py:84
-#: apps/organizations/web/forms.py:58 apps/organizations/web/forms.py:59
-#: apps/setup/web/forms.py:44 apps/setup/web/forms.py:87
+#: apps/account/forms/auth.py:40 apps/account/forms/auth.py:98
+#: apps/organizations/web/forms.py:85 apps/organizations/web/forms.py:86
+#: apps/setup/web/forms.py:45 apps/setup/web/forms.py:88
 msgid "Password"
 msgstr "Senha"
 
-#: apps/account/forms/auth.py:31
+#: apps/account/forms/auth.py:42
 msgid "Your secure password"
 msgstr "Sua senha segura"
 
-#: apps/account/forms/auth.py:37 apps/organizations/web/forms.py:62
-#: apps/organizations/web/forms.py:63 apps/setup/web/forms.py:91
+#: apps/account/forms/auth.py:48 apps/organizations/web/forms.py:89
+#: apps/organizations/web/forms.py:90 apps/setup/web/forms.py:92
 msgid "Confirm password"
 msgstr "Confirmar senha"
 
-#: apps/account/forms/auth.py:39
+#: apps/account/forms/auth.py:50
 msgid "Confirm your password"
 msgstr "Confirme sua senha"
 
-#: apps/account/forms/auth.py:62 apps/organizations/web/forms.py:103
-#: apps/setup/web/forms.py:117
+#: apps/account/forms/auth.py:73 apps/organizations/web/forms.py:130
+#: apps/setup/web/forms.py:118
 msgid "Passwords do not match."
 msgstr "As senhas não coincidem."
 
-#: apps/account/forms/auth.py:86
+#: apps/account/forms/auth.py:100
 msgid "Your password"
 msgstr "Sua senha"
 
@@ -109,19 +109,22 @@ msgstr "Endereço de e-mail"
 
 # ── Cancel deactivate
 # ─────────────────────────────────────────────────────────
-#: apps/account/templates/account/auth/cancel_deactivate.html:22
+#: apps/account/templates/account/auth/cancel_deactivate.html:24
 msgid "Deletion cancelled"
 msgstr "Exclusão cancelada"
 
-#: apps/account/templates/account/auth/cancel_deactivate.html:24
+#: apps/account/templates/account/auth/cancel_deactivate.html:26
 msgid ""
 "Your account deactivation request has been cancelled. Your account remains "
 "active."
 msgstr ""
 "Sua solicitação de desativação foi cancelada. Sua conta continua ativa."
 
-#: apps/account/templates/account/auth/cancel_deactivate.html:30
-#: apps/common/web/templates/common/404.html:24
+#: apps/account/templates/account/auth/cancel_deactivate.html:32
+#: apps/common/web/templates/common/errors/400.html:26
+#: apps/common/web/templates/common/errors/403.html:30
+#: apps/common/web/templates/common/errors/404.html:26
+#: apps/common/web/templates/common/errors/500.html:31
 msgid "Back to Home"
 msgstr "Voltar ao Início"
 
@@ -129,100 +132,110 @@ msgstr "Voltar ao Início"
 msgid "Sign in"
 msgstr "Entrar"
 
-#: apps/account/templates/account/auth/login.html:20
+#: apps/account/templates/account/auth/login.html:22
 msgid "Your entire inventory, always at hand."
 msgstr "Todo o seu inventário, sempre à mão."
 
-#: apps/account/templates/account/auth/login.html:23
+#: apps/account/templates/account/auth/login.html:25
 msgid ""
 "Track assets, loans, and maintenance for your organization in one place."
 msgstr ""
-"Rastreie ativos, empréstimos e manutenções da sua organização em um só "
-"lugar."
+"Rastreie ativos, empréstimos e manutenções da sua organização em um só lugar."
 
-#: apps/account/templates/account/auth/login.html:30
-#: apps/account/templates/account/auth/register.html:30
-#: apps/pages/templates/pages/home.html:112
+#: apps/account/templates/account/auth/login.html:32
+#: apps/account/templates/account/auth/register.html:32
+#: apps/organizations/templates/organizations/create.html:32
+#: apps/pages/templates/pages/home.html:108
+#: apps/setup/templates/setup/_installer_base.html:29
 msgid "open source"
 msgstr "código aberto"
 
-#: apps/account/templates/account/auth/login.html:34
-#: apps/account/templates/account/auth/register.html:34
-#: apps/pages/templates/pages/home.html:116
+#: apps/account/templates/account/auth/login.html:36
+#: apps/account/templates/account/auth/register.html:36
+#: apps/organizations/templates/organizations/create.html:36
+#: apps/pages/templates/pages/home.html:112
+#: apps/setup/templates/setup/_installer_base.html:33
 msgid "usage limits"
 msgstr "limites de uso"
 
 # ── Auth — Login
 # ─────────────────────────────────────────────────────────────
-#: apps/account/templates/account/auth/login.html:44
+#: apps/account/templates/account/auth/login.html:46
 msgid "Welcome back!"
 msgstr "Bem-vindo de volta!"
 
-#: apps/account/templates/account/auth/login.html:45
+#: apps/account/templates/account/auth/login.html:47
 msgid "Please log in to your account"
 msgstr "Faça login na sua conta"
 
 #: apps/account/templates/account/auth/login.html:86
+#: apps/account/templates/account/auth/register.html:74
+#, fuzzy
+#| msgid "Confirm password"
+msgid "Show/hide password"
+msgstr "Confirmar senha"
+
+#: apps/account/templates/account/auth/login.html:98
 msgid "Forgot your password?"
 msgstr "Esqueceu sua senha?"
 
-#: apps/account/templates/account/auth/login.html:95
+#: apps/account/templates/account/auth/login.html:107
 msgid "Signin"
 msgstr "Entrar"
 
-#: apps/account/templates/account/auth/login.html:101
+#: apps/account/templates/account/auth/login.html:113
 msgid "Don't have an account yet?"
 msgstr "Ainda não tem uma conta?"
 
-#: apps/account/templates/account/auth/login.html:103
-#: apps/account/templates/account/auth/register.html:83
+#: apps/account/templates/account/auth/login.html:115
+#: apps/account/templates/account/auth/register.html:95
 msgid "Click here"
 msgstr "Clique aqui"
 
 # ── Auth — Password reset
 # ─────────────────────────────────────────────────────
-#: apps/account/templates/account/auth/password_reset.html:21
+#: apps/account/templates/account/auth/password_reset.html:23
 msgid "Recover your account"
 msgstr "Recuperar sua conta"
 
-#: apps/account/templates/account/auth/password_reset.html:24
+#: apps/account/templates/account/auth/password_reset.html:26
 msgid "Enter your email to receive reset instructions"
 msgstr "Digite seu e-mail para receber instruções de redefinição"
 
-#: apps/account/templates/account/auth/password_reset.html:51
+#: apps/account/templates/account/auth/password_reset.html:53
 msgid "Send instructions"
 msgstr "Enviar instruções"
 
-#: apps/account/templates/account/auth/password_reset.html:56
-#: apps/account/templates/account/auth/password_reset_done.html:28
+#: apps/account/templates/account/auth/password_reset.html:58
+#: apps/account/templates/account/auth/password_reset_done.html:30
 msgid "Back to login"
 msgstr "Voltar ao login"
 
-#: apps/account/templates/account/auth/password_reset_complete.html:19
+#: apps/account/templates/account/auth/password_reset_complete.html:21
 msgid "Password changed successfully!"
 msgstr "Senha alterada com sucesso!"
 
-#: apps/account/templates/account/auth/password_reset_complete.html:23
+#: apps/account/templates/account/auth/password_reset_complete.html:25
 msgid "You can now log in using your new password."
 msgstr "Agora você já pode entrar com sua nova senha."
 
-#: apps/account/templates/account/auth/password_reset_complete.html:28
+#: apps/account/templates/account/auth/password_reset_complete.html:30
 msgid "Go to login"
 msgstr "Ir para o login"
 
-#: apps/account/templates/account/auth/password_reset_confirm.html:20
+#: apps/account/templates/account/auth/password_reset_confirm.html:22
 msgid "Define a new password"
 msgstr "Definir nova senha"
 
-#: apps/account/templates/account/auth/password_reset_confirm.html:40
+#: apps/account/templates/account/auth/password_reset_confirm.html:42
 msgid "Save new password"
 msgstr "Salvar nova senha"
 
-#: apps/account/templates/account/auth/password_reset_done.html:19
+#: apps/account/templates/account/auth/password_reset_done.html:21
 msgid "Email sent!"
 msgstr "E-mail enviado!"
 
-#: apps/account/templates/account/auth/password_reset_done.html:23
+#: apps/account/templates/account/auth/password_reset_done.html:25
 msgid ""
 "If the email you entered is registered, you will receive a link to reset "
 "your password."
@@ -236,11 +249,11 @@ msgstr ""
 msgid "Create your account"
 msgstr "Crie sua conta"
 
-#: apps/account/templates/account/auth/register.html:20
+#: apps/account/templates/account/auth/register.html:22
 msgid "Replace spreadsheets with real control."
 msgstr "Troque planilhas por controle de verdade."
 
-#: apps/account/templates/account/auth/register.html:23
+#: apps/account/templates/account/auth/register.html:25
 msgid ""
 "Create your organization and start tracking assets, loans, and maintenance "
 "today."
@@ -250,19 +263,19 @@ msgstr ""
 
 # ── Auth — Register
 # ──────────────────────────────────────────────────────────
-#: apps/account/templates/account/auth/register.html:44
+#: apps/account/templates/account/auth/register.html:46
 msgid "Create your account!"
 msgstr "Crie sua conta!"
 
-#: apps/account/templates/account/auth/register.html:45
+#: apps/account/templates/account/auth/register.html:47
 msgid "Join us! Create your account today"
 msgstr "Junte-se a nós! Crie sua conta hoje"
 
-#: apps/account/templates/account/auth/register.html:75
+#: apps/account/templates/account/auth/register.html:87
 msgid "Register"
 msgstr "Registrar"
 
-#: apps/account/templates/account/auth/register.html:81
+#: apps/account/templates/account/auth/register.html:93
 msgid "Already have an account?"
 msgstr "Já possui uma conta?"
 
@@ -287,9 +300,11 @@ msgstr "Confirmar Nova Senha"
 
 #: apps/account/templates/account/includes/change_password_modal.html:40
 #: apps/account/templates/account/includes/deactivate_account_modal.html:27
-#: apps/inventory/web/templates/inventory/imovel_form.html:228
-#: apps/inventory/web/templates/inventory/item_form.html:285
-#: apps/organizations/templates/organizations/delete_confirm.html:32
+#: apps/inventory/web/templates/inventory/imovel_form.html:230
+#: apps/inventory/web/templates/inventory/item_delete_confirm.html:28
+#: apps/inventory/web/templates/inventory/item_delete_confirm.html:52
+#: apps/inventory/web/templates/inventory/item_form.html:317
+#: apps/organizations/templates/organizations/delete_confirm.html:34
 #: apps/organizations/templates/organizations/member_create.html:44
 msgid "Cancel"
 msgstr "Cancelar"
@@ -306,8 +321,7 @@ msgstr "Apagar minha conta"
 # ── Deactivate modal
 # ──────────────────────────────────────────────────────────
 #: apps/account/templates/account/includes/deactivate_account_modal.html:14
-msgid ""
-"Your account will be deactivated and permanently deleted after 30 days."
+msgid "Your account will be deactivated and permanently deleted after 30 days."
 msgstr "Sua conta será desativada e excluída permanentemente após 30 dias."
 
 #: apps/account/templates/account/includes/deactivate_account_modal.html:19
@@ -368,26 +382,27 @@ msgid "Website / Link"
 msgstr "Website / Link"
 
 #: apps/account/templates/account/profile/profile.html:128
-#: apps/inventory/web/templates/inventory/imovel_detail.html:73
-#: apps/inventory/web/templates/inventory/imovel_form.html:88
-#: apps/inventory/web/templates/inventory/item_detail.html:46
-#: apps/inventory/web/templates/inventory/item_form.html:80
+#: apps/inventory/web/templates/inventory/imovel_detail.html:80
+#: apps/inventory/web/templates/inventory/imovel_form.html:90
+#: apps/inventory/web/templates/inventory/item_detail.html:62
+#: apps/inventory/web/templates/inventory/item_form.html:82
 msgid "Location"
 msgstr "Localização"
 
 #: apps/account/templates/account/profile/profile.html:139
-#: apps/organizations/templates/organizations/settings.html:92
+#: apps/organizations/templates/organizations/settings.html:115
 #: apps/settings/templates/settings/email_settings.html:118
 #: apps/setup/templates/setup/admin.html:17
 msgid "Back"
 msgstr "Voltar"
 
 #: apps/account/templates/account/profile/profile.html:144
+#: apps/inventory/web/templates/inventory/imovel_form.html:235
+#: apps/inventory/web/templates/inventory/item_form.html:322
 msgid "Save Changes"
 msgstr "Salvar Alterações"
 
 #: apps/account/templates/account/profile/profile.html:155
-#: apps/pages/templates/pages/privacy.html:89
 msgid "Security"
 msgstr "Segurança"
 
@@ -400,19 +415,79 @@ msgid "Danger Zone"
 msgstr "Zona de Perigo"
 
 #: apps/account/templates/account/profile/profile.html:220
-#: apps/inventory/web/templates/inventory/imovel_form.html:188
-#: apps/inventory/web/templates/inventory/item_form.html:230
-#: apps/inventory/web/templates/inventory/item_form.html:245
+#: apps/inventory/web/templates/inventory/imovel_form.html:190
+#: apps/inventory/web/templates/inventory/item_form.html:258
+#: apps/inventory/web/templates/inventory/item_form.html:273
+#: apps/organizations/templates/organizations/create.html:81
+#: apps/organizations/templates/organizations/settings.html:66
 msgid "Preview"
 msgstr "Pré-visualização"
 
 #: apps/account/templates/account/profile/profile.html:244
-#: apps/inventory/web/templates/inventory/imovel_form.html:285
-#: apps/inventory/web/templates/inventory/item_form.html:440
-#: apps/organizations/templates/organizations/settings.html:151
+#: apps/account/templates/account/settings/settings.html:208
+#: apps/inventory/web/templates/inventory/imovel_form.html:287
+#: apps/inventory/web/templates/inventory/item_form.html:475
+#: apps/organizations/templates/organizations/settings.html:174
 #: apps/settings/templates/settings/email_settings.html:139
 msgid "Saving..."
 msgstr "Salvando..."
+
+#: apps/account/templates/account/settings/settings.html:4
+#: apps/account/templates/account/settings/settings.html:11
+#: apps/common/web/templates/common/includes/aside.html:156
+#: apps/common/web/templates/common/includes/aside.html:158
+msgid "Settings"
+msgstr "Configurações"
+
+#: apps/account/templates/account/settings/settings.html:12
+msgid "Manage your language, help resources, and account preferences"
+msgstr "Gerencie o idioma, os recursos de ajuda e as preferências da conta"
+
+#: apps/account/templates/account/settings/settings.html:36
+msgid "Language"
+msgstr "Idioma"
+
+#: apps/account/templates/account/settings/settings.html:39
+msgid "Choose the language used across the app."
+msgstr "Escolha o idioma usado em todo o aplicativo."
+
+#: apps/account/templates/account/settings/settings.html:80
+msgid "Help & Support"
+msgstr "Ajuda e Suporte"
+
+#: apps/account/templates/account/settings/settings.html:83
+msgid "Find answers to common questions or get in touch with us."
+msgstr "Encontre respostas para perguntas comuns ou entre em contato conosco."
+
+#: apps/account/templates/account/settings/settings.html:91
+msgid "Contact support"
+msgstr "Contatar o suporte"
+
+#: apps/account/templates/account/settings/settings.html:103
+#: apps/settings/templates/settings/email_settings.html:4
+#: apps/settings/templates/settings/email_settings.html:11
+msgid "Email settings"
+msgstr "Configurações de e-mail"
+
+#: apps/account/templates/account/settings/settings.html:106
+#: apps/settings/templates/settings/email_settings.html:13
+msgid "Configure the SMTP server used to send transactional emails."
+msgstr "Configure o servidor SMTP usado para enviar e-mails transacionais."
+
+#: apps/account/templates/account/settings/settings.html:112
+#: apps/settings/templates/settings/email_settings.html:36
+msgid ""
+"There is no environment variable fallback anymore. While disabled or "
+"incomplete, outgoing emails will fail until you enable a server here."
+msgstr ""
+"Não há mais fallback para variáveis de ambiente. Enquanto desativado ou "
+"incompleto, o envio de e-mails vai falhar até você ativar um servidor aqui."
+
+#: apps/account/templates/account/settings/settings.html:188
+#: apps/organizations/templates/organizations/settings.html:120
+#: apps/settings/templates/settings/email_settings.html:123
+msgid "Save changes"
+msgstr "Salvar alterações"
 
 #: apps/account/utils.py:53
 msgid "The password must be at least 8 characters long."
@@ -450,105 +525,129 @@ msgstr "Avatar atualizado com sucesso."
 msgid "Profile updated successfully."
 msgstr "Perfil atualizado com sucesso."
 
+#: apps/common/web/templates/common/errors/400.html:4
+#: apps/common/web/templates/common/errors/400.html:16
+msgid "Invalid request"
+msgstr "Requisição inválida"
+
+#: apps/common/web/templates/common/errors/400.html:20
+msgid ""
+"We couldn't process your request. Check the submitted data and try again."
+msgstr ""
+"Não foi possível processar sua solicitação. Verifique os dados enviados e "
+"tente novamente."
+
+#: apps/common/web/templates/common/errors/403.html:4
+#: apps/common/web/templates/common/errors/403.html:16
+msgid "Access denied"
+msgstr "Acesso negado"
+
+#: apps/common/web/templates/common/errors/403.html:20
+msgid "You don't have permission to access this page or resource."
+msgstr "Você não tem permissão para acessar esta página ou recurso."
+
+#: apps/common/web/templates/common/errors/403.html:24
+msgid ""
+"If you believe this is a mistake, contact your organization's administrator."
+msgstr ""
+"Se você acredita que isso é um engano, entre em contato com o administrador "
+"da sua organização."
+
 # ── 404
 # ──────────────────────────────────────────────────────────────────────
-#: apps/common/web/templates/common/404.html:7
-#: apps/common/web/templates/common/404.html:16
-msgid "Page Not Found"
+#: apps/common/web/templates/common/errors/404.html:4
+#: apps/common/web/templates/common/errors/404.html:16
+#, fuzzy
+#| msgid "Page Not Found"
+msgid "Page not found"
 msgstr "Página Não Encontrada"
 
-#: apps/common/web/templates/common/404.html:20
-msgid "Sorry, the page you're looking for does not exist."
-msgstr "Desculpe, a página que você está procurando não existe."
+#: apps/common/web/templates/common/errors/404.html:20
+msgid "The page you're looking for doesn't exist or may have been moved."
+msgstr "A página que você está procurando não existe ou pode ter sido movida."
+
+#: apps/common/web/templates/common/errors/500.html:7
+msgid "Server error"
+msgstr "Erro no servidor"
+
+#: apps/common/web/templates/common/errors/500.html:20
+msgid "Something went wrong on our end"
+msgstr "Algo deu errado do nosso lado"
+
+#: apps/common/web/templates/common/errors/500.html:24
+msgid ""
+"We've been notified and are already looking into it. Please try again in a "
+"few minutes."
+msgstr ""
+"Já fomos notificados e estamos investigando. Tente novamente em alguns "
+"minutos."
 
 # ── Sidebar
 # ──────────────────────────────────────────────────────────────────
-#: apps/common/web/templates/common/includes/aside.html:63
+#: apps/common/web/templates/common/includes/aside.html:64
 msgid "Collapse menu"
 msgstr "Retrair menu"
 
-#: apps/common/web/templates/common/includes/aside.html:79
-#: apps/common/web/templates/common/includes/aside.html:81
+#: apps/common/web/templates/common/includes/aside.html:80
+#: apps/common/web/templates/common/includes/aside.html:82
 #: apps/common/web/templates/common/includes/footer.html:16
 #: apps/inventory/web/templates/inventory/home.html:6
 msgid "Home"
 msgstr "Início"
 
-#: apps/common/web/templates/common/includes/aside.html:87
-#: apps/common/web/templates/common/includes/aside.html:89
-#: apps/inventory/web/templates/inventory/patrimonio_list.html:5
-#: apps/inventory/web/templates/inventory/patrimonio_list.html:13
+#: apps/common/web/templates/common/includes/aside.html:88
+#: apps/common/web/templates/common/includes/aside.html:90
+#: apps/inventory/web/templates/inventory/patrimonio_list.html:6
+#: apps/inventory/web/templates/inventory/patrimonio_list.html:14
 msgid "Assets"
 msgstr "Patrimônios"
 
-#: apps/common/web/templates/common/includes/aside.html:100
+#: apps/common/web/templates/common/includes/aside.html:99
+#: apps/common/web/templates/common/includes/aside.html:102
 msgid "Organizations"
 msgstr "Organizações"
 
-#: apps/common/web/templates/common/includes/aside.html:105
+#: apps/common/web/templates/common/includes/aside.html:107
 msgid "Switch organization"
 msgstr "Trocar organização"
 
-#: apps/common/web/templates/common/includes/aside.html:120
+#: apps/common/web/templates/common/includes/aside.html:123
 msgid "current"
 msgstr "atual"
 
-#: apps/common/web/templates/common/includes/aside.html:127
+#: apps/common/web/templates/common/includes/aside.html:131
+#: apps/inventory/web/templates/inventory/imovel_detail.html:27
+#: apps/inventory/web/templates/inventory/item_detail.html:32
 msgid "Edit"
 msgstr "Editar"
 
-#: apps/common/web/templates/common/includes/aside.html:138
+#: apps/common/web/templates/common/includes/aside.html:142
 #: apps/organizations/templates/organizations/members.html:4
 #: apps/organizations/templates/organizations/members.html:11
-#: apps/organizations/templates/organizations/settings.html:113
+#: apps/organizations/templates/organizations/settings.html:136
 msgid "Members"
 msgstr "Membros"
 
-#: apps/common/web/templates/common/includes/aside.html:144
+#: apps/common/web/templates/common/includes/aside.html:148
 msgid "New organization"
 msgstr "Nova organização"
 
-#: apps/common/web/templates/common/includes/aside.html:152
-#: apps/common/web/templates/common/includes/aside.html:154
-msgid "Help & FAQ"
-msgstr "Ajuda e Perguntas Frequentes"
-
-#: apps/common/web/templates/common/includes/aside.html:174
-#: apps/common/web/templates/common/includes/aside.html:176
-#: apps/account/templates/account/settings/settings.html:4
-#: apps/account/templates/account/settings/settings.html:11
-msgid "Settings"
-msgstr "Configurações"
-
-#: apps/common/web/templates/common/includes/aside.html:171
-#: apps/common/web/templates/common/includes/aside.html:173
-msgid "System settings"
-msgstr "Configurações do sistema"
-
-#: apps/common/web/templates/common/includes/aside.html:178
-#: apps/account/templates/account/settings/settings.html:35
-msgid "Language"
-msgstr "Idioma"
-
 # ── Profile
 # ───────────────────────────────────────────────────────────────────
-#: apps/common/web/templates/common/includes/aside.html:204
+#: apps/common/web/templates/common/includes/aside.html:166
 msgid "My profile"
 msgstr "Meu perfil"
 
-#: apps/common/web/templates/common/includes/aside.html:221
-#: apps/common/web/templates/common/includes/aside.html:223
-#: apps/common/web/templates/common/includes/header.html:78
-#: apps/common/web/templates/common/includes/header.html:114
-msgid "Logout"
-msgstr "Sair"
+#: apps/common/web/templates/common/includes/builtin.html:10
+#: apps/common/web/templates/common/includes/builtin.html:16
+msgid "Manage your assets for free and securely."
+msgstr "Gerencie seu patrimônio de forma gratuita e segura."
 
 # ── Footer
 # ───────────────────────────────────────────────────────────────────
 #: apps/common/web/templates/common/includes/footer.html:9
 msgid ""
-"Simplify your management with style. Track performance and reach with "
-"Monium."
+"Simplify your management with style. Track performance and reach with Monium."
 msgstr ""
 "Simplifique sua gestão com estilo. Acompanhe desempenho e alcance com o "
 "Monium."
@@ -557,36 +656,11 @@ msgstr ""
 msgid "Navigation"
 msgstr "Navegação"
 
-# ── Public nav
-# ────────────────────────────────────────────────────────────────
-#: apps/common/web/templates/common/includes/footer.html:17
-#: apps/pages/templates/pages/base_public.html:15
-#: apps/pages/templates/pages/base_public.html:73
-#: apps/pages/templates/pages/services/detail.html:12
-msgid "Services"
-msgstr "Serviços"
-
-# ── Privacy policy
-# ────────────────────────────────────────────────────────────
-#: apps/common/web/templates/common/includes/footer.html:19
-#: apps/pages/templates/pages/privacy.html:11
-#: apps/pages/templates/pages/terms.html:85
-#: apps/account/templates/account/settings/settings.html:113
-msgid "Privacy Policy"
-msgstr "Política de Privacidade"
-
-#: apps/common/web/templates/common/includes/footer.html:20
-#: apps/pages/templates/pages/privacy.html:101
-#: apps/pages/templates/pages/terms.html:11
-#: apps/account/templates/account/settings/settings.html:105
-msgid "Terms of Use"
-msgstr "Termos de Uso"
-
-#: apps/common/web/templates/common/includes/footer.html:25
+#: apps/common/web/templates/common/includes/footer.html:21
 msgid "Contact"
 msgstr "Contato"
 
-#: apps/common/web/templates/common/includes/footer.html:44
+#: apps/common/web/templates/common/includes/footer.html:40
 msgid "All rights reserved."
 msgstr "Todos os direitos reservados."
 
@@ -605,60 +679,65 @@ msgstr "Criar conta"
 msgid "My Account"
 msgstr "Minha Conta"
 
+#: apps/common/web/templates/common/includes/header.html:78
+#: apps/common/web/templates/common/includes/header.html:114
+msgid "Logout"
+msgstr "Sair"
+
 # ── Base-aside
 # ────────────────────────────────────────────────────────────────
 #: apps/common/web/templates/common/layouts/base-aside.html:23
 msgid "Open menu"
 msgstr "Abrir menu"
 
-#: apps/inventory/forms/imovel_filter_form.py:13
-#: apps/inventory/forms/movel_filter_form.py:13
-#: apps/inventory/forms/patrimonio_filter_form.py:19
+#: apps/inventory/forms/imovel_filter_form.py:14
+#: apps/inventory/forms/movel_filter_form.py:14
+#: apps/inventory/forms/patrimonio_filter_form.py:20
 msgid "Search"
 msgstr "Buscar"
 
-#: apps/inventory/forms/imovel_filter_form.py:14
+#: apps/inventory/forms/imovel_filter_form.py:15
 msgid "Code, name or address"
 msgstr "Código, nome ou endereço"
 
-#: apps/inventory/forms/imovel_filter_form.py:18
-#: apps/inventory/forms/movel_filter_form.py:30
-#: apps/inventory/web/templates/inventory/dashboard.html:88
-#: apps/inventory/web/templates/inventory/home.html:273
-#: apps/inventory/web/templates/inventory/imovel_detail.html:37
-#: apps/inventory/web/templates/inventory/imovel_form.html:59
-#: apps/inventory/web/templates/inventory/imovel_list.html:65
-#: apps/inventory/web/templates/inventory/item_detail.html:38
-#: apps/inventory/web/templates/inventory/item_form.html:58
-#: apps/inventory/web/templates/inventory/item_list.html:84
-#: apps/inventory/web/templates/inventory/patrimonio_list.html:63
+#: apps/inventory/forms/imovel_filter_form.py:19
+#: apps/inventory/forms/movel_filter_form.py:31
+#: apps/inventory/web/templates/inventory/dashboard.html:40
+#: apps/inventory/web/templates/inventory/home.html:84
+#: apps/inventory/web/templates/inventory/imovel_detail.html:44
+#: apps/inventory/web/templates/inventory/imovel_form.html:61
+#: apps/inventory/web/templates/inventory/imovel_list.html:106
+#: apps/inventory/web/templates/inventory/item_detail.html:54
+#: apps/inventory/web/templates/inventory/item_form.html:60
+#: apps/inventory/web/templates/inventory/item_list.html:124
+#: apps/inventory/web/templates/inventory/patrimonio_list.html:106
 msgid "Category"
 msgstr "Categoria"
 
-#: apps/inventory/forms/imovel_filter_form.py:20
-#: apps/inventory/forms/imovel_filter_form.py:26
-#: apps/inventory/forms/imovel_filter_form.py:32
-#: apps/inventory/forms/movel_filter_form.py:19
-#: apps/inventory/forms/movel_filter_form.py:25
-#: apps/inventory/forms/movel_filter_form.py:32
-#: apps/inventory/forms/movel_filter_form.py:39
-#: apps/inventory/forms/movel_filter_form.py:46
-#: apps/inventory/forms/patrimonio_filter_form.py:10
-#: apps/inventory/forms/patrimonio_filter_form.py:31
+#: apps/inventory/forms/imovel_filter_form.py:21
+#: apps/inventory/forms/imovel_filter_form.py:27
+#: apps/inventory/forms/imovel_filter_form.py:33
+#: apps/inventory/forms/movel_filter_form.py:20
+#: apps/inventory/forms/movel_filter_form.py:26
+#: apps/inventory/forms/movel_filter_form.py:33
+#: apps/inventory/forms/movel_filter_form.py:40
+#: apps/inventory/forms/movel_filter_form.py:47
+#: apps/inventory/forms/patrimonio_filter_form.py:11
+#: apps/inventory/forms/patrimonio_filter_form.py:32
 msgid "All"
 msgstr "Todos"
 
-#: apps/inventory/forms/imovel_filter_form.py:25
-#: apps/inventory/web/templates/inventory/imovel_detail.html:85
-#: apps/inventory/web/templates/inventory/imovel_form.html:108
-#: apps/inventory/web/templates/inventory/imovel_list.html:67
+#: apps/inventory/forms/imovel_filter_form.py:26
+#: apps/inventory/web/templates/inventory/imovel_detail.html:92
+#: apps/inventory/web/templates/inventory/imovel_form.html:110
+#: apps/inventory/web/templates/inventory/imovel_list.html:108
 msgid "Zone"
 msgstr "Zona"
 
-#: apps/inventory/forms/imovel_filter_form.py:31
-#: apps/inventory/web/templates/inventory/imovel_detail.html:53
-#: apps/inventory/web/templates/inventory/imovel_form.html:154
-#: apps/inventory/web/templates/inventory/imovel_list.html:68
+#: apps/inventory/forms/imovel_filter_form.py:32
+#: apps/inventory/web/templates/inventory/imovel_detail.html:60
+#: apps/inventory/web/templates/inventory/imovel_form.html:156
+#: apps/inventory/web/templates/inventory/imovel_list.html:109
 msgid "Registry status"
 msgstr "Situação no cartório"
 
@@ -670,67 +749,67 @@ msgstr "Arquivo CSV"
 msgid "Please upload a .csv file."
 msgstr "Envie um arquivo .csv."
 
-#: apps/inventory/forms/movel_filter_form.py:14
+#: apps/inventory/forms/movel_filter_form.py:15
 msgid "Code, name or responsible"
 msgstr "Código, nome ou responsável"
 
-#: apps/inventory/forms/movel_filter_form.py:18
-#: apps/inventory/web/templates/inventory/home.html:275
-#: apps/inventory/web/templates/inventory/item_detail.html:100
-#: apps/inventory/web/templates/inventory/item_form.html:120
-#: apps/inventory/web/templates/inventory/item_list.html:87
-#: apps/pages/templates/pages/home.html:88
+#: apps/inventory/forms/movel_filter_form.py:19
+#: apps/inventory/web/templates/inventory/home.html:86
+#: apps/inventory/web/templates/inventory/item_detail.html:116
+#: apps/inventory/web/templates/inventory/item_form.html:122
+#: apps/inventory/web/templates/inventory/item_list.html:127
+#: apps/pages/templates/pages/home.html:84
 msgid "Status"
 msgstr "Status"
 
-#: apps/inventory/forms/movel_filter_form.py:24
-#: apps/inventory/forms/patrimonio_filter_form.py:30
-#: apps/inventory/web/templates/inventory/imovel_detail.html:49
-#: apps/inventory/web/templates/inventory/imovel_form.html:166
-#: apps/inventory/web/templates/inventory/item_detail.html:54
-#: apps/inventory/web/templates/inventory/item_form.html:114
-#: apps/inventory/web/templates/inventory/item_form.html:126
-#: apps/inventory/web/templates/inventory/item_list.html:88
-#: apps/inventory/web/templates/inventory/patrimonio_list.html:64
+#: apps/inventory/forms/movel_filter_form.py:25
+#: apps/inventory/forms/patrimonio_filter_form.py:31
+#: apps/inventory/web/templates/inventory/imovel_detail.html:56
+#: apps/inventory/web/templates/inventory/imovel_form.html:168
+#: apps/inventory/web/templates/inventory/item_detail.html:70
+#: apps/inventory/web/templates/inventory/item_form.html:116
+#: apps/inventory/web/templates/inventory/item_form.html:128
+#: apps/inventory/web/templates/inventory/item_list.html:128
+#: apps/inventory/web/templates/inventory/patrimonio_list.html:107
 msgid "Condition"
 msgstr "Condição"
 
-#: apps/inventory/forms/movel_filter_form.py:37
-#: apps/inventory/web/templates/inventory/home.html:274
-#: apps/inventory/web/templates/inventory/item_detail.html:42
-#: apps/inventory/web/templates/inventory/item_form.html:85
-#: apps/inventory/web/templates/inventory/item_list.html:85
-#: apps/pages/templates/pages/home.html:87
+#: apps/inventory/forms/movel_filter_form.py:38
+#: apps/inventory/web/templates/inventory/home.html:85
+#: apps/inventory/web/templates/inventory/item_detail.html:58
+#: apps/inventory/web/templates/inventory/item_form.html:87
+#: apps/inventory/web/templates/inventory/item_list.html:125
+#: apps/pages/templates/pages/home.html:83
 msgid "Sector"
 msgstr "Setor"
 
-#: apps/inventory/forms/movel_filter_form.py:44
-#: apps/inventory/web/templates/inventory/item_detail.html:62
-#: apps/inventory/web/templates/inventory/item_form.html:155
+#: apps/inventory/forms/movel_filter_form.py:45
+#: apps/inventory/web/templates/inventory/item_detail.html:78
+#: apps/inventory/web/templates/inventory/item_form.html:180
 msgid "Brand"
 msgstr "Marca"
 
-#: apps/inventory/forms/patrimonio_filter_form.py:11
+#: apps/inventory/forms/patrimonio_filter_form.py:12
 #: apps/inventory/services/patrimonio_filters.py:52
 #: apps/inventory/web/templates/inventory/patrimonio_choice.html:21
-#: apps/pages/templates/pages/home.html:86
+#: apps/pages/templates/pages/home.html:82
 msgid "Item"
 msgstr "Item"
 
-#: apps/inventory/forms/patrimonio_filter_form.py:12
+#: apps/inventory/forms/patrimonio_filter_form.py:13
 #: apps/inventory/services/patrimonio_filters.py:62
-#: apps/inventory/web/templates/inventory/imovel_list.html:4
-#: apps/inventory/web/templates/inventory/imovel_list.html:12
+#: apps/inventory/web/templates/inventory/imovel_list.html:5
+#: apps/inventory/web/templates/inventory/imovel_list.html:17
 #: apps/inventory/web/templates/inventory/patrimonio_choice.html:34
 msgid "Real Estate"
 msgstr "Imóveis"
 
-#: apps/inventory/forms/patrimonio_filter_form.py:20
+#: apps/inventory/forms/patrimonio_filter_form.py:21
 msgid "Code or name"
 msgstr "Código ou nome"
 
-#: apps/inventory/forms/patrimonio_filter_form.py:24
-#: apps/inventory/web/templates/inventory/patrimonio_list.html:62
+#: apps/inventory/forms/patrimonio_filter_form.py:25
+#: apps/inventory/web/templates/inventory/patrimonio_list.html:105
 msgid "Type"
 msgstr "Tipo"
 
@@ -781,63 +860,55 @@ msgid "Row %(row)s: unknown condition \"%(value)s\"."
 msgstr "Linha %(row)s: condição \"%(value)s\" desconhecida."
 
 #: apps/inventory/web/templates/inventory/dashboard.html:4
-#: apps/inventory/web/templates/inventory/dashboard.html:12
-msgid "Inventory"
-msgstr "Inventário"
-
-# ── Dashboard (categories)
-# ───────────────────────────────────────────────────
-#: apps/inventory/web/templates/inventory/dashboard.html:13
-msgid "Management view of items by category"
-msgstr "Visão gerencial de itens por categoria"
+#: apps/inventory/web/templates/inventory/dashboard.html:16
+#: apps/inventory/web/templates/inventory/home.html:150
+msgid "Items by Category"
+msgstr "Itens por Categoria"
 
 #: apps/inventory/web/templates/inventory/dashboard.html:18
+#, python-format
+msgid "%(total)s items across %(cat_count)s categories"
+msgstr ""
+
+#: apps/inventory/web/templates/inventory/dashboard.html:25
+#: apps/inventory/web/templates/inventory/item_form.html:4
 #: apps/inventory/web/templates/inventory/item_form.html:17
-#: apps/inventory/web/templates/inventory/item_list.html:32
+#: apps/inventory/web/templates/inventory/item_list.html:38
 msgid "New Item"
 msgstr "Novo Item"
 
-#: apps/inventory/web/templates/inventory/dashboard.html:30
-#: apps/inventory/web/templates/inventory/dashboard.html:92
-#: apps/inventory/web/templates/inventory/dashboard.html:143
-#: apps/inventory/web/templates/inventory/home.html:50
-msgid "Total"
-msgstr "Total"
-
-#: apps/inventory/web/templates/inventory/dashboard.html:40
-#: apps/inventory/web/templates/inventory/dashboard.html:89
-#: apps/inventory/web/templates/inventory/home.html:56
-#: apps/pages/templates/pages/home.html:67
-msgid "Active"
-msgstr "Ativos"
-
-#: apps/inventory/web/templates/inventory/dashboard.html:50
-#: apps/inventory/web/templates/inventory/dashboard.html:90
-#: apps/inventory/web/templates/inventory/home.html:64
-#: apps/pages/templates/pages/home.html:72
-msgid "Maintenance"
-msgstr "Manutenção"
-
-#: apps/inventory/web/templates/inventory/dashboard.html:60
-#: apps/inventory/web/templates/inventory/dashboard.html:91
-#: apps/inventory/web/templates/inventory/home.html:70
-msgid "Missing"
-msgstr "Extraviados"
-
-#: apps/inventory/web/templates/inventory/dashboard.html:70
-#: apps/inventory/web/templates/inventory/home.html:76
-msgid "Written Off"
-msgstr "Baixados"
-
-#: apps/inventory/web/templates/inventory/dashboard.html:80
+#: apps/inventory/web/templates/inventory/dashboard.html:32
 msgid "Items by category"
 msgstr "Itens por categoria"
 
-#: apps/inventory/web/templates/inventory/dashboard.html:93
+#: apps/inventory/web/templates/inventory/dashboard.html:41
+#: apps/inventory/web/templates/inventory/home.html:35
+#: apps/pages/templates/pages/home.html:63
+msgid "Active"
+msgstr "Ativos"
+
+#: apps/inventory/web/templates/inventory/dashboard.html:42
+#: apps/inventory/web/templates/inventory/home.html:44
+#: apps/pages/templates/pages/home.html:68
+msgid "Maintenance"
+msgstr "Manutenção"
+
+#: apps/inventory/web/templates/inventory/dashboard.html:43
+#: apps/inventory/web/templates/inventory/home.html:52
+msgid "Missing"
+msgstr "Extraviados"
+
+#: apps/inventory/web/templates/inventory/dashboard.html:44
+#: apps/inventory/web/templates/inventory/dashboard.html:95
+msgid "Total"
+msgstr "Total"
+
+#: apps/inventory/web/templates/inventory/dashboard.html:45
 msgid "Distribution"
 msgstr "Distribuição"
 
-#: apps/inventory/web/templates/inventory/dashboard.html:157
+#: apps/inventory/web/templates/inventory/dashboard.html:109
+#: apps/inventory/web/templates/inventory/home.html:170
 msgid "No categories registered yet."
 msgstr "Nenhuma categoria cadastrada ainda."
 
@@ -853,329 +924,189 @@ msgid "Here's an overview of today's inventory."
 msgstr "Aqui está um resumo do inventário hoje."
 
 #: apps/inventory/web/templates/inventory/home.html:22
-#: apps/inventory/web/templates/inventory/home.html:180
 #: apps/inventory/web/templates/inventory/patrimonio_choice.html:4
 #: apps/inventory/web/templates/inventory/patrimonio_choice.html:10
-#: apps/inventory/web/templates/inventory/patrimonio_list.html:22
+#: apps/inventory/web/templates/inventory/patrimonio_list.html:24
 msgid "Register asset"
 msgstr "Cadastrar patrimônio"
 
-#: apps/inventory/web/templates/inventory/home.html:32
-msgid "Let's get your inventory started"
-msgstr "Vamos começar seu inventário"
-
-#: apps/inventory/web/templates/inventory/home.html:34
-msgid ""
-"You haven't registered any items yet. Add your first one to see your "
-"dashboard come to life."
-msgstr ""
-"Você ainda não cadastrou nenhum item. Adicione o primeiro para ver seu "
-"painel ganhar vida."
-
-#: apps/inventory/web/templates/inventory/home.html:41
-msgid "Register your first asset"
-msgstr "Cadastre seu primeiro patrimônio"
-
-#: apps/inventory/web/templates/inventory/home.html:52
-msgid "registered items"
-msgstr "itens cadastrados"
-
-#: apps/inventory/web/templates/inventory/home.html:66
+#: apps/inventory/web/templates/inventory/home.html:46
 msgid "in maintenance"
 msgstr "em manutenção"
 
-#: apps/inventory/web/templates/inventory/home.html:72
+#: apps/inventory/web/templates/inventory/home.html:54
 msgid "missing"
 msgstr "extraviados"
 
-#: apps/inventory/web/templates/inventory/home.html:78
+#: apps/inventory/web/templates/inventory/home.html:58
+msgid "Written Off"
+msgstr "Baixados"
+
+#: apps/inventory/web/templates/inventory/home.html:60
 msgid "written off"
 msgstr "baixados"
 
-#: apps/inventory/web/templates/inventory/home.html:90
-msgid "Alerts & Pending"
-msgstr "Alertas e Pendências"
-
-#: apps/inventory/web/templates/inventory/home.html:99
-#, python-format
-msgid ""
-"\n"
-"                                %(count)s overdue loan\n"
-"                            "
-msgid_plural ""
-"\n"
-"                                %(count)s overdue loans\n"
-"                            "
-msgstr[0] ""
-"\n"
-"                                %(count)s empréstimo em atraso\n"
-"                            "
-msgstr[1] ""
-"\n"
-"                                %(count)s empréstimos em atraso\n"
-"                            "
-
-#: apps/inventory/web/templates/inventory/home.html:117
-#, python-format
-msgid ""
-"\n"
-"                                %(count)s loan past due (unmarked)\n"
-"                            "
-msgid_plural ""
-"\n"
-"                                %(count)s loans past due (unmarked)\n"
-"                            "
-msgstr[0] ""
-"\n"
-"                                %(count)s empréstimo com prazo vencido (não marcado)\n"
-"                            "
-msgstr[1] ""
-"\n"
-"                                %(count)s empréstimos com prazo vencido (não marcados)\n"
-"                            "
-
-#: apps/inventory/web/templates/inventory/home.html:132
-#, python-format
-msgid ""
-"\n"
-"                                %(count)s open maintenance over 7 days\n"
-"                            "
-msgid_plural ""
-"\n"
-"                                %(count)s open maintenances over 7 days\n"
-"                            "
-msgstr[0] ""
-"\n"
-"                                %(count)s manutenção em aberto há mais de 7 dias\n"
-"                            "
-msgstr[1] ""
-"\n"
-"                                %(count)s manutenções em aberto há mais de 7 dias\n"
-"                            "
-
-# ── Home misc
-# ────────────────────────────────────────────────────────────────
-#: apps/inventory/web/templates/inventory/home.html:139
-msgid "since"
-msgstr "desde"
-
-#: apps/inventory/web/templates/inventory/home.html:150
-#, python-format
-msgid ""
-"\n"
-"                                %(count)s item in poor condition and still active\n"
-"                            "
-msgid_plural ""
-"\n"
-"                                %(count)s items in poor condition and still active\n"
-"                            "
-msgstr[0] ""
-"\n"
-"                                %(count)s item em condição ruim e ainda ativo\n"
-"                            "
-msgstr[1] ""
-"\n"
-"                                %(count)s itens em condição ruim e ainda ativos\n"
-"                            "
-
-#: apps/inventory/web/templates/inventory/home.html:163
-msgid "No alerts at the moment. All good!"
-msgstr "Nenhum alerta no momento. Tudo certo!"
-
-#: apps/inventory/web/templates/inventory/home.html:174
-msgid "Quick Actions"
-msgstr "Ações Rápidas"
-
-#: apps/inventory/web/templates/inventory/home.html:185
-msgid "View all assets"
-msgstr "Ver todos os patrimônios"
-
-#: apps/inventory/web/templates/inventory/home.html:190
-msgid "View items by category"
-msgstr "Ver itens por categoria"
-
-#: apps/inventory/web/templates/inventory/home.html:195
-#, python-format
-msgid "View real estate (%(count)s)"
-msgid_plural "View real estate (%(count)s)"
-msgstr[0] "Ver imóveis (%(count)s)"
-msgstr[1] "Ver imóveis (%(count)s)"
-
-#: apps/inventory/web/templates/inventory/home.html:209
-msgid "Items by Category"
-msgstr "Itens por Categoria"
-
-#: apps/inventory/web/templates/inventory/home.html:224
-msgid "No category with items yet."
-msgstr "Nenhuma categoria com itens ainda."
-
-#: apps/inventory/web/templates/inventory/home.html:233
-msgid "Top Sectors"
-msgstr "Top Setores"
-
-#: apps/inventory/web/templates/inventory/home.html:245
-#, python-format
-msgid "%(count)s items"
-msgstr "%(count)s itens"
-
-#: apps/inventory/web/templates/inventory/home.html:249
-msgid "No sector with items yet."
-msgstr "Nenhum setor com itens ainda."
-
-#: apps/inventory/web/templates/inventory/home.html:261
+#: apps/inventory/web/templates/inventory/home.html:72
 msgid "Latest Registered Items"
 msgstr "Últimos Itens Cadastrados"
 
-#: apps/inventory/web/templates/inventory/home.html:263
+#: apps/inventory/web/templates/inventory/home.html:74
+#: apps/inventory/web/templates/inventory/home.html:152
 msgid "View all"
 msgstr "Ver todos"
 
-#: apps/inventory/web/templates/inventory/home.html:271
-#: apps/inventory/web/templates/inventory/imovel_detail.html:33
-#: apps/inventory/web/templates/inventory/imovel_list.html:63
-#: apps/inventory/web/templates/inventory/item_detail.html:34
-#: apps/inventory/web/templates/inventory/item_list.html:82
-#: apps/inventory/web/templates/inventory/patrimonio_list.html:60
+#: apps/inventory/web/templates/inventory/home.html:82
+#: apps/inventory/web/templates/inventory/imovel_detail.html:40
+#: apps/inventory/web/templates/inventory/imovel_list.html:104
+#: apps/inventory/web/templates/inventory/item_detail.html:50
+#: apps/inventory/web/templates/inventory/item_list.html:122
+#: apps/inventory/web/templates/inventory/patrimonio_list.html:103
 msgid "Code"
 msgstr "Código"
 
-#: apps/inventory/web/templates/inventory/home.html:272
-#: apps/inventory/web/templates/inventory/imovel_form.html:50
-#: apps/inventory/web/templates/inventory/imovel_list.html:64
-#: apps/inventory/web/templates/inventory/item_form.html:50
-#: apps/inventory/web/templates/inventory/item_list.html:83
-#: apps/inventory/web/templates/inventory/patrimonio_list.html:61
+#: apps/inventory/web/templates/inventory/home.html:83
+#: apps/inventory/web/templates/inventory/imovel_form.html:52
+#: apps/inventory/web/templates/inventory/imovel_list.html:105
+#: apps/inventory/web/templates/inventory/item_form.html:52
+#: apps/inventory/web/templates/inventory/item_list.html:123
+#: apps/inventory/web/templates/inventory/patrimonio_list.html:104
 msgid "Name"
 msgstr "Nome"
 
-#: apps/inventory/web/templates/inventory/home.html:276
-#: apps/inventory/web/templates/inventory/imovel_detail.html:57
-#: apps/inventory/web/templates/inventory/item_detail.html:66
+#: apps/inventory/web/templates/inventory/home.html:87
+#: apps/inventory/web/templates/inventory/imovel_detail.html:64
+#: apps/inventory/web/templates/inventory/item_detail.html:82
 msgid "Registered at"
 msgstr "Cadastrado em"
 
-#: apps/inventory/web/templates/inventory/home.html:303
+#: apps/inventory/web/templates/inventory/home.html:112
 msgid "No items registered yet."
 msgstr "Nenhum item cadastrado ainda."
 
-#: apps/inventory/web/templates/inventory/home.html:304
+#: apps/inventory/web/templates/inventory/home.html:113
 msgid "Register now"
 msgstr "Cadastrar agora"
 
-#: apps/inventory/web/templates/inventory/home.html:296
-msgid "Highest Valued Assets"
-msgstr "Bens com Maior Valor"
-
-#: apps/inventory/web/templates/inventory/home.html:307
-msgid "No asset with a registered value yet."
-msgstr "Nenhum bem com valor cadastrado ainda."
-
-#: apps/inventory/web/templates/inventory/home.html:318
+#: apps/inventory/web/templates/inventory/home.html:123
 msgid "Collection Value by Period"
 msgstr "Valor do Acervo por Período"
 
-#: apps/inventory/web/templates/inventory/home.html:338
+#: apps/inventory/web/templates/inventory/home.html:140
 msgid "No acquisition value registered in this period yet."
 msgstr "Nenhum valor de aquisição registrado neste período ainda."
 
-#: apps/inventory/web/templates/inventory/home.html:353
+#: apps/inventory/web/templates/inventory/home.html:182
 msgid "My Wallet"
 msgstr "Minha Carteira"
 
-#: apps/inventory/web/templates/inventory/home.html:357
+#: apps/inventory/web/templates/inventory/home.html:186
 msgid "Total collection value"
 msgstr "Valor total do acervo"
 
-#: apps/inventory/web/templates/inventory/imovel_detail.html:29
+#: apps/inventory/web/templates/inventory/home.html:192
+msgid "Highest Valued Assets"
+msgstr "Bens com Maior Valor"
+
+#: apps/inventory/web/templates/inventory/home.html:202
+msgid "No asset with a registered value yet."
+msgstr "Nenhum bem com valor cadastrado ainda."
+
+#: apps/inventory/web/templates/inventory/imovel_detail.html:36
 msgid "Real Estate Information"
 msgstr "Informações do Imóvel"
 
-#: apps/inventory/web/templates/inventory/imovel_detail.html:41
-#: apps/inventory/web/templates/inventory/imovel_form.html:71
-#: apps/inventory/web/templates/inventory/item_detail.html:50
-#: apps/inventory/web/templates/inventory/item_form.html:103
-#: apps/inventory/web/templates/inventory/item_list.html:86
+#: apps/inventory/web/templates/inventory/imovel_detail.html:48
+#: apps/inventory/web/templates/inventory/imovel_form.html:73
+#: apps/inventory/web/templates/inventory/item_detail.html:66
+#: apps/inventory/web/templates/inventory/item_form.html:105
+#: apps/inventory/web/templates/inventory/item_list.html:126
 msgid "Responsible"
 msgstr "Responsável"
 
-#: apps/inventory/web/templates/inventory/imovel_detail.html:45
-#: apps/inventory/web/templates/inventory/imovel_form.html:160
-#: apps/inventory/web/templates/inventory/item_detail.html:58
-#: apps/inventory/web/templates/inventory/item_form.html:132
+#: apps/inventory/web/templates/inventory/imovel_detail.html:52
+#: apps/inventory/web/templates/inventory/imovel_form.html:162
+#: apps/inventory/web/templates/inventory/item_detail.html:74
+#: apps/inventory/web/templates/inventory/item_form.html:134
 msgid "Ownership"
 msgstr "Propriedade"
 
-#: apps/inventory/web/templates/inventory/imovel_detail.html:63
-#: apps/inventory/web/templates/inventory/imovel_form.html:78
-#: apps/inventory/web/templates/inventory/item_detail.html:72
-#: apps/inventory/web/templates/inventory/item_form.html:70
+#: apps/inventory/web/templates/inventory/imovel_detail.html:70
+#: apps/inventory/web/templates/inventory/imovel_form.html:80
+#: apps/inventory/web/templates/inventory/item_detail.html:88
+#: apps/inventory/web/templates/inventory/item_form.html:72
 msgid "Description"
 msgstr "Descrição"
 
-#: apps/inventory/web/templates/inventory/imovel_detail.html:77
-#: apps/inventory/web/templates/inventory/imovel_form.html:94
-#: apps/inventory/web/templates/inventory/imovel_list.html:66
+#: apps/inventory/web/templates/inventory/imovel_detail.html:84
+#: apps/inventory/web/templates/inventory/imovel_form.html:96
+#: apps/inventory/web/templates/inventory/imovel_list.html:107
 msgid "Address"
 msgstr "Endereço"
 
-#: apps/inventory/web/templates/inventory/imovel_detail.html:81
-#: apps/inventory/web/templates/inventory/imovel_form.html:100
+#: apps/inventory/web/templates/inventory/imovel_detail.html:88
+#: apps/inventory/web/templates/inventory/imovel_form.html:102
 msgid "CEP"
 msgstr "CEP"
 
-#: apps/inventory/web/templates/inventory/imovel_detail.html:89
+#: apps/inventory/web/templates/inventory/imovel_detail.html:96
 msgid "Coordinates"
 msgstr "Coordenadas"
 
-#: apps/inventory/web/templates/inventory/imovel_detail.html:95
-#: apps/inventory/web/templates/inventory/imovel_form.html:131
+#: apps/inventory/web/templates/inventory/imovel_detail.html:102
+#: apps/inventory/web/templates/inventory/imovel_form.html:133
 msgid "Total area"
 msgstr "Área total"
 
-#: apps/inventory/web/templates/inventory/imovel_detail.html:99
-#: apps/inventory/web/templates/inventory/imovel_form.html:137
+#: apps/inventory/web/templates/inventory/imovel_detail.html:106
+#: apps/inventory/web/templates/inventory/imovel_form.html:139
 msgid "Built area"
 msgstr "Área construída"
 
-#: apps/inventory/web/templates/inventory/imovel_detail.html:105
-#: apps/inventory/web/templates/inventory/imovel_form.html:173
-#: apps/inventory/web/templates/inventory/item_detail.html:78
-#: apps/inventory/web/templates/inventory/item_form.html:139
+#: apps/inventory/web/templates/inventory/imovel_detail.html:112
+#: apps/inventory/web/templates/inventory/imovel_form.html:175
+#: apps/inventory/web/templates/inventory/item_detail.html:94
+#: apps/inventory/web/templates/inventory/item_form.html:141
 msgid "Notes"
 msgstr "Observações"
 
-# ── Item form
-# ────────────────────────────────────────────────────────────────
 #: apps/inventory/web/templates/inventory/imovel_form.html:4
-msgid "New Real Estate — Inventory"
-msgstr "Novo Imóvel — Inventário"
-
 #: apps/inventory/web/templates/inventory/imovel_form.html:17
-#: apps/inventory/web/templates/inventory/imovel_list.html:21
+#, fuzzy
+#| msgid "Real Estate"
+msgid "Edit Real Estate"
+msgstr "Imóveis"
+
+#: apps/inventory/web/templates/inventory/imovel_form.html:4
+#: apps/inventory/web/templates/inventory/imovel_form.html:17
+#: apps/inventory/web/templates/inventory/imovel_list.html:28
 msgid "New Real Estate"
 msgstr "Novo Imóvel"
 
-#: apps/inventory/web/templates/inventory/imovel_form.html:18
+#: apps/inventory/web/templates/inventory/imovel_form.html:19
+msgid "Update this property's details"
+msgstr ""
+
+#: apps/inventory/web/templates/inventory/imovel_form.html:19
 msgid "Fill in the details to register a real estate property"
 msgstr "Preencha os dados para cadastrar um imóvel"
 
-#: apps/inventory/web/templates/inventory/imovel_form.html:21
-#: apps/inventory/web/templates/inventory/item_form.html:21
+#: apps/inventory/web/templates/inventory/imovel_form.html:23
+#: apps/inventory/web/templates/inventory/item_form.html:23
 msgid "Required fields"
 msgstr "Campos obrigatórios"
 
-#: apps/inventory/web/templates/inventory/imovel_form.html:36
-#: apps/inventory/web/templates/inventory/item_form.html:36
+#: apps/inventory/web/templates/inventory/imovel_form.html:38
+#: apps/inventory/web/templates/inventory/item_form.html:38
 msgid "Identification"
 msgstr "Identificação"
 
-#: apps/inventory/web/templates/inventory/imovel_form.html:42
-#: apps/inventory/web/templates/inventory/item_form.html:42
+#: apps/inventory/web/templates/inventory/imovel_form.html:44
+#: apps/inventory/web/templates/inventory/item_form.html:44
 msgid "Code / Asset Number"
 msgstr "Código / Patrimônio"
 
-#: apps/inventory/web/templates/inventory/imovel_form.html:65
-#: apps/inventory/web/templates/inventory/item_form.html:64
+#: apps/inventory/web/templates/inventory/imovel_form.html:67
+#: apps/inventory/web/templates/inventory/item_form.html:66
 msgid ""
 "No categories registered yet. Ask an administrator to create one before "
 "continuing."
@@ -1183,43 +1114,43 @@ msgstr ""
 "Nenhuma categoria cadastrada ainda. Peça a um administrador para criar uma "
 "antes de continuar."
 
-#: apps/inventory/web/templates/inventory/imovel_form.html:89
-#: apps/inventory/web/templates/inventory/imovel_form.html:149
-#: apps/inventory/web/templates/inventory/item_form.html:115
-#: apps/inventory/web/templates/inventory/item_form.html:150
-#: apps/inventory/web/templates/inventory/item_form.html:220
+#: apps/inventory/web/templates/inventory/imovel_form.html:91
+#: apps/inventory/web/templates/inventory/imovel_form.html:151
+#: apps/inventory/web/templates/inventory/item_form.html:117
+#: apps/inventory/web/templates/inventory/item_form.html:152
+#: apps/inventory/web/templates/inventory/item_form.html:175
+#: apps/inventory/web/templates/inventory/item_form.html:245
 msgid "(optional)"
 msgstr "(opcional)"
 
-#: apps/inventory/web/templates/inventory/imovel_form.html:114
+#: apps/inventory/web/templates/inventory/imovel_form.html:116
 msgid "Latitude"
 msgstr "Latitude"
 
-#: apps/inventory/web/templates/inventory/imovel_form.html:120
+#: apps/inventory/web/templates/inventory/imovel_form.html:122
 msgid "Longitude"
 msgstr "Longitude"
 
-#: apps/inventory/web/templates/inventory/imovel_form.html:126
+#: apps/inventory/web/templates/inventory/imovel_form.html:128
 msgid "GPS coordinates are optional and used to locate the property on a map."
 msgstr ""
-"As coordenadas de GPS são opcionais e usadas para localizar o imóvel no "
-"mapa."
+"As coordenadas de GPS são opcionais e usadas para localizar o imóvel no mapa."
 
-#: apps/inventory/web/templates/inventory/imovel_form.html:148
+#: apps/inventory/web/templates/inventory/imovel_form.html:150
 msgid "Legal & Condition"
 msgstr "Jurídico e Condição"
 
-#: apps/inventory/web/templates/inventory/imovel_form.html:196
-#: apps/inventory/web/templates/inventory/imovel_form.html:255
+#: apps/inventory/web/templates/inventory/imovel_form.html:198
+#: apps/inventory/web/templates/inventory/imovel_form.html:257
 msgid "Real estate name"
 msgstr "Nome do imóvel"
 
-#: apps/inventory/web/templates/inventory/imovel_form.html:211
-#: apps/inventory/web/templates/inventory/item_form.html:268
+#: apps/inventory/web/templates/inventory/imovel_form.html:213
+#: apps/inventory/web/templates/inventory/item_form.html:300
 msgid "Tips"
 msgstr "Dicas"
 
-#: apps/inventory/web/templates/inventory/imovel_form.html:214
+#: apps/inventory/web/templates/inventory/imovel_form.html:216
 msgid ""
 "Use a consistent code pattern, e.g. IMV-0001, to make properties easy to "
 "search later."
@@ -1227,157 +1158,253 @@ msgstr ""
 "Use um padrão de código consistente, como IMV-0001, para facilitar a busca "
 "dos imóveis depois."
 
-#: apps/inventory/web/templates/inventory/imovel_form.html:215
+#: apps/inventory/web/templates/inventory/imovel_form.html:217
 msgid ""
 "Keeping the registry status up to date helps track legal risk across the "
 "portfolio."
 msgstr ""
-"Manter a situação em cartório atualizada ajuda a acompanhar o risco jurídico"
-" do portfólio."
+"Manter a situação em cartório atualizada ajuda a acompanhar o risco jurídico "
+"do portfólio."
 
-#: apps/inventory/web/templates/inventory/imovel_form.html:216
+#: apps/inventory/web/templates/inventory/imovel_form.html:218
 msgid ""
 "Address and GPS coordinates make it easier to locate the property later."
 msgstr "Endereço e coordenadas de GPS facilitam localizar o imóvel depois."
 
-#: apps/inventory/web/templates/inventory/imovel_form.html:233
+#: apps/inventory/web/templates/inventory/imovel_form.html:235
 msgid "Save Real Estate"
 msgstr "Salvar Imóvel"
 
 #: apps/inventory/web/templates/inventory/imovel_list.html:14
+#: apps/inventory/web/templates/inventory/item_list.html:14
+#, fuzzy
+#| msgid "Back to Home"
+msgid "Back to Assets"
+msgstr "Voltar ao Início"
+
+#: apps/inventory/web/templates/inventory/imovel_list.html:20
 #, python-format
 msgid "%(count)s property"
 msgid_plural "%(count)s properties"
 msgstr[0] "%(count)s propriedade"
 msgstr[1] "%(count)s propriedades"
 
-#: apps/inventory/web/templates/inventory/imovel_list.html:48
-#: apps/inventory/web/templates/inventory/item_list.html:67
-#: apps/inventory/web/templates/inventory/patrimonio_list.html:45
+#: apps/inventory/web/templates/inventory/imovel_list.html:21
+msgid "real estate only — registry status, zone, area"
+msgstr ""
+
+#: apps/inventory/web/templates/inventory/imovel_list.html:37
+#: apps/inventory/web/templates/inventory/item_list.html:47
+#: apps/inventory/web/templates/inventory/patrimonio_list.html:33
+#, fuzzy
+#| msgid "Filter"
+msgid "Filters"
+msgstr "Filtrar"
+
+#: apps/inventory/web/templates/inventory/imovel_list.html:39
+#: apps/inventory/web/templates/inventory/item_list.html:49
+#: apps/inventory/web/templates/inventory/patrimonio_list.html:35
+#, fuzzy
+#| msgid "Active"
+msgid "active"
+msgstr "Ativos"
+
+#: apps/inventory/web/templates/inventory/imovel_list.html:62
+#: apps/inventory/web/templates/inventory/item_list.html:72
+#: apps/inventory/web/templates/inventory/patrimonio_list.html:58
+#, fuzzy
+#| msgid "Clear filters"
+msgid "Clear all"
+msgstr "Limpar filtros"
+
+#: apps/inventory/web/templates/inventory/imovel_list.html:88
+#: apps/inventory/web/templates/inventory/item_list.html:106
+#: apps/inventory/web/templates/inventory/patrimonio_list.html:80
 msgid "Filter"
 msgstr "Filtrar"
 
-#: apps/inventory/web/templates/inventory/imovel_list.html:51
-#: apps/inventory/web/templates/inventory/item_list.html:70
-#: apps/inventory/web/templates/inventory/patrimonio_list.html:48
+#: apps/inventory/web/templates/inventory/imovel_list.html:91
+#: apps/inventory/web/templates/inventory/item_list.html:109
+#: apps/inventory/web/templates/inventory/patrimonio_list.html:83
 msgid "Clear filters"
 msgstr "Limpar filtros"
 
-#: apps/inventory/web/templates/inventory/imovel_list.html:93
-#: apps/inventory/web/templates/inventory/item_list.html:118
-#: apps/inventory/web/templates/inventory/patrimonio_list.html:92
-#, python-format
-msgid "Page %(current)s of %(total)s"
+#: apps/inventory/web/templates/inventory/imovel_list.html:134
+#: apps/inventory/web/templates/inventory/item_list.html:154
+#: apps/inventory/web/templates/inventory/patrimonio_list.html:135
+#, fuzzy, python-format
+#| msgid "Page %(current)s of %(total)s"
+msgid "Showing %(start)s–%(end)s of %(total)s"
 msgstr "Página %(current)s de %(total)s"
 
-#: apps/inventory/web/templates/inventory/imovel_list.html:98
-#: apps/inventory/web/templates/inventory/item_list.html:123
-#: apps/inventory/web/templates/inventory/patrimonio_list.html:97
+#: apps/inventory/web/templates/inventory/imovel_list.html:139
+#: apps/inventory/web/templates/inventory/item_list.html:159
+#: apps/inventory/web/templates/inventory/patrimonio_list.html:140
 msgid "Previous"
 msgstr "Anterior"
 
-#: apps/inventory/web/templates/inventory/imovel_list.html:102
-#: apps/inventory/web/templates/inventory/item_list.html:127
-#: apps/inventory/web/templates/inventory/patrimonio_list.html:101
+#: apps/inventory/web/templates/inventory/imovel_list.html:143
+#: apps/inventory/web/templates/inventory/item_list.html:163
+#: apps/inventory/web/templates/inventory/patrimonio_list.html:144
 msgid "Next"
 msgstr "Próxima"
 
-#: apps/inventory/web/templates/inventory/imovel_list.html:110
+#: apps/inventory/web/templates/inventory/imovel_list.html:151
 msgid "No real estate found."
 msgstr "Nenhum imóvel encontrado."
 
-#: apps/inventory/web/templates/inventory/item_detail.html:30
+#: apps/inventory/web/templates/inventory/item_delete_confirm.html:4
+#: apps/inventory/web/templates/inventory/item_delete_confirm.html:10
+msgid "Delete item"
+msgstr "Excluir item"
+
+#: apps/inventory/web/templates/inventory/item_delete_confirm.html:17
+msgid ""
+"This item cannot be permanently deleted because it has loan, maintenance or "
+"movement history, kept for audit purposes."
+msgstr ""
+"Este item não pode ser excluído permanentemente porque possui histórico de "
+"empréstimos, manutenções ou movimentações, preservado para fins de auditoria."
+
+#: apps/inventory/web/templates/inventory/item_delete_confirm.html:20
+msgid "Mark it as \\"
+msgstr ""
+
+#: apps/inventory/web/templates/inventory/item_delete_confirm.html:25
+msgid "Edit item"
+msgstr "Editar item"
+
+#: apps/inventory/web/templates/inventory/item_delete_confirm.html:34
+msgid ""
+"This will permanently delete this item, its photo and its acquisition data. "
+"This cannot be undone."
+msgstr ""
+"Isso excluirá permanentemente este item, sua foto e seus dados de aquisição. "
+"Essa ação não pode ser desfeita."
+
+#: apps/inventory/web/templates/inventory/item_delete_confirm.html:41
+#, python-format
+msgid "Type \"%(code)s\" to confirm"
+msgstr "Digite \"%(code)s\" para confirmar"
+
+#: apps/inventory/web/templates/inventory/item_delete_confirm.html:49
+#: apps/organizations/templates/organizations/delete_confirm.html:31
+msgid "Permanently delete"
+msgstr "Excluir permanentemente"
+
+#: apps/inventory/web/templates/inventory/item_detail.html:36
+msgid "Delete"
+msgstr "Excluir"
+
+#: apps/inventory/web/templates/inventory/item_detail.html:46
 msgid "Item Information"
 msgstr "Informações do Item"
 
-#: apps/inventory/web/templates/inventory/item_detail.html:88
+#: apps/inventory/web/templates/inventory/item_detail.html:104
 msgid "Possession History"
 msgstr "Histórico de Posses"
 
-#: apps/inventory/web/templates/inventory/item_detail.html:96
+#: apps/inventory/web/templates/inventory/item_detail.html:112
 msgid "Borrower"
 msgstr "Emprestado para"
 
-#: apps/inventory/web/templates/inventory/item_detail.html:97
+#: apps/inventory/web/templates/inventory/item_detail.html:113
 msgid "Loaned at"
 msgstr "Data do empréstimo"
 
-#: apps/inventory/web/templates/inventory/item_detail.html:98
+#: apps/inventory/web/templates/inventory/item_detail.html:114
 msgid "Expected return"
 msgstr "Previsão de retorno"
 
-#: apps/inventory/web/templates/inventory/item_detail.html:99
+#: apps/inventory/web/templates/inventory/item_detail.html:115
 msgid "Returned at"
 msgstr "Devolvido em"
 
-#: apps/inventory/web/templates/inventory/item_detail.html:122
+#: apps/inventory/web/templates/inventory/item_detail.html:138
 msgid "No loan history for this item yet."
 msgstr "Nenhum histórico de empréstimo para este item ainda."
 
-# ── Item form
-# ────────────────────────────────────────────────────────────────
 #: apps/inventory/web/templates/inventory/item_form.html:4
-msgid "New Item — Inventory"
-msgstr "Novo Item — Inventário"
+#: apps/inventory/web/templates/inventory/item_form.html:17
+#, fuzzy
+#| msgid "Edit item"
+msgid "Edit Item"
+msgstr "Editar item"
 
-#: apps/inventory/web/templates/inventory/item_form.html:18
+#: apps/inventory/web/templates/inventory/item_form.html:19
+msgid "Update this item's details"
+msgstr ""
+
+#: apps/inventory/web/templates/inventory/item_form.html:19
 msgid "Fill in the details to register an item in the inventory"
 msgstr "Preencha os dados para cadastrar um item no inventário"
 
-#: apps/inventory/web/templates/inventory/item_form.html:91
+#: apps/inventory/web/templates/inventory/item_form.html:93
 msgid "No sectors registered yet."
 msgstr "Nenhum setor cadastrado ainda."
 
-#: apps/inventory/web/templates/inventory/item_form.html:97
+#: apps/inventory/web/templates/inventory/item_form.html:99
 msgid "Specific location"
 msgstr "Localização específica"
 
-#: apps/inventory/web/templates/inventory/item_form.html:149
+#: apps/inventory/web/templates/inventory/item_form.html:151
+msgid "Acquisition"
+msgstr "Aquisição"
+
+#: apps/inventory/web/templates/inventory/item_form.html:157
+msgid "Acquisition value"
+msgstr "Valor de aquisição"
+
+#: apps/inventory/web/templates/inventory/item_form.html:163
+msgid "Purchase date"
+msgstr "Data da compra"
+
+#: apps/inventory/web/templates/inventory/item_form.html:174
 msgid "Technical Specifications"
 msgstr "Especificações Técnicas"
 
-#: apps/inventory/web/templates/inventory/item_form.html:159
+#: apps/inventory/web/templates/inventory/item_form.html:184
 msgid "Select a brand"
 msgstr "Selecione uma marca"
 
-#: apps/inventory/web/templates/inventory/item_form.html:167
+#: apps/inventory/web/templates/inventory/item_form.html:192
 msgid "+ New brand..."
 msgstr "+ Nova marca..."
 
-#: apps/inventory/web/templates/inventory/item_form.html:179
+#: apps/inventory/web/templates/inventory/item_form.html:204
 msgid "Enter the name of the new brand"
 msgstr "Digite o nome da nova marca"
 
-#: apps/inventory/web/templates/inventory/item_form.html:197
+#: apps/inventory/web/templates/inventory/item_form.html:222
 msgid "Model"
 msgstr "Modelo"
 
-#: apps/inventory/web/templates/inventory/item_form.html:203
+#: apps/inventory/web/templates/inventory/item_form.html:228
 msgid "Serial Number"
 msgstr "Número de série"
 
-#: apps/inventory/web/templates/inventory/item_form.html:219
+#: apps/inventory/web/templates/inventory/item_form.html:244
 msgid "Photo"
 msgstr "Foto"
 
-#: apps/inventory/web/templates/inventory/item_form.html:227
+#: apps/inventory/web/templates/inventory/item_form.html:252
 msgid "Click or drag a photo here"
 msgstr "Clique ou arraste uma foto aqui"
 
-#: apps/inventory/web/templates/inventory/item_form.html:228
+#: apps/inventory/web/templates/inventory/item_form.html:253
 msgid "up to"
 msgstr "até"
 
-#: apps/inventory/web/templates/inventory/item_form.html:236
+#: apps/inventory/web/templates/inventory/item_form.html:264
 msgid "Remove photo"
 msgstr "Remover foto"
 
-#: apps/inventory/web/templates/inventory/item_form.html:253
-#: apps/inventory/web/templates/inventory/item_form.html:410
+#: apps/inventory/web/templates/inventory/item_form.html:285
+#: apps/inventory/web/templates/inventory/item_form.html:445
 msgid "Item name"
 msgstr "Nome do item"
 
-#: apps/inventory/web/templates/inventory/item_form.html:271
+#: apps/inventory/web/templates/inventory/item_form.html:303
 msgid ""
 "Use a consistent code pattern, e.g. PAT-0001, to make items easy to search "
 "later."
@@ -1385,32 +1412,32 @@ msgstr ""
 "Use um padrão de código consistente, como PAT-0001, para facilitar a busca "
 "dos itens depois."
 
-#: apps/inventory/web/templates/inventory/item_form.html:272
+#: apps/inventory/web/templates/inventory/item_form.html:304
 msgid ""
 "Assigning a responsible person helps track accountability during audits."
 msgstr ""
 "Atribuir um responsável ajuda a rastrear a responsabilidade durante "
 "auditorias."
 
-#: apps/inventory/web/templates/inventory/item_form.html:273
+#: apps/inventory/web/templates/inventory/item_form.html:305
 msgid "You can bulk-register items later via CSV import."
 msgstr "Você pode cadastrar itens em lote depois via importação de CSV."
 
-#: apps/inventory/web/templates/inventory/item_form.html:290
+#: apps/inventory/web/templates/inventory/item_form.html:322
 msgid "Save Item"
 msgstr "Salvar Item"
 
 # ── Item form — JS strings
 # ────────────────────────────────────────────────────
-#: apps/inventory/web/templates/inventory/item_form.html:334
+#: apps/inventory/web/templates/inventory/item_form.html:366
 msgid "Similar brand already exists"
 msgstr "Marca similar já existe"
 
-#: apps/inventory/web/templates/inventory/item_form.html:334
+#: apps/inventory/web/templates/inventory/item_form.html:366
 msgid "similarity"
 msgstr "de semelhança"
 
-#: apps/inventory/web/templates/inventory/item_form.html:334
+#: apps/inventory/web/templates/inventory/item_form.html:366
 msgid "Select it from the list or use a different name."
 msgstr "Selecione-a na lista ou use um nome diferente."
 
@@ -1453,26 +1480,30 @@ msgstr[0] "%(count)s linha não pôde ser importada"
 msgstr[1] "%(count)s linhas não puderam ser importadas"
 
 #: apps/inventory/web/templates/inventory/item_list.html:5
-#: apps/inventory/web/templates/inventory/item_list.html:13
+#: apps/inventory/web/templates/inventory/item_list.html:17
 msgid "All Items"
 msgstr "Todos os Itens"
 
-#: apps/inventory/web/templates/inventory/item_list.html:15
+#: apps/inventory/web/templates/inventory/item_list.html:20
 #, python-format
 msgid "%(count)s item"
 msgid_plural "%(count)s items"
 msgstr[0] "%(count)s item"
 msgstr[1] "%(count)s itens"
 
-#: apps/inventory/web/templates/inventory/item_list.html:22
+#: apps/inventory/web/templates/inventory/item_list.html:21
+msgid "movable assets only — filters, CSV import/export"
+msgstr ""
+
+#: apps/inventory/web/templates/inventory/item_list.html:28
 msgid "Import CSV"
 msgstr "Importar CSV"
 
-#: apps/inventory/web/templates/inventory/item_list.html:27
+#: apps/inventory/web/templates/inventory/item_list.html:33
 msgid "Export CSV"
 msgstr "Exportar CSV"
 
-#: apps/inventory/web/templates/inventory/item_list.html:135
+#: apps/inventory/web/templates/inventory/item_list.html:171
 msgid "No items found."
 msgstr "Nenhum item encontrado."
 
@@ -1489,21 +1520,80 @@ msgstr ""
 msgid "Houses, apartments, land and other real estate properties."
 msgstr "Casas, apartamentos, terrenos e demais propriedades."
 
-#: apps/inventory/web/templates/inventory/patrimonio_list.html:15
+#: apps/inventory/web/templates/inventory/patrimonio_list.html:16
 #, python-format
 msgid "%(count)s asset"
 msgid_plural "%(count)s assets"
 msgstr[0] "%(count)s patrimônio"
 msgstr[1] "%(count)s patrimônios"
 
-#: apps/inventory/web/templates/inventory/patrimonio_list.html:109
+#: apps/inventory/web/templates/inventory/patrimonio_list.html:17
+msgid "combined view of items and real estate"
+msgstr ""
+
+#: apps/inventory/web/templates/inventory/patrimonio_list.html:90
+msgid "Looking for advanced filters, status history or CSV import/export?"
+msgstr ""
+
+#: apps/inventory/web/templates/inventory/patrimonio_list.html:91
+#, fuzzy
+#| msgid "Total items"
+msgid "Manage items"
+msgstr "Total de itens"
+
+#: apps/inventory/web/templates/inventory/patrimonio_list.html:93
+#, fuzzy
+#| msgid "Save Real Estate"
+msgid "Manage real estate"
+msgstr "Salvar Imóvel"
+
+#: apps/inventory/web/templates/inventory/patrimonio_list.html:152
 msgid "No assets found."
 msgstr "Nenhum patrimônio encontrado."
 
-#: apps/inventory/web/views/imovel_views.py:32
+#: apps/inventory/web/views/brand_views.py:37
+msgid "Selected brand not found."
+msgstr "Marca selecionada não encontrada."
+
+#: apps/inventory/web/views/brand_views.py:46
+#, python-format
+msgid ""
+"A very similar brand already exists: \"%(name)s\". Select it from the list "
+"or choose a different name."
+msgstr ""
+"Marca muito similar já existe: \"%(name)s\". Selecione-a na lista ou escolha "
+"um nome diferente."
+
+#: apps/inventory/web/views/imovel_update_view.py:37
+#, fuzzy, python-format
+#| msgid "Real estate \"%(name)s\" registered successfully."
+msgid "Real estate \"%(name)s\" updated successfully."
+msgstr "Imóvel \"%(name)s\" cadastrado com sucesso."
+
+#: apps/inventory/web/views/imovel_views.py:30
 #, python-format
 msgid "Real estate \"%(name)s\" registered successfully."
 msgstr "Imóvel \"%(name)s\" cadastrado com sucesso."
+
+#: apps/inventory/web/views/item_delete_view.py:37
+#, python-format
+msgid ""
+"Item \"%(name)s\" cannot be permanently deleted because it has loan, "
+"maintenance or movement history. Mark it as \"Written Off\" instead to keep "
+"it out of active use while preserving its history."
+msgstr ""
+"O item \"%(name)s\" não pode ser excluído permanentemente porque possui "
+"histórico de empréstimos, manutenções ou movimentações. Marque-o como "
+"\"Baixado\" em vez disso para tirá-lo de uso ativo preservando seu histórico."
+
+#: apps/inventory/web/views/item_delete_view.py:45
+msgid "The typed code doesn't match. The item was not deleted."
+msgstr "O código digitado não confere. O item não foi excluído."
+
+#: apps/inventory/web/views/item_delete_view.py:57
+#, python-format
+msgid "Item \"%(name)s\" deleted."
+msgstr "Item \"%(name)s\" excluído."
 
 #: apps/inventory/web/views/item_import_view.py:34
 #, python-format
@@ -1512,51 +1602,82 @@ msgid_plural "%(count)s items imported successfully."
 msgstr[0] "%(count)s item importado com sucesso."
 msgstr[1] "%(count)s itens importados com sucesso."
 
-#: apps/inventory/web/views/item_views.py:52
-msgid "Selected brand not found."
-msgstr "Marca selecionada não encontrada."
+#: apps/inventory/web/views/item_update_view.py:96
+#, fuzzy, python-format
+#| msgid "Item \"%(name)s\" registered successfully."
+msgid "Item \"%(name)s\" updated successfully."
+msgstr "Item \"%(name)s\" cadastrado com sucesso."
 
-#: apps/inventory/web/views/item_views.py:58
-#, python-format
-msgid ""
-"A very similar brand already exists: \"%(name)s\". Select it from the list "
-"or choose a different name."
-msgstr ""
-"Marca muito similar já existe: \"%(name)s\". Selecione-a na lista ou escolha"
-" um nome diferente."
-
-#: apps/inventory/web/views/item_views.py:94
+#: apps/inventory/web/views/item_views.py:82
 #, python-format
 msgid "Item \"%(name)s\" registered successfully."
 msgstr "Item \"%(name)s\" cadastrado com sucesso."
 
 # ── Auth — Register
 # ──────────────────────────────────────────────────────────
-#: apps/organizations/templates/organizations/create.html:21
-msgid "Create your organization"
-msgstr "Crie sua organização"
-
-#: apps/organizations/templates/organizations/create.html:21
-msgid "Create another organization"
-msgstr "Criar outra organização"
-
-#: apps/organizations/templates/organizations/create.html:25
-msgid "You need an organization to start using Monium."
-msgstr "Você precisa de uma organização para começar a usar o Monium."
-
-#: apps/organizations/templates/organizations/create.html:27
-msgid "You can create as many organizations as you need."
-msgstr "Você pode criar quantas organizações precisar."
-
-# ── Auth — Register
-# ──────────────────────────────────────────────────────────
-#: apps/organizations/templates/organizations/create.html:57
+#: apps/organizations/templates/organizations/create.html:5
+#: apps/organizations/templates/organizations/create.html:108
 msgid "Create organization"
 msgstr "Criar organização"
 
+#: apps/organizations/templates/organizations/create.html:22
+#, fuzzy
+#| msgid "The organization owner's role can't be changed."
+msgid "One organization per team, all in one place."
+msgstr "O papel do proprietário da organização não pode ser alterado."
+
+#: apps/organizations/templates/organizations/create.html:25
+msgid ""
+"Keep inventory, loans and maintenance separated per organization — no limit "
+"on organizations or members."
+msgstr ""
+
+# ── Auth — Register
+# ──────────────────────────────────────────────────────────
+#: apps/organizations/templates/organizations/create.html:47
+msgid "Create your organization"
+msgstr "Crie sua organização"
+
+#: apps/organizations/templates/organizations/create.html:47
+msgid "Create another organization"
+msgstr "Criar outra organização"
+
+#: apps/organizations/templates/organizations/create.html:51
+msgid "You need an organization to start using Monium."
+msgstr "Você precisa de uma organização para começar a usar o Monium."
+
+#: apps/organizations/templates/organizations/create.html:53
+msgid "You can create as many organizations as you need."
+msgstr "Você pode criar quantas organizações precisar."
+
+#: apps/organizations/templates/organizations/create.html:79
+#: apps/organizations/templates/organizations/settings.html:64
+#, fuzzy
+#| msgid "Logout"
+msgid "Logo"
+msgstr "Sair"
+
+#: apps/organizations/templates/organizations/create.html:86
+#: apps/organizations/templates/organizations/settings.html:70
+#, fuzzy
+#| msgid "Remove"
+msgid "Remove image"
+msgstr "Remover"
+
+#: apps/organizations/templates/organizations/create.html:88
+#: apps/organizations/templates/organizations/settings.html:78
+msgid "Square image, PNG or JPG — up to 5MB"
+msgstr ""
+
+#: apps/organizations/templates/organizations/create.html:116
+#, fuzzy
+#| msgid "Back to Home"
+msgid "Back to home"
+msgstr "Voltar ao Início"
+
 #: apps/organizations/templates/organizations/delete_confirm.html:4
 #: apps/organizations/templates/organizations/delete_confirm.html:10
-#: apps/organizations/templates/organizations/settings.html:134
+#: apps/organizations/templates/organizations/settings.html:157
 msgid "Delete organization"
 msgstr "Excluir organização"
 
@@ -1572,10 +1693,6 @@ msgstr ""
 #, python-format
 msgid "Type \"%(name)s\" to confirm"
 msgstr "Digite \"%(name)s\" para confirmar"
-
-#: apps/organizations/templates/organizations/delete_confirm.html:29
-msgid "Permanently delete"
-msgstr "Excluir permanentemente"
 
 #: apps/organizations/templates/organizations/member_create.html:4
 #: apps/organizations/templates/organizations/member_create.html:11
@@ -1654,6 +1771,53 @@ msgstr "você"
 msgid "Remove"
 msgstr "Remover"
 
+#: apps/organizations/templates/organizations/onboarding.html:4
+msgid "Guided setup"
+msgstr "Configuração guiada"
+
+#: apps/organizations/templates/organizations/onboarding.html:12
+msgid "Let's set up your inventory"
+msgstr "Vamos configurar seu inventário"
+
+#: apps/organizations/templates/organizations/onboarding.html:12
+msgid "Set up this organization"
+msgstr "Configurar esta organização"
+
+#: apps/organizations/templates/organizations/onboarding.html:15
+#, python-format
+msgid ""
+"Based on your industry (%(industry)s), here are some starter categories and "
+"sectors to speed up your first registrations."
+msgstr ""
+"Com base no seu setor de atuação (%(industry)s), preparamos algumas "
+"categorias e setores iniciais pra agilizar seus primeiros cadastros."
+
+#: apps/organizations/templates/organizations/onboarding.html:28
+msgid "Suggested categories"
+msgstr "Categorias sugeridas"
+
+#: apps/organizations/templates/organizations/onboarding.html:35
+#: apps/organizations/templates/organizations/onboarding.html:57
+msgid "already available"
+msgstr "já disponível"
+
+#: apps/organizations/templates/organizations/onboarding.html:42
+#: apps/organizations/templates/organizations/onboarding.html:64
+msgid "No suggestions for this industry."
+msgstr "Nenhuma sugestão para este setor de atuação."
+
+#: apps/organizations/templates/organizations/onboarding.html:50
+msgid "Suggested sectors"
+msgstr "Setores sugeridos"
+
+#: apps/organizations/templates/organizations/onboarding.html:72
+msgid "Skip, I'll set this up later"
+msgstr "Pular, eu configuro depois"
+
+#: apps/organizations/templates/organizations/onboarding.html:76
+msgid "Apply suggestions and continue"
+msgstr "Aplicar sugestões e continuar"
+
 #: apps/organizations/templates/organizations/settings.html:4
 #: apps/organizations/templates/organizations/settings.html:11
 msgid "Organization settings"
@@ -1663,44 +1827,39 @@ msgstr "Configurações da organização"
 msgid "Organization Information"
 msgstr "Informações da Organização"
 
-#: apps/organizations/templates/organizations/settings.html:65
+#: apps/organizations/templates/organizations/settings.html:88
 msgid "Organization Profile"
 msgstr "Perfil da Organização"
 
-#: apps/organizations/templates/organizations/settings.html:97
-#: apps/settings/templates/settings/email_settings.html:123
-msgid "Save changes"
-msgstr "Salvar alterações"
-
-#: apps/organizations/templates/organizations/settings.html:108
+#: apps/organizations/templates/organizations/settings.html:131
 msgid "Overview"
 msgstr "Visão geral"
 
-#: apps/organizations/templates/organizations/settings.html:117
+#: apps/organizations/templates/organizations/settings.html:140
 msgid "Created"
 msgstr "Criada em"
 
-#: apps/organizations/templates/organizations/settings.html:126
+#: apps/organizations/templates/organizations/settings.html:149
 msgid "Danger zone"
 msgstr "Zona de perigo"
 
-#: apps/organizations/templates/organizations/settings.html:129
+#: apps/organizations/templates/organizations/settings.html:152
 msgid "Permanently delete this organization and all its data."
 msgstr "Exclua permanentemente esta organização e todos os seus dados."
 
-#: apps/organizations/web/forms.py:54 apps/setup/web/forms.py:83
+#: apps/organizations/web/forms.py:81 apps/setup/web/forms.py:84
 msgid "Email address"
 msgstr "Endereço de e-mail"
 
-#: apps/organizations/web/forms.py:66
+#: apps/organizations/web/forms.py:93
 msgid "Role"
 msgstr "Papel"
 
-#: apps/organizations/web/forms.py:78 apps/setup/web/forms.py:98
+#: apps/organizations/web/forms.py:105 apps/setup/web/forms.py:99
 msgid "This username is already taken."
 msgstr "Este nome de usuário já está em uso."
 
-#: apps/organizations/web/forms.py:84
+#: apps/organizations/web/forms.py:111
 msgid "An account with this email already exists."
 msgstr "Já existe uma conta com este e-mail."
 
@@ -1759,6 +1918,10 @@ msgstr "O nome digitado não confere. A organização não foi apagada."
 msgid "Organization \"%(name)s\" deleted."
 msgstr "Organização \"%(name)s\" apagada."
 
+#: apps/organizations/web/views/organization_onboarding_view.py:27
+msgid "Suggestions applied! You're ready to register your first assets."
+msgstr "Sugestões aplicadas! Você já pode cadastrar seus primeiros ativos."
+
 #: apps/organizations/web/views/organization_settings_view.py:35
 msgid "Organization data updated successfully."
 msgstr "Dados da organização atualizados com sucesso."
@@ -1767,51 +1930,20 @@ msgstr "Dados da organização atualizados com sucesso."
 msgid "You're not a member of this organization."
 msgstr "Você não é membro dessa organização."
 
-#: apps/pages/templates/pages/base_public.html:30
-#: apps/pages/templates/pages/base_public.html:79
+#: apps/pages/templates/pages/base_public.html:20
+#: apps/pages/templates/pages/base_public.html:64
 msgid "Go to app"
 msgstr "Ir para o app"
 
-#: apps/pages/templates/pages/base_public.html:35
-#: apps/pages/templates/pages/base_public.html:81
+#: apps/pages/templates/pages/base_public.html:25
+#: apps/pages/templates/pages/base_public.html:66
 msgid "Log in"
 msgstr "Entrar"
 
-#: apps/pages/templates/pages/base_public.html:39
-#: apps/pages/templates/pages/base_public.html:82
+#: apps/pages/templates/pages/base_public.html:29
+#: apps/pages/templates/pages/base_public.html:67
 msgid "Get started"
 msgstr "Começar"
-
-# ── FAQ
-# ───────────────────────────────────────────────────────────────────────
-#: apps/pages/templates/pages/faq.html:12
-#: apps/account/templates/account/settings/settings.html:89
-msgid "Frequently Asked Questions"
-msgstr "Perguntas Frequentes"
-
-#: apps/pages/templates/pages/faq.html:14
-msgid ""
-"Everything you need to know about Monium. Can't find what you're looking "
-"for?"
-msgstr ""
-"Tudo que você precisa saber sobre o Monium. Não encontrou o que procurava?"
-
-#: apps/pages/templates/pages/faq.html:15
-msgid "Contact us."
-msgstr "Fale conosco."
-
-#: apps/pages/templates/pages/faq.html:38
-msgid "Still have questions?"
-msgstr "Ainda tem dúvidas?"
-
-#: apps/pages/templates/pages/faq.html:39
-msgid "We're happy to help. Reach out and we'll get back to you quickly."
-msgstr ""
-"Ficamos felizes em ajudar. Entre em contato e responderemos rapidamente."
-
-#: apps/pages/templates/pages/faq.html:43
-msgid "Send us an email"
-msgstr "Envie um e-mail"
 
 #: apps/pages/templates/pages/home.html:22
 msgid "Open source & self-hosted"
@@ -1840,1231 +1972,104 @@ msgid "Create an account"
 msgstr "Criar uma conta"
 
 #: apps/pages/templates/pages/home.html:42
-msgid "See what it does"
-msgstr "Veja o que ele faz"
-
-#: apps/pages/templates/pages/home.html:46
 msgid "Free and open source. No credit card, no vendor lock-in."
 msgstr ""
-"Gratuito e open source. Sem cartão de crédito, sem dependência de "
-"fornecedor."
+"Gratuito e open source. Sem cartão de crédito, sem dependência de fornecedor."
 
-#: apps/pages/templates/pages/home.html:62
+#: apps/pages/templates/pages/home.html:58
 msgid "Total items"
 msgstr "Total de itens"
 
-#: apps/pages/templates/pages/home.html:64
+#: apps/pages/templates/pages/home.html:60
 msgid "across 12 sectors"
 msgstr "em 12 setores"
 
-#: apps/pages/templates/pages/home.html:74
+#: apps/pages/templates/pages/home.html:70
 msgid "open tickets"
 msgstr "chamados abertos"
 
-#: apps/pages/templates/pages/home.html:77
+#: apps/pages/templates/pages/home.html:73
 msgid "Overdue loans"
 msgstr "Empréstimos em atraso"
 
-#: apps/pages/templates/pages/home.html:79
+#: apps/pages/templates/pages/home.html:75
 msgid "past due date"
 msgstr "com prazo vencido"
 
-#: apps/pages/templates/pages/home.html:120
+#: apps/pages/templates/pages/home.html:116
 msgid "docker compose up"
 msgstr "docker compose up"
 
-#: apps/pages/templates/pages/home.html:124
+#: apps/pages/templates/pages/home.html:120
 msgid "avg. item lookup"
 msgstr "busca média de item"
 
-#: apps/pages/templates/pages/home.html:132
+#: apps/pages/templates/pages/home.html:128
 msgid "Why Monium?"
 msgstr "Por que o Monium?"
 
-#: apps/pages/templates/pages/home.html:134
+#: apps/pages/templates/pages/home.html:130
 msgid "Built for teams that are tired of spreadsheets and too-complex ERPs."
 msgstr ""
 "Feito para times que estão cansados de planilhas e ERPs complexos demais."
 
-#: apps/pages/templates/pages/home.html:156
-msgid "Everything you need"
-msgstr "Tudo que você precisa"
-
-#: apps/pages/templates/pages/home.html:157
-msgid "One platform. All your asset management needs."
-msgstr "Uma plataforma. Todas as suas necessidades de gestão de ativos."
-
-#: apps/pages/templates/pages/home.html:161
-msgid "View all services"
-msgstr "Ver todos os serviços"
-
-#: apps/pages/templates/pages/home.html:178
-#: apps/pages/templates/pages/services/index.html:34
-msgid "Learn more"
-msgstr "Saiba mais"
-
-#: apps/pages/templates/pages/home.html:190
+#: apps/pages/templates/pages/home.html:150
 msgid "Free, forever"
 msgstr "Grátis, para sempre"
 
-#: apps/pages/templates/pages/home.html:192
+#: apps/pages/templates/pages/home.html:152
 msgid ""
-"Monium is open source. Self-host it on your own server with Docker Compose —"
-" no subscriptions, no per-seat pricing, no usage limits."
+"Monium is open source. Self-host it on your own server with Docker Compose — "
+"no subscriptions, no per-seat pricing, no usage limits."
 msgstr ""
 "O Monium é open source. Faça o self-host no seu próprio servidor com Docker "
 "Compose — sem assinaturas, sem cobrança por usuário, sem limites de uso."
 
 # ── Base-aside
 # ────────────────────────────────────────────────────────────────
-#: apps/pages/templates/pages/home.html:199
+#: apps/pages/templates/pages/home.html:159
 msgid "Open source"
 msgstr "Código aberto"
 
-#: apps/pages/templates/pages/home.html:200
+#: apps/pages/templates/pages/home.html:160
 msgid "Read, audit, and modify every line."
 msgstr "Leia, audite e modifique cada linha do código."
 
-#: apps/pages/templates/pages/home.html:204
+#: apps/pages/templates/pages/home.html:164
 msgid "Self-hosted"
 msgstr "Self-hosted"
 
-#: apps/pages/templates/pages/home.html:205
+#: apps/pages/templates/pages/home.html:165
 msgid "Your data stays on your own infrastructure."
 msgstr "Seus dados ficam na sua própria infraestrutura."
 
-#: apps/pages/templates/pages/home.html:209
+#: apps/pages/templates/pages/home.html:169
 msgid "No limits"
 msgstr "Sem limites"
 
-#: apps/pages/templates/pages/home.html:210
+#: apps/pages/templates/pages/home.html:170
 msgid "Unlimited items, users, and organizations."
 msgstr "Itens, usuários e organizações ilimitados."
 
-#: apps/pages/templates/pages/home.html:218
+#: apps/pages/templates/pages/home.html:178
 msgid "Ready to take control of your inventory?"
 msgstr "Pronto para ter controle do seu inventário?"
 
-#: apps/pages/templates/pages/home.html:220
+#: apps/pages/templates/pages/home.html:180
 msgid "Set up your own Monium instance in under 5 minutes."
 msgstr "Configure sua própria instância do Monium em menos de 5 minutos."
 
-#: apps/pages/templates/pages/home.html:225
-#: apps/pages/templates/pages/services/index.html:48
+#: apps/pages/templates/pages/home.html:185
 msgid "Create free account"
 msgstr "Criar conta grátis"
 
-#: apps/pages/templates/pages/home.html:230
-msgid "Read FAQ"
-msgstr "Ler FAQ"
-
-#: apps/pages/templates/pages/privacy.html:12
-#: apps/pages/templates/pages/terms.html:12
-msgid "Last updated: June 30, 2026."
-msgstr "Última atualização: 30 de junho de 2026."
-
-#: apps/pages/templates/pages/privacy.html:12
-msgid ""
-"In compliance with Brazil's Lei Geral de Proteção de Dados (LGPD — Law "
-"13.709/2018)."
-msgstr ""
-"Em conformidade com a Lei Geral de Proteção de Dados (LGPD — Lei "
-"13.709/2018)."
-
-#: apps/pages/templates/pages/privacy.html:18
-msgid "Data Controller"
-msgstr "Controlador dos Dados"
-
-#: apps/pages/templates/pages/privacy.html:19
-msgid ""
-"The data controller responsible for processing your personal data is Monium "
-"Software Ltda., registered in Brazil. For any data-related requests, contact"
-" our Data Protection Officer (DPO) at:"
-msgstr ""
-"O controlador dos dados responsável pelo tratamento dos seus dados pessoais "
-"é a Monium Software Ltda., registrada no Brasil. Para solicitações "
-"relacionadas a dados, entre em contato com nosso Encarregado de Proteção de "
-"Dados (DPO) em:"
-
-#: apps/pages/templates/pages/privacy.html:23
-msgid "Data We Collect"
-msgstr "Dados que Coletamos"
-
-#: apps/pages/templates/pages/privacy.html:24
-msgid ""
-"Depending on how you use Monium, we may collect the following categories of "
-"personal data:"
-msgstr ""
-"Dependendo de como você usa o Monium, podemos coletar as seguintes "
-"categorias de dados pessoais:"
-
-#: apps/pages/templates/pages/privacy.html:26
-msgid "Account data:"
-msgstr "Dados de conta:"
-
-#: apps/pages/templates/pages/privacy.html:26
-msgid "Full name, email address, username, and hashed password."
-msgstr ""
-"Nome completo, endereço de e-mail, nome de usuário e senha criptografada."
-
-#: apps/pages/templates/pages/privacy.html:27
-msgid "Profile data:"
-msgstr "Dados de perfil:"
-
-#: apps/pages/templates/pages/privacy.html:27
-msgid "Date of birth, bio, and website link (optional, provided by you)."
-msgstr ""
-"Data de nascimento, bio e link do site (opcionais, fornecidos por você)."
-
-#: apps/pages/templates/pages/privacy.html:28
-msgid "Usage data:"
-msgstr "Dados de uso:"
-
-#: apps/pages/templates/pages/privacy.html:28
-msgid ""
-"IP address, browser type, pages visited, and actions performed within the "
-"platform (logged for security and audit purposes)."
-msgstr ""
-"Endereço IP, tipo de navegador, páginas visitadas e ações realizadas na "
-"plataforma (registradas para fins de segurança e auditoria)."
-
-#: apps/pages/templates/pages/privacy.html:29
-msgid "Inventory data:"
-msgstr "Dados de inventário:"
-
-#: apps/pages/templates/pages/privacy.html:29
-msgid ""
-"Item descriptions, locations, responsible parties, and other data you enter "
-"into the system."
-msgstr ""
-"Descrições de itens, localizações, responsáveis e outros dados que você "
-"insere no sistema."
-
-#: apps/pages/templates/pages/privacy.html:34
-msgid "Purpose and Legal Basis (LGPD)"
-msgstr "Finalidade e Base Legal (LGPD)"
-
-#: apps/pages/templates/pages/privacy.html:39
-msgid "Purpose"
-msgstr "Finalidade"
-
-#: apps/pages/templates/pages/privacy.html:40
-msgid "Legal basis (LGPD Art. 7)"
-msgstr "Base legal (LGPD Art. 7)"
-
-#: apps/pages/templates/pages/privacy.html:44
-msgid "Account creation and authentication"
-msgstr "Criação de conta e autenticação"
-
-#: apps/pages/templates/pages/privacy.html:44
-#: apps/pages/templates/pages/privacy.html:45
-#: apps/pages/templates/pages/privacy.html:46
-msgid "Contract performance (Art. 7, V)"
-msgstr "Execução de contrato (Art. 7, V)"
-
-#: apps/pages/templates/pages/privacy.html:45
-msgid "Providing inventory management features"
-msgstr "Fornecimento de funcionalidades de gestão de inventário"
-
-#: apps/pages/templates/pages/privacy.html:46
-msgid "Sending transactional emails (alerts, password reset)"
-msgstr "Envio de e-mails transacionais (alertas, redefinição de senha)"
-
-#: apps/pages/templates/pages/privacy.html:47
-msgid "Security monitoring and fraud prevention"
-msgstr "Monitoramento de segurança e prevenção de fraudes"
-
-#: apps/pages/templates/pages/privacy.html:47
-msgid "Legitimate interest (Art. 7, IX)"
-msgstr "Legítimo interesse (Art. 7, IX)"
-
-#: apps/pages/templates/pages/privacy.html:48
-msgid "Compliance with legal obligations"
-msgstr "Cumprimento de obrigações legais"
-
-#: apps/pages/templates/pages/privacy.html:48
-msgid "Legal obligation (Art. 7, II)"
-msgstr "Obrigação legal (Art. 7, II)"
-
-#: apps/pages/templates/pages/privacy.html:49
-msgid "Sending product news and updates (opt-in)"
-msgstr "Envio de novidades e atualizações do produto (opt-in)"
-
-#: apps/pages/templates/pages/privacy.html:49
-msgid "Consent (Art. 7, I)"
-msgstr "Consentimento (Art. 7, I)"
-
-#: apps/pages/templates/pages/privacy.html:56
-msgid "Data Sharing"
-msgstr "Compartilhamento de Dados"
-
-#: apps/pages/templates/pages/privacy.html:57
-msgid "We do not sell your personal data. We may share data with:"
-msgstr "Não vendemos seus dados pessoais. Podemos compartilhar dados com:"
-
-#: apps/pages/templates/pages/privacy.html:59
-msgid "Cloud infrastructure providers hosting data in Brazil."
-msgstr "Provedores de infraestrutura em nuvem que hospedam dados no Brasil."
-
-#: apps/pages/templates/pages/privacy.html:60
-msgid "Legal authorities, when required by law or court order."
-msgstr "Autoridades legais, quando exigido por lei ou ordem judicial."
-
-#: apps/pages/templates/pages/privacy.html:65
-msgid "Data Retention"
-msgstr "Retenção de Dados"
-
-#: apps/pages/templates/pages/privacy.html:66
-msgid ""
-"Account data is retained while your account is active, plus 30 days after "
-"deletion is requested, after which it is permanently deleted. Audit logs are"
-" retained for 12 months. You may request earlier deletion via our DPO."
-msgstr ""
-"Os dados da conta são retidos enquanto sua conta estiver ativa, mais 30 dias"
-" após a solicitação de exclusão, após os quais são excluídos "
-"permanentemente. Os registros de auditoria são retidos por 12 meses. Você "
-"pode solicitar exclusão antecipada via nosso DPO."
-
-#: apps/pages/templates/pages/privacy.html:70
-msgid "Your Rights Under LGPD"
-msgstr "Seus Direitos pela LGPD"
-
-#: apps/pages/templates/pages/privacy.html:71
-msgid ""
-"Under the LGPD, you have the following rights regarding your personal data:"
-msgstr ""
-"Pela LGPD, você tem os seguintes direitos em relação aos seus dados "
-"pessoais:"
-
-#: apps/pages/templates/pages/privacy.html:73
-msgid "Access:"
-msgstr "Acesso:"
-
-#: apps/pages/templates/pages/privacy.html:73
-msgid "Request a copy of your personal data we hold."
-msgstr "Solicite uma cópia dos seus dados pessoais que mantemos."
-
-#: apps/pages/templates/pages/privacy.html:74
-msgid "Correction:"
-msgstr "Correção:"
-
-#: apps/pages/templates/pages/privacy.html:74
-msgid "Request correction of inaccurate or incomplete data."
-msgstr "Solicite a correção de dados imprecisos ou incompletos."
-
-#: apps/pages/templates/pages/privacy.html:75
-msgid "Deletion:"
-msgstr "Exclusão:"
-
-#: apps/pages/templates/pages/privacy.html:75
-msgid "Request deletion of data processed with your consent."
-msgstr "Solicite a exclusão de dados tratados com seu consentimento."
-
-#: apps/pages/templates/pages/privacy.html:76
-msgid "Portability:"
-msgstr "Portabilidade:"
-
-#: apps/pages/templates/pages/privacy.html:76
-msgid "Request your data in a structured, machine-readable format."
-msgstr "Solicite seus dados em formato estruturado e legível por máquina."
-
-#: apps/pages/templates/pages/privacy.html:77
-msgid "Objection:"
-msgstr "Oposição:"
-
-#: apps/pages/templates/pages/privacy.html:77
-msgid "Object to processing based on legitimate interest."
-msgstr "Oponha-se ao tratamento baseado em legítimo interesse."
-
-#: apps/pages/templates/pages/privacy.html:78
-msgid "Consent withdrawal:"
-msgstr "Revogação do consentimento:"
-
-#: apps/pages/templates/pages/privacy.html:78
-msgid "Withdraw consent for optional data uses at any time."
-msgstr ""
-"Revogue o consentimento para usos opcionais de dados a qualquer momento."
-
-#: apps/pages/templates/pages/privacy.html:80
-msgid "Submit requests to"
-msgstr "Envie solicitações para"
-
-#: apps/pages/templates/pages/privacy.html:80
-msgid "We will respond within 15 business days."
-msgstr "Responderemos em até 15 dias úteis."
-
-#: apps/pages/templates/pages/privacy.html:84
-msgid "Cookies"
-msgstr "Cookies"
-
-#: apps/pages/templates/pages/privacy.html:85
-msgid ""
-"Monium uses only essential session cookies required for authentication and "
-"security. We do not use advertising or tracking cookies. No third-party "
-"analytics scripts are embedded in the application."
-msgstr ""
-"O Monium usa apenas cookies de sessão essenciais necessários para "
-"autenticação e segurança. Não utilizamos cookies de publicidade ou "
-"rastreamento. Nenhum script de análise de terceiros está incorporado na "
-"aplicação."
-
-#: apps/pages/templates/pages/privacy.html:90
-#, python-format
-msgid ""
-"We implement technical and organizational measures including TLS 1.3 "
-"encryption in transit, AES-256 encryption at rest, role-based access "
-"control, daily automated backups, and ongoing security monitoring. However, "
-"no system is 100%% immune to breaches. In case of an incident affecting your"
-" rights, we will notify you within 72 hours as required by LGPD."
-msgstr ""
-"Implementamos medidas técnicas e organizacionais incluindo criptografia TLS "
-"1.3 em trânsito, criptografia AES-256 em repouso, controle de acesso por "
-"função, backups automáticos diários e monitoramento contínuo de segurança. "
-"No entanto, nenhum sistema é 100%% imune a violações. Em caso de incidente "
-"que afete seus direitos, notificaremos você em até 72 horas conforme exigido"
-" pela LGPD."
-
-#: apps/pages/templates/pages/privacy.html:94
-msgid "Changes to This Policy"
-msgstr "Alterações nesta Política"
-
-#: apps/pages/templates/pages/privacy.html:95
-msgid ""
-"We may update this policy periodically. We will notify you of material "
-"changes by email or by displaying a notice in the application. Continued use"
-" after notification constitutes acceptance."
-msgstr ""
-"Podemos atualizar esta política periodicamente. Notificaremos você sobre "
-"alterações materiais por e-mail ou exibindo um aviso na aplicação. O uso "
-"continuado após a notificação constitui aceitação."
-
-#: apps/pages/templates/pages/privacy.html:103
-#: apps/pages/templates/pages/terms.html:87
-msgid "FAQ"
-msgstr "FAQ"
-
-#: apps/pages/templates/pages/services/detail.html:30
-msgid "Start for free"
-msgstr "Comece de graça"
-
-# ── Service detail page
-# ───────────────────────────────────────────────────────
-#: apps/pages/templates/pages/services/detail.html:41
-msgid "Who is this for?"
-msgstr "Para quem é este serviço?"
-
-#: apps/pages/templates/pages/services/detail.html:54
-msgid "Key benefits"
-msgstr "Principais benefícios"
-
-#: apps/pages/templates/pages/services/detail.html:70
-msgid "How it works"
-msgstr "Como funciona"
-
-#: apps/pages/templates/pages/services/detail.html:91
-msgid "Explore other services"
-msgstr "Explore outros serviços"
-
-#: apps/pages/templates/pages/services/detail.html:111
-msgid "Get started today"
-msgstr "Comece hoje"
-
-#: apps/pages/templates/pages/services/detail.html:112
-msgid "Free and open source. No credit card required."
-msgstr "Gratuito e open source. Sem necessidade de cartão de crédito."
-
-#: apps/pages/templates/pages/services/detail.html:115
-msgid "Create your free account"
-msgstr "Crie sua conta gratuita"
-
-# ── Services listing
-# ──────────────────────────────────────────────────────────
-#: apps/pages/templates/pages/services/index.html:12
-msgid "What Monium offers"
-msgstr "O que o Monium oferece"
-
-#: apps/pages/templates/pages/services/index.html:14
-msgid ""
-"A complete platform to manage every aspect of your organization's physical "
-"assets — from registration to write-off."
-msgstr ""
-"Uma plataforma completa para gerenciar cada aspecto dos ativos físicos da "
-"sua organização — do cadastro ao descarte."
-
-#: apps/pages/templates/pages/services/index.html:43
-msgid "Ready to get started?"
-msgstr "Pronto para começar?"
-
-#: apps/pages/templates/pages/services/index.html:44
-msgid "All features included, free and open source — no credit card needed."
-msgstr ""
-"Todos os recursos incluídos, gratuito e open source — sem necessidade de "
-"cartão de crédito."
-
-# ── Terms of use
-# ──────────────────────────────────────────────────────────────
-#: apps/pages/templates/pages/terms.html:12
-msgid "Governed by Brazilian law."
-msgstr "Regido pela legislação brasileira."
-
-#: apps/pages/templates/pages/terms.html:18
-msgid "Acceptance"
-msgstr "Aceitação"
-
-#: apps/pages/templates/pages/terms.html:19
-msgid ""
-"By creating an account or using the Monium platform, you agree to be bound "
-"by these Terms of Use. If you do not agree, do not use the Service. These "
-"terms apply to all users including administrators, managers, and operators."
-msgstr ""
-"Ao criar uma conta ou usar a plataforma Monium, você concorda em cumprir "
-"estes Termos de Uso. Se você não concordar, não utilize o Serviço. Estes "
-"termos se aplicam a todos os usuários, incluindo administradores, gerentes e"
-" operadores."
-
-#: apps/pages/templates/pages/terms.html:23
-msgid "Description of Service"
-msgstr "Descrição do Serviço"
-
-#: apps/pages/templates/pages/terms.html:24
-msgid ""
-"Monium is open source, self-hosted inventory management software that "
-"enables organizations to register, track, and manage physical assets, loans,"
-" and maintenance records. It is provided free of charge, without "
-"subscription plans or usage-based fees."
-msgstr ""
-"O Monium é um software de gestão de inventário open source e self-hosted que"
-" permite a organizações cadastrar, rastrear e gerenciar ativos físicos, "
-"empréstimos e registros de manutenção. É fornecido gratuitamente, sem planos"
-" de assinatura ou cobranças por uso."
-
-#: apps/pages/templates/pages/terms.html:25
-msgid ""
-"Monium reserves the right to modify, suspend, or discontinue any feature of "
-"the Service at any time with reasonable prior notice, except in cases of "
-"security or legal necessity."
-msgstr ""
-"O Monium reserva o direito de modificar, suspender ou descontinuar qualquer "
-"recurso do Serviço a qualquer momento com aviso prévio razoável, exceto em "
-"casos de necessidade de segurança ou legal."
-
-#: apps/pages/templates/pages/terms.html:29
-msgid "Account Registration and Responsibility"
-msgstr "Registro de Conta e Responsabilidade"
-
-#: apps/pages/templates/pages/terms.html:31
-msgid ""
-"You must be at least 18 years old and have legal capacity to enter into this"
-" agreement."
-msgstr ""
-"Você deve ter pelo menos 18 anos e ter capacidade legal para celebrar este "
-"acordo."
-
-#: apps/pages/templates/pages/terms.html:32
-msgid ""
-"You are responsible for maintaining the confidentiality of your credentials "
-"and for all activity occurring under your account."
-msgstr ""
-"Você é responsável por manter a confidencialidade das suas credenciais e por"
-" toda atividade que ocorra em sua conta."
-
-#: apps/pages/templates/pages/terms.html:33
-msgid ""
-"You must immediately notify us of any unauthorized use of your account at"
-msgstr ""
-"Você deve nos notificar imediatamente sobre qualquer uso não autorizado da "
-"sua conta em"
-
-#: apps/pages/templates/pages/terms.html:34
-msgid ""
-"Each account is for use by a single organization. Sharing accounts across "
-"unrelated organizations is prohibited."
-msgstr ""
-"Cada conta é para uso por uma única organização. Compartilhar contas entre "
-"organizações não relacionadas é proibido."
-
-#: apps/pages/templates/pages/terms.html:39
-msgid "Acceptable Use"
-msgstr "Uso Aceitável"
-
-#: apps/pages/templates/pages/terms.html:40
-msgid "You agree not to use Monium to:"
-msgstr "Você concorda em não usar o Monium para:"
-
-#: apps/pages/templates/pages/terms.html:42
-msgid ""
-"Upload or transmit content that is illegal, harmful, fraudulent, or violates"
-" third-party rights."
-msgstr ""
-"Fazer upload ou transmitir conteúdo ilegal, prejudicial, fraudulento ou que "
-"viole direitos de terceiros."
-
-#: apps/pages/templates/pages/terms.html:43
-msgid ""
-"Attempt to probe, scan, or test the vulnerability of any system or breach "
-"security measures."
-msgstr ""
-"Tentar sondar, varrer ou testar a vulnerabilidade de qualquer sistema ou "
-"violar medidas de segurança."
-
-#: apps/pages/templates/pages/terms.html:44
-msgid ""
-"Use automated scripts, bots, or crawlers to extract data from the platform "
-"without prior written consent."
-msgstr ""
-"Usar scripts automatizados, bots ou crawlers para extrair dados da "
-"plataforma sem consentimento prévio por escrito."
-
-#: apps/pages/templates/pages/terms.html:46
-msgid "Violations may result in immediate account suspension."
-msgstr "Violações podem resultar em suspensão imediata da conta."
-
-#: apps/pages/templates/pages/terms.html:50
-msgid "Intellectual Property"
-msgstr "Propriedade Intelectual"
-
-#: apps/pages/templates/pages/terms.html:51
-msgid ""
-"Monium's source code is open source and distributed under the license "
-"included in its repository, which governs your rights to use, modify, and "
-"redistribute it."
-msgstr ""
-"O código-fonte do Monium é open source e distribuído sob a licença incluída "
-"no repositório, que rege seus direitos de uso, modificação e redistribuição."
-
-#: apps/pages/templates/pages/terms.html:52
-msgid ""
-"You retain full ownership of all data you upload into the platform. Since "
-"Monium is self-hosted, that data is processed on infrastructure you control."
-msgstr ""
-"Você mantém a propriedade total de todos os dados que envia para a "
-"plataforma. Como o Monium é self-hosted, esses dados são processados na "
-"infraestrutura que você controla."
-
-#: apps/pages/templates/pages/terms.html:56
-msgid "Uptime and Service Level"
-msgstr "Disponibilidade e Nível de Serviço"
-
-#: apps/pages/templates/pages/terms.html:57
-msgid ""
-"Because Monium is self-hosted, uptime and availability depend entirely on "
-"the infrastructure operated by whoever deploys the instance. No uptime "
-"guarantee is provided by the Monium project itself."
-msgstr ""
-"Como o Monium é self-hosted, a disponibilidade depende inteiramente da "
-"infraestrutura operada por quem implanta a instância. O projeto Monium em si"
-" não oferece garantia de uptime."
-
-#: apps/pages/templates/pages/terms.html:61
-msgid "Limitation of Liability"
-msgstr "Limitação de Responsabilidade"
-
-#: apps/pages/templates/pages/terms.html:62
-msgid ""
-"To the maximum extent permitted by Brazilian law, the Monium project and its"
-" contributors shall not be liable for indirect, incidental, special, or "
-"consequential damages arising from your use of the Service, including loss "
-"of data, revenue, or business opportunity. The software is provided as is, "
-"without warranty of any kind."
-msgstr ""
-"Na máxima extensão permitida pela lei brasileira, o projeto Monium e seus "
-"contribuidores não serão responsáveis por danos indiretos, incidentais, "
-"especiais ou consequenciais decorrentes do uso do Serviço, incluindo perda "
-"de dados, receita ou oportunidade de negócio. O software é fornecido como "
-"está, sem garantias de qualquer tipo."
-
-#: apps/pages/templates/pages/terms.html:66
-msgid "Termination"
-msgstr "Rescisão"
-
-#: apps/pages/templates/pages/terms.html:67
-msgid ""
-"You may terminate your account at any time from account settings. The "
-"operator of an instance may terminate or suspend your account immediately "
-"for material breach of these Terms."
-msgstr ""
-"Você pode encerrar sua conta a qualquer momento nas configurações da conta. "
-"O operador de uma instância pode encerrar ou suspender sua conta "
-"imediatamente por violação material destes Termos."
-
-#: apps/pages/templates/pages/terms.html:68
-msgid ""
-"Upon termination, your data is retained for 30 days and then permanently "
-"deleted, in accordance with our Privacy Policy."
-msgstr ""
-"Após o encerramento, seus dados são mantidos por 30 dias e então excluídos "
-"permanentemente, de acordo com nossa Política de Privacidade."
-
-#: apps/pages/templates/pages/terms.html:72
-msgid "Governing Law and Disputes"
-msgstr "Lei Aplicável e Disputas"
-
-#: apps/pages/templates/pages/terms.html:73
-msgid ""
-"These Terms are governed by the laws of Brazil. Any disputes shall be "
-"submitted to the courts of São Paulo, SP, Brazil, with the parties waiving "
-"any other jurisdiction, however privileged it may be."
-msgstr ""
-"Estes Termos são regidos pelas leis do Brasil. Quaisquer disputas serão "
-"submetidas aos tribunais de São Paulo, SP, Brasil, com as partes renunciando"
-" a qualquer outra jurisdição, por mais privilegiada que seja."
-
-#: apps/pages/templates/pages/terms.html:74
-msgid ""
-"Consumer disputes may also be filed through the Brazilian consumer platform "
-"Consumidor.gov.br."
-msgstr ""
-"Disputas de consumo também podem ser registradas por meio da plataforma "
-"brasileira de consumo Consumidor.gov.br."
-
-#: apps/pages/templates/pages/terms.html:78
-msgid "Changes to These Terms"
-msgstr "Alterações nestes Termos"
-
-#: apps/pages/templates/pages/terms.html:79
-msgid ""
-"We reserve the right to update these Terms at any time. Material changes "
-"will be communicated via email or in-app notification at least 15 days in "
-"advance. Continued use after the effective date constitutes acceptance."
-msgstr ""
-"Reservamos o direito de atualizar estes Termos a qualquer momento. "
-"Alterações materiais serão comunicadas por e-mail ou notificação no "
-"aplicativo com pelo menos 15 dias de antecedência. O uso continuado após a "
-"data efetiva constitui aceitação."
-
-# ── Service names & taglines
-# ──────────────────────────────────────────────────
-#: apps/pages/web/views.py:8
-msgid "Inventory Control"
-msgstr "Controle de Inventário"
-
-#: apps/pages/web/views.py:10
-msgid "Complete visibility over every physical asset."
-msgstr "Visibilidade completa de cada ativo físico."
-
-# ── Service descriptions
-# ──────────────────────────────────────────────────────
-#: apps/pages/web/views.py:12
-msgid ""
-"Register, categorize, and locate every item in your organization in seconds."
-" Monium's inventory control gives you a live view of assets distributed "
-"across sectors, locations, and responsible parties — eliminating manual "
-"spreadsheets."
-msgstr ""
-"Cadastre, categorize e localize cada item da sua organização em segundos. O "
-"controle de inventário do Monium oferece uma visão em tempo real dos ativos "
-"distribuídos por setores, locais e responsáveis — eliminando planilhas "
-"manuais."
-
-# ── Service for_whom
-# ──────────────────────────────────────────────────────────
-#: apps/pages/web/views.py:17
-msgid "Operations and facilities managers"
-msgstr "Gerentes de operações e facilities"
-
-#: apps/pages/web/views.py:18
-msgid "IT departments tracking equipment"
-msgstr "Departamentos de TI rastreando equipamentos"
-
-#: apps/pages/web/views.py:19
-msgid "Schools and universities managing lab assets"
-msgstr "Escolas e universidades gerenciando ativos de laboratório"
-
-#: apps/pages/web/views.py:20
-msgid "NGOs and public institutions controlling patrimony"
-msgstr "ONGs e instituições públicas controlando patrimônio"
-
-# ── Service steps
-# ─────────────────────────────────────────────────────────────
-#: apps/pages/web/views.py:23
-msgid "Add"
-msgstr "Adicionar"
-
-#: apps/pages/web/views.py:23
-msgid ""
-"Add items with code, category, sector, condition, and responsible party."
-msgstr "Adicione itens com código, categoria, setor, condição e responsável."
-
-#: apps/pages/web/views.py:24
-msgid "Label"
-msgstr "Etiquetar"
-
-#: apps/pages/web/views.py:24
-msgid "Generate and print QR code labels to physically identify each asset."
-msgstr "Gere e imprima etiquetas QR para identificar fisicamente cada ativo."
-
-#: apps/pages/web/views.py:25
-msgid "Track"
-msgstr "Rastrear"
-
-#: apps/pages/web/views.py:25
-msgid "Search, filter, and locate items instantly from any device."
-msgstr ""
-"Busque, filtre e localize itens instantaneamente de qualquer dispositivo."
-
-#: apps/pages/web/views.py:26
-msgid "Report"
-msgstr "Relatório"
-
-#: apps/pages/web/views.py:26
-msgid ""
-"Generate PDF and CSV reports for audits, insurance, or internal reviews."
-msgstr ""
-"Gere relatórios em PDF e CSV para auditorias, seguros ou revisões internas."
-
-# ── Service benefits
-# ──────────────────────────────────────────────────────────
-#: apps/pages/web/views.py:29
-msgid "Reduce time spent searching for items by up to 80%"
-msgstr "Reduza o tempo gasto buscando itens em até 80%"
-
-#: apps/pages/web/views.py:30
-msgid "Eliminate duplicate asset registration"
-msgstr "Elimine cadastros duplicados de ativos"
-
-#: apps/pages/web/views.py:31
-msgid "Ensure audit readiness at any time"
-msgstr "Esteja sempre pronto para auditorias"
-
-#: apps/pages/web/views.py:32
-msgid "Track asset lifecycle from acquisition to write-off"
-msgstr "Rastreie o ciclo de vida do ativo da aquisição ao descarte"
-
-#: apps/pages/web/views.py:37
-msgid "Loan Management"
-msgstr "Gestão de Empréstimos"
-
-#: apps/pages/web/views.py:39
-msgid "Know exactly who has what — and when it's due back."
-msgstr "Saiba exatamente quem tem o quê — e quando deve devolver."
-
-#: apps/pages/web/views.py:41
-msgid ""
-"Track every item that leaves its designated location. Register loans to "
-"employees, sectors, or external parties with expected return dates. Receive "
-"automatic alerts when items are overdue, preventing losses and improving "
-"accountability."
-msgstr ""
-"Rastreie cada item que sai do seu local designado. Registre empréstimos para"
-" funcionários, setores ou partes externas com datas de devolução esperadas. "
-"Receba alertas automáticos quando itens estiverem atrasados, prevenindo "
-"perdas e melhorando a responsabilidade."
-
-#: apps/pages/web/views.py:46
-msgid "HR teams managing tool or equipment loans"
-msgstr "Times de RH gerenciando empréstimos de ferramentas ou equipamentos"
-
-#: apps/pages/web/views.py:47
-msgid "IT departments tracking laptops and peripherals"
-msgstr "Departamentos de TI rastreando notebooks e periféricos"
-
-#: apps/pages/web/views.py:48
-msgid "Events teams lending AV equipment"
-msgstr "Times de eventos emprestando equipamentos audiovisuais"
-
-#: apps/pages/web/views.py:49
-msgid "Labs managing shared instruments"
-msgstr "Laboratórios gerenciando instrumentos compartilhados"
-
-#: apps/pages/web/views.py:52 apps/pages/web/views.py:170
-msgid "Assign"
-msgstr "Atribuir"
-
-#: apps/pages/web/views.py:52
-msgid "Associate an item to a person or sector with a return date."
-msgstr "Associe um item a uma pessoa ou setor com data de devolução."
-
-#: apps/pages/web/views.py:53
-msgid "Alert"
-msgstr "Alertar"
-
-#: apps/pages/web/views.py:53
-msgid "Receive automatic alerts when the return deadline approaches."
-msgstr "Receba alertas automáticos quando o prazo de devolução se aproximar."
-
-#: apps/pages/web/views.py:54
-msgid "Return"
-msgstr "Devolver"
-
-#: apps/pages/web/views.py:54
-msgid "Register the return and automatically restore item availability."
-msgstr ""
-"Registre a devolução e restaure automaticamente a disponibilidade do item."
-
-#: apps/pages/web/views.py:55
-msgid "History"
-msgstr "Histórico"
-
-#: apps/pages/web/views.py:55
-msgid "Full loan history per item and per person for accountability."
-msgstr ""
-"Histórico completo de empréstimos por item e por pessoa para "
-"responsabilização."
-
-#: apps/pages/web/views.py:58
-msgid "Zero items lost due to untracked loans"
-msgstr "Zero itens perdidos por empréstimos não rastreados"
-
-#: apps/pages/web/views.py:59
-msgid "Automated overdue reminders via email"
-msgstr "Lembretes automáticos de atrasos por e-mail"
-
-#: apps/pages/web/views.py:60
-msgid "Full accountability trail for audits"
-msgstr "Trilha completa de responsabilidade para auditorias"
-
-#: apps/pages/web/views.py:61
-msgid "Real-time view of item availability"
-msgstr "Visão em tempo real da disponibilidade dos itens"
-
-#: apps/pages/web/views.py:66
-msgid "Maintenance Tracking"
-msgstr "Rastreamento de Manutenção"
-
-#: apps/pages/web/views.py:68
-msgid "Keep your assets running. Never miss a maintenance."
-msgstr "Mantenha seus ativos funcionando. Nunca perca uma manutenção."
-
-#: apps/pages/web/views.py:70
-msgid ""
-"Schedule preventive maintenances and track corrective ones. Log every "
-"intervention, associate costs and technicians, and monitor open tickets. "
-"Monium alerts you when items have been in maintenance for too long or when "
-"preventive dates are due."
-msgstr ""
-"Agende manutenções preventivas e acompanhe as corretivas. Registre cada "
-"intervenção, associe custos e técnicos, e monitore chamados abertos. O "
-"Monium alerta quando itens ficam em manutenção por tempo demais ou quando "
-"datas preventivas se aproximam."
-
-#: apps/pages/web/views.py:75
-msgid "Maintenance teams in factories and warehouses"
-msgstr "Times de manutenção em fábricas e armazéns"
-
-#: apps/pages/web/views.py:76
-msgid "Facilities managers in office buildings"
-msgstr "Gerentes de facilities em prédios comerciais"
-
-#: apps/pages/web/views.py:77
-msgid "Fleet managers tracking vehicle upkeep"
-msgstr "Gestores de frota acompanhando a manutenção de veículos"
-
-#: apps/pages/web/views.py:78
-msgid "Technical support teams managing repair workflows"
-msgstr "Times de suporte técnico gerenciando fluxos de reparo"
-
-#: apps/pages/web/views.py:81 apps/pages/web/views.py:113
-msgid "Schedule"
-msgstr "Agendar"
-
-#: apps/pages/web/views.py:81
-msgid "Set preventive maintenance dates per item category or individually."
-msgstr ""
-"Defina datas de manutenção preventiva por categoria de item ou "
-"individualmente."
-
-#: apps/pages/web/views.py:82
-msgid "Execute"
-msgstr "Executar"
-
-#: apps/pages/web/views.py:82
-msgid "Log the intervention with technician, date, cost, and notes."
-msgstr "Registre a intervenção com técnico, data, custo e observações."
-
-#: apps/pages/web/views.py:83
-msgid "Close"
-msgstr "Encerrar"
-
-#: apps/pages/web/views.py:83
-msgid "Mark the ticket as resolved and restore the item to active status."
-msgstr "Marque o chamado como resolvido e restaure o item para status ativo."
-
-#: apps/pages/web/views.py:84
-msgid "Analyze"
-msgstr "Analisar"
-
-#: apps/pages/web/views.py:84
-msgid "View maintenance history and cost per asset for ROI decisions."
-msgstr ""
-"Veja o histórico de manutenção e custo por ativo para decisões de ROI."
-
-#: apps/pages/web/views.py:87
-msgid "Reduce unplanned downtime with preventive scheduling"
-msgstr "Reduza paradas não planejadas com agendamento preventivo"
-
-#: apps/pages/web/views.py:88
-msgid "Track maintenance costs per asset over its lifetime"
-msgstr "Rastreie custos de manutenção por ativo ao longo do tempo"
-
-#: apps/pages/web/views.py:89
-msgid "Immediate visibility into items currently under repair"
-msgstr "Visibilidade imediata dos itens atualmente em reparo"
-
-#: apps/pages/web/views.py:90
-msgid "Alert when maintenance exceeds expected duration"
-msgstr "Alerta quando a manutenção excede a duração esperada"
-
-#: apps/pages/web/views.py:95
-msgid "Reports & Analytics"
-msgstr "Relatórios e Análises"
-
-#: apps/pages/web/views.py:97
-msgid "Turn inventory data into actionable decisions."
-msgstr "Transforme dados de inventário em decisões acionáveis."
-
-#: apps/pages/web/views.py:99
-msgid ""
-"From real-time dashboards to scheduled PDF reports, Monium gives you the "
-"data you need to make informed asset decisions. Export to CSV for custom "
-"analysis, or receive weekly summary emails directly in your inbox."
-msgstr ""
-"De dashboards em tempo real a relatórios PDF agendados, o Monium fornece os "
-"dados necessários para decisões informadas sobre ativos. Exporte para CSV "
-"para análise personalizada ou receba resumos semanais diretamente no seu "
-"e-mail."
-
-#: apps/pages/web/views.py:104
-msgid "CFOs and finance teams needing asset valuation"
-msgstr "CFOs e times financeiros precisando de valoração de ativos"
-
-#: apps/pages/web/views.py:105
-msgid "Operations managers monitoring sector performance"
-msgstr "Gerentes de operações monitorando desempenho por setor"
-
-#: apps/pages/web/views.py:106
-msgid "Auditors requiring documented asset registers"
-msgstr "Auditores exigindo registros documentados de ativos"
-
-#: apps/pages/web/views.py:107
-msgid "Directors wanting executive summary dashboards"
-msgstr "Diretores que querem dashboards de resumo executivo"
-
-#: apps/pages/web/views.py:110
-msgid "Dashboard"
-msgstr "Dashboard"
-
-#: apps/pages/web/views.py:110
-msgid "Real-time overview of inventory status, alerts, and trends."
-msgstr "Visão em tempo real do status do inventário, alertas e tendências."
-
-#: apps/pages/web/views.py:111
-msgid "PDF"
-msgstr "PDF"
-
-#: apps/pages/web/views.py:111
-msgid "Generate formatted inventory reports ready for printing or emailing."
-msgstr ""
-"Gere relatórios de inventário formatados prontos para impressão ou envio por"
-" e-mail."
-
-#: apps/pages/web/views.py:112
-msgid "CSV Export"
-msgstr "Exportar CSV"
-
-#: apps/pages/web/views.py:112
-msgid "Export any filtered view to CSV for use in Excel or BI tools."
-msgstr ""
-"Exporte qualquer visualização filtrada para CSV para uso no Excel ou "
-"ferramentas de BI."
-
-#: apps/pages/web/views.py:113
-msgid "Set up weekly or monthly report emails delivered automatically."
-msgstr ""
-"Configure envios automáticos de relatórios semanais ou mensais por e-mail."
-
-#: apps/pages/web/views.py:116
-msgid "Ready-made audit reports in one click"
-msgstr "Relatórios de auditoria prontos em um clique"
-
-#: apps/pages/web/views.py:117
-msgid "CSV compatibility with Excel, Power BI, and Google Sheets"
-msgstr "Compatibilidade CSV com Excel, Power BI e Google Sheets"
-
-#: apps/pages/web/views.py:118
-msgid "Executive dashboard accessible from any device"
-msgstr "Dashboard executivo acessível de qualquer dispositivo"
-
-#: apps/pages/web/views.py:119
-msgid "Trend analysis to anticipate asset replacement needs"
-msgstr ""
-"Análise de tendências para antecipar necessidades de substituição de ativos"
-
-#: apps/pages/web/views.py:124
-msgid "QR Code Labels"
-msgstr "Etiquetas QR Code"
-
-#: apps/pages/web/views.py:126
-msgid "Scan any asset and get its full history instantly."
-msgstr "Escaneie qualquer ativo e veja seu histórico completo na hora."
-
-#: apps/pages/web/views.py:128
-msgid ""
-"Generate print-ready QR code label sheets for your entire inventory. Attach "
-"them to physical assets and scan from any smartphone to instantly view or "
-"update item details, current location, and loan status."
-msgstr ""
-"Gere folhas de etiquetas QR prontas para impressão de todo o seu inventário."
-" Fixe-as nos ativos físicos e escaneie de qualquer smartphone para ver ou "
-"atualizar detalhes do item, localização atual e status de empréstimo."
-
-#: apps/pages/web/views.py:133
-msgid "Asset managers labeling physical equipment"
-msgstr "Gestores de ativos etiquetando equipamentos físicos"
-
-#: apps/pages/web/views.py:134
-msgid "Warehouse teams doing quick inventory checks"
-msgstr "Times de armazém fazendo verificações rápidas de inventário"
-
-#: apps/pages/web/views.py:135
-msgid "IT departments tagging computers and peripherals"
-msgstr "Departamentos de TI etiquetando computadores e periféricos"
-
-#: apps/pages/web/views.py:136
-msgid "Schools labeling books, furniture, and lab equipment"
-msgstr "Escolas etiquetando livros, mobiliário e equipamentos de laboratório"
-
-#: apps/pages/web/views.py:139
-msgid "Select"
-msgstr "Selecionar"
-
-#: apps/pages/web/views.py:139
-msgid "Choose items or categories to generate labels for."
-msgstr "Escolha itens ou categorias para gerar etiquetas."
-
-#: apps/pages/web/views.py:140
-msgid "Print"
-msgstr "Imprimir"
-
-#: apps/pages/web/views.py:140
-msgid "Download a PDF label sheet ready for standard label printers."
-msgstr ""
-"Baixe uma folha de etiquetas PDF pronta para impressoras de etiquetas "
-"padrão."
-
-#: apps/pages/web/views.py:141
-msgid "Attach"
-msgstr "Fixar"
-
-#: apps/pages/web/views.py:141
-msgid "Stick labels on assets — done once, useful forever."
-msgstr "Fixe etiquetas nos ativos — feito uma vez, útil para sempre."
-
-#: apps/pages/web/views.py:142
-msgid "Scan"
-msgstr "Escanear"
-
-#: apps/pages/web/views.py:142
-msgid "Any smartphone camera scans the QR and opens the item's full profile."
-msgstr ""
-"Qualquer câmera de smartphone escaneia o QR e abre o perfil completo do "
-"item."
-
-#: apps/pages/web/views.py:145
-msgid "Eliminate manual item lookup during physical audits"
-msgstr "Elimine buscas manuais de itens durante auditorias físicas"
-
-#: apps/pages/web/views.py:146
-msgid "Compatible with standard A4 label sheets"
-msgstr "Compatível com folhas de etiquetas A4 padrão"
-
-#: apps/pages/web/views.py:147
-msgid "No app installation needed to scan"
-msgstr "Não precisa instalar aplicativo para escanear"
-
-#: apps/pages/web/views.py:148
-msgid "Instant access to full asset history on scan"
-msgstr "Acesso instantâneo ao histórico completo do ativo ao escanear"
-
-#: apps/pages/web/views.py:153
-msgid "Team Management"
-msgstr "Gestão de Equipe"
-
-#: apps/pages/web/views.py:155
-msgid "Collaborate with your entire team, with proper access control."
-msgstr "Colabore com toda a sua equipe, com controle de acesso adequado."
-
-#: apps/pages/web/views.py:157
-msgid ""
-"Create accounts for your team directly, with a role assigned right away to "
-"control what each person can see and do. Operators can register items, while"
-" managers and admins get broader access. Every action is logged with the "
-"responsible user for full accountability."
-msgstr ""
-"Crie contas para seu time diretamente, com um papel atribuído imediatamente "
-"para controlar o que cada pessoa pode ver e fazer. Operadores podem "
-"cadastrar itens, enquanto gerentes e administradores têm acesso mais amplo. "
-"Cada ação é registrada com o usuário responsável, garantindo total "
-"rastreabilidade."
-
-#: apps/pages/web/views.py:163
-msgid "Organizations with multiple departments accessing inventory"
-msgstr "Organizações com múltiplos departamentos acessando o inventário"
-
-#: apps/pages/web/views.py:164
-msgid "Operations managers delegating data entry"
-msgstr "Gerentes de operações delegando entrada de dados"
-
-#: apps/pages/web/views.py:165
-msgid "Security-conscious teams needing role separation"
-msgstr "Times preocupados com segurança que precisam de separação de funções"
-
-#: apps/pages/web/views.py:166
-msgid "Businesses with external auditors needing read-only access"
-msgstr ""
-"Empresas com auditores externos que precisam de acesso somente leitura"
-
-#: apps/pages/web/views.py:169
-msgid "Create"
-msgstr "Criar"
-
-#: apps/pages/web/views.py:169
-msgid "Create an account for each team member directly from the Members page."
-msgstr ""
-"Crie uma conta para cada membro do time diretamente na página de Membros."
-
-#: apps/pages/web/views.py:170
-msgid "Set roles: Admin, Manager, Operator, or Viewer."
-msgstr "Defina funções: Admin, Gerente, Operador ou Visualizador."
-
-#: apps/pages/web/views.py:171
-msgid "Control"
-msgstr "Controlar"
-
-#: apps/pages/web/views.py:171
-msgid "Each role sees and can do only what's relevant to their function."
-msgstr "Cada função vê e pode fazer apenas o que é relevante para sua função."
-
-#: apps/pages/web/views.py:172
-msgid "Audit"
-msgstr "Auditoria"
-
-#: apps/pages/web/views.py:172
-msgid "Full action log: who changed what, when, and from where."
-msgstr "Registro completo de ações: quem mudou o quê, quando e de onde."
-
-#: apps/pages/web/views.py:175
-msgid "Delegate data entry without losing control"
-msgstr "Delegue entrada de dados sem perder controle"
-
-#: apps/pages/web/views.py:176
-msgid "Prevent unauthorized changes with role-based access"
-msgstr "Previna alterações não autorizadas com acesso por função"
-
-#: apps/pages/web/views.py:177
-msgid "Full audit trail for compliance and security"
-msgstr "Trilha completa de auditoria para conformidade e segurança"
-
-#: apps/pages/web/views.py:178
-msgid "Onboard new team members in under 2 minutes"
-msgstr "Integre novos membros da equipe em menos de 2 minutos"
-
 # ── Differentials
 # ─────────────────────────────────────────────────────────────
-#: apps/pages/web/views.py:188
+#: apps/pages/web/views.py:8
 msgid "Up and running in minutes"
 msgstr "Pronto para usar em minutos"
 
-#: apps/pages/web/views.py:189
+#: apps/pages/web/views.py:9
 msgid ""
 "No lengthy onboarding. Create an account, import your items via CSV or add "
 "them one by one, and your team is productive the same day."
@@ -3072,11 +2077,11 @@ msgstr ""
 "Sem onboarding demorado. Crie uma conta, importe seus itens via CSV ou "
 "adicione um por um, e sua equipe já é produtiva no mesmo dia."
 
-#: apps/pages/web/views.py:193
+#: apps/pages/web/views.py:13
 msgid "Find any item instantly"
 msgstr "Encontre qualquer item instantaneamente"
 
-#: apps/pages/web/views.py:194
+#: apps/pages/web/views.py:14
 msgid ""
 "Search by name, code, sector, responsible, or scan a QR label. What used to "
 "take 20 minutes now takes seconds."
@@ -3084,11 +2089,11 @@ msgstr ""
 "Busque por nome, código, setor, responsável ou escaneie uma etiqueta QR. O "
 "que antes levava 20 minutos agora leva segundos."
 
-#: apps/pages/web/views.py:198
+#: apps/pages/web/views.py:18
 msgid "Proactive alerts — not reactive panic"
 msgstr "Alertas proativos — não pânico reativo"
 
-#: apps/pages/web/views.py:199
+#: apps/pages/web/views.py:19
 msgid ""
 "Automatic emails for overdue loans, long-running maintenance, and items in "
 "poor condition. You're always one step ahead."
@@ -3096,11 +2101,11 @@ msgstr ""
 "E-mails automáticos para empréstimos atrasados, manutenções prolongadas e "
 "itens em mau estado. Você está sempre um passo à frente."
 
-#: apps/pages/web/views.py:203
+#: apps/pages/web/views.py:23
 msgid "Secure and LGPD compliant"
 msgstr "Seguro e em conformidade com a LGPD"
 
-#: apps/pages/web/views.py:204
+#: apps/pages/web/views.py:24
 msgid ""
 "All data stored in Brazil with TLS 1.3 encryption, daily backups, and role-"
 "based access control so only the right people see the right data."
@@ -3109,208 +2114,79 @@ msgstr ""
 "diários e controle de acesso por função para que só as pessoas certas vejam "
 "os dados certos."
 
-#: apps/pages/web/views.py:208
+#: apps/pages/web/views.py:28
 msgid "Works on any device"
 msgstr "Funciona em qualquer dispositivo"
 
-#: apps/pages/web/views.py:209
+#: apps/pages/web/views.py:29
 msgid ""
-"Fully responsive web app. Use it on desktop for full management or on mobile"
-" for quick lookups and QR scanning — no app install needed."
+"Fully responsive web app. Use it on desktop for full management or on mobile "
+"for quick lookups and QR scanning — no app install needed."
 msgstr ""
 "Web app totalmente responsivo. Use no desktop para gestão completa ou no "
 "celular para consultas rápidas e leitura de QR — sem precisar instalar nada."
 
-#: apps/pages/web/views.py:213
+#: apps/pages/web/views.py:33
 msgid "Community-driven support"
 msgstr "Suporte da comunidade"
 
-#: apps/pages/web/views.py:214
+#: apps/pages/web/views.py:34
 msgid ""
 "Open an issue on GitHub or contribute a fix yourself — the codebase is open "
 "for anyone to read, audit, and improve."
 msgstr ""
-"Abra uma issue no GitHub ou contribua você mesmo com uma correção — o código"
-" está aberto para qualquer pessoa ler, auditar e melhorar."
-
-#: apps/pages/web/views.py:220
-msgid "Is Monium really free?"
-msgstr "O Monium é realmente gratuito?"
-
-#: apps/pages/web/views.py:222
-msgid ""
-"Yes. Monium is open source and free to use, with no usage limits, no paid "
-"tiers, and no credit card required. You self-host it on your own "
-"infrastructure, so there's no subscription to manage."
-msgstr ""
-"Sim. O Monium é open source e gratuito, sem limites de uso, sem planos pagos"
-" e sem necessidade de cartão de crédito. Você faz o self-host na sua própria"
-" infraestrutura, então não há assinatura para gerenciar."
-
-#: apps/pages/web/views.py:228
-msgid "How do I self-host Monium?"
-msgstr "Como eu faço o self-host do Monium?"
-
-#: apps/pages/web/views.py:230
-msgid ""
-"Monium ships with a Docker Compose setup covering the app, PostgreSQL, and a"
-" background worker. Clone the repository, configure your environment "
-"variables, and run it with Docker Compose to have your own instance running "
-"in minutes."
-msgstr ""
-"O Monium vem com uma configuração de Docker Compose que cobre a aplicação, "
-"PostgreSQL e um worker em segundo plano. Clone o repositório, configure suas"
-" variáveis de ambiente e rode com Docker Compose para ter sua própria "
-"instância funcionando em minutos."
-
-#: apps/pages/web/views.py:237
-msgid "Where is my data stored?"
-msgstr "Onde meus dados são armazenados?"
-
-#: apps/pages/web/views.py:239
-msgid ""
-"Entirely on the infrastructure you choose to run Monium on. Since it's self-"
-"hosted, no data is sent to or stored by a third-party service — you have "
-"full control over your database and backups."
-msgstr ""
-"Inteiramente na infraestrutura que você escolher para rodar o Monium. Como é"
-" self-hosted, nenhum dado é enviado ou armazenado por um serviço de "
-"terceiros — você tem controle total sobre seu banco de dados e backups."
-
-#: apps/pages/web/views.py:245
-msgid "Are there limits on items, users, or organizations?"
-msgstr "Existem limites de itens, usuários ou organizações?"
-
-#: apps/pages/web/views.py:247
-msgid ""
-"No. Monium has no built-in limits on the number of items, users, or "
-"organizations you can create. The only constraints are the resources of the "
-"server you run it on."
-msgstr ""
-"Não. O Monium não tem limites embutidos para a quantidade de itens, usuários"
-" ou organizações que você pode criar. As únicas restrições são os recursos "
-"do servidor onde ele roda."
-
-#: apps/pages/web/views.py:253
-msgid "How is my data protected?"
-msgstr "Como meus dados são protegidos?"
-
-#: apps/pages/web/views.py:255
-msgid ""
-"Monium supports TLS in transit when deployed behind a reverse proxy like "
-"Nginx, and stores data in PostgreSQL, which you can back up on your own "
-"schedule. Since you control the infrastructure, security and backup policies"
-" are up to you."
-msgstr ""
-"O Monium suporta TLS em trânsito quando implantado atrás de um proxy reverso"
-" como o Nginx, e armazena dados em PostgreSQL, que você pode fazer backup na"
-" sua própria periodicidade. Como você controla a infraestrutura, as "
-"políticas de segurança e backup ficam a seu critério."
-
-#: apps/pages/web/views.py:262
-msgid "Can I import my existing inventory from Excel or CSV?"
-msgstr "Posso importar meu inventário existente do Excel ou CSV?"
-
-#: apps/pages/web/views.py:264
-msgid ""
-"Yes. Monium supports bulk import via CSV. Download the template, fill it in "
-"with your existing data, and upload — items are created in seconds."
-msgstr ""
-"Sim. O Monium suporta importação em massa via CSV. Baixe o modelo, preencha "
-"com seus dados existentes e envie — os itens são criados em segundos."
-
-#: apps/pages/web/views.py:269
-msgid "Does Monium have a mobile app?"
-msgstr "O Monium tem aplicativo mobile?"
-
-#: apps/pages/web/views.py:271
-msgid ""
-"Monium is a fully responsive web app that works on any smartphone browser. "
-"QR code label scanning works via any mobile camera without installing an "
-"app."
-msgstr ""
-"O Monium é um aplicativo web totalmente responsivo que funciona em qualquer "
-"navegador de smartphone. A leitura de etiquetas QR funciona pela câmera de "
-"qualquer celular, sem precisar instalar um app."
-
-#: apps/pages/web/views.py:276
-msgid "Can I contribute or request a feature?"
-msgstr "Posso contribuir ou pedir uma funcionalidade?"
-
-#: apps/pages/web/views.py:278
-msgid ""
-"Yes. Monium is open source — issues and pull requests are welcome on the "
-"project's repository."
-msgstr ""
-"Sim. O Monium é open source — issues e pull requests são bem-vindos no "
-"repositório do projeto."
-
-#: apps/settings/templates/settings/email_settings.html:4
-#: apps/settings/templates/settings/email_settings.html:11
-msgid "Email settings"
-msgstr "Configurações de e-mail"
-
-#: apps/settings/templates/settings/email_settings.html:13
-msgid "Configure the SMTP server used to send transactional emails."
-msgstr "Configure o servidor SMTP usado para enviar e-mails transacionais."
-
-#: apps/settings/templates/settings/email_settings.html:36
-msgid ""
-"There is no environment variable fallback anymore. While disabled or "
-"incomplete, outgoing emails will fail until you enable a server here."
-msgstr ""
-"Não há mais fallback para variáveis de ambiente. Enquanto desativado ou "
-"incompleto, o envio de e-mails vai falhar até você ativar um servidor aqui."
+"Abra uma issue no GitHub ou contribua você mesmo com uma correção — o código "
+"está aberto para qualquer pessoa ler, auditar e melhorar."
 
 #: apps/settings/templates/settings/email_settings.html:57
 msgid "SMTP configuration"
 msgstr "Configuração SMTP"
 
-#: apps/settings/web/forms.py:14
+#: apps/settings/web/forms.py:15
 msgid "SMTP password"
 msgstr "Senha do SMTP"
 
-#: apps/settings/web/forms.py:17
+#: apps/settings/web/forms.py:18
 msgid "Leave blank to keep the currently saved password."
 msgstr "Deixe em branco para manter a senha salva atualmente."
 
-#: apps/settings/web/forms.py:27
+#: apps/settings/web/forms.py:28
 msgid "Enable SMTP server"
 msgstr "Ativar servidor SMTP"
 
-#: apps/settings/web/forms.py:28
+#: apps/settings/web/forms.py:29
 msgid "SMTP host"
 msgstr "Servidor SMTP"
 
-#: apps/settings/web/forms.py:29 apps/setup/web/forms.py:32
+#: apps/settings/web/forms.py:30 apps/setup/web/forms.py:33
 msgid "Port"
 msgstr "Porta"
 
-#: apps/settings/web/forms.py:30
+#: apps/settings/web/forms.py:31
 msgid "Use TLS"
 msgstr "Usar TLS"
 
-#: apps/settings/web/forms.py:31
+#: apps/settings/web/forms.py:32
 msgid "Use SSL"
 msgstr "Usar SSL"
 
-#: apps/settings/web/forms.py:32
+#: apps/settings/web/forms.py:33
 msgid "SMTP username"
 msgstr "Usuário do SMTP"
 
-#: apps/settings/web/forms.py:33
+#: apps/settings/web/forms.py:34
 msgid "Default sender address"
 msgstr "Endereço de remetente padrão"
 
-#: apps/settings/web/forms.py:48
+#: apps/settings/web/forms.py:49
 msgid "TLS and SSL cannot be enabled at the same time."
 msgstr "TLS e SSL não podem ser ativados ao mesmo tempo."
 
-#: apps/settings/web/forms.py:50
+#: apps/settings/web/forms.py:51
 msgid "Inform the SMTP host to enable the server."
 msgstr "Informe o host do SMTP para ativar o servidor."
 
-#: apps/settings/web/forms.py:52
+#: apps/settings/web/forms.py:53
 msgid "Inform the default sender address to enable the server."
 msgstr "Informe o endereço de remetente padrão para ativar o servidor."
 
@@ -3318,17 +2194,24 @@ msgstr "Informe o endereço de remetente padrão para ativar o servidor."
 msgid "Email settings updated successfully."
 msgstr "Configurações de e-mail atualizadas com sucesso."
 
-# ── Setup installer (apps.setup) ─────────────────────────────────────
-#: apps/setup/templates/setup/_installer_base.html:15
-msgid "Setup"
-msgstr "Instalação"
+#: apps/setup/templates/setup/_installer_base.html:19
+#, fuzzy
+#| msgid "Let's get your inventory started"
+msgid "Let's get your instance running."
+msgstr "Vamos começar seu inventário"
 
-#: apps/setup/templates/setup/_installer_base.html:30
+#: apps/setup/templates/setup/_installer_base.html:22
+msgid ""
+"A couple of quick steps and your self-hosted inventory system is ready to "
+"use."
+msgstr ""
+
+#: apps/setup/templates/setup/_installer_base.html:52
 #, python-format
 msgid "Step %(current_step)s of 2"
 msgstr "Passo %(current_step)s de 2"
 
-#: apps/setup/templates/setup/_installer_base.html:41
+#: apps/setup/templates/setup/_installer_base.html:63
 msgid "open source, self-hosted inventory management"
 msgstr "código aberto, self-hosted para gestão de inventário"
 
@@ -3369,7 +2252,7 @@ msgid "Database setup"
 msgstr "Configuração do banco de dados"
 
 #: apps/setup/templates/setup/database.html:5
-#: apps/setup/templates/setup/restarting.html:5 apps/setup/web/forms.py:22
+#: apps/setup/templates/setup/restarting.html:5 apps/setup/web/forms.py:23
 msgid "Database"
 msgstr "Banco de dados"
 
@@ -3429,230 +2312,30 @@ msgstr ""
 "A aplicação está reiniciando pra aplicar isso. Esta página vai recarregar "
 "automaticamente em alguns segundos."
 
-#: apps/setup/web/forms.py:17
-msgid ""
-"SQLite (recommended for simple self-hosting, no extra service required)"
-msgstr ""
-"SQLite (recomendado para uso simples, nenhum serviço extra necessário)"
-
 #: apps/setup/web/forms.py:18
+msgid "SQLite (recommended for simple self-hosting, no extra service required)"
+msgstr "SQLite (recomendado para uso simples, nenhum serviço extra necessário)"
+
+#: apps/setup/web/forms.py:19
 msgid "PostgreSQL (external server)"
 msgstr "PostgreSQL (servidor externo)"
 
-#: apps/setup/web/forms.py:28
+#: apps/setup/web/forms.py:29
 msgid "Host"
 msgstr "Servidor"
 
-#: apps/setup/web/forms.py:36
+#: apps/setup/web/forms.py:37
 msgid "Database name"
 msgstr "Nome do banco de dados"
 
-#: apps/setup/web/forms.py:40
+#: apps/setup/web/forms.py:41
 msgid "User"
 msgstr "Usuário"
 
-#: apps/setup/web/forms.py:57
+#: apps/setup/web/forms.py:58
 msgid ""
-"Fill in host, database name, user and password to use an external PostgreSQL"
-" server."
+"Fill in host, database name, user and password to use an external PostgreSQL "
+"server."
 msgstr ""
 "Preencha servidor, nome do banco, usuário e senha pra usar um PostgreSQL "
 "externo."
-
-#: apps/organizations/web/views/organization_onboarding_view.py:22
-msgid "Suggestions applied! You're ready to register your first assets."
-msgstr "Sugestões aplicadas! Você já pode cadastrar seus primeiros ativos."
-
-#: apps/organizations/templates/organizations/onboarding.html:5
-msgid "Guided setup"
-msgstr "Configuração guiada"
-
-#: apps/organizations/templates/organizations/onboarding.html:11
-msgid "Let's set up your inventory"
-msgstr "Vamos configurar seu inventário"
-
-#: apps/organizations/templates/organizations/onboarding.html:11
-msgid "Set up this organization"
-msgstr "Configurar esta organização"
-
-#: apps/organizations/templates/organizations/onboarding.html:14
-#, python-format
-msgid "Based on your industry (%(industry)s), here are some starter categories and sectors to speed up your first registrations."
-msgstr "Com base no seu setor de atuação (%(industry)s), preparamos algumas categorias e setores iniciais pra agilizar seus primeiros cadastros."
-
-#: apps/organizations/templates/organizations/onboarding.html:24
-msgid "Suggested categories"
-msgstr "Categorias sugeridas"
-
-#: apps/organizations/templates/organizations/onboarding.html:30
-#: apps/organizations/templates/organizations/onboarding.html:52
-msgid "already available"
-msgstr "já disponível"
-
-#: apps/organizations/templates/organizations/onboarding.html:37
-#: apps/organizations/templates/organizations/onboarding.html:59
-msgid "No suggestions for this industry."
-msgstr "Nenhuma sugestão para este setor de atuação."
-
-#: apps/organizations/templates/organizations/onboarding.html:46
-msgid "Suggested sectors"
-msgstr "Setores sugeridos"
-
-#: apps/organizations/templates/organizations/onboarding.html:66
-msgid "Skip, I'll set this up later"
-msgstr "Pular, eu configuro depois"
-
-#: apps/organizations/templates/organizations/onboarding.html:69
-msgid "Apply suggestions and continue"
-msgstr "Aplicar sugestões e continuar"
-
-#: apps/account/templates/account/settings/settings.html:12
-msgid "Manage your language, help resources, and account preferences"
-msgstr "Gerencie o idioma, os recursos de ajuda e as preferências da conta"
-
-#: apps/account/templates/account/settings/settings.html:38
-msgid "Choose the language used across the app."
-msgstr "Escolha o idioma usado em todo o aplicativo."
-
-#: apps/account/templates/account/settings/settings.html:78
-msgid "Help & Support"
-msgstr "Ajuda e Suporte"
-
-#: apps/account/templates/account/settings/settings.html:81
-msgid "Find answers to common questions or get in touch with us."
-msgstr "Encontre respostas para perguntas comuns ou entre em contato conosco."
-
-#: apps/account/templates/account/settings/settings.html:97
-msgid "Contact support"
-msgstr "Contatar o suporte"
-
-#: apps/account/templates/account/settings/settings.html:124
-msgid "Account"
-msgstr "Conta"
-
-#: apps/account/templates/account/settings/settings.html:127
-msgid "Update your personal information, password, and manage your account."
-msgstr "Atualize suas informações pessoais, senha e gerencie sua conta."
-
-#: apps/account/templates/account/settings/settings.html:133
-msgid "Go to my profile"
-msgstr "Ir para meu perfil"
-
-#: apps/common/web/templates/common/includes/aside.html:165
-#: apps/common/web/templates/common/includes/aside.html:167
-#: apps/account/templates/account/settings/settings.html:142
-msgid "Organization"
-msgstr "Organização"
-
-#: apps/account/templates/account/settings/settings.html:145
-msgid "Manage your organization's information, members, and preferences."
-msgstr "Gerencie as informações, os membros e as preferências da sua organização."
-
-#: apps/account/templates/account/settings/settings.html:151
-msgid "Go to organization settings"
-msgstr "Ir para as configurações da organização"
-
-#: apps/inventory/web/templates/inventory/item_form.html:151
-msgid "Acquisition"
-msgstr "Aquisição"
-
-#: apps/inventory/web/templates/inventory/item_form.html:157
-msgid "Acquisition value"
-msgstr "Valor de aquisição"
-
-#: apps/inventory/web/templates/inventory/item_form.html:163
-msgid "Purchase date"
-msgstr "Data da compra"
-
-#: apps/inventory/web/templates/inventory/item_detail.html:36
-msgid "Delete"
-msgstr "Excluir"
-
-#: apps/inventory/web/templates/inventory/item_delete_confirm.html:4
-#: apps/inventory/web/templates/inventory/item_delete_confirm.html:10
-msgid "Delete item"
-msgstr "Excluir item"
-
-#: apps/inventory/web/templates/inventory/item_delete_confirm.html:17
-msgid "This item cannot be permanently deleted because it has loan, maintenance or movement history, kept for audit purposes."
-msgstr "Este item não pode ser excluído permanentemente porque possui histórico de empréstimos, manutenções ou movimentações, preservado para fins de auditoria."
-
-#: apps/inventory/web/templates/inventory/item_delete_confirm.html:20
-msgid "Mark it as \"Written Off\" instead — it stays out of active use, but its history is preserved."
-msgstr "Marque-o como \"Baixado\" em vez disso — ele sai de uso ativo, mas seu histórico é preservado."
-
-#: apps/inventory/web/templates/inventory/item_delete_confirm.html:25
-msgid "Edit item"
-msgstr "Editar item"
-
-#: apps/inventory/web/templates/inventory/item_delete_confirm.html:34
-msgid "This will permanently delete this item, its photo and its acquisition data. This cannot be undone."
-msgstr "Isso excluirá permanentemente este item, sua foto e seus dados de aquisição. Essa ação não pode ser desfeita."
-
-#: apps/inventory/web/templates/inventory/item_delete_confirm.html:41
-#, python-format
-msgid "Type \"%(code)s\" to confirm"
-msgstr "Digite \"%(code)s\" para confirmar"
-
-#: apps/inventory/web/views/item_delete_view.py:39
-#, python-format
-msgid ""
-"Item \"%(name)s\" cannot be permanently deleted because it has loan, "
-"maintenance or movement history. Mark it as \"Written Off\" instead to "
-"keep it out of active use while preserving its history."
-msgstr ""
-"O item \"%(name)s\" não pode ser excluído permanentemente porque possui "
-"histórico de empréstimos, manutenções ou movimentações. Marque-o como "
-"\"Baixado\" em vez disso para tirá-lo de uso ativo preservando seu histórico."
-
-#: apps/inventory/web/views/item_delete_view.py:47
-msgid "The typed code doesn't match. The item was not deleted."
-msgstr "O código digitado não confere. O item não foi excluído."
-
-#: apps/inventory/web/views/item_delete_view.py:56
-#, python-format
-msgid "Item \"%(name)s\" deleted."
-msgstr "Item \"%(name)s\" excluído."
-
-#: apps/common/web/templates/common/errors/400.html:4
-#: apps/common/web/templates/common/errors/400.html:16
-msgid "Invalid request"
-msgstr "Requisição inválida"
-
-#: apps/common/web/templates/common/errors/400.html:20
-msgid "We couldn't process your request. Check the submitted data and try again."
-msgstr "Não foi possível processar sua solicitação. Verifique os dados enviados e tente novamente."
-
-#: apps/common/web/templates/common/errors/403.html:4
-#: apps/common/web/templates/common/errors/403.html:16
-msgid "Access denied"
-msgstr "Acesso negado"
-
-#: apps/common/web/templates/common/errors/403.html:20
-msgid "You don't have permission to access this page or resource."
-msgstr "Você não tem permissão para acessar esta página ou recurso."
-
-#: apps/common/web/templates/common/errors/403.html:24
-msgid "If you believe this is a mistake, contact your organization's administrator."
-msgstr "Se você acredita que isso é um engano, entre em contato com o administrador da sua organização."
-
-#: apps/common/web/templates/common/errors/404.html:20
-msgid "The page you're looking for doesn't exist or may have been moved."
-msgstr "A página que você está procurando não existe ou pode ter sido movida."
-
-#: apps/common/web/templates/common/errors/500.html:7
-msgid "Server error"
-msgstr "Erro no servidor"
-
-#: apps/common/web/templates/common/errors/500.html:20
-msgid "Something went wrong on our end"
-msgstr "Algo deu errado do nosso lado"
-
-#: apps/common/web/templates/common/errors/500.html:24
-msgid "We've been notified and are already looking into it. Please try again in a few minutes."
-msgstr "Já fomos notificados e estamos investigando. Tente novamente em alguns minutos."
-
-#: apps/common/web/templates/common/includes/builtin.html:10
-#: apps/common/web/templates/common/includes/builtin.html:16
-msgid "Manage your assets for free and securely."
-msgstr "Gerencie seu patrimônio de forma gratuita e segura."

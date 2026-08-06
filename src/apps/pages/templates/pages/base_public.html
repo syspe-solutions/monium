@@ -10,20 +10,8 @@
       {% include "common/includes/logo.html" %}
     </a>
 
-    <!-- Desktop nav -->
-    <nav class="hidden md:flex items-center gap-1 text-sm flex-1">
-      <a href="{% url 'pages:services' %}"
-         class="px-3 py-1.5 rounded text-zinc-400 hover:text-white hover:bg-zinc-800 transition">
-        {% trans "Services" %}
-      </a>
-      <a href="{% url 'pages:faq' %}"
-         class="px-3 py-1.5 rounded text-zinc-400 hover:text-white hover:bg-zinc-800 transition">
-        FAQ
-      </a>
-    </nav>
-
     <!-- Right side: auth + lang + mobile toggle -->
-    <div class="flex items-center gap-2 shrink-0">
+    <div class="flex items-center gap-2 shrink-0 ml-auto">
 
       {% if user.is_authenticated %}
         <a href="{% url 'inventory:home' %}"
@@ -72,11 +60,6 @@
   <!-- Mobile dropdown -->
   <div id="mobile-nav"
        class="hidden md:hidden border-t border-zinc-800 bg-zinc-950 px-4 py-3 flex flex-col gap-1 text-sm">
-    <a href="{% url 'pages:services' %}" class="px-3 py-2 rounded text-zinc-400 hover:text-white hover:bg-zinc-800 transition">{% trans "Services" %}</a>
-    <a href="{% url 'pages:faq' %}" class="px-3 py-2 rounded text-zinc-400 hover:text-white hover:bg-zinc-800 transition">FAQ</a>
-
-    <div class="border-t border-zinc-800 my-2"></div>
-
     {% if user.is_authenticated %}
       <a href="{% url 'inventory:home' %}" class="px-3 py-2 rounded text-zinc-200 hover:bg-zinc-800 transition">{% trans "Go to app" %}</a>
     {% else %}

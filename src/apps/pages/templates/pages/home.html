@@ -37,10 +37,6 @@
             {% trans "Create an account" %}
             <span class="material-symbols-outlined text-base leading-none">arrow_forward</span>
           </a>
-          <a href="{% url 'pages:services' %}"
-             class="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-zinc-700 text-zinc-300 hover:bg-zinc-800 hover:text-white transition text-sm">
-            {% trans "See what it does" %}
-          </a>
         </div>
 
         <p class="text-zinc-600 text-xs">{% trans "Free and open source. No credit card, no vendor lock-in." %}</p>
@@ -148,42 +144,6 @@
     </div>
   </section>
 
-  <!-- ── SERVICES PREVIEW ───────────────────────────────────────────── -->
-  <section class="border-t border-zinc-800 bg-zinc-900/30">
-    <div class="max-w-6xl mx-auto px-4 py-20 space-y-10">
-      <div class="flex items-end justify-between flex-wrap gap-4">
-        <div class="space-y-1">
-          <h2 class="text-3xl font-bold text-white">{% trans "Everything you need" %}</h2>
-          <p class="text-zinc-400 text-sm">{% trans "One platform. All your asset management needs." %}</p>
-        </div>
-        <a href="{% url 'pages:services' %}"
-           class="text-sm text-zinc-400 hover:text-white flex items-center gap-1 transition">
-          {% trans "View all services" %}
-          <span class="material-symbols-outlined text-sm leading-none">arrow_forward</span>
-        </a>
-      </div>
-
-      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-        {% for service in services %}
-        <a href="{% url 'pages:service_detail' service.slug %}"
-           class="group bg-zinc-900 border border-zinc-800 rounded-2xl p-6 space-y-4 hover:border-zinc-600 transition">
-          <div class="w-10 h-10 rounded-md bg-zinc-800 group-hover:bg-zinc-700 transition flex items-center justify-center">
-            <span class="material-symbols-outlined text-white text-lg leading-none">{{ service.icon }}</span>
-          </div>
-          <div>
-            <h3 class="text-white font-semibold">{{ service.name }}</h3>
-            <p class="text-zinc-500 text-sm mt-1">{{ service.tagline }}</p>
-          </div>
-          <span class="text-zinc-500 group-hover:text-zinc-300 text-xs flex items-center gap-1 transition">
-            {% trans "Learn more" %}
-            <span class="material-symbols-outlined text-xs leading-none">arrow_forward</span>
-          </span>
-        </a>
-        {% endfor %}
-      </div>
-    </div>
-  </section>
-
   <!-- ── OPEN SOURCE ───────────────────────────────────────────────── -->
   <section class="max-w-6xl mx-auto px-4 py-20 space-y-10">
     <div class="text-center space-y-2">
@@ -224,10 +184,6 @@
            class="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-white text-zinc-950 font-semibold hover:bg-zinc-100 transition text-sm">
           {% trans "Create free account" %}
           <span class="material-symbols-outlined text-base leading-none">arrow_forward</span>
-        </a>
-        <a href="{% url 'pages:faq' %}"
-           class="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-zinc-700 text-zinc-300 hover:bg-zinc-800 hover:text-white transition text-sm">
-          {% trans "Read FAQ" %}
         </a>
       </div>
     </div>

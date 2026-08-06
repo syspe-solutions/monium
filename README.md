@@ -14,6 +14,10 @@ licença.
   status e condição; dashboard com visão geral e distribuição por categoria/setor.
 - **Empréstimos**: registro de empréstimos internos com detecção automática de
   atraso e alerta por e-mail.
+- **Manutenção**: registro de manutenções por item, com acompanhamento de
+  status para saber o que está parado para reparo.
+- **Importação/exportação de itens via CSV**: cadastro em massa a partir de
+  uma planilha existente e exportação da base para análise externa.
 - **Multi-organização**: cada conta pertence a uma ou mais organizações
   (dono/membro), com onboarding obrigatório na criação da conta, sem limite
   de organizações, membros ou itens.
@@ -23,6 +27,10 @@ licença.
   auditoria de alterações em modelos sensíveis.
 - **Contas**: cadastro, login, recuperação de senha, avatar, exclusão de
   conta com período de carência.
+
+> As páginas públicas de "Serviços" e "FAQ" que existiam no site foram
+> removidas — o conteúdo real de funcionalidades vive só aqui no README, para
+> não haver duas fontes de verdade (e a segunda dessincronizar do código).
 
 ## Stack
 
@@ -99,6 +107,89 @@ cp .env.example .env          # ajuste os valores
 uv run python manage.py migrate
 uv run python manage.py runserver
 ```
+
+## Perguntas frequentes (FAQ)
+
+**O Monium é realmente gratuito?**
+Sim. É open source (AGPLv3), sem limite de uso, sem plano pago e sem cartão
+de crédito. Você roda a própria instância na sua infraestrutura, então não
+há assinatura para gerenciar.
+
+**Como eu faço o self-host?**
+Via Docker Compose — ver a seção [Instalação](#instalação-docker-compose)
+acima. Não há worker/broker separado: as únicas tarefas de fundo rodam
+síncronas ou por um scheduler simples embutido no próprio processo do
+`gunicorn`.
+
+**Onde meus dados ficam armazenados?**
+Inteiramente na infraestrutura que você escolher para rodar o Monium — SQLite
+local ou um PostgreSQL que você aponte. Por ser self-hosted, nenhum dado é
+enviado a serviços de terceiros pelo próprio projeto.
+
+**Existe limite de itens, usuários ou organizações?**
+Não. O Monium não impõe limites artificiais — o único limite real são os
+recursos do servidor onde você o executa.
+
+**Como meus dados são protegidos?**
+Senhas são armazenadas com hash (nunca em texto puro), há bloqueio
+progressivo de tentativas de login (exponential backoff) e trilha de
+auditoria para alterações em modelos sensíveis. Campos sensíveis de
+configuração (como credenciais SMTP) são armazenados criptografados via
+`DJANGO_ENCRYPTION_KEY`. TLS em trânsito e backups do banco são
+responsabilidade de quem opera a instância (normalmente via reverse proxy
+como Nginx na frente do Docker Compose).
+
+**Dá para importar meu inventário existente de uma planilha?**
+Sim, há importação e exportação de itens via CSV (ver `item_import.py` /
+`item_export_view.py` no app `inventory`).
+
+**O Monium tem aplicativo mobile?**
+Não como app nativo — a interface é web responsiva e funciona no navegador
+de qualquer celular.
+
+**Posso contribuir ou pedir uma funcionalidade?**
+Sim, é open source — issues e pull requests são bem-vindos no repositório.
+
+## Privacidade e LGPD
+
+Por ser um software **self-hosted**, o projeto Monium em si não processa
+dados de ninguém — quem opera uma instância (você, ou a sua organização) é
+quem assume o papel de controlador de dados perante a LGPD, e deve avaliar
+suas próprias obrigações (DPO, canal de atendimento a titulares, políticas de
+retenção etc.) de acordo com o contexto de uso. As notas abaixo descrevem o
+que **o software processa**, para embasar essa avaliação — não substituem uma
+política de privacidade própria de quem faz o deploy.
+
+- **Dados de conta**: nome completo, e-mail, username e senha (armazenada
+  como hash, nunca em texto puro).
+- **Dados de perfil**: avatar e demais campos opcionais preenchidos pelo
+  próprio usuário.
+- **Dados de uso**: logs estruturados de acesso, ações de negócio, eventos de
+  segurança e erros — usados para auditoria e diagnóstico, ficam no banco da
+  própria instância.
+- **Dados de inventário**: descrições de itens, localizações, responsáveis e
+  demais informações cadastradas pelos usuários da organização.
+
+**Bases legais típicas (LGPD, Art. 7º)** para o processamento acima: execução
+de contrato/uso do serviço (cadastro, autenticação, funcionalidades de
+inventário), interesse legítimo (monitoramento de segurança e prevenção a
+fraude) e cumprimento de obrigação legal, quando aplicável.
+
+**Retenção**: dados de conta ficam ativos enquanto a conta existir; ao
+solicitar exclusão, há um período de carência antes da remoção definitiva
+(ver função de exclusão de conta em `account`). Logs de auditoria e
+segurança ficam retidos conforme a configuração de banco de dados de cada
+instância — não há expurgo automático embutido hoje.
+
+**Cookies**: o Monium usa apenas cookie de sessão, necessário para
+autenticação. Não há cookies de rastreamento ou scripts de analytics
+de terceiros embutidos na aplicação.
+
+**Direitos dos titulares (Art. 18 LGPD)** — acesso, correção, exclusão,
+portabilidade, oposição e revogação de consentimento — devem ser atendidos
+pelo controlador de dados de cada instância (ou seja, por quem opera o
+deploy), já que o projeto Monium não tem acesso aos dados de instâncias de
+terceiros.
 
 ## Licença
 
