@@ -73,7 +73,7 @@
             <img id="logo-compact" src="{% static 'common/svg/logo/vertical-letter-white.svg' %}" alt="Monium" class="h-10 w-auto">
         </a>
 
-        <nav class="flex mb-32 flex-col gap-1 shrink-0">
+        <nav class="flex mb-32 flex-col gap-4 shrink-0">
             <a href="{% url 'inventory:home' %}"
                class="nav-item tooltip flex items-center gap-3 p-3 rounded-lg transition-all ease-apple
                       {% if request.resolver_match.url_name == 'home' %}bg-white text-zinc-900{% else %}hover:bg-zinc-800{% endif %}"
@@ -228,7 +228,18 @@ document.addEventListener('DOMContentLoaded', function () {
     const orgNameToggle = document.getElementById('org-menu-name-toggle');
     const orgArrowToggle = document.getElementById('org-menu-arrow-toggle');
 
-    function toggleOrgPanel() { orgPanel.classList.toggle('hidden'); }
+    function toggleOrgPanel() {
+        // O painel usa a classe .sidebar-text, que fica "display: none" com o
+        // menu recolhido — sem expandir primeiro, o clique parece não fazer nada.
+        if (html.classList.contains('sidebar-is-collapsed')) {
+            html.classList.remove('sidebar-is-collapsed');
+            localStorage.setItem('sidebar-collapsed', 'false');
+            updateToggleIcon(false);
+            orgPanel.classList.remove('hidden');
+            return;
+        }
+        orgPanel.classList.toggle('hidden');
+    }
 
     if (orgPanel && orgNameToggle && orgArrowToggle) {
         orgNameToggle.addEventListener('click', toggleOrgPanel);
