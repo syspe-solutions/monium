@@ -1,0 +1,7 @@
+Use o código abaixo para confirmar sua identidade no Monium:
+
+{{ code }}
+
+Este código expira em {{ expiration_minutes }} minutos e só pode ser usado uma vez.
+
+Se você não tentou entrar na sua conta agora, ignore este e-mail.

@@ -493,6 +493,19 @@ wheels = [
 ]
 
 [[package]]
+name = "django-auth-ldap"
+version = "5.3.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "django" },
+    { name = "python-ldap" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/a6/6d/d3ceb4b49e7153811a4b2d92bbe198a5ef2e2820469add3d6dc129ef2fab/django_auth_ldap-5.3.0.tar.gz", hash = "sha256:743d8107b146240b46f7e97207dc06cb11facc0cd70dce490b7ca09dd5643d19", size = 55272, upload-time = "2025-12-26T15:00:14.272Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/a9/91/38ba24b9d76925ce166b2eebe1b4ea460063b8ba8cf91d39d97ee3bad517/django_auth_ldap-5.3.0-py3-none-any.whl", hash = "sha256:aa880415983149b072f876d976ef8ec755a438090e176817998263a6ed9e1038", size = 20975, upload-time = "2025-12-26T15:00:12.52Z" },
+]
+
+[[package]]
 name = "django-axes"
 version = "8.3.1"
 source = { registry = "https://pypi.org/simple" }
@@ -580,18 +593,6 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/15/e4/17cd62e80c4876088bc5f8bca24446586a62eca386c82755894408751a44/django_jazzmin-3.0.5.tar.gz", hash = "sha256:7e39b029bddbb60f3aaf9897bd009f39f8f2bdc8a7d86beed1e943706dd79692", size = 2509734, upload-time = "2026-06-25T21:05:52.699Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/23/40/892f4c922c92d0d2b8ca5f96f556c5dc04d19ea2ea717910d8bbf2dc23fc/django_jazzmin-3.0.5-py3-none-any.whl", hash = "sha256:578fb1fc0a1b7e3b8472d2692ace60b1584ccd937c3828e2c9a89bdf94067f94", size = 2581722, upload-time = "2026-06-25T21:05:50.948Z" },
-]
-
-[[package]]
-name = "django-otp"
-version = "1.7.0"
-source = { registry = "https://pypi.org/simple" }
-dependencies = [
-    { name = "django" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/7e/a3/32b6b53ef1026387375e11236255db7c630d9527a2d33fa6529500a880cd/django_otp-1.7.0.tar.gz", hash = "sha256:961ccf2d80a67303cb46d97427b16c476ee075acfa2b4c82a59d8f1e0745a454", size = 75858, upload-time = "2026-01-07T19:57:17.19Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/9c/f0/75ee6cdcf916b7c67dffa87aecdd173e4d68e456839dd53b9313e9cc9201/django_otp-1.7.0-py3-none-any.whl", hash = "sha256:406d2d7f797dc313569270e06d6c360c7d986c9f653eab80b190d663ed5f1133", size = 71331, upload-time = "2026-01-07T19:57:18.655Z" },
 ]
 
 [[package]]
@@ -1487,6 +1488,18 @@ wheels = [
 ]
 
 [[package]]
+name = "pyasn1-modules"
+version = "0.4.2"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "pyasn1" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/e9/e6/78ebbb10a8c8e4b61a59249394a4a594c1a7af95593dc933a349c8d00964/pyasn1_modules-0.4.2.tar.gz", hash = "sha256:677091de870a80aae844b1ca6134f54652fa2c8c5a52aa396440ac3106e941e6", size = 307892, upload-time = "2025-03-28T02:41:22.17Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/47/8d/d529b5d697919ba8c11ad626e835d4039be708a35b0d22de83a269a6682c/pyasn1_modules-0.4.2-py3-none-any.whl", hash = "sha256:29253a9207ce32b64c3ac6600edc75368f98473906e8fd1043bd6b5b1de2c14a", size = 181259, upload-time = "2025-03-28T02:41:19.028Z" },
+]
+
+[[package]]
 name = "pycparser"
 version = "3.0"
 source = { registry = "https://pypi.org/simple" }
@@ -1648,15 +1661,6 @@ wheels = [
 ]
 
 [[package]]
-name = "pyotp"
-version = "2.10.0"
-source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/2d/c6/c5d96a86fd0bf6fa1bbb5c5c341ff3208638b692727a683c8289068d9a11/pyotp-2.10.0.tar.gz", hash = "sha256:d01e9703443616b03c57c700b5cbffd56a1f929c1b0f8f03131bc78c1fca9d3f", size = 18625, upload-time = "2026-06-14T03:48:49.221Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/65/33/7b83bde70eddaaaaef487751a9c3a5cc0c0be54620ded0e120ebdc401ff9/pyotp-2.10.0-py3-none-any.whl", hash = "sha256:1df2f6a1bcc3bb0716172a5215ddc2f8c7c7fd26a13df9927d52e1746934836c", size = 13768, upload-time = "2026-06-14T03:48:47.831Z" },
-]
-
-[[package]]
 name = "python-crontab"
 version = "3.3.0"
 source = { registry = "https://pypi.org/simple" }
@@ -1717,6 +1721,16 @@ sdist = { url = "https://files.pythonhosted.org/packages/f7/ff/3cc9165fd44106973
 wheels = [
     { url = "https://files.pythonhosted.org/packages/27/be/0631a861af4d1c875f096c07d34e9a63639560a717130e7a87cbc82b7e3f/python_json_logger-4.1.0-py3-none-any.whl", hash = "sha256:132994765cf75bf44554be9aa49b06ef2345d23661a96720262716438141b6b2", size = 15021, upload-time = "2026-03-29T04:39:55.266Z" },
 ]
+
+[[package]]
+name = "python-ldap"
+version = "3.4.7"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "pyasn1" },
+    { name = "pyasn1-modules" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/b2/f4/60edeb794bbc9ed0ff2149bbaeec605f3ed331766459d195832ecbd0ba2d/python_ldap-3.4.7.tar.gz", hash = "sha256:bacd9fb680d20263d8570ade1cf234d90d281149a8beb4f079dd8f33f7613dc8", size = 387477, upload-time = "2026-05-20T13:41:04.358Z" }
 
 [[package]]
 name = "python-multipart"
@@ -1798,18 +1812,6 @@ wheels = [
     { url = "https://files.pythonhosted.org/packages/da/92/1446574745d74df0c92e6aa4a7b0b3130706a4142b2d1a5869f2eaa423c6/pyyaml-6.0.3-cp314-cp314t-musllinux_1_2_x86_64.whl", hash = "sha256:16249ee61e95f858e83976573de0f5b2893b3677ba71c9dd36b9cf8be9ac6d65", size = 829923, upload-time = "2025-09-25T21:32:54.537Z" },
     { url = "https://files.pythonhosted.org/packages/f0/7a/1c7270340330e575b92f397352af856a8c06f230aa3e76f86b39d01b416a/pyyaml-6.0.3-cp314-cp314t-win_amd64.whl", hash = "sha256:4ad1906908f2f5ae4e5a8ddfce73c320c2a1429ec52eafd27138b7f1cbe341c9", size = 174062, upload-time = "2025-09-25T21:32:55.767Z" },
     { url = "https://files.pythonhosted.org/packages/f1/12/de94a39c2ef588c7e6455cfbe7343d3b2dc9d6b6b2f40c4c6565744c873d/pyyaml-6.0.3-cp314-cp314t-win_arm64.whl", hash = "sha256:ebc55a14a21cb14062aa4162f906cd962b28e2e9ea38f9b4391244cd8de4ae0b", size = 149341, upload-time = "2025-09-25T21:32:56.828Z" },
-]
-
-[[package]]
-name = "qrcode"
-version = "8.2"
-source = { registry = "https://pypi.org/simple" }
-dependencies = [
-    { name = "colorama", marker = "sys_platform == 'win32'" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/8f/b2/7fc2931bfae0af02d5f53b174e9cf701adbb35f39d69c2af63d4a39f81a9/qrcode-8.2.tar.gz", hash = "sha256:35c3f2a4172b33136ab9f6b3ef1c00260dd2f66f858f24d88418a015f446506c", size = 43317, upload-time = "2025-05-01T15:44:24.726Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/dd/b8/d2d6d731733f51684bbf76bf34dab3b70a9148e8f2cef2bb544fccec681a/qrcode-8.2-py3-none-any.whl", hash = "sha256:16e64e0716c14960108e85d853062c9e8bba5ca8252c0b4d0231b9df4060ff4f", size = 45986, upload-time = "2025-05-01T15:44:22.781Z" },
 ]
 
 [[package]]
@@ -2319,6 +2321,7 @@ dependencies = [
     { name = "diff-match-patch" },
     { name = "distro" },
     { name = "django" },
+    { name = "django-auth-ldap" },
     { name = "django-axes" },
     { name = "django-ckeditor-5" },
     { name = "django-cors-headers" },
@@ -2326,7 +2329,6 @@ dependencies = [
     { name = "django-filter" },
     { name = "django-import-export" },
     { name = "django-jazzmin" },
-    { name = "django-otp" },
     { name = "django-po-translate" },
     { name = "django-quill-editor" },
     { name = "django-ratelimit" },
@@ -2373,7 +2375,6 @@ dependencies = [
     { name = "pydantic-core" },
     { name = "pygments" },
     { name = "pyjwt" },
-    { name = "pyotp" },
     { name = "python-crontab" },
     { name = "python-dateutil" },
     { name = "python-dotenv" },
@@ -2383,7 +2384,6 @@ dependencies = [
     { name = "python-multipart" },
     { name = "pytz" },
     { name = "pyyaml" },
-    { name = "qrcode" },
     { name = "referencing" },
     { name = "requests" },
     { name = "rich" },
@@ -2443,6 +2443,7 @@ requires-dist = [
     { name = "diff-match-patch", specifier = ">=20241021" },
     { name = "distro", specifier = ">=1.9.0" },
     { name = "django", specifier = ">=5.2.5" },
+    { name = "django-auth-ldap", specifier = ">=5.1.0" },
     { name = "django-axes", specifier = ">=8.3.0" },
     { name = "django-ckeditor-5", specifier = ">=0.2.18" },
     { name = "django-cors-headers", specifier = ">=4.7.0" },
@@ -2450,7 +2451,6 @@ requires-dist = [
     { name = "django-filter", specifier = ">=25.1" },
     { name = "django-import-export", specifier = ">=4.3.9" },
     { name = "django-jazzmin", specifier = ">=3.0.1" },
-    { name = "django-otp", specifier = ">=1.6.1" },
     { name = "django-po-translate", specifier = ">=1.15" },
     { name = "django-quill-editor", specifier = ">=0.1.42" },
     { name = "django-ratelimit", specifier = ">=4.1.0" },
@@ -2497,7 +2497,6 @@ requires-dist = [
     { name = "pydantic-core", specifier = ">=2.23.4" },
     { name = "pygments", specifier = ">=2.18.0" },
     { name = "pyjwt", specifier = ">=2.9.0" },
-    { name = "pyotp", specifier = ">=2.9.0" },
     { name = "python-crontab", specifier = ">=3.3.0" },
     { name = "python-dateutil", specifier = ">=2.9.0.post0" },
     { name = "python-dotenv", specifier = ">=1.1.0" },
@@ -2507,7 +2506,6 @@ requires-dist = [
     { name = "python-multipart", specifier = ">=0.0.12" },
     { name = "pytz", specifier = ">=2025.2" },
     { name = "pyyaml", specifier = ">=6.0.2" },
-    { name = "qrcode", specifier = ">=8.2" },
     { name = "referencing", specifier = ">=0.36.2" },
     { name = "requests", specifier = ">=2.32.5" },
     { name = "rich", specifier = ">=13.9.2" },

@@ -35,6 +35,8 @@ class SecurityAction(str, Enum):
     MFA_CODE_SENT = "mfa_code_sent"
     MFA_VERIFIED = "mfa_verified"
     MFA_FAILED = "mfa_failed"
+    MFA_ENABLED = "mfa_enabled"
+    MFA_DISABLED = "mfa_disabled"
 
     ACCOUNT_LOCKOUT = "account_lockout"
     ACCOUNT_UNLOCKED = "account_unlocked"

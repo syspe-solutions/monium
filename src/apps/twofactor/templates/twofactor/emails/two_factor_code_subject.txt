@@ -1,0 +1,1 @@
+Seu código de verificação Monium: {{ code }}

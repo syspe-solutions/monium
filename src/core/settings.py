@@ -214,6 +214,7 @@ INSTALLED_APPS = [
     "apps.pages",
     "apps.settings",
     "apps.setup",
+    "apps.twofactor",
 ]
 
 # ================================================================

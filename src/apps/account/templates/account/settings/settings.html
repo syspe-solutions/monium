@@ -73,6 +73,53 @@
     </form>
   </div>
 
+  <!-- Two-factor authentication -->
+  <div class="bg-zinc-900 border border-zinc-800 rounded-md p-5 flex flex-col gap-4 shadow-card">
+    <div class="flex items-center justify-between gap-4">
+      <div class="flex items-center gap-2">
+        <span class="material-symbols-outlined text-zinc-400 text-xl leading-none">shield_lock</span>
+        <h2 class="text-sm font-semibold text-white">{% trans "Two-factor authentication" %}</h2>
+      </div>
+      {% if has_two_factor %}
+      <span class="flex items-center gap-1.5 text-xs font-medium text-green-400">
+        <span class="material-symbols-outlined text-sm leading-none">check_circle</span>
+        {% trans "Enabled" %}
+      </span>
+      {% endif %}
+    </div>
+    <p class="text-xs text-zinc-500 leading-relaxed">
+      {% trans "Require a code sent to your email in addition to your password when signing in." %}
+    </p>
+
+    {% if has_two_factor %}
+    <button type="button" data-open-modal="disable-2fa-modal"
+            class="btn w-full justify-center bg-red-950 text-red-400 hover:bg-red-900 border border-red-900 transition">
+      <span class="material-symbols-outlined text-base leading-none">lock_open</span>
+      {% trans "Disable two-factor authentication" %}
+    </button>
+    {% elif two_factor_email_available %}
+    <a href="{% url 'twofactor:setup' %}"
+       class="btn w-full justify-center bg-zinc-800 text-zinc-200 hover:bg-zinc-700 transition">
+      <span class="material-symbols-outlined text-base leading-none">mail</span>
+      {% trans "Set up two-factor authentication" %}
+    </a>
+    {% else %}
+    <div class="flex items-start gap-3 px-3 py-3 bg-zinc-950/40 border border-zinc-800 rounded-lg text-xs text-zinc-500">
+      <span class="material-symbols-outlined text-base leading-none shrink-0">info</span>
+      <span>
+        {% if user.is_staff %}
+          {% blocktrans %}Unavailable until an SMTP server is configured, since codes are delivered by email.{% endblocktrans %}
+          <a href="#email-settings-form" class="text-zinc-300 hover:text-white underline">
+            {% trans "Configure email settings" %}
+          </a>
+        {% else %}
+          {% trans "Unavailable — ask an administrator to configure the system's email server first, since codes are delivered by email." %}
+        {% endif %}
+      </span>
+    </div>
+    {% endif %}
+  </div>
+
   <!-- Help & Support -->
   <div class="bg-zinc-900 border border-zinc-800 rounded-md p-5 flex flex-col gap-4 shadow-card">
     <div class="flex items-center gap-2">
@@ -113,9 +160,8 @@
       </span>
     </div>
 
-    <form id="email-settings-form" method="post" action="{% url 'settings:email_settings' %}" class="flex flex-col gap-5">
+    <form id="email-settings-form" method="post" action="{% url 'account:settings' %}#email-settings-form" class="flex flex-col gap-5">
       {% csrf_token %}
-      <input type="hidden" name="next" value="{% url 'account:settings' %}">
 
       {% if email_form.non_field_errors %}
       <div class="flex flex-col gap-2">
@@ -129,7 +175,7 @@
       {% endif %}
 
       <label class="flex items-center gap-3 cursor-pointer">
-        {{ email_form.is_enabled }}
+        {{ email_form.is_enabled }}–
         <span class="text-sm text-zinc-200">{{ email_form.is_enabled.label }}</span>
       </label>
       {% if email_form.is_enabled.errors %}<p class="text-red-400 text-xs">{{ email_form.is_enabled.errors }}</p>{% endif %}
@@ -193,9 +239,52 @@
   {% endif %}
 
 </div>
+
+{% if has_two_factor %}
+<div id="disable-2fa-modal"
+     class="fixed inset-0 z-50 hidden items-center justify-center bg-black/70 backdrop-blur-sm p-4">
+  <div class="bg-zinc-900 border border-zinc-800 rounded-md shadow-2xl max-w-md w-full p-6 flex flex-col gap-5">
+    <div class="flex items-center gap-2">
+      <span class="material-symbols-outlined text-red-500 text-xl leading-none">lock_open</span>
+      <h2 class="text-base font-semibold text-red-400">{% trans "Disable two-factor authentication" %}</h2>
+    </div>
+    <p class="text-sm text-zinc-400 leading-relaxed">
+      {% trans "Your account will only require your password to sign in again." %}
+    </p>
+    <form method="post" action="{% url 'twofactor:disable' %}">
+      {% csrf_token %}
+      <div class="flex justify-end gap-3 pt-2 border-t border-zinc-800">
+        <button type="button" data-close-modal
+                class="px-4 py-2 rounded text-sm text-zinc-400 bg-zinc-800 hover:bg-zinc-700 transition">
+          {% trans "Cancel" %}
+        </button>
+        <button type="submit"
+                class="px-4 py-2 rounded text-sm font-medium bg-red-700 text-white hover:bg-red-800 transition">
+          {% trans "Disable" %}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+{% endif %}
+
 {% endblock %}
 
 {% block scripts %}
+<script>
+  document.querySelectorAll('[data-open-modal]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const modal = document.getElementById(btn.dataset.openModal);
+      if (modal) { modal.classList.remove('hidden'); modal.classList.add('flex'); }
+    });
+  });
+  document.querySelectorAll('[data-close-modal]').forEach(btn => {
+    btn.addEventListener('click', () => btn.closest('.fixed').classList.add('hidden'));
+  });
+  document.querySelectorAll('.fixed').forEach(modal => {
+    modal.addEventListener('click', e => { if (e.target === modal) modal.classList.add('hidden'); });
+  });
+</script>
 {% if email_form %}
 <script>
   const emailSettingsForm = document.getElementById('email-settings-form');

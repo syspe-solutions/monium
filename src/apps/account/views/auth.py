@@ -24,6 +24,8 @@ from apps.account.forms.auth import CustomLoginForm, CustomRegisterForm
 from apps.account.models import UserDeletionSchedule
 from apps.account.services.create_user_service import CreateUserService
 from apps.account.services.login_user_service import LoginUserService
+from apps.twofactor.models import TwoFactorDevice
+from apps.twofactor.services import TwoFactorLoginChallengeService
 
 User = get_user_model()
 
@@ -76,9 +78,14 @@ class UserLoginView(View):
             self._handle_error(request, result.error_code)
             return render(request, self.template_name, {"form": form}, status=400)
 
+        next_url = request.POST.get("next") or request.GET.get("next")
+
+        if TwoFactorDevice.objects.filter(user=result.user, confirmed=True).exists():
+            TwoFactorLoginChallengeService.start(request, result.user, next_url or "")
+            return redirect("twofactor:login_verify")
+
         login(request, result.user)
 
-        next_url = request.POST.get("next") or request.GET.get("next")
         if next_url and url_has_allowed_host_and_scheme(next_url, allowed_hosts={request.get_host()}):
             return redirect(next_url)
         return redirect("inventory:home")
