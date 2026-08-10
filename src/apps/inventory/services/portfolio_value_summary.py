@@ -6,6 +6,7 @@ from django.db.models.functions import Coalesce, TruncMonth
 from django.utils import timezone
 
 from apps.inventory.models import Acquisition, Item
+from apps.inventory.services.depreciation_service import calculate_depreciation
 from apps.inventory.services.patrimonio_filters import to_rows
 
 
@@ -14,6 +15,22 @@ def get_portfolio_total_value(organization) -> Decimal:
     return Acquisition.objects.filter(item__organization=organization).aggregate(
         total=Coalesce(Sum("value"), Decimal("0"))
     )["total"]
+
+
+def get_portfolio_current_value(organization) -> Decimal:
+    """Soma o valor contábil atual (depreciado) dos bens da organização. Itens
+    sem vida útil configurada na categoria entram pelo valor de aquisição —
+    ver depreciation_service.calculate_depreciation."""
+    acquisitions = (
+        Acquisition.objects.filter(item__organization=organization, value__isnull=False)
+        .select_related("item__movel__category")
+    )
+    total = Decimal("0")
+    for acquisition in acquisitions:
+        result = calculate_depreciation(acquisition)
+        if result:
+            total += result.current_book_value
+    return total
 
 
 def get_top_valued_items(organization, limit=5):

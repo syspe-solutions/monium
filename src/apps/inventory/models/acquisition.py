@@ -28,6 +28,9 @@ class Acquisition(BaseModelAbstract):
     )
     warranty_months = models.PositiveIntegerField(null=True, blank=True, verbose_name="Garantia (meses)")
     warranty_expiry = models.DateField(null=True, blank=True, verbose_name="Vencimento da garantia")
+    warranty_alert_sent_at = models.DateTimeField(
+        null=True, blank=True, verbose_name="Alerta de garantia enviado em"
+    )
 
     class Meta:
         verbose_name = "Aquisição"

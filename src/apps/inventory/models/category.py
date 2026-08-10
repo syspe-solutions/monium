@@ -15,6 +15,12 @@ class Category(BaseModelAbstract):
         verbose_name="Categoria pai",
     )
     description = models.TextField(blank=True, verbose_name="Descrição")
+    useful_life_months = models.PositiveIntegerField(
+        null=True,
+        blank=True,
+        verbose_name="Vida útil (meses)",
+        help_text="Usado para calcular a depreciação linear dos bens desta categoria. Deixe em branco para não depreciar.",
+    )
 
     class Meta:
         verbose_name = "Categoria"

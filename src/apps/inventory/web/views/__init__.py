@@ -1,4 +1,5 @@
 from .brand_views import BrandSimilarityCheckView
+from .category_useful_life_update_view import CategoryUsefulLifeUpdateView
 from .dashboard import MovelsByCategoryView
 from .home_view import HomeView
 from .imovel_detail_view import ImovelDetailView
@@ -16,6 +17,7 @@ from .patrimonio_views import PatrimonioChoiceView, PatrimonioListView
 
 __all__ = [
     "BrandSimilarityCheckView",
+    "CategoryUsefulLifeUpdateView",
     "HomeView",
     "ImovelCreateView",
     "ImovelDetailView",

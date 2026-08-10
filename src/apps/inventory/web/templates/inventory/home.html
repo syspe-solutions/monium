@@ -61,6 +61,64 @@
                 </div>
             </div>
 
+            <!-- Alerts -->
+            {% if overdue_loans_count or open_maintenances_count or expiring_warranties_count or poor_condition_active %}
+            <div class="border border-amber-900/50 rounded-md bg-amber-950/10 overflow-hidden shadow-card">
+                <div class="flex items-center gap-2 px-5 py-4 border-b border-amber-900/40">
+                    <span class="material-symbols-outlined text-amber-400 text-base leading-none">notifications_active</span>
+                    <h2 class="text-sm font-semibold text-white">{% trans "Alerts" %}</h2>
+                </div>
+                <div class="divide-y divide-zinc-800">
+                    {% if overdue_loans_count %}
+                    <a href="{% url 'inventory:item_list' %}" class="flex items-center justify-between gap-3 px-5 py-3 hover:bg-zinc-800/50 transition">
+                        <span class="flex items-center gap-2 text-sm text-zinc-200">
+                            <span class="material-symbols-outlined text-red-400 text-base leading-none">schedule</span>
+                            {% blocktrans count counter=overdue_loans_count %}{{ counter }} overdue loan{% plural %}{{ counter }} overdue loans{% endblocktrans %}
+                        </span>
+                        <span class="material-symbols-outlined text-zinc-600 text-base leading-none">chevron_right</span>
+                    </a>
+                    {% endif %}
+
+                    {% if open_maintenances_count %}
+                    <a href="{% url 'inventory:item_list' %}?status=em_manutencao" class="flex items-center justify-between gap-3 px-5 py-3 hover:bg-zinc-800/50 transition">
+                        <span class="flex items-center gap-2 text-sm text-zinc-200">
+                            <span class="material-symbols-outlined text-amber-400 text-base leading-none">build</span>
+                            {% blocktrans count counter=open_maintenances_count %}{{ counter }} maintenance open for over 7 days{% plural %}{{ counter }} maintenances open for over 7 days{% endblocktrans %}
+                        </span>
+                        <span class="material-symbols-outlined text-zinc-600 text-base leading-none">chevron_right</span>
+                    </a>
+                    {% endif %}
+
+                    {% if expiring_warranties_count %}
+                    <div class="px-5 py-3">
+                        <span class="flex items-center gap-2 text-sm text-zinc-200 mb-2">
+                            <span class="material-symbols-outlined text-amber-400 text-base leading-none">verified_user</span>
+                            {% blocktrans count counter=expiring_warranties_count %}{{ counter }} warranty expiring within 30 days{% plural %}{{ counter }} warranties expiring within 30 days{% endblocktrans %}
+                        </span>
+                        <div class="flex flex-col gap-1 pl-6">
+                            {% for acquisition in expiring_warranties %}
+                            <a href="{% url 'inventory:item_detail' acquisition.item_id %}" class="flex items-center justify-between text-xs text-zinc-400 hover:text-zinc-200 transition">
+                                <span class="truncate">{{ acquisition.item.name }}</span>
+                                <span class="shrink-0 ml-2">{{ acquisition.warranty_expiry|date:"d/m/Y" }}</span>
+                            </a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    {% if poor_condition_active %}
+                    <a href="{% url 'inventory:item_list' %}" class="flex items-center justify-between gap-3 px-5 py-3 hover:bg-zinc-800/50 transition">
+                        <span class="flex items-center gap-2 text-sm text-zinc-200">
+                            <span class="material-symbols-outlined text-red-400 text-base leading-none">warning</span>
+                            {% blocktrans count counter=poor_condition_active %}{{ counter }} active item in poor condition{% plural %}{{ counter }} active items in poor condition{% endblocktrans %}
+                        </span>
+                        <span class="material-symbols-outlined text-zinc-600 text-base leading-none">chevron_right</span>
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+            {% endif %}
+
             <!-- Latest added + Top valued items -->
             <div class="grid grid-cols-1 lg:grid-cols-4 gap-4">
 
@@ -185,6 +243,12 @@
                 <div class="px-5 py-4 border-b border-zinc-800">
                     <span class="text-xs text-zinc-500 uppercase tracking-wide">{% trans "Total collection value" %}</span>
                     <p class="text-2xl font-bold text-white mt-1">{{ portfolio_total_value|brl }}</p>
+                </div>
+
+                <div class="px-5 py-4 border-b border-zinc-800">
+                    <span class="text-xs text-zinc-500 uppercase tracking-wide">{% trans "Current book value" %}</span>
+                    <p class="text-2xl font-bold text-white mt-1">{{ portfolio_current_value|brl }}</p>
+                    <p class="text-xs text-zinc-600 mt-0.5">{% trans "After depreciation" %}</p>
                 </div>
 
                 <div class="flex items-center gap-2 px-5 py-4 border-b border-zinc-800">

@@ -71,6 +71,7 @@ class MovelCreateView(LoginRequiredMixin, InventoryWriteRequiredMixin, View):
         has_acquisition = any([
             acquisition_form.cleaned_data.get("value") is not None,
             acquisition_form.cleaned_data.get("purchase_date"),
+            acquisition_form.cleaned_data.get("warranty_months") is not None,
         ])
         if has_acquisition:
             acquisition = acquisition_form.save(commit=False)

@@ -1,0 +1,3 @@
+A garantia do item "{{ item.name }}" ({{ item.code }}) vence em {{ acquisition.warranty_expiry }}.
+
+Acesse o Monium para ver os detalhes do item ou providenciar a renovação.

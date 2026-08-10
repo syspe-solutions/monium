@@ -2,6 +2,7 @@ from django.urls import path
 
 from .views import (
     BrandSimilarityCheckView,
+    CategoryUsefulLifeUpdateView,
     HomeView,
     ImovelCreateView,
     ImovelDetailView,
@@ -27,6 +28,7 @@ urlpatterns = [
     path("patrimonios/", PatrimonioListView.as_view(), name="patrimonio_list"),
     path("patrimonios/novo/", PatrimonioChoiceView.as_view(), name="patrimonio_choice"),
     path("categories/", MovelsByCategoryView.as_view(), name="dashboard"),
+    path("categories/<uuid:pk>/useful-life/", CategoryUsefulLifeUpdateView.as_view(), name="category_useful_life_update"),
     path("items/", MovelListView.as_view(), name="item_list"),
     path("items/add/", MovelCreateView.as_view(), name="item_create"),
     path("items/export/", MovelExportView.as_view(), name="item_export"),

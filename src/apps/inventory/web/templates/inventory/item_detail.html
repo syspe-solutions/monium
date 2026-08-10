@@ -97,6 +97,57 @@
         {% endif %}
     </div>
 
+    <!-- Acquisition -->
+    {% if acquisition %}
+    <div class="border border-zinc-800 rounded-md bg-zinc-900 p-5 shadow-card">
+        <div class="flex items-center gap-2 pb-3 mb-4 border-b border-zinc-800">
+            <span class="material-symbols-outlined text-zinc-500 text-xl leading-none">payments</span>
+            <h2 class="text-sm font-semibold text-white">{% trans "Acquisition" %}</h2>
+        </div>
+        <dl class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-4 text-sm">
+            <div>
+                <dt class="text-xs text-zinc-500 uppercase tracking-wide">{% trans "Purchase date" %}</dt>
+                <dd class="text-zinc-100 mt-0.5">{{ acquisition.purchase_date|date:"d/m/Y"|default:"—" }}</dd>
+            </div>
+            <div>
+                <dt class="text-xs text-zinc-500 uppercase tracking-wide">{% trans "Acquisition value" %}</dt>
+                <dd class="text-zinc-100 mt-0.5">{{ acquisition.value|brl }}</dd>
+            </div>
+            {% if depreciation.is_depreciable %}
+            <div>
+                <dt class="text-xs text-zinc-500 uppercase tracking-wide">{% trans "Current book value" %}</dt>
+                <dd class="text-zinc-100 mt-0.5">
+                    {{ depreciation.current_book_value|brl }}
+                    <span class="text-xs text-zinc-500">({{ depreciation.depreciation_percent }}% {% trans "depreciated" %})</span>
+                </dd>
+            </div>
+            {% endif %}
+            <div>
+                <dt class="text-xs text-zinc-500 uppercase tracking-wide">{% trans "Warranty" %}</dt>
+                <dd class="mt-0.5">
+                    {% if acquisition.warranty_expiry %}
+                    <span class="{% if warranty_status == 'expired' %}text-red-400{% elif warranty_status == 'expiring_soon' %}text-amber-400{% else %}text-zinc-100{% endif %}">
+                        {{ acquisition.warranty_expiry|date:"d/m/Y" }}
+                    </span>
+                    {% if warranty_status == 'expired' %}
+                    <span class="ml-1.5 inline-flex items-center px-1.5 py-0.5 rounded text-xs font-medium bg-red-950 text-red-400">{% trans "Expired" %}</span>
+                    {% elif warranty_status == 'expiring_soon' %}
+                    <span class="ml-1.5 inline-flex items-center px-1.5 py-0.5 rounded text-xs font-medium bg-amber-950 text-amber-400">{% trans "Expiring soon" %}</span>
+                    {% endif %}
+                    {% else %}
+                    <span class="text-zinc-100">—</span>
+                    {% endif %}
+                </dd>
+            </div>
+        </dl>
+        {% if depreciation and not depreciation.is_depreciable %}
+        <p class="text-xs text-zinc-600 mt-4 pt-4 border-t border-zinc-800">
+            {% trans "Set a useful life for this item's category to calculate depreciation." %}
+        </p>
+        {% endif %}
+    </div>
+    {% endif %}
+
     <!-- Possession history -->
     <div class="border border-zinc-800 rounded-md bg-zinc-900 overflow-hidden shadow-card">
         <div class="flex items-center gap-2 px-5 py-4 border-b border-zinc-800">

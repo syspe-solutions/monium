@@ -43,6 +43,7 @@
                     <th class="px-6 py-3 text-right font-medium">{% trans "Missing" %}</th>
                     <th class="px-6 py-3 text-right font-medium">{% trans "Total" %}</th>
                     <th class="px-6 py-3 text-left font-medium w-48 hidden md:table-cell">{% trans "Distribution" %}</th>
+                    <th class="px-6 py-3 text-left font-medium w-40">{% trans "Useful life (months)" %}</th>
                 </tr>
             </thead>
             <tbody class="divide-y divide-zinc-800">
@@ -87,6 +88,22 @@
                             </span>
                         </div>
                     </td>
+                    <td class="px-6 py-4">
+                        <form method="post" action="{% url 'inventory:category_useful_life_update' category.id %}"
+                              class="flex items-center gap-2">
+                            {% csrf_token %}
+                            <input type="number" name="useful_life_months" min="1"
+                                   value="{{ category.useful_life_months|default_if_none:'' }}"
+                                   placeholder="{% trans 'e.g. 60' %}"
+                                   class="w-20 p-1.5 border border-zinc-700 rounded text-xs bg-zinc-950 text-white
+                                          placeholder:text-zinc-600 focus:outline-none focus:ring-2 focus:ring-white/60">
+                            <button type="submit"
+                                    class="p-1.5 rounded text-zinc-500 hover:text-white hover:bg-zinc-800 transition"
+                                    title="{% trans 'Save' %}">
+                                <span class="material-symbols-outlined text-base leading-none">save</span>
+                            </button>
+                        </form>
+                    </td>
                 </tr>
                 {% endfor %}
             </tbody>
@@ -98,6 +115,7 @@
                     <td class="px-6 py-3 text-right font-semibold text-red-400">{{ missing_items }}</td>
                     <td class="px-6 py-3 text-right font-bold text-white">{{ total_items }}</td>
                     <td class="px-6 py-3 hidden md:table-cell"></td>
+                    <td class="px-6 py-3"></td>
                 </tr>
             </tfoot>
         </table>

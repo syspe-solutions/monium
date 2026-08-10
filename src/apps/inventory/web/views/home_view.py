@@ -19,10 +19,12 @@ from apps.inventory.models import (
 )
 from apps.inventory.services.movel_status_summary import get_movel_status_summary
 from apps.inventory.services.portfolio_value_summary import (
+    get_portfolio_current_value,
     get_portfolio_total_value,
     get_top_valued_items,
     get_value_by_month,
 )
+from apps.inventory.services.warranty_alert_service import get_expiring_warranties
 
 
 class HomeView(LoginRequiredMixin, TemplateView):
@@ -77,6 +79,10 @@ class HomeView(LoginRequiredMixin, TemplateView):
             status=MovelStatus.IN_USE,
         ).count()
 
+        expiring_warranties = get_expiring_warranties(organization)
+        ctx["expiring_warranties"] = expiring_warranties[:5]
+        ctx["expiring_warranties_count"] = expiring_warranties.count()
+
         # ── Atividade recente ────────────────────────────────────────────────
         ctx["recent_items"] = (
             items
@@ -103,6 +109,7 @@ class HomeView(LoginRequiredMixin, TemplateView):
 
         # ── Carteira (valor do acervo) ───────────────────────────────────────
         ctx["portfolio_total_value"] = get_portfolio_total_value(organization)
+        ctx["portfolio_current_value"] = get_portfolio_current_value(organization)
         ctx["top_valued_items"] = get_top_valued_items(organization, limit=5)
         ctx["value_by_month"] = get_value_by_month(organization, months=6)
 
