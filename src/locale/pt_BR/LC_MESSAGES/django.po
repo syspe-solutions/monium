@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Monium 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-05 22:19-0300\n"
+"POT-Creation-Date: 2026-08-08 18:57-0300\n"
 "PO-Revision-Date: 2026-06-30 00:00-0300\n"
 "Last-Translator: Jonathas Cardoso\n"
 "Language-Team: Portuguese (Brazil)\n"
@@ -208,6 +208,7 @@ msgstr "Enviar instruções"
 
 #: apps/account/templates/account/auth/password_reset.html:58
 #: apps/account/templates/account/auth/password_reset_done.html:30
+#: apps/twofactor/templates/twofactor/login_verify.html:99
 msgid "Back to login"
 msgstr "Voltar ao login"
 
@@ -300,10 +301,11 @@ msgstr "Confirmar Nova Senha"
 
 #: apps/account/templates/account/includes/change_password_modal.html:40
 #: apps/account/templates/account/includes/deactivate_account_modal.html:27
+#: apps/account/templates/account/settings/settings.html:259
 #: apps/inventory/web/templates/inventory/imovel_form.html:230
 #: apps/inventory/web/templates/inventory/item_delete_confirm.html:28
 #: apps/inventory/web/templates/inventory/item_delete_confirm.html:52
-#: apps/inventory/web/templates/inventory/item_form.html:317
+#: apps/inventory/web/templates/inventory/item_form.html:323
 #: apps/organizations/templates/organizations/delete_confirm.html:34
 #: apps/organizations/templates/organizations/member_create.html:44
 msgid "Cancel"
@@ -391,14 +393,13 @@ msgstr "Localização"
 
 #: apps/account/templates/account/profile/profile.html:139
 #: apps/organizations/templates/organizations/settings.html:115
-#: apps/settings/templates/settings/email_settings.html:118
 #: apps/setup/templates/setup/admin.html:17
 msgid "Back"
 msgstr "Voltar"
 
 #: apps/account/templates/account/profile/profile.html:144
 #: apps/inventory/web/templates/inventory/imovel_form.html:235
-#: apps/inventory/web/templates/inventory/item_form.html:322
+#: apps/inventory/web/templates/inventory/item_form.html:328
 msgid "Save Changes"
 msgstr "Salvar Alterações"
 
@@ -416,19 +417,18 @@ msgstr "Zona de Perigo"
 
 #: apps/account/templates/account/profile/profile.html:220
 #: apps/inventory/web/templates/inventory/imovel_form.html:190
-#: apps/inventory/web/templates/inventory/item_form.html:258
-#: apps/inventory/web/templates/inventory/item_form.html:273
+#: apps/inventory/web/templates/inventory/item_form.html:264
+#: apps/inventory/web/templates/inventory/item_form.html:279
 #: apps/organizations/templates/organizations/create.html:81
 #: apps/organizations/templates/organizations/settings.html:66
 msgid "Preview"
 msgstr "Pré-visualização"
 
 #: apps/account/templates/account/profile/profile.html:244
-#: apps/account/templates/account/settings/settings.html:208
+#: apps/account/templates/account/settings/settings.html:297
 #: apps/inventory/web/templates/inventory/imovel_form.html:287
-#: apps/inventory/web/templates/inventory/item_form.html:475
+#: apps/inventory/web/templates/inventory/item_form.html:481
 #: apps/organizations/templates/organizations/settings.html:174
-#: apps/settings/templates/settings/email_settings.html:139
 msgid "Saving..."
 msgstr "Salvando..."
 
@@ -451,31 +451,72 @@ msgstr "Idioma"
 msgid "Choose the language used across the app."
 msgstr "Escolha o idioma usado em todo o aplicativo."
 
-#: apps/account/templates/account/settings/settings.html:80
+#: apps/account/templates/account/settings/settings.html:81
+msgid "Two-factor authentication"
+msgstr "Autenticação em duas etapas"
+
+#: apps/account/templates/account/settings/settings.html:86
+msgid "Enabled"
+msgstr "Habilitada"
+
+#: apps/account/templates/account/settings/settings.html:91
+msgid ""
+"Require a code sent to your email in addition to your password when signing "
+"in."
+msgstr "Exigir um código enviado por e-mail além da senha ao entrar na conta."
+
+#: apps/account/templates/account/settings/settings.html:98
+#: apps/account/templates/account/settings/settings.html:249
+msgid "Disable two-factor authentication"
+msgstr "Desativar autenticação em duas etapas"
+
+#: apps/account/templates/account/settings/settings.html:104
+#: apps/twofactor/templates/twofactor/setup.html:4
+#: apps/twofactor/templates/twofactor/setup.html:14
+msgid "Set up two-factor authentication"
+msgstr "Configurar autenticação em duas etapas"
+
+#: apps/account/templates/account/settings/settings.html:111
+msgid ""
+"Unavailable until an SMTP server is configured, since codes are delivered by "
+"email."
+msgstr ""
+"Indisponível até que um servidor SMTP seja configurado, já que os códigos "
+"são entregues por e-mail."
+
+#: apps/account/templates/account/settings/settings.html:113
+msgid "Configure email settings"
+msgstr "Configurar servidor de e-mail"
+
+#: apps/account/templates/account/settings/settings.html:116
+msgid ""
+"Unavailable — ask an administrator to configure the system's email server "
+"first, since codes are delivered by email."
+msgstr ""
+"Indisponível — peça a um administrador para configurar o servidor de e-mail "
+"do sistema primeiro, já que os códigos são entregues por e-mail."
+
+#: apps/account/templates/account/settings/settings.html:127
 msgid "Help & Support"
 msgstr "Ajuda e Suporte"
 
-#: apps/account/templates/account/settings/settings.html:83
+#: apps/account/templates/account/settings/settings.html:130
 msgid "Find answers to common questions or get in touch with us."
 msgstr "Encontre respostas para perguntas comuns ou entre em contato conosco."
 
-#: apps/account/templates/account/settings/settings.html:91
+#: apps/account/templates/account/settings/settings.html:138
 msgid "Contact support"
 msgstr "Contatar o suporte"
 
-#: apps/account/templates/account/settings/settings.html:103
-#: apps/settings/templates/settings/email_settings.html:4
-#: apps/settings/templates/settings/email_settings.html:11
+#: apps/account/templates/account/settings/settings.html:150
 msgid "Email settings"
 msgstr "Configurações de e-mail"
 
-#: apps/account/templates/account/settings/settings.html:106
-#: apps/settings/templates/settings/email_settings.html:13
+#: apps/account/templates/account/settings/settings.html:153
 msgid "Configure the SMTP server used to send transactional emails."
 msgstr "Configure o servidor SMTP usado para enviar e-mails transacionais."
 
-#: apps/account/templates/account/settings/settings.html:112
-#: apps/settings/templates/settings/email_settings.html:36
+#: apps/account/templates/account/settings/settings.html:159
 msgid ""
 "There is no environment variable fallback anymore. While disabled or "
 "incomplete, outgoing emails will fail until you enable a server here."
@@ -483,11 +524,18 @@ msgstr ""
 "Não há mais fallback para variáveis de ambiente. Enquanto desativado ou "
 "incompleto, o envio de e-mails vai falhar até você ativar um servidor aqui."
 
-#: apps/account/templates/account/settings/settings.html:188
+#: apps/account/templates/account/settings/settings.html:234
 #: apps/organizations/templates/organizations/settings.html:120
-#: apps/settings/templates/settings/email_settings.html:123
 msgid "Save changes"
 msgstr "Salvar alterações"
+
+#: apps/account/templates/account/settings/settings.html:252
+msgid "Your account will only require your password to sign in again."
+msgstr "Sua conta voltará a exigir apenas a senha para entrar."
+
+#: apps/account/templates/account/settings/settings.html:263
+msgid "Disable"
+msgstr "Desativar"
 
 #: apps/account/utils.py:53
 msgid "The password must be at least 8 characters long."
@@ -501,15 +549,15 @@ msgstr "A senha deve conter letras e números."
 msgid "The password must contain at least one special character."
 msgstr "A senha deve conter pelo menos um caractere especial."
 
-#: apps/account/views/auth.py:88
+#: apps/account/views/auth.py:95
 msgid "Usuário ou senha inválidos."
 msgstr "Usuário ou senha inválidos."
 
-#: apps/account/views/auth.py:89
+#: apps/account/views/auth.py:96
 msgid "Sua conta foi encerrada."
 msgstr "Sua conta foi encerrada."
 
-#: apps/account/views/auth.py:92
+#: apps/account/views/auth.py:99
 msgid "Erro inesperado."
 msgstr "Erro inesperado."
 
@@ -524,6 +572,10 @@ msgstr "Avatar atualizado com sucesso."
 #: apps/account/views/user_profile_update_view.py:27
 msgid "Profile updated successfully."
 msgstr "Perfil atualizado com sucesso."
+
+#: apps/account/views/user_settings_view.py:39
+msgid "Email settings updated successfully."
+msgstr "Configurações de e-mail atualizadas com sucesso."
 
 #: apps/common/web/templates/common/errors/400.html:4
 #: apps/common/web/templates/common/errors/400.html:16
@@ -703,7 +755,7 @@ msgstr "Código, nome ou endereço"
 #: apps/inventory/forms/imovel_filter_form.py:19
 #: apps/inventory/forms/movel_filter_form.py:31
 #: apps/inventory/web/templates/inventory/dashboard.html:40
-#: apps/inventory/web/templates/inventory/home.html:84
+#: apps/inventory/web/templates/inventory/home.html:142
 #: apps/inventory/web/templates/inventory/imovel_detail.html:44
 #: apps/inventory/web/templates/inventory/imovel_form.html:61
 #: apps/inventory/web/templates/inventory/imovel_list.html:106
@@ -754,8 +806,8 @@ msgid "Code, name or responsible"
 msgstr "Código, nome ou responsável"
 
 #: apps/inventory/forms/movel_filter_form.py:19
-#: apps/inventory/web/templates/inventory/home.html:86
-#: apps/inventory/web/templates/inventory/item_detail.html:116
+#: apps/inventory/web/templates/inventory/home.html:144
+#: apps/inventory/web/templates/inventory/item_detail.html:167
 #: apps/inventory/web/templates/inventory/item_form.html:122
 #: apps/inventory/web/templates/inventory/item_list.html:127
 #: apps/pages/templates/pages/home.html:84
@@ -775,7 +827,7 @@ msgid "Condition"
 msgstr "Condição"
 
 #: apps/inventory/forms/movel_filter_form.py:38
-#: apps/inventory/web/templates/inventory/home.html:85
+#: apps/inventory/web/templates/inventory/home.html:143
 #: apps/inventory/web/templates/inventory/item_detail.html:58
 #: apps/inventory/web/templates/inventory/item_form.html:87
 #: apps/inventory/web/templates/inventory/item_list.html:125
@@ -785,7 +837,7 @@ msgstr "Setor"
 
 #: apps/inventory/forms/movel_filter_form.py:45
 #: apps/inventory/web/templates/inventory/item_detail.html:78
-#: apps/inventory/web/templates/inventory/item_form.html:180
+#: apps/inventory/web/templates/inventory/item_form.html:186
 msgid "Brand"
 msgstr "Marca"
 
@@ -861,7 +913,7 @@ msgstr "Linha %(row)s: condição \"%(value)s\" desconhecida."
 
 #: apps/inventory/web/templates/inventory/dashboard.html:4
 #: apps/inventory/web/templates/inventory/dashboard.html:16
-#: apps/inventory/web/templates/inventory/home.html:150
+#: apps/inventory/web/templates/inventory/home.html:208
 msgid "Items by Category"
 msgstr "Itens por Categoria"
 
@@ -899,7 +951,7 @@ msgid "Missing"
 msgstr "Extraviados"
 
 #: apps/inventory/web/templates/inventory/dashboard.html:44
-#: apps/inventory/web/templates/inventory/dashboard.html:95
+#: apps/inventory/web/templates/inventory/dashboard.html:112
 msgid "Total"
 msgstr "Total"
 
@@ -907,8 +959,22 @@ msgstr "Total"
 msgid "Distribution"
 msgstr "Distribuição"
 
-#: apps/inventory/web/templates/inventory/dashboard.html:109
-#: apps/inventory/web/templates/inventory/home.html:170
+#: apps/inventory/web/templates/inventory/dashboard.html:46
+msgid "Useful life (months)"
+msgstr "Vida útil (meses)"
+
+#: apps/inventory/web/templates/inventory/dashboard.html:97
+msgid "e.g. 60"
+msgstr "ex.: 60"
+
+#: apps/inventory/web/templates/inventory/dashboard.html:102
+#, fuzzy
+#| msgid "Save Item"
+msgid "Save"
+msgstr "Salvar Item"
+
+#: apps/inventory/web/templates/inventory/dashboard.html:127
+#: apps/inventory/web/templates/inventory/home.html:228
 msgid "No categories registered yet."
 msgstr "Nenhuma categoria cadastrada ainda."
 
@@ -946,16 +1012,48 @@ msgstr "Baixados"
 msgid "written off"
 msgstr "baixados"
 
-#: apps/inventory/web/templates/inventory/home.html:72
+#: apps/inventory/web/templates/inventory/home.html:69
+msgid "Alerts"
+msgstr "Alertas"
+
+#: apps/inventory/web/templates/inventory/home.html:76
+#, python-format
+msgid "%(counter)s overdue loan"
+msgid_plural "%(counter)s overdue loans"
+msgstr[0] "%(counter)s empréstimo atrasado"
+msgstr[1] "%(counter)s empréstimos atrasados"
+
+#: apps/inventory/web/templates/inventory/home.html:86
+#, python-format
+msgid "%(counter)s maintenance open for over 7 days"
+msgid_plural "%(counter)s maintenances open for over 7 days"
+msgstr[0] "%(counter)s manutenção aberta há mais de 7 dias"
+msgstr[1] "%(counter)s manutenções abertas há mais de 7 dias"
+
+#: apps/inventory/web/templates/inventory/home.html:96
+#, python-format
+msgid "%(counter)s warranty expiring within 30 days"
+msgid_plural "%(counter)s warranties expiring within 30 days"
+msgstr[0] "%(counter)s garantia vencendo nos próximos 30 dias"
+msgstr[1] "%(counter)s garantias vencendo nos próximos 30 dias"
+
+#: apps/inventory/web/templates/inventory/home.html:113
+#, python-format
+msgid "%(counter)s active item in poor condition"
+msgid_plural "%(counter)s active items in poor condition"
+msgstr[0] "%(counter)s item ativo em condição ruim"
+msgstr[1] "%(counter)s itens ativos em condição ruim"
+
+#: apps/inventory/web/templates/inventory/home.html:130
 msgid "Latest Registered Items"
 msgstr "Últimos Itens Cadastrados"
 
-#: apps/inventory/web/templates/inventory/home.html:74
-#: apps/inventory/web/templates/inventory/home.html:152
+#: apps/inventory/web/templates/inventory/home.html:132
+#: apps/inventory/web/templates/inventory/home.html:210
 msgid "View all"
 msgstr "Ver todos"
 
-#: apps/inventory/web/templates/inventory/home.html:82
+#: apps/inventory/web/templates/inventory/home.html:140
 #: apps/inventory/web/templates/inventory/imovel_detail.html:40
 #: apps/inventory/web/templates/inventory/imovel_list.html:104
 #: apps/inventory/web/templates/inventory/item_detail.html:50
@@ -964,7 +1062,7 @@ msgstr "Ver todos"
 msgid "Code"
 msgstr "Código"
 
-#: apps/inventory/web/templates/inventory/home.html:83
+#: apps/inventory/web/templates/inventory/home.html:141
 #: apps/inventory/web/templates/inventory/imovel_form.html:52
 #: apps/inventory/web/templates/inventory/imovel_list.html:105
 #: apps/inventory/web/templates/inventory/item_form.html:52
@@ -973,41 +1071,50 @@ msgstr "Código"
 msgid "Name"
 msgstr "Nome"
 
-#: apps/inventory/web/templates/inventory/home.html:87
+#: apps/inventory/web/templates/inventory/home.html:145
 #: apps/inventory/web/templates/inventory/imovel_detail.html:64
 #: apps/inventory/web/templates/inventory/item_detail.html:82
 msgid "Registered at"
 msgstr "Cadastrado em"
 
-#: apps/inventory/web/templates/inventory/home.html:112
+#: apps/inventory/web/templates/inventory/home.html:170
 msgid "No items registered yet."
 msgstr "Nenhum item cadastrado ainda."
 
-#: apps/inventory/web/templates/inventory/home.html:113
+#: apps/inventory/web/templates/inventory/home.html:171
 msgid "Register now"
 msgstr "Cadastrar agora"
 
-#: apps/inventory/web/templates/inventory/home.html:123
+#: apps/inventory/web/templates/inventory/home.html:181
 msgid "Collection Value by Period"
 msgstr "Valor do Acervo por Período"
 
-#: apps/inventory/web/templates/inventory/home.html:140
+#: apps/inventory/web/templates/inventory/home.html:198
 msgid "No acquisition value registered in this period yet."
 msgstr "Nenhum valor de aquisição registrado neste período ainda."
 
-#: apps/inventory/web/templates/inventory/home.html:182
+#: apps/inventory/web/templates/inventory/home.html:240
 msgid "My Wallet"
 msgstr "Minha Carteira"
 
-#: apps/inventory/web/templates/inventory/home.html:186
+#: apps/inventory/web/templates/inventory/home.html:244
 msgid "Total collection value"
 msgstr "Valor total do acervo"
 
-#: apps/inventory/web/templates/inventory/home.html:192
+#: apps/inventory/web/templates/inventory/home.html:249
+#: apps/inventory/web/templates/inventory/item_detail.html:118
+msgid "Current book value"
+msgstr "Valor contábil atual"
+
+#: apps/inventory/web/templates/inventory/home.html:251
+msgid "After depreciation"
+msgstr "Após depreciação"
+
+#: apps/inventory/web/templates/inventory/home.html:256
 msgid "Highest Valued Assets"
 msgstr "Bens com Maior Valor"
 
-#: apps/inventory/web/templates/inventory/home.html:202
+#: apps/inventory/web/templates/inventory/home.html:266
 msgid "No asset with a registered value yet."
 msgstr "Nenhum bem com valor cadastrado ainda."
 
@@ -1118,8 +1225,8 @@ msgstr ""
 #: apps/inventory/web/templates/inventory/imovel_form.html:151
 #: apps/inventory/web/templates/inventory/item_form.html:117
 #: apps/inventory/web/templates/inventory/item_form.html:152
-#: apps/inventory/web/templates/inventory/item_form.html:175
-#: apps/inventory/web/templates/inventory/item_form.html:245
+#: apps/inventory/web/templates/inventory/item_form.html:181
+#: apps/inventory/web/templates/inventory/item_form.html:251
 msgid "(optional)"
 msgstr "(opcional)"
 
@@ -1146,7 +1253,7 @@ msgid "Real estate name"
 msgstr "Nome do imóvel"
 
 #: apps/inventory/web/templates/inventory/imovel_form.html:213
-#: apps/inventory/web/templates/inventory/item_form.html:300
+#: apps/inventory/web/templates/inventory/item_form.html:306
 msgid "Tips"
 msgstr "Dicas"
 
@@ -1300,27 +1407,63 @@ msgstr "Excluir"
 msgid "Item Information"
 msgstr "Informações do Item"
 
-#: apps/inventory/web/templates/inventory/item_detail.html:104
+#: apps/inventory/web/templates/inventory/item_detail.html:105
+#: apps/inventory/web/templates/inventory/item_form.html:151
+msgid "Acquisition"
+msgstr "Aquisição"
+
+#: apps/inventory/web/templates/inventory/item_detail.html:109
+#: apps/inventory/web/templates/inventory/item_form.html:163
+msgid "Purchase date"
+msgstr "Data da compra"
+
+#: apps/inventory/web/templates/inventory/item_detail.html:113
+#: apps/inventory/web/templates/inventory/item_form.html:157
+msgid "Acquisition value"
+msgstr "Valor de aquisição"
+
+#: apps/inventory/web/templates/inventory/item_detail.html:121
+msgid "depreciated"
+msgstr "depreciado"
+
+#: apps/inventory/web/templates/inventory/item_detail.html:126
+msgid "Warranty"
+msgstr "Garantia"
+
+#: apps/inventory/web/templates/inventory/item_detail.html:133
+msgid "Expired"
+msgstr "Vencida"
+
+#: apps/inventory/web/templates/inventory/item_detail.html:135
+msgid "Expiring soon"
+msgstr "Vencendo em breve"
+
+#: apps/inventory/web/templates/inventory/item_detail.html:145
+msgid "Set a useful life for this item's category to calculate depreciation."
+msgstr ""
+"Defina a vida útil da categoria deste item para calcular a depreciação."
+
+#: apps/inventory/web/templates/inventory/item_detail.html:155
 msgid "Possession History"
 msgstr "Histórico de Posses"
 
-#: apps/inventory/web/templates/inventory/item_detail.html:112
+#: apps/inventory/web/templates/inventory/item_detail.html:163
 msgid "Borrower"
 msgstr "Emprestado para"
 
-#: apps/inventory/web/templates/inventory/item_detail.html:113
+#: apps/inventory/web/templates/inventory/item_detail.html:164
 msgid "Loaned at"
 msgstr "Data do empréstimo"
 
-#: apps/inventory/web/templates/inventory/item_detail.html:114
+#: apps/inventory/web/templates/inventory/item_detail.html:165
 msgid "Expected return"
 msgstr "Previsão de retorno"
 
-#: apps/inventory/web/templates/inventory/item_detail.html:115
+#: apps/inventory/web/templates/inventory/item_detail.html:166
 msgid "Returned at"
 msgstr "Devolvido em"
 
-#: apps/inventory/web/templates/inventory/item_detail.html:138
+#: apps/inventory/web/templates/inventory/item_detail.html:189
 msgid "No loan history for this item yet."
 msgstr "Nenhum histórico de empréstimo para este item ainda."
 
@@ -1347,64 +1490,56 @@ msgstr "Nenhum setor cadastrado ainda."
 msgid "Specific location"
 msgstr "Localização específica"
 
-#: apps/inventory/web/templates/inventory/item_form.html:151
-msgid "Acquisition"
-msgstr "Aquisição"
+#: apps/inventory/web/templates/inventory/item_form.html:169
+msgid "Warranty (months)"
+msgstr "Garantia (meses)"
 
-#: apps/inventory/web/templates/inventory/item_form.html:157
-msgid "Acquisition value"
-msgstr "Valor de aquisição"
-
-#: apps/inventory/web/templates/inventory/item_form.html:163
-msgid "Purchase date"
-msgstr "Data da compra"
-
-#: apps/inventory/web/templates/inventory/item_form.html:174
+#: apps/inventory/web/templates/inventory/item_form.html:180
 msgid "Technical Specifications"
 msgstr "Especificações Técnicas"
 
-#: apps/inventory/web/templates/inventory/item_form.html:184
+#: apps/inventory/web/templates/inventory/item_form.html:190
 msgid "Select a brand"
 msgstr "Selecione uma marca"
 
-#: apps/inventory/web/templates/inventory/item_form.html:192
+#: apps/inventory/web/templates/inventory/item_form.html:198
 msgid "+ New brand..."
 msgstr "+ Nova marca..."
 
-#: apps/inventory/web/templates/inventory/item_form.html:204
+#: apps/inventory/web/templates/inventory/item_form.html:210
 msgid "Enter the name of the new brand"
 msgstr "Digite o nome da nova marca"
 
-#: apps/inventory/web/templates/inventory/item_form.html:222
+#: apps/inventory/web/templates/inventory/item_form.html:228
 msgid "Model"
 msgstr "Modelo"
 
-#: apps/inventory/web/templates/inventory/item_form.html:228
+#: apps/inventory/web/templates/inventory/item_form.html:234
 msgid "Serial Number"
 msgstr "Número de série"
 
-#: apps/inventory/web/templates/inventory/item_form.html:244
+#: apps/inventory/web/templates/inventory/item_form.html:250
 msgid "Photo"
 msgstr "Foto"
 
-#: apps/inventory/web/templates/inventory/item_form.html:252
+#: apps/inventory/web/templates/inventory/item_form.html:258
 msgid "Click or drag a photo here"
 msgstr "Clique ou arraste uma foto aqui"
 
-#: apps/inventory/web/templates/inventory/item_form.html:253
+#: apps/inventory/web/templates/inventory/item_form.html:259
 msgid "up to"
 msgstr "até"
 
-#: apps/inventory/web/templates/inventory/item_form.html:264
+#: apps/inventory/web/templates/inventory/item_form.html:270
 msgid "Remove photo"
 msgstr "Remover foto"
 
-#: apps/inventory/web/templates/inventory/item_form.html:285
-#: apps/inventory/web/templates/inventory/item_form.html:445
+#: apps/inventory/web/templates/inventory/item_form.html:291
+#: apps/inventory/web/templates/inventory/item_form.html:451
 msgid "Item name"
 msgstr "Nome do item"
 
-#: apps/inventory/web/templates/inventory/item_form.html:303
+#: apps/inventory/web/templates/inventory/item_form.html:309
 msgid ""
 "Use a consistent code pattern, e.g. PAT-0001, to make items easy to search "
 "later."
@@ -1412,32 +1547,32 @@ msgstr ""
 "Use um padrão de código consistente, como PAT-0001, para facilitar a busca "
 "dos itens depois."
 
-#: apps/inventory/web/templates/inventory/item_form.html:304
+#: apps/inventory/web/templates/inventory/item_form.html:310
 msgid ""
 "Assigning a responsible person helps track accountability during audits."
 msgstr ""
 "Atribuir um responsável ajuda a rastrear a responsabilidade durante "
 "auditorias."
 
-#: apps/inventory/web/templates/inventory/item_form.html:305
+#: apps/inventory/web/templates/inventory/item_form.html:311
 msgid "You can bulk-register items later via CSV import."
 msgstr "Você pode cadastrar itens em lote depois via importação de CSV."
 
-#: apps/inventory/web/templates/inventory/item_form.html:322
+#: apps/inventory/web/templates/inventory/item_form.html:328
 msgid "Save Item"
 msgstr "Salvar Item"
 
 # ── Item form — JS strings
 # ────────────────────────────────────────────────────
-#: apps/inventory/web/templates/inventory/item_form.html:366
+#: apps/inventory/web/templates/inventory/item_form.html:372
 msgid "Similar brand already exists"
 msgstr "Marca similar já existe"
 
-#: apps/inventory/web/templates/inventory/item_form.html:366
+#: apps/inventory/web/templates/inventory/item_form.html:372
 msgid "similarity"
 msgstr "de semelhança"
 
-#: apps/inventory/web/templates/inventory/item_form.html:366
+#: apps/inventory/web/templates/inventory/item_form.html:372
 msgid "Select it from the list or use a different name."
 msgstr "Selecione-a na lista ou use um nome diferente."
 
@@ -1564,6 +1699,16 @@ msgstr ""
 "Marca muito similar já existe: \"%(name)s\". Selecione-a na lista ou escolha "
 "um nome diferente."
 
+#: apps/inventory/web/views/category_useful_life_update_view.py:23
+#, python-format
+msgid "Useful life for \"%(name)s\" updated."
+msgstr "Vida útil de \"%(name)s\" atualizada."
+
+#: apps/inventory/web/views/category_useful_life_update_view.py:25
+#, python-format
+msgid "Could not update useful life: %(errors)s"
+msgstr "Não foi possível atualizar a vida útil: %(errors)s"
+
 #: apps/inventory/web/views/imovel_update_view.py:37
 #, fuzzy, python-format
 #| msgid "Real estate \"%(name)s\" registered successfully."
@@ -1602,13 +1747,13 @@ msgid_plural "%(count)s items imported successfully."
 msgstr[0] "%(count)s item importado com sucesso."
 msgstr[1] "%(count)s itens importados com sucesso."
 
-#: apps/inventory/web/views/item_update_view.py:96
+#: apps/inventory/web/views/item_update_view.py:97
 #, fuzzy, python-format
 #| msgid "Item \"%(name)s\" registered successfully."
 msgid "Item \"%(name)s\" updated successfully."
 msgstr "Item \"%(name)s\" cadastrado com sucesso."
 
-#: apps/inventory/web/views/item_views.py:82
+#: apps/inventory/web/views/item_views.py:83
 #, python-format
 msgid "Item \"%(name)s\" registered successfully."
 msgstr "Item \"%(name)s\" cadastrado com sucesso."
@@ -2138,61 +2283,53 @@ msgstr ""
 "Abra uma issue no GitHub ou contribua você mesmo com uma correção — o código "
 "está aberto para qualquer pessoa ler, auditar e melhorar."
 
-#: apps/settings/templates/settings/email_settings.html:57
-msgid "SMTP configuration"
-msgstr "Configuração SMTP"
-
-#: apps/settings/web/forms.py:15
+#: apps/settings/forms.py:15
 msgid "SMTP password"
 msgstr "Senha do SMTP"
 
-#: apps/settings/web/forms.py:18
+#: apps/settings/forms.py:18
 msgid "Leave blank to keep the currently saved password."
 msgstr "Deixe em branco para manter a senha salva atualmente."
 
-#: apps/settings/web/forms.py:28
+#: apps/settings/forms.py:28
 msgid "Enable SMTP server"
 msgstr "Ativar servidor SMTP"
 
-#: apps/settings/web/forms.py:29
+#: apps/settings/forms.py:29
 msgid "SMTP host"
 msgstr "Servidor SMTP"
 
-#: apps/settings/web/forms.py:30 apps/setup/web/forms.py:33
+#: apps/settings/forms.py:30 apps/setup/web/forms.py:33
 msgid "Port"
 msgstr "Porta"
 
-#: apps/settings/web/forms.py:31
+#: apps/settings/forms.py:31
 msgid "Use TLS"
 msgstr "Usar TLS"
 
-#: apps/settings/web/forms.py:32
+#: apps/settings/forms.py:32
 msgid "Use SSL"
 msgstr "Usar SSL"
 
-#: apps/settings/web/forms.py:33
+#: apps/settings/forms.py:33
 msgid "SMTP username"
 msgstr "Usuário do SMTP"
 
-#: apps/settings/web/forms.py:34
+#: apps/settings/forms.py:34
 msgid "Default sender address"
 msgstr "Endereço de remetente padrão"
 
-#: apps/settings/web/forms.py:49
+#: apps/settings/forms.py:49
 msgid "TLS and SSL cannot be enabled at the same time."
 msgstr "TLS e SSL não podem ser ativados ao mesmo tempo."
 
-#: apps/settings/web/forms.py:51
+#: apps/settings/forms.py:51
 msgid "Inform the SMTP host to enable the server."
 msgstr "Informe o host do SMTP para ativar o servidor."
 
-#: apps/settings/web/forms.py:53
+#: apps/settings/forms.py:53
 msgid "Inform the default sender address to enable the server."
 msgstr "Informe o endereço de remetente padrão para ativar o servidor."
-
-#: apps/settings/web/views/email_settings_view.py:29
-msgid "Email settings updated successfully."
-msgstr "Configurações de e-mail atualizadas com sucesso."
 
 #: apps/setup/templates/setup/_installer_base.html:19
 #, fuzzy
@@ -2339,3 +2476,151 @@ msgid ""
 msgstr ""
 "Preencha servidor, nome do banco, usuário e senha pra usar um PostgreSQL "
 "externo."
+
+#: apps/twofactor/forms/two_factor_code_form.py:9
+msgid "Authentication code"
+msgstr "Código de autenticação"
+
+#: apps/twofactor/forms/two_factor_code_form.py:13
+msgid "6-digit code or recovery code"
+msgstr "Código de 6 dígitos ou código de recuperação"
+
+#: apps/twofactor/templates/twofactor/login_verify.html:4
+msgid "Two-factor verification"
+msgstr "Verificação em duas etapas"
+
+#: apps/twofactor/templates/twofactor/login_verify.html:21
+msgid "One more step to keep your account safe."
+msgstr "Mais uma etapa para manter sua conta protegida."
+
+#: apps/twofactor/templates/twofactor/login_verify.html:24
+msgid "Enter the code we emailed you to finish signing in."
+msgstr "Digite o código que enviamos por e-mail para concluir o login."
+
+#: apps/twofactor/templates/twofactor/login_verify.html:37
+msgid "Verify your identity"
+msgstr "Verifique sua identidade"
+
+#: apps/twofactor/templates/twofactor/login_verify.html:39
+#, python-format
+msgid "We sent a 6-digit code to %(email)s"
+msgstr "Enviamos um código de 6 dígitos para %(email)s"
+
+#: apps/twofactor/templates/twofactor/login_verify.html:78
+msgid ""
+"Lost access to your email? You can use one of your recovery codes instead."
+msgstr ""
+"Perdeu o acesso ao seu e-mail? Você pode usar um dos seus códigos de "
+"recuperação."
+
+#: apps/twofactor/templates/twofactor/login_verify.html:84
+msgid "Verify"
+msgstr "Verificar"
+
+#: apps/twofactor/templates/twofactor/login_verify.html:92
+#: apps/twofactor/templates/twofactor/setup.html:70
+msgid "Didn't get the code? Resend"
+msgstr "Não recebeu o código? Reenviar"
+
+# ── Auth — Password reset
+# ─────────────────────────────────────────────────────
+#: apps/twofactor/templates/twofactor/recovery_codes.html:4
+msgid "Recovery codes"
+msgstr "Códigos de recuperação"
+
+#: apps/twofactor/templates/twofactor/recovery_codes.html:12
+msgid "Two-factor authentication is now enabled"
+msgstr "Autenticação em duas etapas habilitada"
+
+#: apps/twofactor/templates/twofactor/recovery_codes.html:14
+msgid "Save your recovery codes"
+msgstr "Salve seus códigos de recuperação"
+
+#: apps/twofactor/templates/twofactor/recovery_codes.html:16
+msgid ""
+"Each code can be used once to sign in if you lose access to your email. They "
+"won't be shown again."
+msgstr ""
+"Cada código pode ser usado uma vez para entrar caso você perca o acesso ao "
+"seu e-mail. Eles não serão mostrados novamente."
+
+#: apps/twofactor/templates/twofactor/recovery_codes.html:24
+msgid ""
+"Store these somewhere safe, like a password manager. Anyone with a code can "
+"sign in as you."
+msgstr ""
+"Guarde-os em um lugar seguro, como um gerenciador de senhas. Qualquer pessoa "
+"com um código pode entrar como você."
+
+#: apps/twofactor/templates/twofactor/recovery_codes.html:35
+msgid "I've saved my recovery codes"
+msgstr "Salvei meus códigos de recuperação"
+
+#: apps/twofactor/templates/twofactor/setup.html:12
+msgid "Back to settings"
+msgstr "Voltar às configurações"
+
+#: apps/twofactor/templates/twofactor/setup.html:16
+#, python-format
+msgid "We sent a 6-digit code to %(email)s. Enter it below to confirm."
+msgstr ""
+"Enviamos um código de 6 dígitos para %(email)s. Digite-o abaixo para "
+"confirmar."
+
+#: apps/twofactor/templates/twofactor/setup.html:52
+msgid "Enter the 6-digit code"
+msgstr "Digite o código de 6 dígitos"
+
+#: apps/twofactor/templates/twofactor/setup.html:62
+msgid "Confirm and enable"
+msgstr "Confirmar e habilitar"
+
+#: apps/twofactor/web/views/two_factor_disable_view.py:17
+msgid "Two-factor authentication has been disabled."
+msgstr "A autenticação em duas etapas foi desativada."
+
+#: apps/twofactor/web/views/two_factor_login_verify_view.py:70
+msgid ""
+"We couldn't send the verification email right now. You can still use a "
+"recovery code."
+msgstr ""
+"Não conseguimos enviar o e-mail de verificação agora. Você ainda pode usar "
+"um código de recuperação."
+
+#: apps/twofactor/web/views/two_factor_login_verify_view.py:78
+msgid "Please wait a moment before requesting another code."
+msgstr "Aguarde um instante antes de solicitar outro código."
+
+#: apps/twofactor/web/views/two_factor_login_verify_view.py:81
+#: apps/twofactor/web/views/two_factor_setup_view.py:59
+msgid "A new code was sent to your email."
+msgstr "Um novo código foi enviado para o seu e-mail."
+
+#: apps/twofactor/web/views/two_factor_login_verify_view.py:102
+msgid "Too many failed attempts. Please sign in again."
+msgstr "Muitas tentativas com falha. Faça login novamente."
+
+#: apps/twofactor/web/views/two_factor_login_verify_view.py:105
+msgid "Invalid code. Please try again."
+msgstr "Código inválido. Tente novamente."
+
+#: apps/twofactor/web/views/two_factor_setup_view.py:26
+msgid "Two-factor authentication is already enabled."
+msgstr "A autenticação em duas etapas já está habilitada."
+
+#: apps/twofactor/web/views/two_factor_setup_view.py:94
+msgid ""
+"Two-factor authentication is unavailable until an administrator configures "
+"the system's email server."
+msgstr ""
+"A autenticação em duas etapas está indisponível até que um administrador "
+"configure o servidor de e-mail do sistema."
+
+#: apps/twofactor/web/views/two_factor_setup_view.py:99
+msgid ""
+"We couldn't send the verification email right now. Please try again in a "
+"moment."
+msgstr ""
+"Não conseguimos enviar o e-mail de verificação agora. Tente novamente em "
+"instantes.Já fomos notificados e estamos investigando. Tente novamente em "
+"alguns minutos."
