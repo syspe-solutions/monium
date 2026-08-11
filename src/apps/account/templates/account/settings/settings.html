@@ -271,20 +271,6 @@
 {% endblock %}
 
 {% block scripts %}
-<script>
-  document.querySelectorAll('[data-open-modal]').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const modal = document.getElementById(btn.dataset.openModal);
-      if (modal) { modal.classList.remove('hidden'); modal.classList.add('flex'); }
-    });
-  });
-  document.querySelectorAll('[data-close-modal]').forEach(btn => {
-    btn.addEventListener('click', () => btn.closest('.fixed').classList.add('hidden'));
-  });
-  document.querySelectorAll('.fixed').forEach(modal => {
-    modal.addEventListener('click', e => { if (e.target === modal) modal.classList.add('hidden'); });
-  });
-</script>
 {% if email_form %}
 <script>
   const emailSettingsForm = document.getElementById('email-settings-form');

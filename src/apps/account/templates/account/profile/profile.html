@@ -197,20 +197,6 @@
   const saveBtn = document.getElementById('save-profile-btn');
   const initialAvatarHtml = avatarPreviewContainer.innerHTML;
 
-  // Modal open/close
-  document.querySelectorAll('[data-open-modal]').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const modal = document.getElementById(btn.dataset.openModal);
-      if (modal) { modal.classList.remove('hidden'); modal.classList.add('flex'); }
-    });
-  });
-  document.querySelectorAll('[data-close-modal]').forEach(btn => {
-    btn.addEventListener('click', () => btn.closest('.fixed').classList.add('hidden'));
-  });
-  document.querySelectorAll('.fixed').forEach(modal => {
-    modal.addEventListener('click', e => { if (e.target === modal) modal.classList.add('hidden'); });
-  });
-
   // Avatar preview
   if (avatarInput) {
     avatarInput.addEventListener('change', function () {

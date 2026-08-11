@@ -57,7 +57,7 @@
 </style>
 
 <aside id="main-sidebar"
-       class="relative h-screen sticky top-0 w-64 flex flex-col bg-zinc-50 border-r border-zinc-100 z-50 flex-shrink-0">
+       class="relative h-screen sticky top-0 w-64 flex flex-col bg-white border-r border-zinc-100 z-50 flex-shrink-0">
 
     <button id="sidebar-toggle"
             class="absolute flex items-center justify-center -right-3 top-10 bg-white text-zinc-700 rounded-full w-6 h-6 border-2 border-zinc-200 hover:bg-zinc-100 transition z-[60]"
@@ -75,7 +75,7 @@
 
         <nav class="flex mb-32 flex-col gap-3 shrink-0">
             <a href="{% url 'inventory:home' %}"
-               class="nav-item tooltip flex items-center gap-3 p-3 rounded-lg transition-all ease-apple
+               class="nav-item tooltip flex items-center gap-3 p-3 rounded transition-all ease-apple
                       {% if request.resolver_match.url_name == 'home' %}bg-zinc-900 text-white{% else %}hover:bg-zinc-100{% endif %}"
                data-tooltip="{% trans 'Home' %}">
                 <span class="material-symbols-outlined text-base shrink-0 {% if request.resolver_match.url_name == 'home' %}text-white{% else %}text-zinc-400{% endif %}">home</span>
@@ -83,10 +83,10 @@
             </a>
 
             <a href="{% url 'inventory:patrimonio_list' %}"
-               class="nav-item tooltip flex items-center gap-3 p-3 rounded-lg transition-all ease-apple
-                      {% if request.resolver_match.url_name in 'patrimonio_list,patrimonio_choice,item_list,item_detail,item_create,imovel_list,imovel_detail,imovel_create,dashboard' %}bg-zinc-900 text-white{% else %}hover:bg-zinc-100{% endif %}"
+               class="nav-item tooltip flex items-center gap-3 p-3 rounded transition-all ease-apple
+                      {% if request.resolver_match.url_name in 'patrimonio_list,item_list,item_detail,item_create,imovel_list,imovel_detail,imovel_create,dashboard' %}bg-zinc-900 text-white{% else %}hover:bg-zinc-100{% endif %}"
                data-tooltip="{% trans 'Assets' %}">
-                <span class="material-symbols-outlined text-base shrink-0 {% if request.resolver_match.url_name in 'patrimonio_list,patrimonio_choice,item_list,item_detail,item_create,imovel_list,imovel_detail,imovel_create,dashboard' %}text-white{% else %}text-zinc-400{% endif %}">inventory_2</span>
+                <span class="material-symbols-outlined text-base shrink-0 {% if request.resolver_match.url_name in 'patrimonio_list,item_list,item_detail,item_create,imovel_list,imovel_detail,imovel_create,dashboard' %}text-white{% else %}text-zinc-400{% endif %}">inventory_2</span>
                 <span class="sidebar-text text-sm overflow-hidden whitespace-nowrap">{% trans "Assets" %}</span>
             </a>
 
@@ -151,7 +151,7 @@
             </div>
 
             <a href="{% url 'account:settings' %}"
-               class="nav-item tooltip flex items-center gap-3 p-3 rounded-lg transition-all ease-apple
+               class="nav-item tooltip flex items-center gap-3 p-3 rounded transition-all ease-apple
                       {% if request.resolver_match.url_name == 'settings' and request.resolver_match.app_name == 'account' %}bg-zinc-900 text-white{% else %}hover:bg-zinc-100{% endif %}"
                data-tooltip="{% trans 'Settings' %}">
                 <span class="material-symbols-outlined text-base shrink-0 {% if request.resolver_match.url_name == 'settings' and request.resolver_match.app_name == 'account' %}text-white{% else %}text-zinc-400{% endif %}">settings</span>

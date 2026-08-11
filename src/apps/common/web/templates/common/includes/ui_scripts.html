@@ -21,6 +21,27 @@
         if (icon) icon.textContent = isHidden ? 'visibility_off' : 'visibility';
     });
 
+    // Modal genérico: [data-open-modal="id"] mostra o modal com esse id,
+    // [data-close-modal] fecha o modal mais próximo, e clicar no backdrop
+    // (.fixed.inset-0) também fecha. Delegado no document pra funcionar com
+    // qualquer modal incluído em qualquer página, sem listener por página.
+    document.addEventListener('click', function (e) {
+        const openBtn = e.target.closest('[data-open-modal]');
+        if (openBtn) {
+            const modal = document.getElementById(openBtn.dataset.openModal);
+            if (modal) { modal.classList.remove('hidden'); modal.classList.add('flex'); }
+            return;
+        }
+        const closeBtn = e.target.closest('[data-close-modal]');
+        if (closeBtn) {
+            closeBtn.closest('.fixed').classList.add('hidden');
+            return;
+        }
+        if (e.target.matches('.fixed.inset-0')) {
+            e.target.classList.add('hidden');
+        }
+    });
+
     // Loading state genérico: desabilita o botão de submit e mostra um spinner
     // enquanto o form está em voo, pra qualquer form da aplicação.
     document.addEventListener('submit', function (e) {

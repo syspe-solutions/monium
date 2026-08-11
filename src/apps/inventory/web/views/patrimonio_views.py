@@ -31,7 +31,3 @@ class PatrimonioListView(LoginRequiredMixin, TemplateView):
         ctx["total_count"] = paginator.count
         ctx["filter_querystring"] = querystring.urlencode()
         return ctx
-
-
-class PatrimonioChoiceView(LoginRequiredMixin, TemplateView):
-    template_name = "inventory/patrimonio_choice.html"

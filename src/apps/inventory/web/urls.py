@@ -17,7 +17,6 @@ from .views import (
     MovelListView,
     MovelUpdateView,
     MovelsByCategoryView,
-    PatrimonioChoiceView,
     PatrimonioListView,
 )
 
@@ -26,7 +25,6 @@ app_name = "inventory"
 urlpatterns = [
     path("", HomeView.as_view(), name="home"),
     path("patrimonios/", PatrimonioListView.as_view(), name="patrimonio_list"),
-    path("patrimonios/novo/", PatrimonioChoiceView.as_view(), name="patrimonio_choice"),
     path("categories/", MovelsByCategoryView.as_view(), name="dashboard"),
     path("categories/<uuid:pk>/useful-life/", CategoryUsefulLifeUpdateView.as_view(), name="category_useful_life_update"),
     path("items/", MovelListView.as_view(), name="item_list"),
