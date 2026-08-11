@@ -48,7 +48,7 @@
 
         <label for="{{ form.avatar.id_for_label }}"
                class="absolute -bottom-1 -right-1 bg-zinc-900 text-white w-8 h-8 rounded-full cursor-pointer
-                      hover:bg-zinc-800 transition flex items-center justify-center shadow-md ring-2 ring-zinc-900">
+                      hover:bg-zinc-800 transition flex items-center justify-center ring-2 ring-zinc-900">
           <span class="material-symbols-outlined text-base leading-none">edit</span>
           <input type="file" name="avatar" accept="image/*" class="hidden" id="{{ form.avatar.id_for_label }}">
         </label>
@@ -149,7 +149,7 @@
   <!-- Security + Danger Zone -->
   <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
-    <div class="bg-white border border-zinc-200 rounded-md p-5 flex flex-col gap-4 shadow-card">
+    <div class="bg-white border border-zinc-200 rounded-md p-5 flex flex-col gap-4">
       <div class="flex items-center gap-2">
         <span class="material-symbols-outlined text-zinc-500 text-xl leading-none">lock</span>
         <h2 class="text-sm font-semibold text-zinc-900">{% trans "Security" %}</h2>
@@ -164,7 +164,7 @@
       </button>
     </div>
 
-    <div class="bg-red-50 border border-red-200 rounded-md p-5 flex flex-col gap-4 shadow-card">
+    <div class="bg-red-50 border border-red-200 rounded-md p-5 flex flex-col gap-4">
       <div class="flex items-center gap-2">
         <span class="material-symbols-outlined text-red-600 text-xl leading-none">delete_forever</span>
         <h2 class="text-sm font-semibold text-red-600">{% trans "Danger Zone" %}</h2>

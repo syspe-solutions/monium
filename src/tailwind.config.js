@@ -29,12 +29,6 @@ module.exports = {
           subtle: "#EFF6FF",
         },
       },
-      boxShadow: {
-        // Sombra padrão de cards/modais no tema claro: bem mais sutil que a
-        // versão anterior (calibrada pra fundo escuro) — no claro, a
-        // separação principal já vem da borda; a sombra só dá profundidade.
-        card: "0 1px 2px 0 rgb(0 0 0 / 0.04), 0 1px 3px 0 rgb(0 0 0 / 0.06)",
-      },
       transitionTimingFunction: {
         // Curva padrão de easing (macOS/iOS) para motion de UI: sidebar,
         // dropdowns, modais.

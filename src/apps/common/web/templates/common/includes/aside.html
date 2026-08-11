@@ -60,7 +60,7 @@
        class="relative h-screen sticky top-0 w-64 flex flex-col bg-zinc-50 border-r border-zinc-100 z-50 flex-shrink-0">
 
     <button id="sidebar-toggle"
-            class="absolute flex items-center justify-center -right-3 top-10 bg-white text-zinc-700 rounded-full w-6 h-6 border-2 border-zinc-200 hover:bg-zinc-100 transition shadow-md z-[60]"
+            class="absolute flex items-center justify-center -right-3 top-10 bg-white text-zinc-700 rounded-full w-6 h-6 border-2 border-zinc-200 hover:bg-zinc-100 transition z-[60]"
             aria-label="{% trans 'Collapse menu' %}">
         <span class="material-symbols-outlined text-xs leading-none" id="toggle-icon">chevron_left</span>
     </button>
@@ -110,7 +110,7 @@
                 </div>
 
                 <div id="org-menu-panel"
-                     class="hidden sidebar-text border border-zinc-200 rounded-b-lg bg-white shadow-card overflow-hidden">
+                     class="hidden sidebar-text border border-zinc-200 rounded-b-lg bg-white overflow-hidden">
                     {% for org in user_organizations %}
                     <div class="flex items-center justify-between gap-2 px-3 py-2 border-b border-zinc-100 last:border-b-0
                                 {% if org == current_organization %}bg-accent-subtle{% endif %}">

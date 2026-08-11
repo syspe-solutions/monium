@@ -27,7 +27,7 @@
     </div>
 
     <!-- Filters -->
-    <details id="filters-disclosure" class="border border-zinc-200 rounded-md bg-white shadow-card" {% if filter_querystring %}open{% endif %}>
+    <details id="filters-disclosure" class="border border-zinc-200 rounded-md bg-white" {% if filter_querystring %}open{% endif %}>
         <summary class="flex items-center gap-2 px-4 py-3 cursor-pointer select-none text-sm font-medium text-zinc-800 hover:text-zinc-900">
             <span class="material-symbols-outlined text-base leading-none">filter_alt</span>
             {% trans "Filters" %}
@@ -94,7 +94,7 @@
     </p>
 
     <!-- Assets table -->
-    <div class="border border-zinc-200 rounded-md bg-white overflow-hidden shadow-card">
+    <div class="border border-zinc-200 rounded-md bg-white overflow-hidden">
         {% if rows %}
         <div class="overflow-x-auto">
             <table class="w-full text-sm">

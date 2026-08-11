@@ -12,7 +12,7 @@
     </div>
 
     {% if blocking.loans or blocking.maintenances or blocking.movements %}
-    <div class="border border-amber-200 rounded-md bg-amber-50 p-4 flex flex-col gap-3 shadow-card">
+    <div class="border border-amber-200 rounded-md bg-amber-50 p-4 flex flex-col gap-3">
         <p class="text-sm text-amber-600">
             {% blocktrans %}This item cannot be permanently deleted because it has loan, maintenance or movement history, kept for audit purposes.{% endblocktrans %}
         </p>
@@ -29,7 +29,7 @@
         </a>
     </div>
     {% else %}
-    <div class="border border-red-200 rounded-md bg-red-50 p-4 flex flex-col gap-3 shadow-card">
+    <div class="border border-red-200 rounded-md bg-red-50 p-4 flex flex-col gap-3">
         <p class="text-sm text-red-600">
             {% trans "This will permanently delete this item, its photo and its acquisition data. This cannot be undone." %}
         </p>

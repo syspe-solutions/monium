@@ -47,10 +47,10 @@
         @apply bg-amber-50 text-amber-700 border border-amber-200 hover:bg-amber-100;
     }
 
-    /* Card padrão: fundo/borda/sombra usados em ~30 telas (auth, dashboard,
+    /* Card padrão: fundo/borda usados em ~30 telas (auth, dashboard,
        forms). Centraliza o que antes era repetido classe a classe. */
     .card {
-        @apply bg-white border border-zinc-200 rounded-md shadow-card;
+        @apply bg-white border border-zinc-200 rounded-md;
     }
 
     /* Django gera <ul class="errorlist" id="..._error"> pra cada campo com
@@ -71,7 +71,7 @@
     .tooltip::after {
         content: attr(data-tooltip);
         @apply pointer-events-none absolute left-full top-1/2 z-[70] ml-2 -translate-y-1/2 whitespace-nowrap
-               rounded-md bg-zinc-900 px-2 py-1 text-xs font-medium text-white opacity-0 shadow-card
+               rounded-md border border-zinc-700 bg-zinc-900 px-2 py-1 text-xs font-medium text-white opacity-0
                transition ease-apple;
     }
 

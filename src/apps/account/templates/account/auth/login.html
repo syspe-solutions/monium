@@ -47,7 +47,7 @@
                 <p class="text-zinc-500 text-sm mt-1">{% trans "Please log in to your account" %}</p>
             </div>
 
-            <div class="bg-white border border-zinc-200 rounded-md p-6 shadow-card">
+            <div class="bg-white border border-zinc-200 rounded-md p-6">
                 <form method="post" class="flex flex-col gap-4">
                     {% csrf_token %}
                     {% if request.GET.next %}
