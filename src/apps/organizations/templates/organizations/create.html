@@ -14,7 +14,7 @@
     <div class="w-full lg:w-1/2 flex flex-col justify-between gap-10 p-6 sm:p-10 lg:p-12
                 bg-gradient-to-br from-zinc-900 to-zinc-950 border-b lg:border-b-0 lg:border-r border-zinc-800">
         <a href="{% url 'inventory:home' %}" class="w-fit">
-            {% include "common/includes/logo.html" %}
+            {% include "common/includes/logo.html" with variant="dark" %}
         </a>
 
         <div class="max-w-md">
@@ -43,10 +43,10 @@
         <div class="w-full max-w-md">
 
             <div class="text-center mb-6">
-                <h1 class="text-white text-2xl font-bold">
+                <h1 class="text-zinc-900 text-2xl font-bold">
                     {% if is_first %}{% trans "Create your organization" %}{% else %}{% trans "Create another organization" %}{% endif %}
                 </h1>
-                <p class="text-zinc-400 text-sm mt-1">
+                <p class="text-zinc-500 text-sm mt-1">
                     {% if is_first %}
                         {% trans "You need an organization to start using Monium." %}
                     {% else %}
@@ -55,13 +55,13 @@
                 </p>
             </div>
 
-            <div class="bg-zinc-900 border border-zinc-800 rounded-md p-6 shadow-card">
+            <div class="bg-white border border-zinc-200 rounded-md p-6 shadow-card">
                 <form method="post" enctype="multipart/form-data" class="flex flex-col gap-4">
                     {% csrf_token %}
 
                     {% if form.non_field_errors %}
                     {% for error in form.non_field_errors %}
-                    <div class="flex items-center gap-2 px-3 py-2 rounded-lg bg-red-950 border border-red-800 text-red-400 text-sm">
+                    <div class="flex items-center gap-2 px-3 py-2 rounded-lg bg-red-50 border border-red-200 text-red-600 text-sm">
                         <span class="material-symbols-outlined text-base leading-none">error</span>
                         {{ error }}
                     </div>
@@ -72,39 +72,39 @@
                     <div class="flex flex-col items-center gap-2">
                         <label for="{{ form.logo.id_for_label }}" id="org-logo-dropzone"
                                class="relative flex flex-col items-center justify-center gap-1 w-24 h-24 rounded-md
-                                      border-2 border-dashed border-zinc-700 bg-zinc-950/40 hover:border-zinc-500
-                                      hover:bg-zinc-800/40 transition cursor-pointer overflow-hidden shrink-0">
+                                      border-2 border-dashed border-zinc-300 bg-zinc-50 hover:border-zinc-400
+                                      hover:bg-zinc-100 transition cursor-pointer overflow-hidden shrink-0">
                             <div id="org-logo-placeholder" class="flex flex-col items-center gap-1 text-center px-2">
-                                <span class="material-symbols-outlined text-2xl leading-none text-zinc-600">add_photo_alternate</span>
+                                <span class="material-symbols-outlined text-2xl leading-none text-zinc-400">add_photo_alternate</span>
                                 <span class="text-[10px] font-medium text-zinc-500">{% trans "Logo" %}</span>
                             </div>
                             <img id="org-logo-preview" alt="{% trans 'Preview' %}" class="hidden absolute inset-0 w-full h-full object-cover">
                         </label>
                         <div class="hidden">{{ form.logo }}</div>
                         <button type="button" id="remove-org-logo"
-                                class="hidden text-xs text-red-400 hover:text-red-300 hover:underline">
+                                class="hidden text-xs text-red-600 hover:text-red-700 hover:underline">
                             {% trans "Remove image" %}
                         </button>
-                        <p class="text-[11px] text-zinc-600">{% trans "Square image, PNG or JPG — up to 5MB" %}</p>
-                        {% if form.logo.errors %}<p class="text-red-400 text-xs">{{ form.logo.errors }}</p>{% endif %}
+                        <p class="text-[11px] text-zinc-400">{% trans "Square image, PNG or JPG — up to 5MB" %}</p>
+                        {% if form.logo.errors %}<p class="text-red-600 text-xs">{{ form.logo.errors }}</p>{% endif %}
                     </div>
 
                     {% for field in form %}
                     {% if field.name != "logo" %}
                     <div>
-                        <label for="{{ field.id_for_label }}" class="block font-medium text-xs mb-1.5 text-zinc-400">
+                        <label for="{{ field.id_for_label }}" class="block font-medium text-xs mb-1.5 text-zinc-500">
                             {{ field.label }}
                         </label>
                         {{ field }}
                         {% if field.errors %}
-                        <p class="text-red-400 text-xs mt-1">{{ field.errors }}</p>
+                        <p class="text-red-600 text-xs mt-1">{{ field.errors }}</p>
                         {% endif %}
                     </div>
                     {% endif %}
                     {% endfor %}
 
                     <button type="submit"
-                            class="bg-white text-zinc-950 text-center py-2.5 rounded-lg font-semibold text-sm hover:bg-zinc-100 transition">
+                            class="btn-primary text-center py-2.5 rounded-lg font-semibold text-sm transition">
                         {% trans "Create organization" %}
                     </button>
                 </form>
@@ -112,7 +112,7 @@
 
             {% if not is_first %}
             <p class="text-center mt-5 text-sm text-zinc-500">
-                <a href="{% url 'inventory:home' %}" class="hover:text-zinc-300 hover:underline">
+                <a href="{% url 'inventory:home' %}" class="hover:text-accent hover:underline">
                     {% trans "Back to home" %}
                 </a>
             </p>
@@ -159,13 +159,13 @@
     ['dragenter', 'dragover'].forEach(eventName => {
       logoDropzone.addEventListener(eventName, function (event) {
         event.preventDefault();
-        logoDropzone.classList.add('border-zinc-500', 'bg-zinc-800/40');
+        logoDropzone.classList.add('border-zinc-400', 'bg-zinc-100');
       });
     });
     ['dragleave', 'drop'].forEach(eventName => {
       logoDropzone.addEventListener(eventName, function (event) {
         event.preventDefault();
-        logoDropzone.classList.remove('border-zinc-500', 'bg-zinc-800/40');
+        logoDropzone.classList.remove('border-zinc-400', 'bg-zinc-100');
       });
     });
     logoDropzone.addEventListener('drop', function (event) {

@@ -57,10 +57,10 @@
 </style>
 
 <aside id="main-sidebar"
-       class="relative h-screen sticky top-0 w-64 bg-zinc-900 text-white flex flex-col border-r border-zinc-800 z-50 flex-shrink-0">
+       class="relative h-screen sticky top-0 w-64 flex flex-col bg-zinc-50 border-r border-zinc-100 z-50 flex-shrink-0">
 
     <button id="sidebar-toggle"
-            class="absolute flex items-center justify-center -right-3 top-10 bg-zinc-700 text-white rounded-full w-6 h-6 border-2 border-zinc-900 hover:bg-zinc-600 transition shadow-md z-[60]"
+            class="absolute flex items-center justify-center -right-3 top-10 bg-white text-zinc-700 rounded-full w-6 h-6 border-2 border-zinc-200 hover:bg-zinc-100 transition shadow-md z-[60]"
             aria-label="{% trans 'Collapse menu' %}">
         <span class="material-symbols-outlined text-xs leading-none" id="toggle-icon">chevron_left</span>
     </button>
@@ -69,58 +69,58 @@
 
         <!-- Logo -->
         <a href="{% url 'inventory:home' %}" class="flex justify-center mt-4 mb-6 shrink-0">
-            <img id="logo-full" src="{% static 'common/svg/logo/horizontal-letter-white.svg' %}" alt="Monium" class="h-6 w-auto">
-            <img id="logo-compact" src="{% static 'common/svg/logo/vertical-letter-white.svg' %}" alt="Monium" class="h-10 w-auto">
+            <img id="logo-full" src="{% static 'common/svg/logo/horizontal-letter-black.svg' %}" alt="Monium" class="h-6 w-auto">
+            <img id="logo-compact" src="{% static 'common/svg/logo/vertical-letter-black.svg' %}" alt="Monium" class="h-10 w-auto">
         </a>
 
-        <nav class="flex mb-32 flex-col gap-4 shrink-0">
+        <nav class="flex mb-32 flex-col gap-3 shrink-0">
             <a href="{% url 'inventory:home' %}"
                class="nav-item tooltip flex items-center gap-3 p-3 rounded-lg transition-all ease-apple
-                      {% if request.resolver_match.url_name == 'home' %}bg-white text-zinc-900{% else %}hover:bg-zinc-800{% endif %}"
+                      {% if request.resolver_match.url_name == 'home' %}bg-zinc-900 text-white{% else %}hover:bg-zinc-100{% endif %}"
                data-tooltip="{% trans 'Home' %}">
-                <span class="material-symbols-outlined text-base shrink-0">home</span>
+                <span class="material-symbols-outlined text-base shrink-0 {% if request.resolver_match.url_name == 'home' %}text-white{% else %}text-zinc-400{% endif %}">home</span>
                 <span class="sidebar-text text-sm overflow-hidden whitespace-nowrap">{% trans "Home" %}</span>
             </a>
 
             <a href="{% url 'inventory:patrimonio_list' %}"
                class="nav-item tooltip flex items-center gap-3 p-3 rounded-lg transition-all ease-apple
-                      {% if request.resolver_match.url_name in 'patrimonio_list,patrimonio_choice,item_list,item_detail,item_create,imovel_list,imovel_detail,imovel_create,dashboard' %}bg-white text-zinc-900{% else %}hover:bg-zinc-800{% endif %}"
+                      {% if request.resolver_match.url_name in 'patrimonio_list,patrimonio_choice,item_list,item_detail,item_create,imovel_list,imovel_detail,imovel_create,dashboard' %}bg-zinc-900 text-white{% else %}hover:bg-zinc-100{% endif %}"
                data-tooltip="{% trans 'Assets' %}">
-                <span class="material-symbols-outlined text-base shrink-0">inventory_2</span>
+                <span class="material-symbols-outlined text-base shrink-0 {% if request.resolver_match.url_name in 'patrimonio_list,patrimonio_choice,item_list,item_detail,item_create,imovel_list,imovel_detail,imovel_create,dashboard' %}text-white{% else %}text-zinc-400{% endif %}">inventory_2</span>
                 <span class="sidebar-text text-sm overflow-hidden whitespace-nowrap">{% trans "Assets" %}</span>
             </a>
 
             <!-- Organizações -->
             <div class="relative">
                 <div class="nav-item flex items-center gap-1 justify-between rounded-lg transition-all ease-apple
-                            {% if request.resolver_match.url_name in 'members,member_create,member_remove,member_role_update,create,delete' %}bg-white text-zinc-900{% else %}hover:bg-zinc-800{% endif %}">
+                            {% if request.resolver_match.url_name in 'members,member_create,member_remove,member_role_update,create,delete' %}bg-zinc-900 text-white{% else %}hover:bg-zinc-100{% endif %}">
                     <button type="button" id="org-menu-name-toggle"
                             class="tooltip flex items-center justify-left gap-3 flex p-3 rounded-lg text-left overflow-hidden"
                             data-tooltip="{% if current_organization %}{{ current_organization.name }}{% else %}{% trans 'Organizations' %}{% endif %}">
-                        <span class="material-symbols-outlined text-base shrink-0">domain</span>
+                        <span class="material-symbols-outlined text-base shrink-0 {% if request.resolver_match.url_name in 'members,member_create,member_remove,member_role_update,create,delete' %}text-white{% else %}text-zinc-400{% endif %}">domain</span>
                         <span class="sidebar-text text-sm overflow-hidden whitespace-nowrap truncate">
                             {% if current_organization %}{{ current_organization.name }}{% else %}{% trans "Organizations" %}{% endif %}
                         </span>
                     </button>
                     <button type="button" id="org-menu-arrow-toggle"
-                            class="sidebar-text shrink-0 p-2 rounded hover:bg-zinc-700 transition"
+                            class="sidebar-text shrink-0 p-2 rounded hover:bg-zinc-800/20 transition"
                             aria-label="{% trans 'Switch organization' %}" title="{% trans 'Switch organization' %}">
                         <span class="material-symbols-outlined w-4 h-auto text-sm shrink-0">unfold_more</span>
                     </button>
                 </div>
 
                 <div id="org-menu-panel"
-                     class="hidden sidebar-text border border-zinc-800 rounded-lg bg-zinc-950 overflow-hidden">
+                     class="hidden sidebar-text border border-zinc-200 rounded-b-lg bg-white shadow-card overflow-hidden">
                     {% for org in user_organizations %}
-                    <div class="flex items-center justify-between gap-2 px-3 py-2 border-b border-zinc-800 last:border-b-0
-                                {% if org == current_organization %}bg-white/10{% endif %}">
+                    <div class="flex items-center justify-between gap-2 px-3 py-2 border-b border-zinc-100 last:border-b-0
+                                {% if org == current_organization %}bg-accent-subtle{% endif %}">
                         <form method="post" action="{% url 'organizations:switch' org.id %}" class="flex-1 min-w-0">
                             {% csrf_token %}
                             <input type="hidden" name="next" value="{{ request.path }}">
-                            <button type="submit" class="w-full flex items-center gap-1.5 text-left text-xs text-zinc-300 hover:text-white">
+                            <button type="submit" class="w-full flex items-center gap-1.5 text-left text-xs text-zinc-700 hover:text-zinc-900">
                                 <span class="truncate">{{ org.name }}</span>
                                 {% if org == current_organization %}
-                                <span class="material-symbols-outlined text-sm leading-none text-white shrink-0 ml-auto" aria-label="{% trans 'current' %}">check</span>
+                                <span class="material-symbols-outlined text-sm leading-none text-accent shrink-0 ml-auto" aria-label="{% trans 'current' %}">check</span>
                                 {% endif %}
                             </button>
                         </form>
@@ -128,7 +128,7 @@
                         <form method="post" action="{% url 'organizations:switch' org.id %}">
                             {% csrf_token %}
                             <input type="hidden" name="next" value="{% url 'organizations:settings' %}">
-                            <button type="submit" class="text-zinc-500 hover:text-white shrink-0" title="{% trans 'Edit' %}">
+                            <button type="submit" class="text-zinc-400 hover:text-zinc-900 shrink-0" title="{% trans 'Edit' %}">
                                 <span class="material-symbols-outlined text-sm leading-none">edit</span>
                             </button>
                         </form>
@@ -137,13 +137,13 @@
                     {% endfor %}
                     {% if can_manage_members %}
                     <a href="{% url 'organizations:members' %}"
-                       class="flex items-center gap-2 px-3 py-2 text-xs text-zinc-400 hover:text-white hover:bg-zinc-800 transition border-t border-zinc-800">
+                       class="flex items-center gap-2 px-3 py-2 text-xs text-zinc-500 hover:text-zinc-900 hover:bg-zinc-50 transition border-t border-zinc-100">
                         <span class="material-symbols-outlined text-sm leading-none">group</span>
                         {% trans "Members" %}
                     </a>
                     {% endif %}
                     <a href="{% url 'organizations:create' %}"
-                       class="flex items-center gap-2 px-3 py-2 text-xs text-zinc-400 hover:text-white hover:bg-zinc-800 transition border-t border-zinc-800">
+                       class="flex items-center gap-2 px-3 py-2 text-xs text-zinc-500 hover:text-zinc-900 hover:bg-zinc-50 transition border-t border-zinc-100">
                         <span class="material-symbols-outlined text-sm leading-none">add</span>
                         {% trans "New organization" %}
                     </a>
@@ -152,9 +152,9 @@
 
             <a href="{% url 'account:settings' %}"
                class="nav-item tooltip flex items-center gap-3 p-3 rounded-lg transition-all ease-apple
-                      {% if request.resolver_match.url_name == 'settings' and request.resolver_match.app_name == 'account' %}bg-white text-zinc-900{% else %}hover:bg-zinc-800{% endif %}"
+                      {% if request.resolver_match.url_name == 'settings' and request.resolver_match.app_name == 'account' %}bg-zinc-900 text-white{% else %}hover:bg-zinc-100{% endif %}"
                data-tooltip="{% trans 'Settings' %}">
-                <span class="material-symbols-outlined text-base shrink-0">settings</span>
+                <span class="material-symbols-outlined text-base shrink-0 {% if request.resolver_match.url_name == 'settings' and request.resolver_match.app_name == 'account' %}text-white{% else %}text-zinc-400{% endif %}">settings</span>
                 <span class="sidebar-text text-sm overflow-hidden whitespace-nowrap">{% trans "Settings" %}</span>
             </a>
 
@@ -162,13 +162,13 @@
 
         <div class="shrink-0 flex flex-col gap-1">
             <a href="{% url 'account:profile_edit' %}"
-               class="nav-item tooltip flex items-center gap-3 p-2 rounded hover:bg-zinc-800 transition-all ease-apple"
+               class="nav-item tooltip flex items-center gap-3 p-2 rounded hover:bg-zinc-100 transition-all ease-apple"
                data-tooltip="{% trans 'My profile' %}">
-                <div class="w-10 h-10 rounded-full bg-zinc-700 flex items-center justify-center font-bold text-lg shrink-0">
+                <div class="w-10 h-10 rounded-full bg-accent text-white flex items-center justify-center font-bold text-lg shrink-0">
                     {{ request.user.first_name|default:request.user.username|first|upper }}
                 </div>
                 <div class="user-info flex flex-col leading-tight overflow-hidden">
-                    <span class="text-sm font-semibold whitespace-nowrap">
+                    <span class="text-sm font-semibold text-zinc-900 whitespace-nowrap">
                         {{ request.user.get_full_name|default:request.user.username|truncatechars:20 }}
                     </span>
                     <span class="text-xs text-zinc-500 whitespace-nowrap truncate">

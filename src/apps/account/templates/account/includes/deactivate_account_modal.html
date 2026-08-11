@@ -3,31 +3,31 @@
 <div id="delete-modal"
      class="fixed inset-0 z-50 hidden items-center justify-center bg-black/70 backdrop-blur-sm p-4">
 
-  <div class="bg-zinc-900 border border-zinc-800 rounded-md shadow-2xl max-w-md w-full p-6 flex flex-col gap-5">
+  <div class="bg-white border border-zinc-200 rounded-md shadow-2xl max-w-md w-full p-6 flex flex-col gap-5">
 
     <div class="flex items-center gap-2">
-      <span class="material-symbols-outlined text-red-500 text-xl leading-none">delete_forever</span>
-      <h2 class="text-base font-semibold text-red-400">{% trans "Delete my account" %}</h2>
+      <span class="material-symbols-outlined text-red-600 text-xl leading-none">delete_forever</span>
+      <h2 class="text-base font-semibold text-red-600">{% trans "Delete my account" %}</h2>
     </div>
 
-    <p class="text-sm text-zinc-400 leading-relaxed">
+    <p class="text-sm text-zinc-500 leading-relaxed">
       {% trans "Your account will be deactivated and permanently deleted after 30 days." %}
     </p>
 
-    <div class="flex items-start gap-3 px-3 py-3 bg-red-950/30 border border-red-900/50 rounded-lg text-xs text-red-400">
+    <div class="flex items-start gap-3 px-3 py-3 bg-red-50 border border-red-200 rounded-lg text-xs text-red-600">
       <span class="material-symbols-outlined text-base leading-none shrink-0 mt-0.5">warning</span>
       {% trans "Account deletion is permanent and cannot be undone." %}
     </div>
 
     <form method="post" action="{% url 'account:profile_deactivate' %}">
       {% csrf_token %}
-      <div class="flex justify-end gap-3 pt-2 border-t border-zinc-800">
+      <div class="flex justify-end gap-3 pt-2 border-t border-zinc-200">
         <button type="button" data-close-modal
-                class="px-4 py-2 rounded text-sm text-zinc-400 bg-zinc-800 hover:bg-zinc-700 transition">
+                class="px-4 py-2 rounded text-sm text-zinc-500 bg-zinc-100 hover:bg-zinc-200 transition">
           {% trans "Cancel" %}
         </button>
         <button type="submit"
-                class="px-4 py-2 rounded text-sm font-medium bg-red-700 text-white hover:bg-red-800 transition">
+                class="px-4 py-2 rounded text-sm font-medium bg-red-700 text-white hover:bg-red-100 transition">
           {% trans "Deactivate" %}
         </button>
       </div>

@@ -14,7 +14,7 @@
     <div class="w-full lg:w-1/2 flex flex-col justify-between gap-10 p-6 sm:p-10 lg:p-12
                 bg-gradient-to-br from-zinc-900 to-zinc-950 border-b lg:border-b-0 lg:border-r border-zinc-800">
         <a href="{% url 'inventory:home' %}" class="w-fit">
-            {% include "common/includes/logo.html" %}
+            {% include "common/includes/logo.html" with variant="dark" %}
         </a>
 
         <div class="max-w-md">
@@ -43,17 +43,17 @@
         <div class="w-full max-w-md">
 
             <div class="text-center mb-6">
-                <h1 class="text-white text-2xl font-bold">{% trans "Create your account!" %}</h1>
-                <p class="text-zinc-400 text-sm mt-1">{% trans "Join us! Create your account today" %}</p>
+                <h1 class="text-zinc-900 text-2xl font-bold">{% trans "Create your account!" %}</h1>
+                <p class="text-zinc-500 text-sm mt-1">{% trans "Join us! Create your account today" %}</p>
             </div>
 
-            <div class="bg-zinc-900 border border-zinc-800 rounded-md p-6 shadow-card">
+            <div class="bg-white border border-zinc-200 rounded-md p-6 shadow-card">
                 <form method="post" class="flex flex-col gap-4">
                     {% csrf_token %}
 
                     {% if form.non_field_errors %}
                     {% for error in form.non_field_errors %}
-                    <div class="flex items-center gap-2 px-3 py-2 rounded-lg bg-red-950 border border-red-800 text-red-400 text-sm">
+                    <div class="flex items-center gap-2 px-3 py-2 rounded-lg bg-red-50 border border-red-200 text-red-600 text-sm">
                         <span class="material-symbols-outlined text-base leading-none">error</span>
                         {{ error }}
                     </div>
@@ -62,14 +62,14 @@
 
                     {% for field in form %}
                     <div>
-                        <label for="{{ field.id_for_label }}" class="block font-medium text-xs mb-1.5 text-zinc-400">
+                        <label for="{{ field.id_for_label }}" class="block font-medium text-xs mb-1.5 text-zinc-500">
                             {{ field.label }}
                         </label>
                         <div class="relative">
                             {{ field }}
                             {% if field.field.widget.input_type == "password" %}
                             <button type="button"
-                                    class="toggle-password absolute right-2 top-1/2 -translate-y-1/2 text-zinc-500 hover:text-zinc-300 transition"
+                                    class="toggle-password absolute right-2 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-zinc-700 transition"
                                     data-target="{{ field.id_for_label }}"
                                     aria-label="{% trans 'Show/hide password' %}">
                                 <span class="material-symbols-outlined text-base leading-none">visibility</span>
@@ -77,13 +77,13 @@
                             {% endif %}
                         </div>
                         {% if field.errors %}
-                        <p class="text-red-400 text-xs mt-1">{{ field.errors }}</p>
+                        <p class="text-red-600 text-xs mt-1">{{ field.errors }}</p>
                         {% endif %}
                     </div>
                     {% endfor %}
 
                     <button type="submit"
-                            class="bg-white text-zinc-950 text-center py-2.5 rounded-lg font-semibold text-sm hover:bg-zinc-100 transition">
+                            class="btn-primary text-center py-2.5 rounded-lg font-semibold text-sm transition">
                         {% trans "Register" %}
                     </button>
                 </form>
@@ -91,7 +91,7 @@
 
             <p class="text-center mt-5 text-sm text-zinc-500">
                 {% trans "Already have an account?" %}
-                <a href="{% url 'account:login' %}" class="text-green-400 hover:text-green-300 hover:underline font-medium">
+                <a href="{% url 'account:login' %}" class="text-accent hover:text-accent-hover hover:underline font-medium">
                     {% trans "Click here" %}
                 </a>
             </p>

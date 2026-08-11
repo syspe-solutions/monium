@@ -2,9 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+    /* Fonte única do projeto — trocar aqui é suficiente: tailwind.config.js
+       referencia esta variável, então nenhum outro arquivo precisa mudar. */
+    --font-sans: 'Noto Sans Georgian', sans-serif;
+}
+
 * {
-    font-family: 'Inter', 'sans-serif';
+    font-family: var(--font-sans);
     box-sizing: border-box;
+}
+
+.material-symbols-outlined {
+    font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
 }
 
 @layer components {
@@ -12,21 +22,48 @@
         @apply w-fit flex items-center gap-1 px-4 py-2.5 text-sm font-medium rounded transition ease-apple;
     }
 
+    /* Variantes de cor do .btn — antes cada template montava a própria
+       combinação de cor na mão (fonte principal da inconsistência visual).
+       Preto é reservado pra ação estrutural primária; accent (azul) fica
+       só pra ações que precisam se destacar como "link/atalho", não como
+       ação principal da tela. */
+    .btn-primary {
+        @apply bg-zinc-900 text-white hover:bg-zinc-800;
+    }
+
+    .btn-secondary {
+        @apply bg-white text-zinc-900 border border-zinc-200 hover:bg-zinc-50;
+    }
+
+    .btn-ghost {
+        @apply bg-zinc-100 text-zinc-700 hover:bg-zinc-200;
+    }
+
+    .btn-danger {
+        @apply bg-red-50 text-red-600 border border-red-200 hover:bg-red-100;
+    }
+
+    .btn-warning {
+        @apply bg-amber-50 text-amber-700 border border-amber-200 hover:bg-amber-100;
+    }
+
     /* Card padrão: fundo/borda/sombra usados em ~30 telas (auth, dashboard,
        forms). Centraliza o que antes era repetido classe a classe. */
     .card {
-        @apply bg-zinc-900 border border-zinc-800 rounded-md shadow-card;
+        @apply bg-white border border-zinc-200 rounded-md shadow-card;
     }
 
     /* Django gera <ul class="errorlist" id="..._error"> pra cada campo com
        erro — sem isso, herda o preto/marcador padrão do navegador e some
-       contra o fundo escuro dos formulários. */
+       contra o fundo do formulário. */
     .errorlist {
-        @apply list-none m-0 mt-1 p-0 flex flex-col gap-0.5 text-red-400 text-xs;
+        @apply list-none m-0 mt-1 p-0 flex flex-col gap-0.5 text-red-600 text-xs;
     }
 
     /* Tooltip custom (substitui o title= nativo do navegador, que tem delay
-       e estilo inconsistentes entre browsers) — uso: <el class="tooltip" data-tooltip="Texto">. */
+       e estilo inconsistentes entre browsers) — uso: <el class="tooltip" data-tooltip="Texto">.
+       Fica escuro mesmo no tema claro (padrão Notion/Linear): destaca contra
+       qualquer fundo e não compete com a paleta clara do resto da UI. */
     .tooltip {
         @apply relative;
     }
@@ -34,7 +71,7 @@
     .tooltip::after {
         content: attr(data-tooltip);
         @apply pointer-events-none absolute left-full top-1/2 z-[70] ml-2 -translate-y-1/2 whitespace-nowrap
-               rounded-md bg-zinc-800 px-2 py-1 text-xs font-medium text-white opacity-0 shadow-card
+               rounded-md bg-zinc-900 px-2 py-1 text-xs font-medium text-white opacity-0 shadow-card
                transition ease-apple;
     }
 
@@ -48,18 +85,18 @@
        padrão do SO por cima de qualquer classe Tailwind aplicada. */
     .checkbox {
         @apply relative w-4 h-4 shrink-0 appearance-none cursor-pointer rounded
-               border border-zinc-700 bg-zinc-900 transition-colors ease-apple duration-150
-               hover:border-zinc-500
-               checked:bg-white checked:border-white
-               focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60
-               focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950
+               border border-zinc-300 bg-white transition-colors ease-apple duration-150
+               hover:border-zinc-400
+               checked:bg-zinc-900 checked:border-zinc-900
+               focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50
+               focus-visible:ring-offset-2 focus-visible:ring-offset-white
                disabled:opacity-40 disabled:cursor-not-allowed;
     }
 
     .checkbox::after {
         content: '';
         @apply absolute inset-0 opacity-0 transition-opacity ease-apple duration-150;
-        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%2309090b' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 8.2l2.8 2.8L12 5.6'/%3E%3C/svg%3E");
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23ffffff' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 8.2l2.8 2.8L12 5.6'/%3E%3C/svg%3E");
         background-repeat: no-repeat;
         background-position: center;
         background-size: 10px 10px;

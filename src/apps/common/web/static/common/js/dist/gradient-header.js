@@ -1,0 +1,1 @@
+"use strict";(()=>{document.addEventListener("scroll",function(){let e=document.getElementById("main-header");e&&(window.scrollY>10?(e.classList.add("bg-white","backdrop-blur-md","border-b"),e.classList.remove("bg-transparent")):(e.classList.remove("bg-white","backdrop-blur-md","border-b"),e.classList.add("bg-transparent")))});})();

@@ -8,7 +8,7 @@
 
   <!-- Header -->
   <div class="flex flex-col gap-1">
-    <h1 class="text-2xl font-bold text-white">{% trans "Settings" %}</h1>
+    <h1 class="text-2xl font-bold text-zinc-900">{% trans "Settings" %}</h1>
     <p class="text-sm text-zinc-500 mt-0.5">{% trans "Manage your language, help resources, and account preferences" %}</p>
   </div>
 
@@ -16,9 +16,9 @@
   <div class="flex flex-col gap-2">
     {% for message in messages %}
     <div class="px-4 py-3 rounded-lg text-sm flex items-center gap-3
-      {% if message.tags == 'success' %}bg-green-950 border border-green-800 text-green-400
-      {% elif message.tags == 'error' %}bg-red-950 border border-red-800 text-red-400
-      {% else %}bg-zinc-800 border border-zinc-700 text-zinc-200{% endif %}">
+      {% if message.tags == 'success' %}bg-green-50 border border-green-200 text-green-600
+      {% elif message.tags == 'error' %}bg-red-50 border border-red-200 text-red-600
+      {% else %}bg-zinc-100 border border-zinc-300 text-zinc-800{% endif %}">
       <span class="material-symbols-outlined text-lg leading-none">
         {% if message.tags == 'success' %}check_circle{% elif message.tags == 'error' %}error{% else %}info{% endif %}
       </span>
@@ -29,11 +29,11 @@
   {% endif %}
 
   <!-- Language -->
-  <div class="bg-zinc-900 border border-zinc-800 rounded-md p-5 flex justify-between gap-4 shadow-card">
+  <div class="bg-white border border-zinc-200 rounded-md p-5 flex justify-between gap-4 shadow-card">
     <div class='flex flex-col gap-4'>
       <div class="flex items-center gap-2">
-        <span class="material-symbols-outlined text-zinc-400 text-xl leading-none">language</span>
-        <h2 class="text-sm font-semibold text-white">{% trans "Language" %}</h2>
+        <span class="material-symbols-outlined text-zinc-500 text-xl leading-none">language</span>
+        <h2 class="text-sm font-semibold text-zinc-900">{% trans "Language" %}</h2>
       </div>
       <p class="text-xs text-zinc-500 leading-relaxed">
         {% trans "Choose the language used across the app." %}
@@ -47,41 +47,41 @@
 
       <button type="submit" name="language" value="pt-br"
               class="flex items-center gap-3 p-3 rounded-lg border transition text-left
-                     {% if LANGUAGE_CODE == 'pt-br' %}border-white bg-white/5{% else %}border-zinc-800 hover:border-zinc-700 hover:bg-zinc-800/50{% endif %}">
-        <span class="material-symbols-outlined text-zinc-400 text-xl leading-none shrink-0">translate</span>
+                     {% if LANGUAGE_CODE == 'pt-br' %}border-accent bg-accent-subtle{% else %}border-zinc-200 hover:border-zinc-300 hover:bg-zinc-50{% endif %}">
+        <span class="material-symbols-outlined text-zinc-500 text-xl leading-none shrink-0">translate</span>
         <span class="flex-1">
-          <span class="block text-sm font-medium text-white">Português</span>
+          <span class="block text-sm font-medium text-zinc-900">Português</span>
           <span class="block text-xs text-zinc-500">Português (Brasil)</span>
         </span>
         {% if LANGUAGE_CODE == 'pt-br' %}
-        <span class="material-symbols-outlined text-white text-lg leading-none shrink-0">check_circle</span>
+        <span class="material-symbols-outlined text-accent text-lg leading-none shrink-0">check_circle</span>
         {% endif %}
       </button>
 
       <button type="submit" name="language" value="en"
               class="flex items-center gap-3 p-3 rounded-lg border transition text-left
-                     {% if LANGUAGE_CODE == 'en' %}border-white bg-white/5{% else %}border-zinc-800 hover:border-zinc-700 hover:bg-zinc-800/50{% endif %}">
-        <span class="material-symbols-outlined text-zinc-400 text-xl leading-none shrink-0">translate</span>
+                     {% if LANGUAGE_CODE == 'en' %}border-accent bg-accent-subtle{% else %}border-zinc-200 hover:border-zinc-300 hover:bg-zinc-50{% endif %}">
+        <span class="material-symbols-outlined text-zinc-500 text-xl leading-none shrink-0">translate</span>
         <span class="flex-1">
-          <span class="block text-sm font-medium text-white">English</span>
+          <span class="block text-sm font-medium text-zinc-900">English</span>
           <span class="block text-xs text-zinc-500">English (US)</span>
         </span>
         {% if LANGUAGE_CODE == 'en' %}
-        <span class="material-symbols-outlined text-white text-lg leading-none shrink-0">check_circle</span>
+        <span class="material-symbols-outlined text-accent text-lg leading-none shrink-0">check_circle</span>
         {% endif %}
       </button>
     </form>
   </div>
 
   <!-- Two-factor authentication -->
-  <div class="bg-zinc-900 border border-zinc-800 rounded-md p-5 flex flex-col gap-4 shadow-card">
+  <div class="bg-white border border-zinc-200 rounded-md p-5 flex flex-col gap-4 shadow-card">
     <div class="flex items-center justify-between gap-4">
       <div class="flex items-center gap-2">
-        <span class="material-symbols-outlined text-zinc-400 text-xl leading-none">shield_lock</span>
-        <h2 class="text-sm font-semibold text-white">{% trans "Two-factor authentication" %}</h2>
+        <span class="material-symbols-outlined text-zinc-500 text-xl leading-none">shield_lock</span>
+        <h2 class="text-sm font-semibold text-zinc-900">{% trans "Two-factor authentication" %}</h2>
       </div>
       {% if has_two_factor %}
-      <span class="flex items-center gap-1.5 text-xs font-medium text-green-400">
+      <span class="flex items-center gap-1.5 text-xs font-medium text-green-600">
         <span class="material-symbols-outlined text-sm leading-none">check_circle</span>
         {% trans "Enabled" %}
       </span>
@@ -93,23 +93,23 @@
 
     {% if has_two_factor %}
     <button type="button" data-open-modal="disable-2fa-modal"
-            class="btn w-full justify-center bg-red-950 text-red-400 hover:bg-red-900 border border-red-900 transition">
+            class="btn btn-danger w-full justify-center">
       <span class="material-symbols-outlined text-base leading-none">lock_open</span>
       {% trans "Disable two-factor authentication" %}
     </button>
     {% elif two_factor_email_available %}
     <a href="{% url 'twofactor:setup' %}"
-       class="btn w-full justify-center bg-zinc-800 text-zinc-200 hover:bg-zinc-700 transition">
+       class="btn btn-ghost w-full justify-center">
       <span class="material-symbols-outlined text-base leading-none">mail</span>
       {% trans "Set up two-factor authentication" %}
     </a>
     {% else %}
-    <div class="flex items-start gap-3 px-3 py-3 bg-zinc-950/40 border border-zinc-800 rounded-lg text-xs text-zinc-500">
+    <div class="flex items-start gap-3 px-3 py-3 bg-zinc-50 border border-zinc-200 rounded-lg text-xs text-zinc-500">
       <span class="material-symbols-outlined text-base leading-none shrink-0">info</span>
       <span>
         {% if user.is_staff %}
           {% blocktrans %}Unavailable until an SMTP server is configured, since codes are delivered by email.{% endblocktrans %}
-          <a href="#email-settings-form" class="text-zinc-300 hover:text-white underline">
+          <a href="#email-settings-form" class="text-zinc-700 hover:text-zinc-900 underline">
             {% trans "Configure email settings" %}
           </a>
         {% else %}
@@ -121,18 +121,18 @@
   </div>
 
   <!-- Help & Support -->
-  <div class="bg-zinc-900 border border-zinc-800 rounded-md p-5 flex flex-col gap-4 shadow-card">
+  <div class="bg-white border border-zinc-200 rounded-md p-5 flex flex-col gap-4 shadow-card">
     <div class="flex items-center gap-2">
-      <span class="material-symbols-outlined text-zinc-400 text-xl leading-none">help</span>
-      <h2 class="text-sm font-semibold text-white">{% trans "Help & Support" %}</h2>
+      <span class="material-symbols-outlined text-zinc-500 text-xl leading-none">help</span>
+      <h2 class="text-sm font-semibold text-zinc-900">{% trans "Help & Support" %}</h2>
     </div>
     <p class="text-xs text-zinc-500 leading-relaxed">
       {% trans "Find answers to common questions or get in touch with us." %}
     </p>
 
-    <div class="flex flex-col divide-y divide-zinc-800 border border-zinc-800 rounded-lg overflow-hidden">
+    <div class="flex flex-col divide-y divide-zinc-200 border border-zinc-200 rounded-lg overflow-hidden">
       <a href="mailto:contact@monium.app"
-         class="flex items-center justify-between gap-3 px-4 py-3 text-sm text-zinc-200 hover:bg-zinc-800/50 transition">
+         class="flex items-center justify-between gap-3 px-4 py-3 text-sm text-zinc-800 hover:bg-zinc-50 transition">
         <span class="flex items-center gap-3">
           <span class="material-symbols-outlined text-zinc-500 text-lg leading-none">mail</span>
           {% trans "Contact support" %}
@@ -144,16 +144,16 @@
 
   {% if email_form %}
   <!-- Email settings (system, staff only) -->
-  <div class="bg-zinc-900 border border-zinc-800 rounded-md p-5 flex flex-col gap-4 shadow-card">
+  <div class="bg-white border border-zinc-200 rounded-md p-5 flex flex-col gap-4 shadow-card">
     <div class="flex items-center gap-2">
-      <span class="material-symbols-outlined text-zinc-400 text-xl leading-none">mail</span>
-      <h2 class="text-sm font-semibold text-white">{% trans "Email settings" %}</h2>
+      <span class="material-symbols-outlined text-zinc-500 text-xl leading-none">mail</span>
+      <h2 class="text-sm font-semibold text-zinc-900">{% trans "Email settings" %}</h2>
     </div>
     <p class="text-xs text-zinc-500 leading-relaxed">
       {% trans "Configure the SMTP server used to send transactional emails." %}
     </p>
 
-    <div class="px-4 py-3 rounded-lg text-sm flex items-start gap-3 bg-zinc-950/40 border border-zinc-800 text-zinc-400">
+    <div class="px-4 py-3 rounded-lg text-sm flex items-start gap-3 bg-zinc-50 border border-zinc-200 text-zinc-500">
       <span class="material-symbols-outlined text-lg leading-none shrink-0">info</span>
       <span>
         {% trans "There is no environment variable fallback anymore. While disabled or incomplete, outgoing emails will fail until you enable a server here." %}
@@ -166,7 +166,7 @@
       {% if email_form.non_field_errors %}
       <div class="flex flex-col gap-2">
         {% for error in email_form.non_field_errors %}
-        <div class="flex items-center gap-2 px-3 py-2 rounded bg-red-950 border border-red-800 text-red-400 text-sm">
+        <div class="flex items-center gap-2 px-3 py-2 rounded bg-red-50 border border-red-200 text-red-600 text-sm">
           <span class="material-symbols-outlined text-base leading-none">error</span>
           {{ error }}
         </div>
@@ -175,61 +175,61 @@
       {% endif %}
 
       <label class="flex items-center gap-3 cursor-pointer">
-        {{ email_form.is_enabled }}–
-        <span class="text-sm text-zinc-200">{{ email_form.is_enabled.label }}</span>
+        {{ email_form.is_enabled }}
+        <span class="text-sm text-zinc-800">{{ email_form.is_enabled.label }}</span>
       </label>
-      {% if email_form.is_enabled.errors %}<p class="text-red-400 text-xs">{{ email_form.is_enabled.errors }}</p>{% endif %}
+      {% if email_form.is_enabled.errors %}<p class="text-red-600 text-xs">{{ email_form.is_enabled.errors }}</p>{% endif %}
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-5">
         <div class="md:col-span-2 flex flex-col gap-1.5">
-          <label for="{{ email_form.host.id_for_label }}" class="text-xs font-medium text-zinc-400">{{ email_form.host.label }}</label>
+          <label for="{{ email_form.host.id_for_label }}" class="text-xs font-medium text-zinc-500">{{ email_form.host.label }}</label>
           {{ email_form.host }}
-          {% if email_form.host.errors %}<p class="text-red-400 text-xs mt-1">{{ email_form.host.errors }}</p>{% endif %}
+          {% if email_form.host.errors %}<p class="text-red-600 text-xs mt-1">{{ email_form.host.errors }}</p>{% endif %}
         </div>
 
         <div class="flex flex-col gap-1.5">
-          <label for="{{ email_form.port.id_for_label }}" class="text-xs font-medium text-zinc-400">{{ email_form.port.label }}</label>
+          <label for="{{ email_form.port.id_for_label }}" class="text-xs font-medium text-zinc-500">{{ email_form.port.label }}</label>
           {{ email_form.port }}
-          {% if email_form.port.errors %}<p class="text-red-400 text-xs mt-1">{{ email_form.port.errors }}</p>{% endif %}
+          {% if email_form.port.errors %}<p class="text-red-600 text-xs mt-1">{{ email_form.port.errors }}</p>{% endif %}
         </div>
 
         <div class="flex items-end gap-6 pb-2">
           <label class="flex items-center gap-2 cursor-pointer">
             {{ email_form.use_tls }}
-            <span class="text-sm text-zinc-200">{{ email_form.use_tls.label }}</span>
+            <span class="text-sm text-zinc-800">{{ email_form.use_tls.label }}</span>
           </label>
           <label class="flex items-center gap-2 cursor-pointer">
             {{ email_form.use_ssl }}
-            <span class="text-sm text-zinc-200">{{ email_form.use_ssl.label }}</span>
+            <span class="text-sm text-zinc-800">{{ email_form.use_ssl.label }}</span>
           </label>
         </div>
         {% if email_form.use_tls.errors or email_form.use_ssl.errors %}
-        <p class="text-red-400 text-xs md:col-span-2 -mt-3">{{ email_form.use_tls.errors }}{{ email_form.use_ssl.errors }}</p>
+        <p class="text-red-600 text-xs md:col-span-2 -mt-3">{{ email_form.use_tls.errors }}{{ email_form.use_ssl.errors }}</p>
         {% endif %}
 
         <div class="flex flex-col gap-1.5">
-          <label for="{{ email_form.host_user.id_for_label }}" class="text-xs font-medium text-zinc-400">{{ email_form.host_user.label }}</label>
+          <label for="{{ email_form.host_user.id_for_label }}" class="text-xs font-medium text-zinc-500">{{ email_form.host_user.label }}</label>
           {{ email_form.host_user }}
-          {% if email_form.host_user.errors %}<p class="text-red-400 text-xs mt-1">{{ email_form.host_user.errors }}</p>{% endif %}
+          {% if email_form.host_user.errors %}<p class="text-red-600 text-xs mt-1">{{ email_form.host_user.errors }}</p>{% endif %}
         </div>
 
         <div class="flex flex-col gap-1.5">
-          <label for="{{ email_form.host_password.id_for_label }}" class="text-xs font-medium text-zinc-400">{{ email_form.host_password.label }}</label>
+          <label for="{{ email_form.host_password.id_for_label }}" class="text-xs font-medium text-zinc-500">{{ email_form.host_password.label }}</label>
           {{ email_form.host_password }}
           <p class="text-xs text-zinc-600">{{ email_form.host_password.help_text }}</p>
-          {% if email_form.host_password.errors %}<p class="text-red-400 text-xs mt-1">{{ email_form.host_password.errors }}</p>{% endif %}
+          {% if email_form.host_password.errors %}<p class="text-red-600 text-xs mt-1">{{ email_form.host_password.errors }}</p>{% endif %}
         </div>
 
         <div class="md:col-span-2 flex flex-col gap-1.5">
-          <label for="{{ email_form.default_from_email.id_for_label }}" class="text-xs font-medium text-zinc-400">{{ email_form.default_from_email.label }}</label>
+          <label for="{{ email_form.default_from_email.id_for_label }}" class="text-xs font-medium text-zinc-500">{{ email_form.default_from_email.label }}</label>
           {{ email_form.default_from_email }}
-          {% if email_form.default_from_email.errors %}<p class="text-red-400 text-xs mt-1">{{ email_form.default_from_email.errors }}</p>{% endif %}
+          {% if email_form.default_from_email.errors %}<p class="text-red-600 text-xs mt-1">{{ email_form.default_from_email.errors }}</p>{% endif %}
         </div>
       </div>
 
-      <div class="flex items-center justify-end gap-3 pt-4 border-t border-zinc-800">
+      <div class="flex items-center justify-end gap-3 pt-4 border-t border-zinc-200">
         <button type="submit" id="save-email-settings-btn"
-                class="btn justify-center bg-white text-zinc-950 hover:bg-zinc-100 transition">
+                class="btn btn-primary justify-center">
           <span class="material-symbols-outlined text-base leading-none">save</span>
           {% trans "Save changes" %}
         </button>
@@ -243,23 +243,23 @@
 {% if has_two_factor %}
 <div id="disable-2fa-modal"
      class="fixed inset-0 z-50 hidden items-center justify-center bg-black/70 backdrop-blur-sm p-4">
-  <div class="bg-zinc-900 border border-zinc-800 rounded-md shadow-2xl max-w-md w-full p-6 flex flex-col gap-5">
+  <div class="bg-white border border-zinc-200 rounded-md shadow-2xl max-w-md w-full p-6 flex flex-col gap-5">
     <div class="flex items-center gap-2">
-      <span class="material-symbols-outlined text-red-500 text-xl leading-none">lock_open</span>
-      <h2 class="text-base font-semibold text-red-400">{% trans "Disable two-factor authentication" %}</h2>
+      <span class="material-symbols-outlined text-red-600 text-xl leading-none">lock_open</span>
+      <h2 class="text-base font-semibold text-red-600">{% trans "Disable two-factor authentication" %}</h2>
     </div>
-    <p class="text-sm text-zinc-400 leading-relaxed">
+    <p class="text-sm text-zinc-500 leading-relaxed">
       {% trans "Your account will only require your password to sign in again." %}
     </p>
     <form method="post" action="{% url 'twofactor:disable' %}">
       {% csrf_token %}
-      <div class="flex justify-end gap-3 pt-2 border-t border-zinc-800">
+      <div class="flex justify-end gap-3 pt-2 border-t border-zinc-200">
         <button type="button" data-close-modal
-                class="px-4 py-2 rounded text-sm text-zinc-400 bg-zinc-800 hover:bg-zinc-700 transition">
+                class="px-4 py-2 rounded text-sm text-zinc-500 bg-zinc-100 hover:bg-zinc-200 transition">
           {% trans "Cancel" %}
         </button>
         <button type="submit"
-                class="px-4 py-2 rounded text-sm font-medium bg-red-700 text-white hover:bg-red-800 transition">
+                class="px-4 py-2 rounded text-sm font-medium bg-red-700 text-white hover:bg-red-100 transition">
           {% trans "Disable" %}
         </button>
       </div>

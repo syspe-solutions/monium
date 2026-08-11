@@ -11,10 +11,10 @@
     <div class="flex items-center justify-between flex-wrap gap-3">
         <div>
             <div class="flex items-center gap-2">
-                <a href="{% url 'inventory:patrimonio_list' %}" class="text-zinc-500 hover:text-zinc-300 transition" title="{% trans 'Back to Assets' %}">
+                <a href="{% url 'inventory:patrimonio_list' %}" class="text-zinc-500 hover:text-zinc-700 transition" title="{% trans 'Back to Assets' %}">
                     <span class="material-symbols-outlined text-lg leading-none">arrow_back</span>
                 </a>
-                <h1 class="text-2xl font-bold text-white">{% trans "All Items" %}</h1>
+                <h1 class="text-2xl font-bold text-zinc-900">{% trans "All Items" %}</h1>
             </div>
             <p class="text-sm text-zinc-500 mt-0.5">
                 {% blocktrans count count=total_count %}{{ count }} item{% plural %}{{ count }} items{% endblocktrans %}
@@ -23,17 +23,17 @@
         </div>
         <div class="flex items-center gap-2">
             <a href="{% url 'inventory:item_import' %}"
-               class="flex items-center gap-2 border border-zinc-700 text-zinc-200 text-sm font-medium px-4 py-2.5 rounded hover:bg-zinc-800 transition">
+               class="flex items-center gap-2 border border-zinc-300 text-zinc-800 text-sm font-medium px-4 py-2.5 rounded hover:bg-zinc-100 transition">
                 <span class="material-symbols-outlined text-base leading-none">upload</span>
                 {% trans "Import CSV" %}
             </a>
             <a href="{% url 'inventory:item_export' %}?{{ filter_querystring }}"
-               class="flex items-center gap-2 border border-zinc-700 text-zinc-200 text-sm font-medium px-4 py-2.5 rounded hover:bg-zinc-800 transition">
+               class="flex items-center gap-2 border border-zinc-300 text-zinc-800 text-sm font-medium px-4 py-2.5 rounded hover:bg-zinc-100 transition">
                 <span class="material-symbols-outlined text-base leading-none">download</span>
                 {% trans "Export CSV" %}
             </a>
             <a href="{% url 'inventory:item_create' %}"
-               class="flex items-center gap-2 bg-white text-zinc-950 text-sm font-medium px-4 py-2.5 rounded hover:bg-zinc-100 transition">
+               class="flex items-center gap-2 bg-zinc-900 text-white text-sm font-medium px-4 py-2.5 rounded hover:bg-zinc-800 transition">
                 <span class="material-symbols-outlined text-base leading-none">add</span>
                 {% trans "New Item" %}
             </a>
@@ -41,8 +41,8 @@
     </div>
 
     <!-- Filters -->
-    <details id="filters-disclosure" class="border border-zinc-800 rounded-md bg-zinc-900 shadow-card" {% if filter_querystring %}open{% endif %}>
-        <summary class="flex items-center gap-2 px-4 py-3 cursor-pointer select-none text-sm font-medium text-zinc-200 hover:text-white">
+    <details id="filters-disclosure" class="border border-zinc-200 rounded-md bg-white shadow-card" {% if filter_querystring %}open{% endif %}>
+        <summary class="flex items-center gap-2 px-4 py-3 cursor-pointer select-none text-sm font-medium text-zinc-800 hover:text-zinc-900">
             <span class="material-symbols-outlined text-base leading-none">filter_alt</span>
             {% trans "Filters" %}
             {% if filter_querystring %}
@@ -61,51 +61,51 @@
                 {% endif %}
                 {% endfor %}
                 <button type="submit"
-                        class="inline-flex items-center gap-1.5 pl-2.5 pr-2 py-1 rounded-full bg-zinc-800 border border-zinc-700 text-xs text-zinc-200 hover:bg-zinc-700 hover:border-zinc-600 transition">
+                        class="inline-flex items-center gap-1.5 pl-2.5 pr-2 py-1 rounded-full bg-zinc-100 border border-zinc-300 text-xs text-zinc-800 hover:bg-zinc-200 hover:border-zinc-400 transition">
                     {{ field.label }}: {{ field|bound_field_display }}
                     <span class="material-symbols-outlined text-sm leading-none">close</span>
                 </button>
             </form>
             {% endif %}
             {% endfor %}
-            <a href="{% url 'inventory:item_list' %}" class="text-xs text-zinc-500 hover:text-zinc-300 transition ml-1">
+            <a href="{% url 'inventory:item_list' %}" class="text-xs text-zinc-500 hover:text-zinc-700 transition ml-1">
                 {% trans "Clear all" %}
             </a>
         </div>
         {% endif %}
 
-        <form method="get" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 items-end px-4 pb-4 border-t border-zinc-800 pt-4">
+        <form method="get" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 items-end px-4 pb-4 border-t border-zinc-200 pt-4">
             <div class="lg:col-span-2 flex flex-col gap-1.5">
-                <label class="text-xs font-medium text-zinc-400">{{ form.q.label }}</label>
+                <label class="text-xs font-medium text-zinc-500">{{ form.q.label }}</label>
                 {{ form.q }}
             </div>
             <div class="flex flex-col gap-1.5">
-                <label class="text-xs font-medium text-zinc-400">{{ form.status.label }}</label>
+                <label class="text-xs font-medium text-zinc-500">{{ form.status.label }}</label>
                 {{ form.status }}
             </div>
             <div class="flex flex-col gap-1.5">
-                <label class="text-xs font-medium text-zinc-400">{{ form.condition.label }}</label>
+                <label class="text-xs font-medium text-zinc-500">{{ form.condition.label }}</label>
                 {{ form.condition }}
             </div>
             <div class="flex flex-col gap-1.5">
-                <label class="text-xs font-medium text-zinc-400">{{ form.category.label }}</label>
+                <label class="text-xs font-medium text-zinc-500">{{ form.category.label }}</label>
                 {{ form.category }}
             </div>
             <div class="flex flex-col gap-1.5">
-                <label class="text-xs font-medium text-zinc-400">{{ form.sector.label }}</label>
+                <label class="text-xs font-medium text-zinc-500">{{ form.sector.label }}</label>
                 {{ form.sector }}
             </div>
             <div class="flex flex-col gap-1.5">
-                <label class="text-xs font-medium text-zinc-400">{{ form.brand.label }}</label>
+                <label class="text-xs font-medium text-zinc-500">{{ form.brand.label }}</label>
                 {{ form.brand }}
             </div>
             <div class="flex items-center gap-3 lg:col-span-4">
                 <button type="submit"
-                        class="flex items-center gap-2 bg-white text-zinc-950 text-sm font-medium px-4 py-2 rounded hover:bg-zinc-100 transition">
+                        class="flex items-center gap-2 bg-zinc-900 text-white text-sm font-medium px-4 py-2 rounded hover:bg-zinc-800 transition">
                     <span class="material-symbols-outlined text-base leading-none">filter_alt</span>
                     {% trans "Filter" %}
                 </button>
-                <a href="{% url 'inventory:item_list' %}" class="text-sm text-zinc-500 hover:text-zinc-300 transition">
+                <a href="{% url 'inventory:item_list' %}" class="text-sm text-zinc-500 hover:text-zinc-700 transition">
                     {% trans "Clear filters" %}
                 </a>
             </div>
@@ -113,12 +113,12 @@
     </details>
 
     <!-- Items table -->
-    <div class="border border-zinc-800 rounded-md bg-zinc-900 overflow-hidden shadow-card">
+    <div class="border border-zinc-200 rounded-md bg-white overflow-hidden shadow-card">
         {% if items %}
         <div class="overflow-x-auto">
             <table class="w-full text-sm">
                 <thead>
-                    <tr class="text-left text-xs text-zinc-500 font-semibold uppercase tracking-wide bg-zinc-800 border-b border-zinc-700">
+                    <tr class="text-left text-xs text-zinc-500 font-semibold uppercase tracking-wide bg-zinc-100 border-b border-zinc-300">
                         <th class="px-5 py-3">{% trans "Code" %}</th>
                         <th class="px-5 py-3">{% trans "Name" %}</th>
                         <th class="px-5 py-3 hidden sm:table-cell">{% trans "Category" %}</th>
@@ -128,20 +128,20 @@
                         <th class="px-5 py-3 hidden lg:table-cell">{% trans "Condition" %}</th>
                     </tr>
                 </thead>
-                <tbody class="divide-y divide-zinc-800">
+                <tbody class="divide-y divide-zinc-200">
                     {% for item in items %}
-                    <tr class="hover:bg-zinc-800/50 transition">
+                    <tr class="hover:bg-zinc-50 transition">
                         <td class="px-5 py-3 font-mono text-xs text-zinc-500">{{ item.code }}</td>
                         <td class="px-5 py-3 font-medium">
                             {% include "inventory/includes/item_name_cell.html" %}
                         </td>
-                        <td class="px-5 py-3 text-zinc-400 hidden sm:table-cell">{{ item.category.name }}</td>
-                        <td class="px-5 py-3 text-zinc-400 hidden md:table-cell">{{ item.sector.name }}</td>
-                        <td class="px-5 py-3 text-zinc-400 hidden lg:table-cell">{{ item.responsible|default:"—" }}</td>
+                        <td class="px-5 py-3 text-zinc-500 hidden sm:table-cell">{{ item.category.name }}</td>
+                        <td class="px-5 py-3 text-zinc-500 hidden md:table-cell">{{ item.sector.name }}</td>
+                        <td class="px-5 py-3 text-zinc-500 hidden lg:table-cell">{{ item.responsible|default:"—" }}</td>
                         <td class="px-5 py-3">
                             {% include "inventory/includes/item_status_badge.html" %}
                         </td>
-                        <td class="px-5 py-3 text-zinc-400 hidden lg:table-cell">{{ item.get_condition_display }}</td>
+                        <td class="px-5 py-3 text-zinc-500 hidden lg:table-cell">{{ item.get_condition_display }}</td>
                     </tr>
                     {% endfor %}
                 </tbody>
@@ -149,18 +149,18 @@
         </div>
 
         {% if page_obj.has_other_pages %}
-        <div class="flex items-center justify-between px-5 py-3 border-t border-zinc-800 text-sm">
+        <div class="flex items-center justify-between px-5 py-3 border-t border-zinc-200 text-sm">
             <span class="text-zinc-500 text-xs">
                 {% blocktrans with start=page_obj.start_index end=page_obj.end_index total=page_obj.paginator.count %}Showing {{ start }}–{{ end }} of {{ total }}{% endblocktrans %}
             </span>
             <div class="flex items-center gap-2">
                 {% if page_obj.has_previous %}
                 <a href="?{% if filter_querystring %}{{ filter_querystring }}&{% endif %}page={{ page_obj.previous_page_number }}"
-                   class="px-3 py-1.5 border border-zinc-700 rounded text-zinc-300 hover:bg-zinc-800 transition">{% trans "Previous" %}</a>
+                   class="px-3 py-1.5 border border-zinc-300 rounded text-zinc-700 hover:bg-zinc-100 transition">{% trans "Previous" %}</a>
                 {% endif %}
                 {% if page_obj.has_next %}
                 <a href="?{% if filter_querystring %}{{ filter_querystring }}&{% endif %}page={{ page_obj.next_page_number }}"
-                   class="px-3 py-1.5 border border-zinc-700 rounded text-zinc-300 hover:bg-zinc-800 transition">{% trans "Next" %}</a>
+                   class="px-3 py-1.5 border border-zinc-300 rounded text-zinc-700 hover:bg-zinc-100 transition">{% trans "Next" %}</a>
                 {% endif %}
             </div>
         </div>

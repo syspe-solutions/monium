@@ -11,7 +11,7 @@
   <div class="w-full lg:w-1/2 flex flex-col justify-between gap-10 p-6 sm:p-10 lg:p-12
               bg-gradient-to-br from-zinc-900 to-zinc-950 border-b lg:border-b-0 lg:border-r border-zinc-800">
     <a href="{% url 'inventory:home' %}" class="w-fit">
-      {% include "common/includes/logo.html" %}
+      {% include "common/includes/logo.html" with variant="dark" %}
     </a>
 
     <div class="max-w-md">
@@ -45,12 +45,12 @@
       <div class="w-full max-w-md">
 
         <div class="flex items-center gap-2 mb-2">
-          <div class="flex-1 h-1 rounded-full {% if current_step >= 1 %}bg-white{% else %}bg-zinc-800{% endif %} transition-colors"></div>
-          <div class="flex-1 h-1 rounded-full {% if current_step >= 2 %}bg-white{% else %}bg-zinc-800{% endif %} transition-colors"></div>
+          <div class="flex-1 h-1 rounded-full {% if current_step >= 1 %}bg-zinc-900{% else %}bg-zinc-200{% endif %} transition-colors"></div>
+          <div class="flex-1 h-1 rounded-full {% if current_step >= 2 %}bg-zinc-900{% else %}bg-zinc-200{% endif %} transition-colors"></div>
         </div>
         <p class="text-xs text-zinc-500 mb-8">
           {% blocktrans %}Step {{ current_step }} of 2{% endblocktrans %}
-          <span class="text-zinc-700">·</span>
+          <span class="text-zinc-300">·</span>
           {% block step_label %}{% endblock %}
         </p>
 
@@ -59,7 +59,7 @@
       </div>
     </div>
 
-    <p class="text-center text-xs text-zinc-600">
+    <p class="text-center text-xs text-zinc-400">
       Monium — {% trans "open source, self-hosted inventory management" %}
     </p>
   </div>

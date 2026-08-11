@@ -8,25 +8,25 @@
 
     <div class="flex items-center justify-between gap-4">
         <div>
-            <h1 class="text-2xl font-bold text-white">{% trans "Members" %}</h1>
+            <h1 class="text-2xl font-bold text-zinc-900">{% trans "Members" %}</h1>
             <p class="text-sm text-zinc-500 mt-0.5">{{ current_organization.name }}</p>
         </div>
         <a href="{% url 'organizations:member_create' %}"
-           class="bg-white text-zinc-950 text-sm font-medium px-4 py-2.5 rounded hover:bg-zinc-100 transition shrink-0">
+           class="bg-zinc-900 text-white text-sm font-medium px-4 py-2.5 rounded hover:bg-zinc-800 transition shrink-0">
             {% trans "Add member" %}
         </a>
     </div>
 
     <!-- Membros -->
-    <div class="border border-zinc-800 rounded-md bg-zinc-900 overflow-hidden shadow-card">
-        <div class="px-5 py-4 border-b border-zinc-800">
-            <h2 class="text-sm font-semibold text-white">{% trans "Current members" %}</h2>
+    <div class="border border-zinc-200 rounded-md bg-white overflow-hidden shadow-card">
+        <div class="px-5 py-4 border-b border-zinc-200">
+            <h2 class="text-sm font-semibold text-zinc-900">{% trans "Current members" %}</h2>
         </div>
         <table class="w-full text-sm">
-            <tbody class="divide-y divide-zinc-800">
+            <tbody class="divide-y divide-zinc-200">
                 {% for membership in members %}
-                <tr class="hover:bg-zinc-800/50 transition">
-                    <td class="px-5 py-3 text-zinc-100">
+                <tr class="hover:bg-zinc-50 transition">
+                    <td class="px-5 py-3 text-zinc-900">
                         {{ membership.user.email }}
                         {% if membership.user_id == request.user.id %}
                         <span class="text-zinc-600 text-xs ml-1">({% trans "you" %})</span>
@@ -39,7 +39,7 @@
                         <form method="post" action="{% url 'organizations:member_role_update' membership.id %}">
                             {% csrf_token %}
                             <select name="role" onchange="this.form.submit()"
-                                    class="p-1.5 border border-zinc-700 rounded text-xs bg-zinc-900 text-white focus:outline-none focus:ring-2 focus:ring-white/60">
+                                    class="p-1.5 border border-zinc-300 rounded text-xs bg-white text-zinc-900 focus:outline-none focus:ring-2 focus:ring-accent/50">
                                 {% for role in assignable_roles %}
                                 <option value="{{ role.value }}" {% if role.value == membership.role %}selected{% endif %}>{{ role.label }}</option>
                                 {% endfor %}
@@ -51,7 +51,7 @@
                         {% if membership.role != "owner" and membership.user_id != request.user.id %}
                         <form method="post" action="{% url 'organizations:member_remove' membership.id %}">
                             {% csrf_token %}
-                            <button type="submit" class="text-red-400 hover:underline text-xs">{% trans "Remove" %}</button>
+                            <button type="submit" class="text-red-600 hover:underline text-xs">{% trans "Remove" %}</button>
                         </form>
                         {% endif %}
                     </td>

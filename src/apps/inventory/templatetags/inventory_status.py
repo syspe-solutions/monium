@@ -7,23 +7,23 @@ from apps.inventory.models import LoanStatus, MovelStatus
 register = template.Library()
 
 _STATUS_BADGE_CLASSES = {
-    MovelStatus.IN_USE: "bg-green-950 text-green-400",
-    MovelStatus.STORED: "bg-blue-950 text-blue-400",
-    MovelStatus.MAINTENANCE: "bg-amber-950 text-amber-400",
-    MovelStatus.MISSING: "bg-red-950 text-red-400",
-    MovelStatus.DISCARDED: "bg-zinc-800 text-zinc-400",
+    MovelStatus.IN_USE: "bg-green-50 text-green-600",
+    MovelStatus.STORED: "bg-accent-subtle text-accent",
+    MovelStatus.MAINTENANCE: "bg-amber-50 text-amber-600",
+    MovelStatus.MISSING: "bg-red-50 text-red-600",
+    MovelStatus.DISCARDED: "bg-zinc-100 text-zinc-500",
 }
-_DEFAULT_BADGE_CLASSES = "bg-zinc-800 text-zinc-400"
+_DEFAULT_BADGE_CLASSES = "bg-zinc-100 text-zinc-500"
 
 _LOAN_STATUS_BADGE_CLASSES = {
-    LoanStatus.ACTIVE: "bg-blue-950 text-blue-400",
-    LoanStatus.RETURNED: "bg-zinc-800 text-zinc-400",
-    LoanStatus.OVERDUE: "bg-red-950 text-red-400",
+    LoanStatus.ACTIVE: "bg-accent-subtle text-accent",
+    LoanStatus.RETURNED: "bg-zinc-100 text-zinc-500",
+    LoanStatus.OVERDUE: "bg-red-50 text-red-600",
 }
 
 _TIPO_BADGE_CLASSES = {
-    "movel": "bg-blue-950 text-blue-400",
-    "imovel": "bg-purple-950 text-purple-400",
+    "movel": "bg-accent-subtle text-accent",
+    "imovel": "bg-purple-50 text-purple-600",
 }
 
 

@@ -1,6 +1,6 @@
 {% load i18n %}
-<footer class="w-full mt-12 border-t border-zinc-800 bg-zinc-900">
-    <div class="w-full max-w-6xl mx-auto px-6 py-10 grid grid-cols-1 md:grid-cols-3 gap-8 text-sm text-zinc-400">
+<footer class="w-full mt-12 border-t border-zinc-200 bg-white">
+    <div class="w-full max-w-6xl mx-auto px-6 py-10 grid grid-cols-1 md:grid-cols-3 gap-8 text-sm text-zinc-500">
         <div class="flex flex-col gap-3">
             <a href="{% url 'inventory:home' %}" class="flex items-center gap-2">
                 {% include "common/includes/logo.html" %}
@@ -11,24 +11,24 @@
         </div>
 
         <div>
-            <h3 class="text-zinc-200 font-semibold mb-3">{% trans "Navigation" %}</h3>
+            <h3 class="text-zinc-800 font-semibold mb-3">{% trans "Navigation" %}</h3>
             <ul class="space-y-2">
-                <li><a href="{% url 'pages:home' %}" class="hover:text-white transition">{% trans "Home" %}</a></li>
+                <li><a href="{% url 'pages:home' %}" class="hover:text-zinc-900 transition">{% trans "Home" %}</a></li>
             </ul>
         </div>
 
         <div>
-            <h3 class="text-zinc-200 font-semibold mb-3">{% trans "Contact" %}</h3>
+            <h3 class="text-zinc-800 font-semibold mb-3">{% trans "Contact" %}</h3>
             <ul class="space-y-2">
                 <li class="flex items-center gap-2">
                     <span class="material-symbols-outlined text-zinc-500 text-base">mail</span>
-                    <a href="mailto:contato@monium.com.br" class="hover:text-white transition">
+                    <a href="mailto:contato@monium.com.br" class="hover:text-zinc-900 transition">
                         contato@monium.com.br
                     </a>
                 </li>
                 <li class="flex items-center gap-2">
                     <span class="material-symbols-outlined text-zinc-500 text-base">public</span>
-                    <a href="https://monium.com.br" target="_blank" class="hover:text-white transition">
+                    <a href="https://monium.com.br" target="_blank" class="hover:text-zinc-900 transition">
                         www.monium.com.br
                     </a>
                 </li>
@@ -36,7 +36,7 @@
         </div>
     </div>
 
-    <div class="border-t border-zinc-800 p-4 text-center text-xs text-zinc-600">
+    <div class="border-t border-zinc-200 p-4 text-center text-xs text-zinc-600">
         © {% now "Y" %} Monium — {% trans "All rights reserved." %}
     </div>
 </footer>

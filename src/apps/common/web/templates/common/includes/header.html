@@ -1,7 +1,7 @@
 {% load static %}
 {% load i18n %}
 
-<header id="main-header" class="fixed w-full z-50 bg-zinc-950 border-b border-zinc-800 transition-all duration-300">
+<header id="main-header" class="fixed w-full z-50 bg-white border-b border-zinc-200 transition-all duration-300">
   <div class="px-4 py-3 flex items-center justify-between">
     <a href="{% url 'inventory:home' %}">
       {% include "common/includes/logo.html" %}
@@ -12,26 +12,26 @@
       <!-- Language switcher (desktop) -->
       <div class="hidden sm:block relative group">
         <div class="cursor-pointer flex items-center gap-1 px-3 py-1.5
-                    border border-zinc-700 rounded-lg bg-zinc-900 hover:bg-zinc-800
-                    transition select-none text-sm text-zinc-300">
+                    border border-zinc-300 rounded-lg bg-white hover:bg-zinc-100
+                    transition select-none text-sm text-zinc-700">
           <span class="material-symbols-outlined text-zinc-500 text-base leading-none">translate</span>
           <span class="font-medium">{% if request.LANGUAGE_CODE == "pt-br" %}PT{% else %}EN{% endif %}</span>
           <span class="material-symbols-outlined text-zinc-600 text-sm leading-none">expand_more</span>
         </div>
-        <div class="absolute right-0 mt-1 w-36 bg-zinc-900 border border-zinc-700 rounded-lg shadow-lg
+        <div class="absolute right-0 mt-1 w-36 bg-white border border-zinc-300 rounded-lg shadow-lg
                     opacity-0 invisible group-hover:opacity-100 group-hover:visible
                     transition-all duration-150 overflow-hidden">
           <form method="post" action="{% url 'set_language' %}" class="flex flex-col">
             {% csrf_token %}
             <input type="hidden" name="next" value="{{ request.get_full_path }}">
             <button type="submit" name="language" value="pt-br"
-                    class="px-3 py-2 text-sm flex items-center gap-2 hover:bg-zinc-800 text-zinc-300
-                          {% if request.LANGUAGE_CODE == 'pt-br' %}bg-zinc-800 text-white font-semibold{% endif %}">
+                    class="px-3 py-2 text-sm flex items-center gap-2 hover:bg-zinc-100 text-zinc-700
+                          {% if request.LANGUAGE_CODE == 'pt-br' %}bg-zinc-100 text-zinc-900 font-semibold{% endif %}">
               🇧🇷 Português
             </button>
             <button type="submit" name="language" value="en"
-                    class="px-3 py-2 text-sm flex items-center gap-2 hover:bg-zinc-800 text-zinc-300
-                          {% if request.LANGUAGE_CODE == 'en' %}bg-zinc-800 text-white font-semibold{% endif %}">
+                    class="px-3 py-2 text-sm flex items-center gap-2 hover:bg-zinc-100 text-zinc-700
+                          {% if request.LANGUAGE_CODE == 'en' %}bg-zinc-100 text-zinc-900 font-semibold{% endif %}">
               🇺🇸 English
             </button>
           </form>
@@ -40,21 +40,21 @@
 
       {% if not user.is_authenticated %}
         <a href="{% url 'account:login' %}"
-           class="flex items-center gap-2 px-4 py-1.5 text-sm font-medium text-zinc-300
-                  border border-zinc-700 rounded-md hover:bg-zinc-800 transition">
+           class="flex items-center gap-2 px-4 py-1.5 text-sm font-medium text-zinc-700
+                  border border-zinc-300 rounded-md hover:bg-zinc-100 transition">
           <span class="material-symbols-outlined text-base leading-none">login</span>
           <span class="hidden sm:block">{% trans "Login" %}</span>
         </a>
         <a href="{% url 'account:register' %}"
            class="flex items-center gap-2 px-4 py-1.5 text-sm font-medium text-zinc-950
-                  bg-white rounded-md hover:bg-zinc-200 transition">
+                  bg-white rounded-md hover:bg-zinc-800 transition">
           <span class="material-symbols-outlined text-base leading-none">person_add</span>
           <span class="hidden sm:block">{% trans "Create Account" %}</span>
         </a>
       {% else %}
         <!-- User avatar + dropdown (desktop) -->
         <div class="hidden sm:flex relative group">
-          <div class="w-9 h-9 rounded-full bg-zinc-700 text-white flex items-center justify-center
+          <div class="w-9 h-9 rounded-full bg-zinc-200 text-zinc-900 flex items-center justify-center
                       cursor-pointer select-none font-bold overflow-hidden">
             {% if user.profile.avatar %}
               <img src="{% url 'account:avatar_view' user.id %}" alt="{% trans 'Avatar' %}" class="w-full h-full object-cover">
@@ -62,18 +62,18 @@
               {{ user.first_name|default:user.username|first|upper }}
             {% endif %}
           </div>
-          <div class="absolute right-0 top-11 w-48 bg-zinc-900 border border-zinc-700 rounded-lg shadow-lg
+          <div class="absolute right-0 top-11 w-48 bg-white border border-zinc-300 rounded-lg shadow-lg
                       opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-150">
             <a href="{% url 'account:profile_edit' %}"
-               class="flex items-center gap-2 px-4 py-2.5 text-sm text-zinc-300 hover:bg-zinc-800 hover:text-white rounded-t-lg">
+               class="flex items-center gap-2 px-4 py-2.5 text-sm text-zinc-700 hover:bg-zinc-100 hover:text-zinc-900 rounded-t-lg">
               <span class="material-symbols-outlined text-zinc-500 text-base leading-none">person</span>
               {% trans "My Account" %}
             </a>
-            <div class="border-t border-zinc-800"></div>
+            <div class="border-t border-zinc-200"></div>
             <form action="{% url 'account:logout' %}" method="post">
               {% csrf_token %}
               <button type="submit"
-                      class="flex items-center gap-2 w-full text-left px-4 py-2.5 text-sm text-red-400 hover:bg-red-900/20 rounded-b-lg">
+                      class="flex items-center gap-2 w-full text-left px-4 py-2.5 text-sm text-red-600 hover:bg-red-50 rounded-b-lg">
                 <span class="material-symbols-outlined text-base leading-none">logout</span>
                 {% trans "Logout" %}
               </button>
@@ -83,34 +83,34 @@
 
         <!-- Mobile hamburger -->
         <button id="mobile-menu-button"
-                class="sm:hidden flex items-center p-2 border border-zinc-700 rounded-md hover:bg-zinc-800 text-zinc-300">
+                class="sm:hidden flex items-center p-2 border border-zinc-300 rounded-md hover:bg-zinc-100 text-zinc-700">
           <span class="material-symbols-outlined">menu</span>
         </button>
 
         <div id="mobile-menu"
-             class="sm:hidden absolute right-4 top-14 w-56 bg-zinc-900 border border-zinc-700 rounded-lg shadow-lg
+             class="sm:hidden absolute right-4 top-14 w-56 bg-white border border-zinc-300 rounded-lg shadow-lg
                     opacity-0 invisible transition-all duration-150 overflow-hidden z-50">
           <form method="post" action="{% url 'set_language' %}" class="flex p-2 gap-1">
             {% csrf_token %}
             <input type="hidden" name="next" value="{{ request.get_full_path }}">
             <button type="submit" name="language" value="pt-br"
-                    class="flex-1 py-1.5 text-xs text-center rounded hover:bg-zinc-800 text-zinc-400
-                          {% if request.LANGUAGE_CODE == 'pt-br' %}bg-zinc-800 text-white font-semibold{% endif %}">
+                    class="flex-1 py-1.5 text-xs text-center rounded hover:bg-zinc-100 text-zinc-500
+                          {% if request.LANGUAGE_CODE == 'pt-br' %}bg-zinc-100 text-zinc-900 font-semibold{% endif %}">
               🇧🇷 PT
             </button>
             <button type="submit" name="language" value="en"
-                    class="flex-1 py-1.5 text-xs text-center rounded hover:bg-zinc-800 text-zinc-400
-                          {% if request.LANGUAGE_CODE == 'en' %}bg-zinc-800 text-white font-semibold{% endif %}">
+                    class="flex-1 py-1.5 text-xs text-center rounded hover:bg-zinc-100 text-zinc-500
+                          {% if request.LANGUAGE_CODE == 'en' %}bg-zinc-100 text-zinc-900 font-semibold{% endif %}">
               🇺🇸 EN
             </button>
           </form>
-          <div class="border-t border-zinc-800"></div>
+          <div class="border-t border-zinc-200"></div>
           <a href="{% url 'account:profile_edit' %}"
-             class="block px-4 py-2.5 text-sm text-zinc-300 hover:bg-zinc-800">{% trans "My Account" %}</a>
-          <div class="border-t border-zinc-800"></div>
+             class="block px-4 py-2.5 text-sm text-zinc-700 hover:bg-zinc-100">{% trans "My Account" %}</a>
+          <div class="border-t border-zinc-200"></div>
           <form action="{% url 'account:logout' %}" method="post">
             {% csrf_token %}
-            <button type="submit" class="w-full text-left px-4 py-2.5 text-sm text-red-400 hover:bg-red-900/20">
+            <button type="submit" class="w-full text-left px-4 py-2.5 text-sm text-red-600 hover:bg-red-50">
               {% trans "Logout" %}
             </button>
           </form>

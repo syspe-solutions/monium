@@ -12,10 +12,28 @@ module.exports = {
   safelist: ["errorlist"],
   theme: {
     extend: {
+      fontFamily: {
+        // Aponta pra variável definida em input.css (--font-sans) em vez de
+        // listar a fonte aqui de novo — trocar a fonte do projeto vira uma
+        // mudança em um único arquivo.
+        sans: ["var(--font-sans)"],
+      },
+      colors: {
+        // Cor de destaque única do tema claro: usada em links, foco, estado
+        // selecionado e badges informativos. Ações estruturais (botão
+        // primário, item de navegação ativo) usam preto (zinc-900/950), não
+        // accent — accent é reservado a "isto é interativo/clicável".
+        accent: {
+          DEFAULT: "#2563EB",
+          hover: "#1D4ED8",
+          subtle: "#EFF6FF",
+        },
+      },
       boxShadow: {
-        // Sombra padrão de cards/modais em toda a aplicação (antes espalhada
-        // como "shadow-xl shadow-black/20" em ~30 templates).
-        card: "0 20px 25px -5px rgb(0 0 0 / 0.20), 0 8px 10px -6px rgb(0 0 0 / 0.20)",
+        // Sombra padrão de cards/modais no tema claro: bem mais sutil que a
+        // versão anterior (calibrada pra fundo escuro) — no claro, a
+        // separação principal já vem da borda; a sombra só dá profundidade.
+        card: "0 1px 2px 0 rgb(0 0 0 / 0.04), 0 1px 3px 0 rgb(0 0 0 / 0.06)",
       },
       transitionTimingFunction: {
         // Curva padrão de easing (macOS/iOS) para motion de UI: sidebar,

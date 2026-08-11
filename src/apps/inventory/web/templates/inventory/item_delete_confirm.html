@@ -7,48 +7,48 @@
 <div class="p-6 max-w-4xl mx-auto space-y-6">
 
     <div>
-        <h1 class="text-2xl font-bold text-white">{% trans "Delete item" %}</h1>
+        <h1 class="text-2xl font-bold text-zinc-900">{% trans "Delete item" %}</h1>
         <p class="text-sm text-zinc-500 mt-0.5">{{ item.name }} — {{ item.code }}</p>
     </div>
 
     {% if blocking.loans or blocking.maintenances or blocking.movements %}
-    <div class="border border-amber-800 rounded-md bg-amber-950/30 p-4 flex flex-col gap-3 shadow-card">
-        <p class="text-sm text-amber-400">
+    <div class="border border-amber-200 rounded-md bg-amber-50 p-4 flex flex-col gap-3 shadow-card">
+        <p class="text-sm text-amber-600">
             {% blocktrans %}This item cannot be permanently deleted because it has loan, maintenance or movement history, kept for audit purposes.{% endblocktrans %}
         </p>
-        <p class="text-sm text-amber-400">
+        <p class="text-sm text-amber-600">
             {% trans "Mark it as \"Written Off\" instead — it stays out of active use, but its history is preserved." %}
         </p>
         <a href="{% url 'inventory:item_update' item.id %}"
-           class="btn w-full justify-center bg-amber-900/40 text-amber-300 hover:bg-amber-900/70 border border-amber-800 transition">
+           class="btn btn-warning w-full justify-center">
             <span class="material-symbols-outlined text-base leading-none">edit</span>
             {% trans "Edit item" %}
         </a>
-        <a href="{% url 'inventory:item_detail' item.id %}" class="text-center text-zinc-500 hover:text-zinc-300 text-sm">
+        <a href="{% url 'inventory:item_detail' item.id %}" class="text-center text-zinc-500 hover:text-zinc-700 text-sm">
             {% trans "Cancel" %}
         </a>
     </div>
     {% else %}
-    <div class="border border-red-800 rounded-md bg-red-950/30 p-4 flex flex-col gap-3 shadow-card">
-        <p class="text-sm text-red-400">
+    <div class="border border-red-200 rounded-md bg-red-50 p-4 flex flex-col gap-3 shadow-card">
+        <p class="text-sm text-red-600">
             {% trans "This will permanently delete this item, its photo and its acquisition data. This cannot be undone." %}
         </p>
 
         <form method="post" class="flex flex-col gap-3" id="delete-item-form">
             {% csrf_token %}
             <div>
-                <label class="block font-medium text-xs sm:text-sm mb-1 text-zinc-400">
+                <label class="block font-medium text-xs sm:text-sm mb-1 text-zinc-500">
                     {% blocktrans with code=item.code %}Type "{{ code }}" to confirm{% endblocktrans %}
                 </label>
                 <input type="text" name="confirmation_code" id="confirmation_code" required autocomplete="off"
-                       class="w-full p-2 border border-zinc-700 rounded text-sm bg-zinc-900 text-white placeholder:text-zinc-600 focus:outline-none focus:ring-2 focus:ring-red-600">
+                       class="w-full p-2 border border-zinc-300 rounded text-sm bg-white text-zinc-900 placeholder:text-zinc-400 focus:outline-none focus:ring-2 focus:ring-red-600">
             </div>
             <button type="submit" id="confirm-delete-btn" disabled
                     class="w-full bg-red-600 text-white px-4 py-2.5 rounded hover:bg-red-700 transition font-medium text-sm
                            disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-red-600">
                 {% trans "Permanently delete" %}
             </button>
-            <a href="{% url 'inventory:item_detail' item.id %}" class="text-center text-zinc-500 hover:text-zinc-300 text-sm">
+            <a href="{% url 'inventory:item_detail' item.id %}" class="text-center text-zinc-500 hover:text-zinc-700 text-sm">
                 {% trans "Cancel" %}
             </a>
         </form>

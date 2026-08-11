@@ -10,15 +10,15 @@
     <!-- Header -->
     <div class="flex items-center justify-between flex-wrap gap-3">
         <div class="flex items-center gap-3">
-            <a href="{% url 'inventory:item_list' %}" class="text-zinc-400 hover:text-zinc-300 transition">
+            <a href="{% url 'inventory:item_list' %}" class="text-zinc-500 hover:text-zinc-700 transition">
                 <span class="material-symbols-outlined text-xl leading-none">arrow_back</span>
             </a>
             {% if item.spec.image %}
             <img src="{{ item.spec.image.url }}" alt="{{ item.name }}"
-                 class="w-12 h-12 rounded-lg object-cover border border-zinc-800 shrink-0">
+                 class="w-12 h-12 rounded-lg object-cover border border-zinc-200 shrink-0">
             {% endif %}
             <div>
-                <h1 class="text-2xl font-bold text-white">{{ item.name }}</h1>
+                <h1 class="text-2xl font-bold text-zinc-900">{{ item.name }}</h1>
                 <p class="text-sm text-zinc-500 mt-0.5">{{ item.category.name }}</p>
             </div>
         </div>
@@ -27,12 +27,12 @@
                 {{ item.get_status_display }}
             </span>
             <a href="{% url 'inventory:item_update' item.id %}"
-               class="flex items-center gap-2 bg-white text-zinc-950 text-sm font-medium px-4 py-2 rounded hover:bg-zinc-100 transition">
+               class="flex items-center gap-2 bg-zinc-900 text-white text-sm font-medium px-4 py-2 rounded hover:bg-zinc-800 transition">
                 <span class="material-symbols-outlined text-base leading-none">edit</span>
                 {% trans "Edit" %}
             </a>
             <a href="{% url 'inventory:item_delete' item.id %}"
-               class="flex items-center gap-2 bg-red-950/40 text-red-400 border border-red-900 text-sm font-medium px-4 py-2 rounded hover:bg-red-900/40 transition"
+               class="flex items-center gap-2 bg-red-50 text-red-600 border border-red-200 text-sm font-medium px-4 py-2 rounded hover:bg-red-50 transition"
                title="{% trans 'Delete' %}">
                 <span class="material-symbols-outlined text-base leading-none">delete</span>
             </a>
@@ -40,83 +40,83 @@
     </div>
 
     <!-- Item info -->
-    <div class="border border-zinc-800 rounded-md bg-zinc-900 p-5 shadow-card">
-        <div class="flex items-center gap-2 pb-3 mb-4 border-b border-zinc-800">
+    <div class="border border-zinc-200 rounded-md bg-white p-5 shadow-card">
+        <div class="flex items-center gap-2 pb-3 mb-4 border-b border-zinc-200">
             <span class="material-symbols-outlined text-zinc-500 text-xl leading-none">inventory_2</span>
-            <h2 class="text-sm font-semibold text-white">{% trans "Item Information" %}</h2>
+            <h2 class="text-sm font-semibold text-zinc-900">{% trans "Item Information" %}</h2>
         </div>
         <dl class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-4 text-sm">
             <div>
                 <dt class="text-xs text-zinc-500 uppercase tracking-wide">{% trans "Code" %}</dt>
-                <dd class="text-zinc-100 mt-0.5 font-mono">{{ item.code }}</dd>
+                <dd class="text-zinc-900 mt-0.5 font-mono">{{ item.code }}</dd>
             </div>
             <div>
                 <dt class="text-xs text-zinc-500 uppercase tracking-wide">{% trans "Category" %}</dt>
-                <dd class="text-zinc-100 mt-0.5">{{ item.category.name }}</dd>
+                <dd class="text-zinc-900 mt-0.5">{{ item.category.name }}</dd>
             </div>
             <div>
                 <dt class="text-xs text-zinc-500 uppercase tracking-wide">{% trans "Sector" %}</dt>
-                <dd class="text-zinc-100 mt-0.5">{{ item.sector.name }}</dd>
+                <dd class="text-zinc-900 mt-0.5">{{ item.sector.name }}</dd>
             </div>
             <div>
                 <dt class="text-xs text-zinc-500 uppercase tracking-wide">{% trans "Location" %}</dt>
-                <dd class="text-zinc-100 mt-0.5">{{ item.location.name|default:"—" }}</dd>
+                <dd class="text-zinc-900 mt-0.5">{{ item.location.name|default:"—" }}</dd>
             </div>
             <div>
                 <dt class="text-xs text-zinc-500 uppercase tracking-wide">{% trans "Responsible" %}</dt>
-                <dd class="text-zinc-100 mt-0.5">{{ item.responsible|default:"—" }}</dd>
+                <dd class="text-zinc-900 mt-0.5">{{ item.responsible|default:"—" }}</dd>
             </div>
             <div>
                 <dt class="text-xs text-zinc-500 uppercase tracking-wide">{% trans "Condition" %}</dt>
-                <dd class="text-zinc-100 mt-0.5">{{ item.get_condition_display }}</dd>
+                <dd class="text-zinc-900 mt-0.5">{{ item.get_condition_display }}</dd>
             </div>
             <div>
                 <dt class="text-xs text-zinc-500 uppercase tracking-wide">{% trans "Ownership" %}</dt>
-                <dd class="text-zinc-100 mt-0.5">{{ item.get_ownership_display }}</dd>
+                <dd class="text-zinc-900 mt-0.5">{{ item.get_ownership_display }}</dd>
             </div>
             <div>
                 <dt class="text-xs text-zinc-500 uppercase tracking-wide">{% trans "Brand" %}</dt>
-                <dd class="text-zinc-100 mt-0.5">{{ item.spec.brand.name|default:"—" }}</dd>
+                <dd class="text-zinc-900 mt-0.5">{{ item.spec.brand.name|default:"—" }}</dd>
             </div>
             <div>
                 <dt class="text-xs text-zinc-500 uppercase tracking-wide">{% trans "Registered at" %}</dt>
-                <dd class="text-zinc-100 mt-0.5">{{ item.created_at|date:"d/m/Y H:i" }}</dd>
+                <dd class="text-zinc-900 mt-0.5">{{ item.created_at|date:"d/m/Y H:i" }}</dd>
             </div>
         </dl>
         {% if item.description %}
-        <div class="mt-4 pt-4 border-t border-zinc-800">
+        <div class="mt-4 pt-4 border-t border-zinc-200">
             <p class="text-xs text-zinc-500 uppercase tracking-wide">{% trans "Description" %}</p>
-            <p class="text-zinc-300 mt-1 text-sm leading-relaxed">{{ item.description }}</p>
+            <p class="text-zinc-700 mt-1 text-sm leading-relaxed">{{ item.description }}</p>
         </div>
         {% endif %}
         {% if item.notes %}
-        <div class="mt-4 pt-4 border-t border-zinc-800">
+        <div class="mt-4 pt-4 border-t border-zinc-200">
             <p class="text-xs text-zinc-500 uppercase tracking-wide">{% trans "Notes" %}</p>
-            <p class="text-zinc-300 mt-1 text-sm leading-relaxed">{{ item.notes }}</p>
+            <p class="text-zinc-700 mt-1 text-sm leading-relaxed">{{ item.notes }}</p>
         </div>
         {% endif %}
     </div>
 
     <!-- Acquisition -->
     {% if acquisition %}
-    <div class="border border-zinc-800 rounded-md bg-zinc-900 p-5 shadow-card">
-        <div class="flex items-center gap-2 pb-3 mb-4 border-b border-zinc-800">
+    <div class="border border-zinc-200 rounded-md bg-white p-5 shadow-card">
+        <div class="flex items-center gap-2 pb-3 mb-4 border-b border-zinc-200">
             <span class="material-symbols-outlined text-zinc-500 text-xl leading-none">payments</span>
-            <h2 class="text-sm font-semibold text-white">{% trans "Acquisition" %}</h2>
+            <h2 class="text-sm font-semibold text-zinc-900">{% trans "Acquisition" %}</h2>
         </div>
         <dl class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-4 text-sm">
             <div>
                 <dt class="text-xs text-zinc-500 uppercase tracking-wide">{% trans "Purchase date" %}</dt>
-                <dd class="text-zinc-100 mt-0.5">{{ acquisition.purchase_date|date:"d/m/Y"|default:"—" }}</dd>
+                <dd class="text-zinc-900 mt-0.5">{{ acquisition.purchase_date|date:"d/m/Y"|default:"—" }}</dd>
             </div>
             <div>
                 <dt class="text-xs text-zinc-500 uppercase tracking-wide">{% trans "Acquisition value" %}</dt>
-                <dd class="text-zinc-100 mt-0.5">{{ acquisition.value|brl }}</dd>
+                <dd class="text-zinc-900 mt-0.5">{{ acquisition.value|brl }}</dd>
             </div>
             {% if depreciation.is_depreciable %}
             <div>
                 <dt class="text-xs text-zinc-500 uppercase tracking-wide">{% trans "Current book value" %}</dt>
-                <dd class="text-zinc-100 mt-0.5">
+                <dd class="text-zinc-900 mt-0.5">
                     {{ depreciation.current_book_value|brl }}
                     <span class="text-xs text-zinc-500">({{ depreciation.depreciation_percent }}% {% trans "depreciated" %})</span>
                 </dd>
@@ -126,22 +126,22 @@
                 <dt class="text-xs text-zinc-500 uppercase tracking-wide">{% trans "Warranty" %}</dt>
                 <dd class="mt-0.5">
                     {% if acquisition.warranty_expiry %}
-                    <span class="{% if warranty_status == 'expired' %}text-red-400{% elif warranty_status == 'expiring_soon' %}text-amber-400{% else %}text-zinc-100{% endif %}">
+                    <span class="{% if warranty_status == 'expired' %}text-red-600{% elif warranty_status == 'expiring_soon' %}text-amber-600{% else %}text-zinc-900{% endif %}">
                         {{ acquisition.warranty_expiry|date:"d/m/Y" }}
                     </span>
                     {% if warranty_status == 'expired' %}
-                    <span class="ml-1.5 inline-flex items-center px-1.5 py-0.5 rounded text-xs font-medium bg-red-950 text-red-400">{% trans "Expired" %}</span>
+                    <span class="ml-1.5 inline-flex items-center px-1.5 py-0.5 rounded text-xs font-medium bg-red-50 text-red-600">{% trans "Expired" %}</span>
                     {% elif warranty_status == 'expiring_soon' %}
-                    <span class="ml-1.5 inline-flex items-center px-1.5 py-0.5 rounded text-xs font-medium bg-amber-950 text-amber-400">{% trans "Expiring soon" %}</span>
+                    <span class="ml-1.5 inline-flex items-center px-1.5 py-0.5 rounded text-xs font-medium bg-amber-50 text-amber-600">{% trans "Expiring soon" %}</span>
                     {% endif %}
                     {% else %}
-                    <span class="text-zinc-100">—</span>
+                    <span class="text-zinc-900">—</span>
                     {% endif %}
                 </dd>
             </div>
         </dl>
         {% if depreciation and not depreciation.is_depreciable %}
-        <p class="text-xs text-zinc-600 mt-4 pt-4 border-t border-zinc-800">
+        <p class="text-xs text-zinc-600 mt-4 pt-4 border-t border-zinc-200">
             {% trans "Set a useful life for this item's category to calculate depreciation." %}
         </p>
         {% endif %}
@@ -149,17 +149,17 @@
     {% endif %}
 
     <!-- Possession history -->
-    <div class="border border-zinc-800 rounded-md bg-zinc-900 overflow-hidden shadow-card">
-        <div class="flex items-center gap-2 px-5 py-4 border-b border-zinc-800">
+    <div class="border border-zinc-200 rounded-md bg-white overflow-hidden shadow-card">
+        <div class="flex items-center gap-2 px-5 py-4 border-b border-zinc-200">
             <span class="material-symbols-outlined text-zinc-500 text-xl leading-none">history</span>
-            <h2 class="text-sm font-semibold text-white">{% trans "Possession History" %}</h2>
+            <h2 class="text-sm font-semibold text-zinc-900">{% trans "Possession History" %}</h2>
         </div>
 
         {% if loans %}
         <div class="overflow-x-auto">
             <table class="w-full text-sm">
                 <thead>
-                    <tr class="text-left text-xs text-zinc-500 font-semibold uppercase tracking-wide bg-zinc-800 border-b border-zinc-700">
+                    <tr class="text-left text-xs text-zinc-500 font-semibold uppercase tracking-wide bg-zinc-100 border-b border-zinc-300">
                         <th class="px-5 py-3">{% trans "Borrower" %}</th>
                         <th class="px-5 py-3 hidden sm:table-cell">{% trans "Loaned at" %}</th>
                         <th class="px-5 py-3 hidden md:table-cell">{% trans "Expected return" %}</th>
@@ -167,13 +167,13 @@
                         <th class="px-5 py-3">{% trans "Status" %}</th>
                     </tr>
                 </thead>
-                <tbody class="divide-y divide-zinc-800">
+                <tbody class="divide-y divide-zinc-200">
                     {% for loan in loans %}
-                    <tr class="hover:bg-zinc-800/50 transition">
-                        <td class="px-5 py-3 font-medium text-zinc-100">{{ loan.loaned_to }}</td>
-                        <td class="px-5 py-3 text-zinc-400 hidden sm:table-cell">{{ loan.loaned_at|date:"d/m/Y H:i" }}</td>
-                        <td class="px-5 py-3 text-zinc-400 hidden md:table-cell">{{ loan.expected_return|date:"d/m/Y" }}</td>
-                        <td class="px-5 py-3 text-zinc-400 hidden md:table-cell">{{ loan.returned_at|date:"d/m/Y H:i"|default:"—" }}</td>
+                    <tr class="hover:bg-zinc-50 transition">
+                        <td class="px-5 py-3 font-medium text-zinc-900">{{ loan.loaned_to }}</td>
+                        <td class="px-5 py-3 text-zinc-500 hidden sm:table-cell">{{ loan.loaned_at|date:"d/m/Y H:i" }}</td>
+                        <td class="px-5 py-3 text-zinc-500 hidden md:table-cell">{{ loan.expected_return|date:"d/m/Y" }}</td>
+                        <td class="px-5 py-3 text-zinc-500 hidden md:table-cell">{{ loan.returned_at|date:"d/m/Y H:i"|default:"—" }}</td>
                         <td class="px-5 py-3">
                             <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium {{ loan.status|loan_status_badge_class }}">
                                 {{ loan.get_status_display }}

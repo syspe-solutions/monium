@@ -1,0 +1,1 @@
+"use strict";(()=>{var e=class e{validate(s){let r=s.trim();return r?e.REGEX.test(r)?!0:["Insira um endere\xE7o de e-mail v\xE1lido"]:["Este campo \xE9 obrigat\xF3rio"]}};e.REGEX=/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;var t=e;})();

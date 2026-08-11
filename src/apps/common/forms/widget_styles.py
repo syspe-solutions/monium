@@ -6,9 +6,9 @@ todos manualmente e corria o risco de divergir entre eles.
 """
 
 _BASE = (
-    "w-full p-2 border border-zinc-700 rounded text-sm bg-zinc-900 text-white "
-    "placeholder:text-zinc-600 focus:outline-none focus:ring-2 "
-    "focus:ring-white/60 focus:border-zinc-500"
+    "w-full p-2 border border-zinc-300 rounded text-sm bg-white text-zinc-900 "
+    "placeholder:text-zinc-400 focus:outline-none focus:ring-2 "
+    "focus:ring-accent/50 focus:border-accent"
 )
 
 INPUT = _BASE
@@ -16,7 +16,7 @@ SELECT = _BASE
 TEXTAREA = f"{_BASE} resize-none"
 PASSWORD = f"{_BASE} pr-10"
 
-_CHECK_BASE = "border-zinc-700 bg-zinc-900 text-white focus:ring-2 focus:ring-white/60"
+_CHECK_BASE = "border-zinc-300 bg-white text-zinc-900 focus:ring-2 focus:ring-accent/50"
 # Checkbox nativo ignora bg/border/rounded sem appearance-none, então usa o
 # componente custom ".checkbox" (input.css) em vez de classes utilitárias soltas.
 CHECKBOX = "checkbox"

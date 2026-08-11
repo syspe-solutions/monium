@@ -13,7 +13,7 @@
     <div class="w-full lg:w-1/2 flex flex-col justify-between gap-10 p-6 sm:p-10 lg:p-12
                 bg-gradient-to-br from-zinc-900 to-zinc-950 border-b lg:border-b-0 lg:border-r border-zinc-800">
         <a href="{% url 'inventory:home' %}" class="w-fit">
-            {% include "common/includes/logo.html" %}
+            {% include "common/includes/logo.html" with variant="dark" %}
         </a>
 
         <div class="max-w-md">
@@ -33,9 +33,9 @@
         <div class="w-full max-w-md">
 
             <div class="text-center mb-6">
-                <span class="material-symbols-outlined text-white text-3xl leading-none">mail</span>
-                <h1 class="text-white text-2xl font-bold mt-2">{% trans "Verify your identity" %}</h1>
-                <p class="text-zinc-400 text-sm mt-1">
+                <span class="material-symbols-outlined text-zinc-900 text-3xl leading-none">mail</span>
+                <h1 class="text-zinc-900 text-2xl font-bold mt-2">{% trans "Verify your identity" %}</h1>
+                <p class="text-zinc-500 text-sm mt-1">
                     {% blocktrans with email=setup.masked_email %}We sent a 6-digit code to {{ email }}{% endblocktrans %}
                 </p>
             </div>
@@ -43,8 +43,8 @@
             {% if messages %}
             {% for message in messages %}
             <div class="flex items-center gap-2 px-3 py-2 mb-4 rounded-lg text-sm
-                {% if message.tags == 'success' %}bg-green-950 border border-green-800 text-green-400
-                {% else %}bg-red-950 border border-red-800 text-red-400{% endif %}">
+                {% if message.tags == 'success' %}bg-green-50 border border-green-200 text-green-600
+                {% else %}bg-red-50 border border-red-200 text-red-600{% endif %}">
                 <span class="material-symbols-outlined text-base leading-none">
                     {% if message.tags == 'success' %}check_circle{% else %}error{% endif %}
                 </span>
@@ -53,13 +53,13 @@
             {% endfor %}
             {% endif %}
 
-            <div class="bg-zinc-900 border border-zinc-800 rounded-md p-6 shadow-card">
+            <div class="bg-white border border-zinc-200 rounded-md p-6 shadow-card">
                 <form method="post" class="flex flex-col gap-4">
                     {% csrf_token %}
 
                     {% if form.non_field_errors %}
                     {% for error in form.non_field_errors %}
-                    <div class="flex items-center gap-2 px-3 py-2 rounded-lg bg-red-950 border border-red-800 text-red-400 text-sm">
+                    <div class="flex items-center gap-2 px-3 py-2 rounded-lg bg-red-50 border border-red-200 text-red-600 text-sm">
                         <span class="material-symbols-outlined text-base leading-none">error</span>
                         {{ error }}
                     </div>
@@ -67,35 +67,35 @@
                     {% endif %}
 
                     <div>
-                        <label for="{{ form.code.id_for_label }}" class="block font-medium text-xs mb-1.5 text-zinc-400">
+                        <label for="{{ form.code.id_for_label }}" class="block font-medium text-xs mb-1.5 text-zinc-500">
                             {{ form.code.label }}
                         </label>
                         {{ form.code }}
                         {% if form.code.errors %}
-                        <p class="text-red-400 text-xs mt-1">{{ form.code.errors }}</p>
+                        <p class="text-red-600 text-xs mt-1">{{ form.code.errors }}</p>
                         {% endif %}
-                        <p class="text-zinc-600 text-xs mt-2">
+                        <p class="text-zinc-400 text-xs mt-2">
                             {% trans "Lost access to your email? You can use one of your recovery codes instead." %}
                         </p>
                     </div>
 
                     <button type="submit" id="verify-code-submit"
-                            class="bg-white text-zinc-950 text-center py-2.5 rounded-lg font-semibold text-sm hover:bg-zinc-100 transition">
+                            class="btn-primary text-center py-2.5 rounded-lg font-semibold text-sm transition">
                         {% trans "Verify" %}
                     </button>
                 </form>
 
-                <form method="post" class="border-t border-zinc-800 mt-4 pt-4">
+                <form method="post" class="border-t border-zinc-200 mt-4 pt-4">
                     {% csrf_token %}
                     <input type="hidden" name="action" value="resend">
-                    <button type="submit" id="resend-code-submit" class="text-xs text-zinc-500 hover:text-zinc-300 underline transition">
+                    <button type="submit" id="resend-code-submit" class="text-xs text-zinc-500 hover:text-accent underline transition">
                         {% trans "Didn't get the code? Resend" %}
                     </button>
                 </form>
             </div>
 
             <p class="text-center mt-5 text-sm text-zinc-500">
-                <a href="{% url 'account:login' %}" class="text-zinc-400 hover:text-white hover:underline">
+                <a href="{% url 'account:login' %}" class="text-zinc-500 hover:text-accent hover:underline">
                     {% trans "Back to login" %}
                 </a>
             </p>

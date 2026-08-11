@@ -10,17 +10,17 @@
     <div class="flex items-center justify-between flex-wrap gap-3">
         <div class="flex items-center gap-2">
             <a href="{% if item %}{% url 'inventory:item_detail' item.id %}{% else %}{% url 'inventory:item_list' %}{% endif %}"
-               class="text-zinc-400 hover:text-zinc-300 transition">
+               class="text-zinc-500 hover:text-zinc-700 transition">
                 <span class="material-symbols-outlined text-xl leading-none">arrow_back</span>
             </a>
             <div>
-                <h1 class="text-2xl font-bold text-white">{% if item %}{% trans "Edit Item" %}{% else %}{% trans "New Item" %}{% endif %}</h1>
+                <h1 class="text-2xl font-bold text-zinc-900">{% if item %}{% trans "Edit Item" %}{% else %}{% trans "New Item" %}{% endif %}</h1>
                 <p class="text-sm text-zinc-500 mt-0.5">
                     {% if item %}{% trans "Update this item's details" %}{% else %}{% trans "Fill in the details to register an item in the inventory" %}{% endif %}
                 </p>
             </div>
         </div>
-        <p class="text-xs text-zinc-600"><span class="text-red-500">*</span> {% trans "Required fields" %}</p>
+        <p class="text-xs text-zinc-600"><span class="text-red-600">*</span> {% trans "Required fields" %}</p>
     </div>
 
     <form id="item-form" method="post" enctype="multipart/form-data" class="flex flex-col gap-4" novalidate>
@@ -32,36 +32,36 @@
             <div class="lg:col-span-2 flex flex-col gap-4">
 
                 <!-- Identification -->
-                <div class="border rounded-md flex flex-col gap-3 p-4 border-zinc-800 bg-zinc-900 shadow-card">
-                    <p class="font-medium text-sm text-zinc-300 flex items-center gap-1.5">
+                <div class="border rounded-md flex flex-col gap-3 p-4 border-zinc-200 bg-white shadow-card">
+                    <p class="font-medium text-sm text-zinc-700 flex items-center gap-1.5">
                         <span class="material-symbols-outlined text-zinc-700 text-base leading-none">badge</span>
                         {% trans "Identification" %}
                     </p>
 
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                         <div>
-                            <label class="block font-medium text-xs sm:text-sm mb-1 text-zinc-400">
-                                {% trans "Code / Asset Number" %} <span class="text-red-500">*</span>
+                            <label class="block font-medium text-xs sm:text-sm mb-1 text-zinc-500">
+                                {% trans "Code / Asset Number" %} <span class="text-red-600">*</span>
                             </label>
                             {{ form.code }}
-                            {% if form.code.errors %}<p class="text-red-400 text-xs mt-1">{{ form.code.errors }}</p>{% endif %}
+                            {% if form.code.errors %}<p class="text-red-600 text-xs mt-1">{{ form.code.errors }}</p>{% endif %}
                         </div>
 
                         <div>
-                            <label class="block font-medium text-xs sm:text-sm mb-1 text-zinc-400">
-                                {% trans "Name" %} <span class="text-red-500">*</span>
+                            <label class="block font-medium text-xs sm:text-sm mb-1 text-zinc-500">
+                                {% trans "Name" %} <span class="text-red-600">*</span>
                             </label>
                             {{ form.name }}
-                            {% if form.name.errors %}<p class="text-red-400 text-xs mt-1">{{ form.name.errors }}</p>{% endif %}
+                            {% if form.name.errors %}<p class="text-red-600 text-xs mt-1">{{ form.name.errors }}</p>{% endif %}
                         </div>
                     </div>
 
                     <div>
-                        <label class="block font-medium text-xs sm:text-sm mb-1 text-zinc-400">{% trans "Category" %} <span class="text-red-500">*</span></label>
+                        <label class="block font-medium text-xs sm:text-sm mb-1 text-zinc-500">{% trans "Category" %} <span class="text-red-600">*</span></label>
                         {{ form.category }}
-                        {% if form.category.errors %}<p class="text-red-400 text-xs mt-1">{{ form.category.errors }}</p>{% endif %}
+                        {% if form.category.errors %}<p class="text-red-600 text-xs mt-1">{{ form.category.errors }}</p>{% endif %}
                         {% if not form.category.field.queryset.exists %}
-                        <p class="flex items-center gap-1.5 text-xs text-amber-400 mt-1">
+                        <p class="flex items-center gap-1.5 text-xs text-amber-600 mt-1">
                             <span class="material-symbols-outlined text-sm leading-none">warning</span>
                             {% trans "No categories registered yet. Ask an administrator to create one before continuing." %}
                         </p>
@@ -69,26 +69,26 @@
                     </div>
 
                     <div>
-                        <label class="block font-medium text-xs sm:text-sm mb-1 text-zinc-400">{% trans "Description" %}</label>
+                        <label class="block font-medium text-xs sm:text-sm mb-1 text-zinc-500">{% trans "Description" %}</label>
                         {{ form.description }}
-                        {% if form.description.errors %}<p class="text-red-400 text-xs mt-1">{{ form.description.errors }}</p>{% endif %}
+                        {% if form.description.errors %}<p class="text-red-600 text-xs mt-1">{{ form.description.errors }}</p>{% endif %}
                     </div>
                 </div>
 
                 <!-- Location -->
-                <div class="border rounded-md flex flex-col gap-3 p-4 border-zinc-800 bg-zinc-900 shadow-card">
-                    <p class="font-medium text-sm text-zinc-300 flex items-center gap-1.5">
+                <div class="border rounded-md flex flex-col gap-3 p-4 border-zinc-200 bg-white shadow-card">
+                    <p class="font-medium text-sm text-zinc-700 flex items-center gap-1.5">
                         <span class="material-symbols-outlined text-zinc-700 text-base leading-none">location_on</span>
                         {% trans "Location" %}
                     </p>
 
                     <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
                         <div>
-                            <label class="block font-medium text-xs sm:text-sm mb-1 text-zinc-400">{% trans "Sector" %} <span class="text-red-500">*</span></label>
+                            <label class="block font-medium text-xs sm:text-sm mb-1 text-zinc-500">{% trans "Sector" %} <span class="text-red-600">*</span></label>
                             {{ form.sector }}
-                            {% if form.sector.errors %}<p class="text-red-400 text-xs mt-1">{{ form.sector.errors }}</p>{% endif %}
+                            {% if form.sector.errors %}<p class="text-red-600 text-xs mt-1">{{ form.sector.errors }}</p>{% endif %}
                             {% if not form.sector.field.queryset.exists %}
-                            <p class="flex items-center gap-1.5 text-xs text-amber-400 mt-1">
+                            <p class="flex items-center gap-1.5 text-xs text-amber-600 mt-1">
                                 <span class="material-symbols-outlined text-sm leading-none">warning</span>
                                 {% trans "No sectors registered yet." %}
                             </p>
@@ -96,97 +96,97 @@
                         </div>
 
                         <div>
-                            <label class="block font-medium text-xs sm:text-sm mb-1 text-zinc-400">{% trans "Specific location" %}</label>
+                            <label class="block font-medium text-xs sm:text-sm mb-1 text-zinc-500">{% trans "Specific location" %}</label>
                             {{ form.location }}
-                            {% if form.location.errors %}<p class="text-red-400 text-xs mt-1">{{ form.location.errors }}</p>{% endif %}
+                            {% if form.location.errors %}<p class="text-red-600 text-xs mt-1">{{ form.location.errors }}</p>{% endif %}
                         </div>
 
                         <div>
-                            <label class="block font-medium text-xs sm:text-sm mb-1 text-zinc-400">{% trans "Responsible" %}</label>
+                            <label class="block font-medium text-xs sm:text-sm mb-1 text-zinc-500">{% trans "Responsible" %}</label>
                             {{ form.responsible }}
-                            {% if form.responsible.errors %}<p class="text-red-400 text-xs mt-1">{{ form.responsible.errors }}</p>{% endif %}
+                            {% if form.responsible.errors %}<p class="text-red-600 text-xs mt-1">{{ form.responsible.errors }}</p>{% endif %}
                         </div>
                     </div>
                 </div>
 
                 <!-- Condition -->
-                <div class="border rounded-md flex flex-col gap-3 p-4 border-zinc-800 bg-zinc-900 shadow-card">
-                    <p class="font-medium text-sm text-zinc-300 flex items-center gap-1.5">
+                <div class="border rounded-md flex flex-col gap-3 p-4 border-zinc-200 bg-white shadow-card">
+                    <p class="font-medium text-sm text-zinc-700 flex items-center gap-1.5">
                         <span class="material-symbols-outlined text-zinc-700 text-base leading-none">fact_check</span>
                         {% trans "Condition" %}
-                        <span class="text-xs font-normal text-zinc-400">{% trans "(optional)" %}</span>
+                        <span class="text-xs font-normal text-zinc-500">{% trans "(optional)" %}</span>
                     </p>
 
                     <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
                         <div>
-                            <label class="block font-medium text-xs sm:text-sm mb-1 text-zinc-400">{% trans "Status" %}</label>
+                            <label class="block font-medium text-xs sm:text-sm mb-1 text-zinc-500">{% trans "Status" %}</label>
                             {{ form.status }}
-                            {% if form.status.errors %}<p class="text-red-400 text-xs mt-1">{{ form.status.errors }}</p>{% endif %}
+                            {% if form.status.errors %}<p class="text-red-600 text-xs mt-1">{{ form.status.errors }}</p>{% endif %}
                         </div>
 
                         <div>
-                            <label class="block font-medium text-xs sm:text-sm mb-1 text-zinc-400">{% trans "Condition" %}</label>
+                            <label class="block font-medium text-xs sm:text-sm mb-1 text-zinc-500">{% trans "Condition" %}</label>
                             {{ form.condition }}
-                            {% if form.condition.errors %}<p class="text-red-400 text-xs mt-1">{{ form.condition.errors }}</p>{% endif %}
+                            {% if form.condition.errors %}<p class="text-red-600 text-xs mt-1">{{ form.condition.errors }}</p>{% endif %}
                         </div>
 
                         <div>
-                            <label class="block font-medium text-xs sm:text-sm mb-1 text-zinc-400">{% trans "Ownership" %}</label>
+                            <label class="block font-medium text-xs sm:text-sm mb-1 text-zinc-500">{% trans "Ownership" %}</label>
                             {{ form.ownership }}
-                            {% if form.ownership.errors %}<p class="text-red-400 text-xs mt-1">{{ form.ownership.errors }}</p>{% endif %}
+                            {% if form.ownership.errors %}<p class="text-red-600 text-xs mt-1">{{ form.ownership.errors }}</p>{% endif %}
                         </div>
                     </div>
 
                     <div>
-                        <label class="block font-medium text-xs sm:text-sm mb-1 text-zinc-400">{% trans "Notes" %}</label>
+                        <label class="block font-medium text-xs sm:text-sm mb-1 text-zinc-500">{% trans "Notes" %}</label>
                         {{ form.notes }}
-                        {% if form.notes.errors %}<p class="text-red-400 text-xs mt-1">{{ form.notes.errors }}</p>{% endif %}
+                        {% if form.notes.errors %}<p class="text-red-600 text-xs mt-1">{{ form.notes.errors }}</p>{% endif %}
                     </div>
                 </div>
 
                 <!-- Acquisition -->
-                <div class="border rounded-md flex flex-col gap-3 p-4 border-zinc-800 bg-zinc-900 shadow-card">
-                    <p class="font-medium text-sm text-zinc-300 flex items-center gap-1.5">
+                <div class="border rounded-md flex flex-col gap-3 p-4 border-zinc-200 bg-white shadow-card">
+                    <p class="font-medium text-sm text-zinc-700 flex items-center gap-1.5">
                         <span class="material-symbols-outlined text-zinc-700 text-base leading-none">payments</span>
                         {% trans "Acquisition" %}
-                        <span class="text-xs font-normal text-zinc-400">{% trans "(optional)" %}</span>
+                        <span class="text-xs font-normal text-zinc-500">{% trans "(optional)" %}</span>
                     </p>
 
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                         <div>
-                            <label class="block font-medium text-xs sm:text-sm mb-1 text-zinc-400">{% trans "Acquisition value" %}</label>
+                            <label class="block font-medium text-xs sm:text-sm mb-1 text-zinc-500">{% trans "Acquisition value" %}</label>
                             {{ acquisition_form.value }}
-                            {% if acquisition_form.value.errors %}<p class="text-red-400 text-xs mt-1">{{ acquisition_form.value.errors }}</p>{% endif %}
+                            {% if acquisition_form.value.errors %}<p class="text-red-600 text-xs mt-1">{{ acquisition_form.value.errors }}</p>{% endif %}
                         </div>
 
                         <div>
-                            <label class="block font-medium text-xs sm:text-sm mb-1 text-zinc-400">{% trans "Purchase date" %}</label>
+                            <label class="block font-medium text-xs sm:text-sm mb-1 text-zinc-500">{% trans "Purchase date" %}</label>
                             {{ acquisition_form.purchase_date }}
-                            {% if acquisition_form.purchase_date.errors %}<p class="text-red-400 text-xs mt-1">{{ acquisition_form.purchase_date.errors }}</p>{% endif %}
+                            {% if acquisition_form.purchase_date.errors %}<p class="text-red-600 text-xs mt-1">{{ acquisition_form.purchase_date.errors }}</p>{% endif %}
                         </div>
 
                         <div>
-                            <label class="block font-medium text-xs sm:text-sm mb-1 text-zinc-400">{% trans "Warranty (months)" %}</label>
+                            <label class="block font-medium text-xs sm:text-sm mb-1 text-zinc-500">{% trans "Warranty (months)" %}</label>
                             {{ acquisition_form.warranty_months }}
-                            {% if acquisition_form.warranty_months.errors %}<p class="text-red-400 text-xs mt-1">{{ acquisition_form.warranty_months.errors }}</p>{% endif %}
+                            {% if acquisition_form.warranty_months.errors %}<p class="text-red-600 text-xs mt-1">{{ acquisition_form.warranty_months.errors }}</p>{% endif %}
                         </div>
                     </div>
                 </div>
 
                 <!-- Technical specifications -->
-                <div class="border rounded-md flex flex-col gap-3 p-4 border-zinc-800 bg-zinc-900 shadow-card">
-                    <p class="font-medium text-sm text-zinc-300 flex items-center gap-1.5">
+                <div class="border rounded-md flex flex-col gap-3 p-4 border-zinc-200 bg-white shadow-card">
+                    <p class="font-medium text-sm text-zinc-700 flex items-center gap-1.5">
                         <span class="material-symbols-outlined text-zinc-700 text-base leading-none">settings</span>
                         {% trans "Technical Specifications" %}
-                        <span class="text-xs font-normal text-zinc-400">{% trans "(optional)" %}</span>
+                        <span class="text-xs font-normal text-zinc-500">{% trans "(optional)" %}</span>
                     </p>
 
                     <!-- Brand -->
                     <div>
-                        <label class="block font-medium text-xs sm:text-sm mb-1 text-zinc-400">{% trans "Brand" %}</label>
+                        <label class="block font-medium text-xs sm:text-sm mb-1 text-zinc-500">{% trans "Brand" %}</label>
 
                         <select id="brand_select" name="brand_id"
-                                class="w-full p-2 border border-zinc-700 rounded text-sm focus:outline-none focus:ring-2 focus:ring-white/60 bg-zinc-900 text-white">
+                                class="w-full p-2 border border-zinc-300 rounded text-sm focus:outline-none focus:ring-2 focus:ring-accent/50 bg-white text-zinc-900">
                             <option value="">{% trans "Select a brand" %}</option>
                             {% for brand in brands %}
                             <option value="{{ brand.id }}"
@@ -209,31 +209,31 @@
                                    value="{{ request.POST.new_brand_name|default:'' }}"
                                    placeholder="{% trans 'Enter the name of the new brand' %}"
                                    autocomplete="off"
-                                   class="w-full p-2 border border-zinc-700 rounded text-sm bg-zinc-900 text-white focus:outline-none focus:ring-2 focus:ring-white/60">
+                                   class="w-full p-2 border border-zinc-300 rounded text-sm bg-white text-zinc-900 focus:outline-none focus:ring-2 focus:ring-accent/50">
 
                             <!-- Similarity warning (filled by JS) -->
-                            <div id="similarity_warning" class="hidden flex items-start gap-2 px-3 py-2 bg-amber-950/40 border border-amber-800 rounded text-xs text-amber-400">
+                            <div id="similarity_warning" class="hidden flex items-start gap-2 px-3 py-2 bg-amber-50 border border-amber-200 rounded text-xs text-amber-600">
                                 <span class="material-symbols-outlined text-sm leading-none mt-0.5 shrink-0">warning</span>
                                 <span id="similarity_text"></span>
                             </div>
                         </div>
 
                         {% if brand_error %}
-                        <p class="text-red-400 text-xs mt-1">{{ brand_error }}</p>
+                        <p class="text-red-600 text-xs mt-1">{{ brand_error }}</p>
                         {% endif %}
                     </div>
 
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                         <div>
-                            <label class="block font-medium text-xs sm:text-sm mb-1 text-zinc-400">{% trans "Model" %}</label>
+                            <label class="block font-medium text-xs sm:text-sm mb-1 text-zinc-500">{% trans "Model" %}</label>
                             {{ spec_form.model_name }}
-                            {% if spec_form.model_name.errors %}<p class="text-red-400 text-xs mt-1">{{ spec_form.model_name.errors }}</p>{% endif %}
+                            {% if spec_form.model_name.errors %}<p class="text-red-600 text-xs mt-1">{{ spec_form.model_name.errors }}</p>{% endif %}
                         </div>
 
                         <div>
-                            <label class="block font-medium text-xs sm:text-sm mb-1 text-zinc-400">{% trans "Serial Number" %}</label>
+                            <label class="block font-medium text-xs sm:text-sm mb-1 text-zinc-500">{% trans "Serial Number" %}</label>
                             {{ spec_form.serial_number }}
-                            {% if spec_form.serial_number.errors %}<p class="text-red-400 text-xs mt-1">{{ spec_form.serial_number.errors }}</p>{% endif %}
+                            {% if spec_form.serial_number.errors %}<p class="text-red-600 text-xs mt-1">{{ spec_form.serial_number.errors }}</p>{% endif %}
                         </div>
                     </div>
                 </div>
@@ -244,18 +244,18 @@
             <div class="flex flex-col gap-4 lg:sticky lg:top-6 self-start w-full">
 
                 <!-- Photo -->
-                <div class="border rounded-md flex flex-col gap-3 p-4 border-zinc-800 bg-zinc-900 shadow-card">
-                    <p class="font-medium text-sm text-zinc-300 flex items-center gap-1.5">
+                <div class="border rounded-md flex flex-col gap-3 p-4 border-zinc-200 bg-white shadow-card">
+                    <p class="font-medium text-sm text-zinc-700 flex items-center gap-1.5">
                         <span class="material-symbols-outlined text-zinc-700 text-base leading-none">photo_camera</span>
                         {% trans "Photo" %}
-                        <span class="text-xs font-normal text-zinc-400">{% trans "(optional)" %}</span>
+                        <span class="text-xs font-normal text-zinc-500">{% trans "(optional)" %}</span>
                     </p>
 
                     <label for="{{ spec_form.image.id_for_label }}" id="item_image_dropzone"
-                           class="relative flex flex-col items-center justify-center gap-1.5 aspect-square w-full rounded-lg border-2 border-dashed border-zinc-700 bg-zinc-950/40 hover:border-zinc-500 hover:bg-zinc-800/40 transition cursor-pointer overflow-hidden">
+                           class="relative flex flex-col items-center justify-center gap-1.5 aspect-square w-full rounded-lg border-2 border-dashed border-zinc-300 bg-zinc-50 hover:border-zinc-400 hover:bg-zinc-50 transition cursor-pointer overflow-hidden">
                         <div id="item_image_placeholder" class="flex flex-col items-center gap-1.5 text-center px-4 {% if item.spec.image %}hidden{% endif %}">
                             <span class="material-symbols-outlined text-4xl leading-none text-zinc-600">add_photo_alternate</span>
-                            <span class="text-xs font-medium text-zinc-400">{% trans "Click or drag a photo here" %}</span>
+                            <span class="text-xs font-medium text-zinc-500">{% trans "Click or drag a photo here" %}</span>
                             <span class="text-[11px] text-zinc-600">PNG, JPG — {% trans "up to" %} 5MB</span>
                         </div>
                         {% if item.spec.image %}
@@ -266,21 +266,21 @@
                     {{ spec_form.image }}
 
                     <button type="button" id="remove_item_image"
-                            class="{% if not item.spec.image %}hidden{% endif %} w-fit mx-auto text-xs text-red-400 hover:text-red-300 hover:underline">
+                            class="{% if not item.spec.image %}hidden{% endif %} w-fit mx-auto text-xs text-red-600 hover:text-red-700 hover:underline">
                         {% trans "Remove photo" %}
                     </button>
-                    {% if spec_form.image.errors %}<p class="text-red-400 text-xs mt-1">{{ spec_form.image.errors }}</p>{% endif %}
+                    {% if spec_form.image.errors %}<p class="text-red-600 text-xs mt-1">{{ spec_form.image.errors }}</p>{% endif %}
                 </div>
 
                 <!-- Live preview -->
-                <div class="border rounded-md flex flex-col gap-3 p-4 border-zinc-800 bg-zinc-900 shadow-card">
-                    <p class="font-medium text-sm text-zinc-300 flex items-center gap-1.5">
+                <div class="border rounded-md flex flex-col gap-3 p-4 border-zinc-200 bg-white shadow-card">
+                    <p class="font-medium text-sm text-zinc-700 flex items-center gap-1.5">
                         <span class="material-symbols-outlined text-zinc-700 text-base leading-none">visibility</span>
                         {% trans "Preview" %}
                     </p>
 
                     <div class="flex items-center gap-3">
-                        <div id="preview_thumb" class="w-12 h-12 rounded-lg bg-zinc-800 border border-zinc-700 flex items-center justify-center overflow-hidden shrink-0">
+                        <div id="preview_thumb" class="w-12 h-12 rounded-lg bg-zinc-100 border border-zinc-300 flex items-center justify-center overflow-hidden shrink-0">
                             {% if item.spec.image %}
                             <img src="{{ item.spec.image.url }}" alt="" class="w-full h-full object-cover">
                             {% else %}
@@ -288,20 +288,20 @@
                             {% endif %}
                         </div>
                         <div class="min-w-0 flex-1">
-                            <p id="preview_name" class="text-sm font-semibold text-white truncate">{% if item %}{{ item.name }}{% else %}{% trans "Item name" %}{% endif %}</p>
+                            <p id="preview_name" class="text-sm font-semibold text-zinc-900 truncate">{% if item %}{{ item.name }}{% else %}{% trans "Item name" %}{% endif %}</p>
                             <p id="preview_code" class="text-xs text-zinc-500 font-mono truncate">{{ item.code|default:"—" }}</p>
                         </div>
                     </div>
 
                     <div class="flex flex-wrap gap-1.5">
-                        <span id="preview_category" class="hidden inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-zinc-800 text-zinc-300"></span>
-                        <span id="preview_status" class="hidden inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-zinc-800 text-zinc-300"></span>
+                        <span id="preview_category" class="hidden inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-zinc-100 text-zinc-700"></span>
+                        <span id="preview_status" class="hidden inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-zinc-100 text-zinc-700"></span>
                     </div>
                 </div>
 
                 <!-- Tips -->
-                <div class="border rounded-md flex flex-col gap-2 p-4 border-zinc-800 bg-zinc-900 shadow-card">
-                    <p class="font-medium text-sm text-zinc-300 flex items-center gap-1.5">
+                <div class="border rounded-md flex flex-col gap-2 p-4 border-zinc-200 bg-white shadow-card">
+                    <p class="font-medium text-sm text-zinc-700 flex items-center gap-1.5">
                         <span class="material-symbols-outlined text-zinc-700 text-base leading-none">lightbulb</span>
                         {% trans "Tips" %}
                     </p>
@@ -319,11 +319,11 @@
         <!-- Actions -->
         <div class="flex items-center justify-end gap-3">
             <a href="{% if item %}{% url 'inventory:item_detail' item.id %}{% else %}{% url 'inventory:item_list' %}{% endif %}"
-               class="text-sm text-zinc-500 hover:text-zinc-300 transition px-4 py-2">
+               class="text-sm text-zinc-500 hover:text-zinc-700 transition px-4 py-2">
                 {% trans "Cancel" %}
             </a>
             <button type="submit" id="save_item_btn"
-                    class="bg-white text-zinc-950 px-4 py-2.5 rounded hover:bg-zinc-100 transition text-sm font-medium flex items-center gap-1.5">
+                    class="bg-zinc-900 text-white px-4 py-2.5 rounded hover:bg-zinc-800 transition text-sm font-medium flex items-center gap-1.5">
                 <span class="material-symbols-outlined text-base leading-none">save</span>
                 {% if item %}{% trans "Save Changes" %}{% else %}{% trans "Save Item" %}{% endif %}
             </button>
@@ -419,13 +419,13 @@
         ['dragenter', 'dragover'].forEach(eventName => {
             dropzone.addEventListener(eventName, function (event) {
                 event.preventDefault();
-                dropzone.classList.add('border-zinc-500', 'bg-zinc-800/40');
+                dropzone.classList.add('border-zinc-400', 'bg-zinc-50');
             });
         });
         ['dragleave', 'drop'].forEach(eventName => {
             dropzone.addEventListener(eventName, function (event) {
                 event.preventDefault();
-                dropzone.classList.remove('border-zinc-500', 'bg-zinc-800/40');
+                dropzone.classList.remove('border-zinc-400', 'bg-zinc-50');
             });
         });
         dropzone.addEventListener('drop', function (event) {
