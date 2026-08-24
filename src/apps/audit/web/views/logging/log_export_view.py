@@ -9,7 +9,6 @@ from apps.security.mixins import PermissionRequiredMixin
 
 
 class LogExportView(PermissionRequiredMixin, View):
-    required_permission = 'view_security_logs'
     raise_exception = True
 
     def get(self, request, layer):

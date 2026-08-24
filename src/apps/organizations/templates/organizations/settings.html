@@ -1,14 +1,14 @@
 {% extends "common/layouts/base-aside.html" %}
 {% load i18n %}
 
-{% block title %}{% trans "Organization settings" %} — Monium{% endblock %}
+{% block title %}{% trans "Organization" %} — Monium{% endblock %}
 
 {% block content %}
 <div class="p-6 max-w-4xl mx-auto space-y-6">
 
   <!-- Header -->
   <div class="flex flex-col gap-1">
-    <h1 class="text-2xl font-bold text-zinc-900">{% trans "Organization settings" %}</h1>
+    <h1 class="text-2xl font-bold text-zinc-900">{% trans "Organization" %}</h1>
     <p class="text-sm text-zinc-500 mt-0.5">{{ current_organization.name }}</p>
   </div>
 
@@ -28,6 +28,7 @@
   </div>
   {% endif %}
 
+  {% if is_organization_owner %}
   <form id="organization-form" method="post" enctype="multipart/form-data" class="flex flex-col gap-8">
     {% csrf_token %}
 
@@ -121,7 +122,63 @@
       </button>
     </div>
   </form>
+  {% endif %}
 
+  <!-- Members -->
+  <div class="flex flex-col gap-4">
+    <div class="flex items-center justify-between gap-4">
+      <div class="flex items-center gap-2 text-zinc-900">
+        <span class="material-symbols-outlined text-zinc-500 text-xl leading-none">group</span>
+        <h2 class="text-sm font-semibold">{% trans "Members" %}</h2>
+      </div>
+      <a href="{% url 'organizations:member_create' %}"
+         class="bg-zinc-900 text-white text-sm font-medium px-4 py-2.5 rounded hover:bg-zinc-800 transition shrink-0">
+        {% trans "Add member" %}
+      </a>
+    </div>
+
+    <div class="border border-zinc-200 rounded-md bg-white overflow-hidden">
+      <table class="w-full text-sm">
+        <tbody class="divide-y divide-zinc-200">
+          {% for membership in members %}
+          <tr class="hover:bg-zinc-50 transition">
+            <td class="px-5 py-3 text-zinc-900">
+              {{ membership.user.email }}
+              {% if membership.user_id == request.user.id %}
+              <span class="text-zinc-600 text-xs ml-1">({% trans "you" %})</span>
+              {% endif %}
+            </td>
+            <td class="px-5 py-3">
+              {% if membership.role == "owner" or membership.user_id == request.user.id %}
+              <span class="text-zinc-500 text-xs uppercase tracking-wide">{{ membership.get_role_display }}</span>
+              {% else %}
+              <form method="post" action="{% url 'organizations:member_role_update' membership.id %}">
+                {% csrf_token %}
+                <select name="role" onchange="this.form.submit()"
+                        class="p-1.5 border border-zinc-300 rounded text-xs bg-white text-zinc-900 focus:outline-none focus:ring-2 focus:ring-accent/50">
+                  {% for role in assignable_roles %}
+                  <option value="{{ role.value }}" {% if role.value == membership.role %}selected{% endif %}>{{ role.label }}</option>
+                  {% endfor %}
+                </select>
+              </form>
+              {% endif %}
+            </td>
+            <td class="px-5 py-3 text-right">
+              {% if membership.role != "owner" and membership.user_id != request.user.id %}
+              <form method="post" action="{% url 'organizations:member_remove' membership.id %}">
+                {% csrf_token %}
+                <button type="submit" class="text-red-600 hover:underline text-xs">{% trans "Remove" %}</button>
+              </form>
+              {% endif %}
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  {% if is_organization_owner %}
   <!-- Overview + Danger Zone -->
   <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
@@ -132,10 +189,6 @@
       </div>
 
       <div class="flex flex-col gap-3 text-sm">
-        <a href="{% url 'organizations:members' %}" class="flex items-center justify-between gap-2 hover:text-zinc-900 transition">
-          <span class="text-zinc-500">{% trans "Members" %}</span>
-          <span class="text-zinc-900 font-medium">{{ member_count }}</span>
-        </a>
         <div class="flex items-center justify-between gap-2">
           <span class="text-zinc-500">{% trans "Created" %}</span>
           <span class="text-zinc-900 font-medium">{{ current_organization.created_at|date:"d/m/Y" }}</span>
@@ -159,11 +212,13 @@
     </div>
 
   </div>
+  {% endif %}
 
 </div>
 {% endblock %}
 
 {% block scripts %}
+{% if is_organization_owner %}
 <script>
   const saveBtn = document.getElementById('save-organization-btn');
 
@@ -235,4 +290,5 @@
     });
   }
 </script>
+{% endif %}
 {% endblock %}

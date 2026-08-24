@@ -14,19 +14,19 @@ class MemberRoleUpdateView(LoginRequiredMixin, MemberManagementRequiredMixin, Vi
 
         if membership.user_id == request.user.id:
             messages.error(request, _("You can't change your own role."))
-            return redirect("organizations:members")
+            return redirect("organizations:settings")
 
         if membership.role == MembershipRole.OWNER:
             messages.error(request, _("The organization owner's role can't be changed."))
-            return redirect("organizations:members")
+            return redirect("organizations:settings")
 
         new_role = request.POST.get("role")
         if new_role not in ASSIGNABLE_MEMBERSHIP_ROLES:
             messages.error(request, _("Invalid role."))
-            return redirect("organizations:members")
+            return redirect("organizations:settings")
 
         membership.role = new_role
         membership.updated_by = request.user
         membership.save()
         messages.success(request, _("Role updated successfully."))
-        return redirect("organizations:members")
+        return redirect("organizations:settings")

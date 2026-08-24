@@ -28,7 +28,7 @@ class OrganizationDeleteView(LoginRequiredMixin, View):
         ).count()
         if owned_count <= 1:
             messages.error(request, _("You need to have at least one organization."))
-            return redirect("organizations:members")
+            return redirect("organizations:settings")
 
         confirmation = request.POST.get("confirmation_name", "").strip()
         if confirmation != organization.name:

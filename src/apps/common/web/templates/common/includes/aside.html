@@ -10,25 +10,13 @@
 <style>
     #main-sidebar { transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
 
-    .sidebar-is-collapsed #main-sidebar { width: 5rem; }
+    /* Fechado no desktop: nenhum conteúdo é exibido, apenas o hamburguer flutuante. */
+    .sidebar-is-collapsed #main-sidebar { width: 4rem; }
+    .sidebar-is-collapsed #sidebar-content { display: none; }
 
-    .sidebar-is-collapsed #main-sidebar .sidebar-text,
-    .sidebar-is-collapsed #main-sidebar .sidebar-header,
-    .sidebar-is-collapsed #main-sidebar #logo-full,
-    .sidebar-is-collapsed #main-sidebar .user-info { display: none; }
-
-    .sidebar-is-collapsed #main-sidebar #logo-compact { display: block; }
-
-    .sidebar-is-collapsed #main-sidebar .nav-item {
-        justify-content: center;
-        padding-left: 0;
-        padding-right: 0;
-    }
-
-    .sidebar-is-collapsed #sidebar-content::-webkit-scrollbar { display: none; }
-    .sidebar-is-collapsed #sidebar-content { -ms-overflow-style: none; scrollbar-width: none; }
-
-    #logo-compact { display: none; }
+    /* O hamburguer só existe para reabrir a aside; enquanto aberta, quem fecha é #sidebar-close-btn. */
+    #sidebar-toggle { display: none; }
+    .sidebar-is-collapsed #sidebar-toggle { display: flex; }
 
     @media (max-width: 1023px) {
         #main-sidebar {
@@ -42,11 +30,9 @@
         }
         .mobile-sidebar-open #main-sidebar { transform: translateX(0); }
         .sidebar-is-collapsed #main-sidebar { width: 16rem !important; }
-        .sidebar-is-collapsed #main-sidebar .sidebar-text,
-        .sidebar-is-collapsed #main-sidebar .sidebar-header,
-        .sidebar-is-collapsed #main-sidebar #logo-full { display: block !important; }
+        .sidebar-is-collapsed #sidebar-content { display: flex !important; }
+        .sidebar-is-collapsed #main-sidebar .sidebar-text { display: block !important; }
         .sidebar-is-collapsed #main-sidebar .user-info { display: flex !important; }
-        .sidebar-is-collapsed #main-sidebar #logo-compact { display: none !important; }
         .sidebar-is-collapsed #main-sidebar .nav-item {
             justify-content: flex-start !important;
             padding-left: 0.75rem !important;
@@ -57,114 +43,209 @@
 </style>
 
 <aside id="main-sidebar"
-       class="relative h-screen sticky top-0 w-64 flex flex-col bg-white border-r border-zinc-100 z-50 flex-shrink-0">
+       class="relative h-screen sticky top-0 w-64 flex flex-col bg-white z-50 flex-shrink-0">
 
     <button id="sidebar-toggle"
-            class="absolute flex items-center justify-center -right-3 top-10 bg-white text-zinc-700 rounded-full w-6 h-6 border-2 border-zinc-200 hover:bg-zinc-100 transition z-[60]"
-            aria-label="{% trans 'Collapse menu' %}">
-        <span class="material-symbols-outlined text-xs leading-none" id="toggle-icon">chevron_left</span>
+            class="absolute flex items-center justify-center right-0 top-6 bg-white text-zinc-700 rounded-full w-8 h-8 transition z-[60]"
+            aria-label="{% trans 'Expand menu' %}">
+        <span class="material-symbols-outlined text-lg leading-none">menu</span>
     </button>
 
-    <div id="sidebar-content" class="flex flex-col h-full justify-between align-center p-4">
+    <div id="sidebar-content" class="flex flex-col gap-3 h-full p-4 bg-neutral-100">
 
-        <!-- Logo -->
-        <a href="{% url 'inventory:home' %}" class="flex justify-center mt-4 mb-6 shrink-0">
-            <img id="logo-full" src="{% static 'common/svg/logo/horizontal-letter-black.svg' %}" alt="Monium" class="h-6 w-auto">
-            <img id="logo-compact" src="{% static 'common/svg/logo/vertical-letter-black.svg' %}" alt="Monium" class="h-10 w-auto">
-        </a>
+        <!-- Organização atual: em destaque no topo, só pra trocar de organização -->
+        <div class="relative shrink-0 flex items-center gap-2">
+            <button type="button" id="org-menu-toggle"
+                    class="nav-item tooltip flex-1 min-w-0 flex items-center gap-2 p-2 rounded-lg bg-neutral-50 border border-neutral-200 transition-all ease-apple"
+                    data-tooltip="{% if current_organization %}{{ current_organization.name }}{% else %}{% trans 'Organizations' %}{% endif %}">
+                <span class="w-8 h-8 rounded-md bg-neutral-800 text-neutral-50 flex items-center justify-center text-sm font-bold shrink-0">
+                    {% if current_organization %}{{ current_organization.name|first|upper }}{% else %}?{% endif %}
+                </span>
+                <span class="sidebar-text flex flex-col items-start overflow-hidden flex-1 min-w-0">
+                    <span class="text-sm font-semibold text-neutral-800 truncate w-full text-center">
+                        {% if current_organization %}{{ current_organization.name }}{% else %}{% trans "Organizations" %}{% endif %}
+                    </span>
+                </span>
+            </button>
 
-        <nav class="flex mb-32 flex-col gap-3 shrink-0">
-            <a href="{% url 'inventory:home' %}"
-               class="nav-item tooltip flex items-center gap-3 p-3 rounded transition-all ease-apple
-                      {% if request.resolver_match.url_name == 'home' %}bg-zinc-900 text-white{% else %}hover:bg-zinc-100{% endif %}"
-               data-tooltip="{% trans 'Home' %}">
-                <span class="material-symbols-outlined text-base shrink-0 {% if request.resolver_match.url_name == 'home' %}text-white{% else %}text-zinc-400{% endif %}">home</span>
-                <span class="sidebar-text text-sm overflow-hidden whitespace-nowrap">{% trans "Home" %}</span>
-            </a>
+            <button type="button" id="sidebar-close-btn"
+                    class="sidebar-text flex items-center justify-center w-10 h-10 rounded-lg text-zinc-400 hover:bg-neutral-200 hover:text-zinc-700 transition shrink-0"
+                    aria-label="{% trans 'Collapse menu' %}">
+                <span class="material-symbols-outlined text-base leading-none">left_panel_close</span>
+            </button>
 
-            <a href="{% url 'inventory:patrimonio_list' %}"
-               class="nav-item tooltip flex items-center gap-3 p-3 rounded transition-all ease-apple
-                      {% if request.resolver_match.url_name in 'patrimonio_list,item_list,item_detail,item_create,imovel_list,imovel_detail,imovel_create,dashboard' %}bg-zinc-900 text-white{% else %}hover:bg-zinc-100{% endif %}"
-               data-tooltip="{% trans 'Assets' %}">
-                <span class="material-symbols-outlined text-base shrink-0 {% if request.resolver_match.url_name in 'patrimonio_list,item_list,item_detail,item_create,imovel_list,imovel_detail,imovel_create,dashboard' %}text-white{% else %}text-zinc-400{% endif %}">inventory_2</span>
-                <span class="sidebar-text text-sm overflow-hidden whitespace-nowrap">{% trans "Assets" %}</span>
-            </a>
-
-            <!-- Organizações -->
-            <div class="relative">
-                <div class="nav-item flex items-center gap-1 justify-between rounded-lg transition-all ease-apple
-                            {% if request.resolver_match.url_name in 'members,member_create,member_remove,member_role_update,create,delete' %}bg-zinc-900 text-white{% else %}hover:bg-zinc-100{% endif %}">
-                    <button type="button" id="org-menu-name-toggle"
-                            class="tooltip flex items-center justify-left gap-3 flex p-3 rounded-lg text-left overflow-hidden"
-                            data-tooltip="{% if current_organization %}{{ current_organization.name }}{% else %}{% trans 'Organizations' %}{% endif %}">
-                        <span class="material-symbols-outlined text-base shrink-0 {% if request.resolver_match.url_name in 'members,member_create,member_remove,member_role_update,create,delete' %}text-white{% else %}text-zinc-400{% endif %}">domain</span>
-                        <span class="sidebar-text text-sm overflow-hidden whitespace-nowrap truncate">
-                            {% if current_organization %}{{ current_organization.name }}{% else %}{% trans "Organizations" %}{% endif %}
-                        </span>
-                    </button>
-                    <button type="button" id="org-menu-arrow-toggle"
-                            class="sidebar-text shrink-0 p-2 rounded hover:bg-zinc-800/20 transition"
-                            aria-label="{% trans 'Switch organization' %}" title="{% trans 'Switch organization' %}">
-                        <span class="material-symbols-outlined w-4 h-auto text-sm shrink-0">unfold_more</span>
-                    </button>
-                </div>
-
-                <div id="org-menu-panel"
-                     class="hidden sidebar-text border border-zinc-200 rounded-b-lg bg-white overflow-hidden">
-                    {% for org in user_organizations %}
-                    <div class="flex items-center justify-between gap-2 px-3 py-2 border-b border-zinc-100 last:border-b-0
-                                {% if org == current_organization %}bg-accent-subtle{% endif %}">
-                        <form method="post" action="{% url 'organizations:switch' org.id %}" class="flex-1 min-w-0">
-                            {% csrf_token %}
-                            <input type="hidden" name="next" value="{{ request.path }}">
-                            <button type="submit" class="w-full flex items-center gap-1.5 text-left text-xs text-zinc-700 hover:text-zinc-900">
-                                <span class="truncate">{{ org.name }}</span>
-                                {% if org == current_organization %}
-                                <span class="material-symbols-outlined text-sm leading-none text-accent shrink-0 ml-auto" aria-label="{% trans 'current' %}">check</span>
-                                {% endif %}
-                            </button>
-                        </form>
-                        {% if org.id in owner_organization_ids %}
-                        <form method="post" action="{% url 'organizations:switch' org.id %}">
-                            {% csrf_token %}
-                            <input type="hidden" name="next" value="{% url 'organizations:settings' %}">
-                            <button type="submit" class="text-zinc-400 hover:text-zinc-900 shrink-0" title="{% trans 'Edit' %}">
-                                <span class="material-symbols-outlined text-sm leading-none">edit</span>
-                            </button>
-                        </form>
+            <div id="org-menu-panel"
+                 class="hidden sidebar-text absolute left-0 right-0 top-full mt-1 border border-zinc-200 rounded-lg bg-white overflow-hidden z-[65]">
+                {% for org in user_organizations %}
+                <form method="post" action="{% url 'organizations:switch' org.id %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="next" value="{{ request.path }}">
+                    <button type="submit"
+                            class="w-full flex items-center justify-between gap-2 px-3 py-2 text-left text-sm hover:bg-zinc-50 transition border-b border-zinc-100 last:border-b-0
+                                   {% if org == current_organization %}bg-accent-subtle{% endif %}">
+                        <span class="truncate text-zinc-700">{{ org.name }}</span>
+                        {% if org == current_organization %}
+                        <span class="material-symbols-outlined text-sm leading-none text-accent shrink-0" aria-label="{% trans 'current' %}">check</span>
                         {% endif %}
-                    </div>
-                    {% endfor %}
-                    {% if can_manage_members %}
-                    <a href="{% url 'organizations:members' %}"
-                       class="flex items-center gap-2 px-3 py-2 text-xs text-zinc-500 hover:text-zinc-900 hover:bg-zinc-50 transition border-t border-zinc-100">
-                        <span class="material-symbols-outlined text-sm leading-none">group</span>
-                        {% trans "Members" %}
+                    </button>
+                </form>
+                {% endfor %}
+                <a href="{% url 'organizations:create' %}"
+                   class="flex items-center gap-2 px-3 py-2 text-xs text-zinc-500 hover:text-zinc-900 hover:bg-zinc-50 transition border-t border-zinc-100">
+                    <span class="material-symbols-outlined text-sm leading-none">add</span>
+                    {% trans "New organization" %}
+                </a>
+            </div>
+        </div>
+        
+        <nav class="flex flex-col gap-3">
+            <div class="flex flex-col gap-1">
+                <h6 class="sidebar-text text-neutral-400 p-1 text-xs">{% trans "Main" %}</h6>
+                <div class="flex flex-wrap flex-col gap-2">
+                    <a href="{% url 'inventory:patrimonio_list' %}"
+                        class="nav-item tooltip px-2 py-1 text-neutral-500 gap-1 flex items-center justify-start
+                                {% if request.resolver_match.url_name in 'patrimonio_list,item_list,item_detail,item_create,imovel_list,imovel_detail,imovel_create,dashboard' %}bg-neutral-200{% else %}hover:bg-neutral-100{% endif %}"
+                        data-tooltip="{% trans 'Assets' %}">
+                        <span class="material-symbols-outlined text-base shrink-0">inventory_2</span>
+                        <span class="sidebar-text text-sm overflow-hidden whitespace-nowrap">{% trans "Assets" %}</span>
                     </a>
-                    {% endif %}
-                    <a href="{% url 'organizations:create' %}"
-                       class="flex items-center gap-2 px-3 py-2 text-xs text-zinc-500 hover:text-zinc-900 hover:bg-zinc-50 transition border-t border-zinc-100">
-                        <span class="material-symbols-outlined text-sm leading-none">add</span>
-                        {% trans "New organization" %}
+
+                    <a href="{% url 'inventory:home' %}"
+                        class="nav-item tooltip px-2 py-1 text-neutral-500 gap-1 flex items-center justify-start
+                                {% if request.resolver_match.url_name == 'home' %}bg-neutral-200{% else %}hover:bg-neutral-100{% endif %}"
+                        data-tooltip="{% trans 'Home' %}">
+                        <span class="material-symbols-outlined text-base shrink-0">home</span>
+                        <span class="sidebar-text text-sm overflow-hidden whitespace-nowrap">{% trans "Home" %}</span>
                     </a>
                 </div>
             </div>
 
-            <a href="{% url 'account:settings' %}"
-               class="nav-item tooltip flex items-center gap-3 p-3 rounded transition-all ease-apple
-                      {% if request.resolver_match.url_name == 'settings' and request.resolver_match.app_name == 'account' %}bg-zinc-900 text-white{% else %}hover:bg-zinc-100{% endif %}"
-               data-tooltip="{% trans 'Settings' %}">
-                <span class="material-symbols-outlined text-base shrink-0 {% if request.resolver_match.url_name == 'settings' and request.resolver_match.app_name == 'account' %}text-white{% else %}text-zinc-400{% endif %}">settings</span>
-                <span class="sidebar-text text-sm overflow-hidden whitespace-nowrap">{% trans "Settings" %}</span>
+            <div class="flex flex-col gap-1">
+                <h6 class="sidebar-text text-neutral-400 p-1 text-xs">{% trans "Assets" %}</h6>
+                <div class="flex flex-wrap flex-col gap-2">
+                    <a href="{% url 'inventory:item_list' %}"
+                        class="nav-item tooltip px-2 py-1 text-neutral-500 gap-1 flex items-center justify-start
+                                {% if request.resolver_match.url_name in 'item_list,item_detail,item_create' %}bg-neutral-200{% else %}hover:bg-neutral-100{% endif %}"
+                        data-tooltip="{% trans 'Items' %}">
+                        <span class="material-symbols-outlined text-base shrink-0">category</span>
+                        <span class="sidebar-text text-sm overflow-hidden whitespace-nowrap">{% trans "Items" %}</span>
+                    </a>
+
+                    <a href="{% url 'inventory:imovel_list' %}"
+                        class="nav-item tooltip px-2 py-1 text-neutral-500 gap-1 flex items-center justify-start
+                                {% if request.resolver_match.url_name in 'imovel_list,imovel_detail,imovel_create' %}bg-neutral-200{% else %}hover:bg-neutral-100{% endif %}"
+                        data-tooltip="{% trans 'Real Estate' %}">
+                        <span class="material-symbols-outlined text-base shrink-0">home_work</span>
+                        <span class="sidebar-text text-sm overflow-hidden whitespace-nowrap">{% trans "Real Estate" %}</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="flex flex-col gap-1">
+                <h6 class="sidebar-text text-neutral-400 p-1 text-xs">{% trans "Other" %}</h6>
+                <div class="flex flex-wrap flex-col gap-2">
+                    <a href="#"
+                        class="nav-item tooltip px-2 py-1 text-neutral-500 gap-1 flex items-center justify-start hover:bg-neutral-100"
+                        data-tooltip="{% trans 'Trash' %}">
+                        <span class="material-symbols-outlined text-base shrink-0">delete</span>
+                        <span class="sidebar-text text-sm overflow-hidden whitespace-nowrap">{% trans "Trash" %}</span>
+                    </a>
+
+                    <a href="{% url 'account:settings' %}"
+                        class="nav-item tooltip px-2 py-1 text-neutral-500 gap-1 flex items-center justify-start
+                                {% if request.resolver_match.url_name == 'settings' and request.resolver_match.app_name == 'account' %}bg-neutral-200{% else %}hover:bg-neutral-100{% endif %}"
+                        data-tooltip="{% trans 'Settings' %}">
+                        <span class="material-symbols-outlined text-base shrink-0">settings</span>
+                        <span class="sidebar-text text-sm overflow-hidden whitespace-nowrap">{% trans "Settings" %}</span>
+                    </a>
+
+                    <a href="{% url 'account:settings' %}"
+                        class="nav-item tooltip px-2 py-1 text-neutral-500 gap-1 flex items-center justify-start hover:bg-neutral-100"
+                        data-tooltip="{% trans 'Language' %}">
+                        <span class="material-symbols-outlined text-base shrink-0">translate</span>
+                        <span class="sidebar-text text-sm overflow-hidden whitespace-nowrap">{% trans "Language" %}</span>
+                    </a>
+
+                    <a href="{% url 'account:settings' %}"
+                        class="nav-item tooltip px-2 py-1 text-neutral-500 gap-1 flex items-center justify-start hover:bg-neutral-100"
+                        data-tooltip="{% trans 'Help' %}">
+                        <span class="material-symbols-outlined text-base shrink-0">help</span>
+                        <span class="sidebar-text text-sm overflow-hidden whitespace-nowrap">{% trans "Help" %}</span>
+                    </a>
+
+                    <a href="#"
+                        class="nav-item tooltip px-2 py-1 text-neutral-500 gap-1 flex items-center justify-start hover:bg-neutral-100"
+                        data-tooltip="{% trans 'Support' %}">
+                        <span class="material-symbols-outlined text-base shrink-0">volunteer_activism</span>
+                        <span class="sidebar-text text-sm overflow-hidden whitespace-nowrap">{% trans "Support" %}</span>
+                    </a>
+                </div>
+            </div>
+        </nav>
+
+        <nav class="flex flex-col gap-3 shrink-0">
+            <a href="{% url 'inventory:home' %}"
+               class="nav-item tooltip flex items-center gap-3 px-3 py-2 rounded transition-all ease-apple
+                      {% if request.resolver_match.url_name == 'home' %}bg-zinc-100 text-zinc-900{% else %}hover:bg-zinc-100{% endif %}"
+               data-tooltip="{% trans 'Home' %}">
+                <span class="material-symbols-outlined text-base shrink-0 {% if request.resolver_match.url_name == 'home' %}text-zinc-900{% else %}text-zinc-400{% endif %}">home</span>
+                <span class="sidebar-text text-sm overflow-hidden whitespace-nowrap">{% trans "Home" %}</span>
             </a>
 
+            <a href="{% url 'inventory:patrimonio_list' %}"
+               class="nav-item tooltip flex items-center gap-3 px-3 py-2 rounded transition-all ease-apple
+                      {% if request.resolver_match.url_name in 'patrimonio_list,item_list,item_detail,item_create,imovel_list,imovel_detail,imovel_create,dashboard' %}bg-zinc-100 text-zinc-900{% else %}hover:bg-zinc-100{% endif %}"
+               data-tooltip="{% trans 'Assets' %}">
+                <span class="material-symbols-outlined text-base shrink-0 {% if request.resolver_match.url_name in 'patrimonio_list,item_list,item_detail,item_create,imovel_list,imovel_detail,imovel_create,dashboard' %}text-zinc-900{% else %}text-zinc-400{% endif %}">inventory_2</span>
+                <span class="sidebar-text text-sm overflow-hidden whitespace-nowrap">{% trans "Assets" %}</span>
+            </a>
+
+            <button type="button" data-open-modal="global-search-modal"
+                    class="nav-item tooltip flex items-center gap-3 px-3 py-2 rounded transition-all ease-apple hover:bg-zinc-100"
+                    data-tooltip="{% trans 'Search' %}">
+                <span class="material-symbols-outlined text-base shrink-0 text-zinc-400">search</span>
+                <span class="sidebar-text text-sm overflow-hidden whitespace-nowrap flex-1 text-left">{% trans "Search" %}</span>
+                <span class="sidebar-text text-xs text-zinc-400 border border-zinc-200 rounded px-1.5 py-0.5 leading-none">Ctrl K</span>
+            </button>
+
+            {% if is_organization_owner %}
+            <a href="{% url 'audit:log-layer-dashboard' 'business' %}"
+               class="nav-item tooltip flex items-center gap-3 px-3 py-2 rounded transition-all ease-apple
+                      {% if request.resolver_match.app_name == 'audit' %}bg-zinc-100 text-zinc-900{% else %}hover:bg-zinc-100{% endif %}"
+               data-tooltip="{% trans 'Audit' %}">
+                <span class="material-symbols-outlined text-base shrink-0 {% if request.resolver_match.app_name == 'audit' %}text-zinc-900{% else %}text-zinc-400{% endif %}">monitoring</span>
+                <span class="sidebar-text text-sm overflow-hidden whitespace-nowrap">{% trans "Audit" %}</span>
+            </a>
+            {% endif %}
+
+            <div class="sidebar-text border-t border-zinc-100 my-1"></div>
+
+            <a href="{% url 'account:settings' %}"
+               class="nav-item tooltip flex items-center gap-3 px-3 py-2 rounded transition-all ease-apple
+                      {% if request.resolver_match.url_name == 'settings' and request.resolver_match.app_name == 'account' %}bg-zinc-100 text-zinc-900{% else %}hover:bg-zinc-100{% endif %}"
+               data-tooltip="{% trans 'My account' %}">
+                <span class="material-symbols-outlined text-base shrink-0 {% if request.resolver_match.url_name == 'settings' and request.resolver_match.app_name == 'account' %}text-zinc-900{% else %}text-zinc-400{% endif %}">person</span>
+                <span class="sidebar-text text-sm overflow-hidden whitespace-nowrap">{% trans "My account" %}</span>
+            </a>
+
+            {% if can_manage_members %}
+            <a href="{% url 'organizations:settings' %}"
+               class="nav-item tooltip flex items-center gap-3 px-3 py-2 rounded transition-all ease-apple
+                      {% if request.resolver_match.url_name == 'settings' and request.resolver_match.app_name == 'organizations' or request.resolver_match.url_name == 'member_create' %}bg-zinc-100 text-zinc-900{% else %}hover:bg-zinc-100{% endif %}"
+               data-tooltip="{% trans 'Organization' %}">
+                <span class="material-symbols-outlined text-base shrink-0 {% if request.resolver_match.url_name == 'settings' and request.resolver_match.app_name == 'organizations' or request.resolver_match.url_name == 'member_create' %}text-zinc-900{% else %}text-zinc-400{% endif %}">domain</span>
+                <span class="sidebar-text text-sm overflow-hidden whitespace-nowrap">{% trans "Organization" %}</span>
+            </a>
+            {% endif %}
         </nav>
+
+        <div class="flex-1"></div>
 
         <div class="shrink-0 flex flex-col gap-1">
             <a href="{% url 'account:profile_edit' %}"
-               class="nav-item tooltip flex items-center gap-3 p-2 rounded hover:bg-zinc-100 transition-all ease-apple"
+               class="nav-item tooltip flex items-center gap-3 p-2 rounded-full bg-neutral-50 border border-neutral-200 transition-all ease-apple"
                data-tooltip="{% trans 'My profile' %}">
-                <div class="w-10 h-10 rounded-full bg-accent text-white flex items-center justify-center font-bold text-lg shrink-0">
+                <div class="w-10 h-10 rounded-full bg-accent text-neutral-800 flex items-center justify-center font-bold text-sm shrink-0">
                     {{ request.user.first_name|default:request.user.username|first|upper }}
                 </div>
                 <div class="user-info flex flex-col leading-tight overflow-hidden">
@@ -185,6 +266,8 @@
      class="fixed inset-0 bg-black/50 hidden z-[70]"
      aria-hidden="true"></div>
 
+{% include "common/includes/global_search_modal.html" %}
+
 <style>
 #sidebar-content { scrollbar-width: thin; scrollbar-color: rgba(100,116,139,0.4) transparent; }
 #sidebar-content::-webkit-scrollbar { width: 6px; }
@@ -197,20 +280,17 @@
 document.addEventListener('DOMContentLoaded', function () {
     const html = document.documentElement;
 
-    // Desktop collapse
+    // Desktop collapse: hamburguer abre, botão de fechar dentro da aside recolhe.
     const toggleBtn = document.getElementById('sidebar-toggle');
-    const toggleIcon = document.getElementById('toggle-icon');
+    const closeBtn = document.getElementById('sidebar-close-btn');
 
-    function updateToggleIcon(collapsed) {
-        toggleIcon.textContent = collapsed ? 'chevron_right' : 'chevron_left';
+    function setSidebarCollapsed(collapsed) {
+        html.classList.toggle('sidebar-is-collapsed', collapsed);
+        localStorage.setItem('sidebar-collapsed', collapsed);
     }
-    updateToggleIcon(html.classList.contains('sidebar-is-collapsed'));
 
-    toggleBtn.addEventListener('click', function () {
-        const isNowCollapsed = html.classList.toggle('sidebar-is-collapsed');
-        localStorage.setItem('sidebar-collapsed', isNowCollapsed);
-        updateToggleIcon(isNowCollapsed);
-    });
+    toggleBtn.addEventListener('click', function () { setSidebarCollapsed(false); });
+    if (closeBtn) closeBtn.addEventListener('click', function () { setSidebarCollapsed(true); });
 
     // Mobile overlay
     const backdrop = document.getElementById('mobile-backdrop');
@@ -223,33 +303,28 @@ document.addEventListener('DOMContentLoaded', function () {
     backdrop.addEventListener('click', closeMobileSidebar);
     window.addEventListener('resize', function () { if (window.innerWidth >= 1024) closeMobileSidebar(); });
 
-    // Organizations dropdown
-    const orgPanel = document.getElementById('org-menu-panel');
-    const orgNameToggle = document.getElementById('org-menu-name-toggle');
-    const orgArrowToggle = document.getElementById('org-menu-arrow-toggle');
+    // Painel do seletor de organização: clicar expande a sidebar primeiro se
+    // ela estiver recolhida (senão o painel, que usa .sidebar-text, fica
+    // invisível e o clique parece não fazer nada).
+    function setupCollapsiblePanel(toggleBtn, panel) {
+        if (!toggleBtn || !panel) return;
 
-    function toggleOrgPanel() {
-        // O painel usa a classe .sidebar-text, que fica "display: none" com o
-        // menu recolhido — sem expandir primeiro, o clique parece não fazer nada.
-        if (html.classList.contains('sidebar-is-collapsed')) {
-            html.classList.remove('sidebar-is-collapsed');
-            localStorage.setItem('sidebar-collapsed', 'false');
-            updateToggleIcon(false);
-            orgPanel.classList.remove('hidden');
-            return;
-        }
-        orgPanel.classList.toggle('hidden');
-    }
-
-    if (orgPanel && orgNameToggle && orgArrowToggle) {
-        orgNameToggle.addEventListener('click', toggleOrgPanel);
-        orgArrowToggle.addEventListener('click', toggleOrgPanel);
+        toggleBtn.addEventListener('click', function () {
+            if (html.classList.contains('sidebar-is-collapsed')) {
+                setSidebarCollapsed(false);
+                panel.classList.remove('hidden');
+                return;
+            }
+            panel.classList.toggle('hidden');
+        });
 
         document.addEventListener('click', function (event) {
-            if (!orgPanel.contains(event.target) && !orgNameToggle.contains(event.target) && !orgArrowToggle.contains(event.target)) {
-                orgPanel.classList.add('hidden');
+            if (!panel.contains(event.target) && !toggleBtn.contains(event.target)) {
+                panel.classList.add('hidden');
             }
         });
     }
+
+    setupCollapsiblePanel(document.getElementById('org-menu-toggle'), document.getElementById('org-menu-panel'));
 });
 </script>

@@ -1,0 +1,117 @@
+{% load i18n %}
+
+<div id="global-search-modal"
+     class="fixed inset-0 z-50 hidden items-start justify-center bg-black/70 backdrop-blur-sm p-4 pt-[12vh]">
+
+    <div class="bg-white border border-zinc-200 rounded-md max-w-lg w-full flex flex-col overflow-hidden">
+
+        <div class="flex items-center gap-2 px-4 border-b border-zinc-200">
+            <span class="material-symbols-outlined text-zinc-400 text-xl leading-none shrink-0">search</span>
+            <input type="text" id="global-search-input" autocomplete="off"
+                   placeholder="{% trans 'Search items, real estate…' %}"
+                   class="flex-1 py-3.5 text-sm outline-none border-0 focus:ring-0 placeholder:text-zinc-400">
+            <button type="button" data-close-modal
+                    class="shrink-0 text-xs text-zinc-400 border border-zinc-200 rounded px-1.5 py-0.5 leading-none">Esc</button>
+        </div>
+
+        <div id="global-search-results" class="max-h-96 overflow-y-auto">
+            <p id="global-search-hint" class="px-4 py-8 text-center text-sm text-zinc-500">
+                {% trans "Type to search assets by name or code." %}
+            </p>
+        </div>
+
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const modal = document.getElementById('global-search-modal');
+    const input = document.getElementById('global-search-input');
+    const resultsBox = document.getElementById('global-search-results');
+    const searchUrl = '{% url "inventory:patrimonio_search" %}';
+
+    const ICON_BY_TIPO = { movel: 'inventory_2', imovel: 'home_work' };
+    let debounceTimer = null;
+    let lastQuery = '';
+
+    function escapeHtml(value) {
+        const div = document.createElement('div');
+        div.textContent = value;
+        return div.innerHTML;
+    }
+
+    function renderHint(message) {
+        resultsBox.innerHTML = '<p class="px-4 py-8 text-center text-sm text-zinc-500">' + message + '</p>';
+    }
+
+    function renderResults(results) {
+        if (results.length === 0) {
+            renderHint('{% trans "No assets found." %}');
+            return;
+        }
+
+        resultsBox.innerHTML = results.map(function (result) {
+            return (
+                '<a href="' + escapeHtml(result.url) + '" ' +
+                'class="flex items-center gap-3 px-4 py-3 hover:bg-zinc-50 transition border-b border-zinc-100 last:border-b-0">' +
+                '<span class="material-symbols-outlined text-zinc-400 text-lg leading-none shrink-0">' +
+                (ICON_BY_TIPO[result.tipo] || 'inventory_2') + '</span>' +
+                '<span class="flex-1 min-w-0">' +
+                '<span class="block text-sm text-zinc-900 truncate">' + escapeHtml(result.name) + '</span>' +
+                '<span class="block text-xs text-zinc-500 truncate">' + escapeHtml(result.code) + ' &middot; ' + escapeHtml(result.categoria) + '</span>' +
+                '</span>' +
+                '<span class="shrink-0 text-xs text-zinc-400">' + escapeHtml(result.tipo_label) + '</span>' +
+                '</a>'
+            );
+        }).join('');
+    }
+
+    function search(query) {
+        fetch(searchUrl + '?q=' + encodeURIComponent(query))
+            .then(function (response) { return response.json(); })
+            .then(function (data) {
+                if (input.value.trim() !== query) return;
+                renderResults(data.results);
+            });
+    }
+
+    input.addEventListener('input', function () {
+        const query = input.value.trim();
+        clearTimeout(debounceTimer);
+
+        if (query === lastQuery) return;
+        lastQuery = query;
+
+        if (query === '') {
+            renderHint('{% trans "Type to search assets by name or code." %}');
+            return;
+        }
+
+        debounceTimer = setTimeout(function () { search(query); }, 250);
+    });
+
+    input.addEventListener('keydown', function (event) {
+        if (event.key !== 'Enter') return;
+        const firstResult = resultsBox.querySelector('a');
+        if (firstResult) firstResult.click();
+    });
+
+    document.addEventListener('keydown', function (event) {
+        const isSearchShortcut = (event.ctrlKey || event.metaKey) && event.key.toLowerCase() === 'k';
+        if (!isSearchShortcut) return;
+
+        event.preventDefault();
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+        input.focus();
+    });
+
+    // Reabrir com o campo focado — setTimeout(0) porque o listener genérico
+    // que remove a classe "hidden" do modal (ui_scripts.html) roda depois
+    // deste, num listener separado; sem adiar, o campo ainda estaria oculto
+    // no momento do focus().
+    document.querySelectorAll('[data-open-modal="global-search-modal"]').forEach(function (button) {
+        button.addEventListener('click', function () { setTimeout(function () { input.focus(); }, 0); });
+    });
+});
+</script>

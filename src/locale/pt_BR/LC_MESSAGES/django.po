@@ -2624,3 +2624,23 @@ msgstr ""
 "Não conseguimos enviar o e-mail de verificação agora. Tente novamente em "
 "instantes.Já fomos notificados e estamos investigando. Tente novamente em "
 "alguns minutos."
+
+#: apps/common/web/templates/common/includes/aside.html
+msgid "Items"
+msgstr "Itens"
+
+#: apps/common/web/templates/common/includes/aside.html
+msgid "Other"
+msgstr "Outros"
+
+#: apps/common/web/templates/common/includes/aside.html
+msgid "Trash"
+msgstr "Lixeira"
+
+#: apps/common/web/templates/common/includes/aside.html
+msgid "Help"
+msgstr "Ajuda"
+
+#: apps/common/web/templates/common/includes/aside.html
+msgid "Support"
+msgstr "Apoiar"

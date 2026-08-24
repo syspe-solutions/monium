@@ -2,10 +2,14 @@ from django.contrib.auth.mixins import UserPassesTestMixin
 
 from apps.audit.dtos import SecurityAction, SecurityStatus
 from apps.audit.loggers.security_logger import SecurityLogger
+from apps.organizations.models import Membership, MembershipRole
 
 
 class PermissionRequiredMixin(UserPassesTestMixin):
-    required_permission = None
+    """Restringe o acesso a quem é OWNER de pelo menos uma organização —
+    hoje usado só pelos dashboards de auditoria/log, que são visão de
+    administração do sistema, não de uma organização específica."""
+
     security_logger = SecurityLogger()
 
     def test_func(self):
@@ -14,16 +18,11 @@ class PermissionRequiredMixin(UserPassesTestMixin):
             self._log_unauthorized("Anonymous user attempted to access protected view")
             return False
 
-        has_permission = (
-            self.required_permission 
-            and hasattr(user, 'all_permissions') 
-            and self.required_permission in user.all_permissions
-        )
+        is_owner = Membership.objects.filter(user=user, role=MembershipRole.OWNER).exists()
+        if not is_owner:
+            self._log_unauthorized("User is not an organization owner")
 
-        if not has_permission:
-            self._log_unauthorized(f"User lacks permission: {self.required_permission}")
-            
-        return has_permission
+        return is_owner
 
     def _log_unauthorized(self, reason):
         self.security_logger.log_event(

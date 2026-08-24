@@ -63,7 +63,11 @@
     /* Tooltip custom (substitui o title= nativo do navegador, que tem delay
        e estilo inconsistentes entre browsers) — uso: <el class="tooltip" data-tooltip="Texto">.
        Fica escuro mesmo no tema claro (padrão Notion/Linear): destaca contra
-       qualquer fundo e não compete com a paleta clara do resto da UI. */
+       qualquer fundo e não compete com a paleta clara do resto da UI.
+       Só usado na sidebar (#main-sidebar), pra rotular os ícones quando ela
+       está recolhida — por isso só aparece nesse estado: com a sidebar aberta
+       o item já mostra o próprio texto, e o tooltip só sobraria por cima de
+       painéis expansíveis (organização, configurações). */
     .tooltip {
         @apply relative;
     }
@@ -75,8 +79,8 @@
                transition ease-apple;
     }
 
-    .tooltip:hover::after,
-    .tooltip:focus-visible::after {
+    .sidebar-is-collapsed .tooltip:hover::after,
+    .sidebar-is-collapsed .tooltip:focus-visible::after {
         @apply opacity-100;
     }
 

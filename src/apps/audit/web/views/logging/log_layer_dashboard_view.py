@@ -15,7 +15,6 @@ from apps.audit.web.views.logging.log_dashboard_views import (
 
 
 class LogLayerDashboardView(PermissionRequiredMixin, View):
-    required_permission = 'view_business_logs'
     raise_exception = True
 
     VIEW_MAP = {

@@ -7,7 +7,6 @@ from apps.security.mixins import PermissionRequiredMixin
 
 
 class BaseLayerDashboardView(PermissionRequiredMixin, View):
-    required_permission = "view_business_logs"
     raise_exception = True
 
     layer = ""

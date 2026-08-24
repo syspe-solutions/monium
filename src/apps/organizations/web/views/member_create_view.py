@@ -25,4 +25,4 @@ class MemberCreateView(LoginRequiredMixin, MemberManagementRequiredMixin, View):
         messages.success(
             request, _('User "%(email)s" created successfully.') % {"email": membership.user.email}
         )
-        return redirect("organizations:members")
+        return redirect("organizations:settings")

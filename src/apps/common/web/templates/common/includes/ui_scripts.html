@@ -42,6 +42,12 @@
         }
     });
 
+    document.addEventListener('keydown', function (e) {
+        if (e.key !== 'Escape') return;
+        const openModal = document.querySelector('.fixed.inset-0.flex');
+        if (openModal) openModal.classList.add('hidden');
+    });
+
     // Loading state genérico: desabilita o botão de submit e mostra um spinner
     // enquanto o form está em voo, pra qualquer form da aplicação.
     document.addEventListener('submit', function (e) {

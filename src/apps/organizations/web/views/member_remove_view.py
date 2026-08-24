@@ -14,16 +14,16 @@ class MemberRemoveView(LoginRequiredMixin, MemberManagementRequiredMixin, View):
 
         if membership.user_id == request.user.id:
             messages.error(request, _("You can't remove yourself from the organization."))
-            return redirect("organizations:members")
+            return redirect("organizations:settings")
 
         if membership.role == MembershipRole.OWNER:
             messages.error(request, _("The organization owner can't be removed."))
-            return redirect("organizations:members")
+            return redirect("organizations:settings")
 
         if request.organization.memberships.count() <= 1:
             messages.error(request, _("The organization needs to have at least one member."))
-            return redirect("organizations:members")
+            return redirect("organizations:settings")
 
         membership.delete()
         messages.success(request, _("Member removed from the organization."))
-        return redirect("organizations:members")
+        return redirect("organizations:settings")

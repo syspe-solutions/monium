@@ -5,7 +5,6 @@ from apps.security.mixins import PermissionRequiredMixin
 
 
 class LogMetricsView(PermissionRequiredMixin, View):
-    required_permission = 'view_business_logs'
     raise_exception = True
 
     def get(self, request, layer):
