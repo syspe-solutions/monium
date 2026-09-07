@@ -117,6 +117,14 @@
                         <span class="material-symbols-outlined text-base shrink-0">home</span>
                         <span class="sidebar-text text-sm overflow-hidden whitespace-nowrap">{% trans "Home" %}</span>
                     </a>
+
+                    <button type="button" data-open-modal="global-search-modal"
+                        class="nav-item tooltip px-2 py-1 text-neutral-500 gap-1 flex items-center justify-start hover:bg-neutral-100"
+                        data-tooltip="{% trans 'Search' %}">
+                        <span class="material-symbols-outlined text-base shrink-0">search</span>
+                        <span class="sidebar-text text-sm overflow-hidden whitespace-nowrap flex-1 text-left">{% trans "Search" %}</span>
+                        <span class="sidebar-text text-xs text-neutral-400 border border-neutral-200 rounded px-1.5 py-0.5 leading-none">Ctrl K</span>
+                    </button>
                 </div>
             </div>
 
@@ -141,16 +149,36 @@
                 </div>
             </div>
 
+            {% if is_organization_owner or can_manage_members %}
+            <div class="flex flex-col gap-1">
+                <h6 class="sidebar-text text-neutral-400 p-1 text-xs">{% trans "Management" %}</h6>
+                <div class="flex flex-wrap flex-col gap-2">
+                    {% if is_organization_owner %}
+                    <a href="{% url 'audit:log-layer-dashboard' 'business' %}"
+                        class="nav-item tooltip px-2 py-1 text-neutral-500 gap-1 flex items-center justify-start
+                                {% if request.resolver_match.app_name == 'audit' %}bg-neutral-200{% else %}hover:bg-neutral-100{% endif %}"
+                        data-tooltip="{% trans 'Audit' %}">
+                        <span class="material-symbols-outlined text-base shrink-0">monitoring</span>
+                        <span class="sidebar-text text-sm overflow-hidden whitespace-nowrap">{% trans "Audit" %}</span>
+                    </a>
+                    {% endif %}
+
+                    {% if can_manage_members %}
+                    <a href="{% url 'organizations:settings' %}"
+                        class="nav-item tooltip px-2 py-1 text-neutral-500 gap-1 flex items-center justify-start
+                                {% if request.resolver_match.url_name == 'settings' and request.resolver_match.app_name == 'organizations' or request.resolver_match.url_name == 'member_create' %}bg-neutral-200{% else %}hover:bg-neutral-100{% endif %}"
+                        data-tooltip="{% trans 'Organization' %}">
+                        <span class="material-symbols-outlined text-base shrink-0">domain</span>
+                        <span class="sidebar-text text-sm overflow-hidden whitespace-nowrap">{% trans "Organization" %}</span>
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+            {% endif %}
+
             <div class="flex flex-col gap-1">
                 <h6 class="sidebar-text text-neutral-400 p-1 text-xs">{% trans "Other" %}</h6>
                 <div class="flex flex-wrap flex-col gap-2">
-                    <a href="#"
-                        class="nav-item tooltip px-2 py-1 text-neutral-500 gap-1 flex items-center justify-start hover:bg-neutral-100"
-                        data-tooltip="{% trans 'Trash' %}">
-                        <span class="material-symbols-outlined text-base shrink-0">delete</span>
-                        <span class="sidebar-text text-sm overflow-hidden whitespace-nowrap">{% trans "Trash" %}</span>
-                    </a>
-
                     <a href="{% url 'account:settings' %}"
                         class="nav-item tooltip px-2 py-1 text-neutral-500 gap-1 flex items-center justify-start
                                 {% if request.resolver_match.url_name == 'settings' and request.resolver_match.app_name == 'account' %}bg-neutral-200{% else %}hover:bg-neutral-100{% endif %}"
@@ -159,84 +187,21 @@
                         <span class="sidebar-text text-sm overflow-hidden whitespace-nowrap">{% trans "Settings" %}</span>
                     </a>
 
-                    <a href="{% url 'account:settings' %}"
+                    <a href="{% url 'account:settings' %}#language-section"
                         class="nav-item tooltip px-2 py-1 text-neutral-500 gap-1 flex items-center justify-start hover:bg-neutral-100"
                         data-tooltip="{% trans 'Language' %}">
                         <span class="material-symbols-outlined text-base shrink-0">translate</span>
                         <span class="sidebar-text text-sm overflow-hidden whitespace-nowrap">{% trans "Language" %}</span>
                     </a>
 
-                    <a href="{% url 'account:settings' %}"
+                    <a href="{% url 'account:settings' %}#help-support-section"
                         class="nav-item tooltip px-2 py-1 text-neutral-500 gap-1 flex items-center justify-start hover:bg-neutral-100"
-                        data-tooltip="{% trans 'Help' %}">
+                        data-tooltip="{% trans 'Help & Support' %}">
                         <span class="material-symbols-outlined text-base shrink-0">help</span>
-                        <span class="sidebar-text text-sm overflow-hidden whitespace-nowrap">{% trans "Help" %}</span>
-                    </a>
-
-                    <a href="#"
-                        class="nav-item tooltip px-2 py-1 text-neutral-500 gap-1 flex items-center justify-start hover:bg-neutral-100"
-                        data-tooltip="{% trans 'Support' %}">
-                        <span class="material-symbols-outlined text-base shrink-0">volunteer_activism</span>
-                        <span class="sidebar-text text-sm overflow-hidden whitespace-nowrap">{% trans "Support" %}</span>
+                        <span class="sidebar-text text-sm overflow-hidden whitespace-nowrap">{% trans "Help & Support" %}</span>
                     </a>
                 </div>
             </div>
-        </nav>
-
-        <nav class="flex flex-col gap-3 shrink-0">
-            <a href="{% url 'inventory:home' %}"
-               class="nav-item tooltip flex items-center gap-3 px-3 py-2 rounded transition-all ease-apple
-                      {% if request.resolver_match.url_name == 'home' %}bg-zinc-100 text-zinc-900{% else %}hover:bg-zinc-100{% endif %}"
-               data-tooltip="{% trans 'Home' %}">
-                <span class="material-symbols-outlined text-base shrink-0 {% if request.resolver_match.url_name == 'home' %}text-zinc-900{% else %}text-zinc-400{% endif %}">home</span>
-                <span class="sidebar-text text-sm overflow-hidden whitespace-nowrap">{% trans "Home" %}</span>
-            </a>
-
-            <a href="{% url 'inventory:patrimonio_list' %}"
-               class="nav-item tooltip flex items-center gap-3 px-3 py-2 rounded transition-all ease-apple
-                      {% if request.resolver_match.url_name in 'patrimonio_list,item_list,item_detail,item_create,imovel_list,imovel_detail,imovel_create,dashboard' %}bg-zinc-100 text-zinc-900{% else %}hover:bg-zinc-100{% endif %}"
-               data-tooltip="{% trans 'Assets' %}">
-                <span class="material-symbols-outlined text-base shrink-0 {% if request.resolver_match.url_name in 'patrimonio_list,item_list,item_detail,item_create,imovel_list,imovel_detail,imovel_create,dashboard' %}text-zinc-900{% else %}text-zinc-400{% endif %}">inventory_2</span>
-                <span class="sidebar-text text-sm overflow-hidden whitespace-nowrap">{% trans "Assets" %}</span>
-            </a>
-
-            <button type="button" data-open-modal="global-search-modal"
-                    class="nav-item tooltip flex items-center gap-3 px-3 py-2 rounded transition-all ease-apple hover:bg-zinc-100"
-                    data-tooltip="{% trans 'Search' %}">
-                <span class="material-symbols-outlined text-base shrink-0 text-zinc-400">search</span>
-                <span class="sidebar-text text-sm overflow-hidden whitespace-nowrap flex-1 text-left">{% trans "Search" %}</span>
-                <span class="sidebar-text text-xs text-zinc-400 border border-zinc-200 rounded px-1.5 py-0.5 leading-none">Ctrl K</span>
-            </button>
-
-            {% if is_organization_owner %}
-            <a href="{% url 'audit:log-layer-dashboard' 'business' %}"
-               class="nav-item tooltip flex items-center gap-3 px-3 py-2 rounded transition-all ease-apple
-                      {% if request.resolver_match.app_name == 'audit' %}bg-zinc-100 text-zinc-900{% else %}hover:bg-zinc-100{% endif %}"
-               data-tooltip="{% trans 'Audit' %}">
-                <span class="material-symbols-outlined text-base shrink-0 {% if request.resolver_match.app_name == 'audit' %}text-zinc-900{% else %}text-zinc-400{% endif %}">monitoring</span>
-                <span class="sidebar-text text-sm overflow-hidden whitespace-nowrap">{% trans "Audit" %}</span>
-            </a>
-            {% endif %}
-
-            <div class="sidebar-text border-t border-zinc-100 my-1"></div>
-
-            <a href="{% url 'account:settings' %}"
-               class="nav-item tooltip flex items-center gap-3 px-3 py-2 rounded transition-all ease-apple
-                      {% if request.resolver_match.url_name == 'settings' and request.resolver_match.app_name == 'account' %}bg-zinc-100 text-zinc-900{% else %}hover:bg-zinc-100{% endif %}"
-               data-tooltip="{% trans 'My account' %}">
-                <span class="material-symbols-outlined text-base shrink-0 {% if request.resolver_match.url_name == 'settings' and request.resolver_match.app_name == 'account' %}text-zinc-900{% else %}text-zinc-400{% endif %}">person</span>
-                <span class="sidebar-text text-sm overflow-hidden whitespace-nowrap">{% trans "My account" %}</span>
-            </a>
-
-            {% if can_manage_members %}
-            <a href="{% url 'organizations:settings' %}"
-               class="nav-item tooltip flex items-center gap-3 px-3 py-2 rounded transition-all ease-apple
-                      {% if request.resolver_match.url_name == 'settings' and request.resolver_match.app_name == 'organizations' or request.resolver_match.url_name == 'member_create' %}bg-zinc-100 text-zinc-900{% else %}hover:bg-zinc-100{% endif %}"
-               data-tooltip="{% trans 'Organization' %}">
-                <span class="material-symbols-outlined text-base shrink-0 {% if request.resolver_match.url_name == 'settings' and request.resolver_match.app_name == 'organizations' or request.resolver_match.url_name == 'member_create' %}text-zinc-900{% else %}text-zinc-400{% endif %}">domain</span>
-                <span class="sidebar-text text-sm overflow-hidden whitespace-nowrap">{% trans "Organization" %}</span>
-            </a>
-            {% endif %}
         </nav>
 
         <div class="flex-1"></div>
