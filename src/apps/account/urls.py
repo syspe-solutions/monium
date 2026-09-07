@@ -1,19 +1,17 @@
 from django.urls import path
 
-from apps.account.views.auth import (
-    DeactivateAccount,
-    RecoveryCompleteView,
-    RecoveryConfirmView,
-    RecoveryDoneView,
-    RecoveryView,
-    UserLoginView,
-    UserLogoutView,
-    UserRegisterView,
-)
 from apps.account.views.avatar_redirect_view import AvatarRedirectView
+from apps.account.views.deactivate_account_view import DeactivateAccount
+from apps.account.views.recovery_complete_view import RecoveryCompleteView
+from apps.account.views.recovery_confirm_view import RecoveryConfirmView
+from apps.account.views.recovery_done_view import RecoveryDoneView
+from apps.account.views.recovery_view import RecoveryView
 from apps.account.views.upload_avatar_view import UploadAvatarView
 from apps.account.views.user_delete_view import UserDeleteView
+from apps.account.views.user_login_view import UserLoginView
+from apps.account.views.user_logout_view import UserLogoutView
 from apps.account.views.user_profile_update_view import UserProfileUpdateView
+from apps.account.views.user_register_view import UserRegisterView
 from apps.account.views.user_settings_view import UserSettingsView
 
 app_name = "account"
