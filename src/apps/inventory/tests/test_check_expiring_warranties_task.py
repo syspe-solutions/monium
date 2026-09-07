@@ -5,7 +5,7 @@ from django.contrib.auth import get_user_model
 from django.core import mail
 from django.test import TestCase
 
-from apps.inventory.models import Acquisition, Category, Movel, Sector
+from apps.inventory.models import Acquisition, Category, MovableAsset, Sector
 from apps.inventory.tasks import check_expiring_warranties
 from apps.organizations.models import (
     Membership,
@@ -43,7 +43,7 @@ class CheckExpiringWarrantiesTaskTests(TestCase):
         )
         Membership.objects.create(organization=self.organization, user=self.user, role=MembershipRole.OWNER)
 
-        item = Movel.objects.create(
+        item = MovableAsset.objects.create(
             organization=self.organization, code="PAT-0001", name="Notebook",
             category=self.category, sector=self.sector,
         )
@@ -78,7 +78,7 @@ class CheckExpiringWarrantiesTaskTests(TestCase):
         self.assertEqual(len(mail.outbox), 0)
 
     def test_a_failure_sending_one_notice_does_not_block_the_others(self):
-        item2 = Movel.objects.create(
+        item2 = MovableAsset.objects.create(
             organization=self.organization, code="PAT-0002", name="Mouse",
             category=self.category, sector=self.sector,
         )

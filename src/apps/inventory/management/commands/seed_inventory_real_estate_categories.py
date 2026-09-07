@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand
 
-from apps.inventory.seeds.imovel_category_seed import ImovelCategorySeed
+from apps.inventory.seeds.real_estate_category_seed import RealEstateCategorySeed
 
 
 class Command(BaseCommand):
@@ -9,6 +9,6 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         self.stdout.write("🏠 Populando categorias de imóveis...")
 
-        result = ImovelCategorySeed().run()
+        result = RealEstateCategorySeed().run()
 
         self.stdout.write(self.style.SUCCESS(result))

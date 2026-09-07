@@ -28,9 +28,9 @@ document.addEventListener('DOMContentLoaded', function () {
     const modal = document.getElementById('global-search-modal');
     const input = document.getElementById('global-search-input');
     const resultsBox = document.getElementById('global-search-results');
-    const searchUrl = '{% url "inventory:patrimonio_search" %}';
+    const searchUrl = '{% url "inventory:asset_search" %}';
 
-    const ICON_BY_TIPO = { movel: 'inventory_2', imovel: 'home_work' };
+    const ICON_BY_ASSET_TYPE = { movable_asset: 'inventory_2', real_estate: 'home_work' };
     let debounceTimer = null;
     let lastQuery = '';
 
@@ -55,12 +55,12 @@ document.addEventListener('DOMContentLoaded', function () {
                 '<a href="' + escapeHtml(result.url) + '" ' +
                 'class="flex items-center gap-3 px-4 py-3 hover:bg-zinc-50 transition border-b border-zinc-100 last:border-b-0">' +
                 '<span class="material-symbols-outlined text-zinc-400 text-lg leading-none shrink-0">' +
-                (ICON_BY_TIPO[result.tipo] || 'inventory_2') + '</span>' +
+                (ICON_BY_ASSET_TYPE[result.asset_type] || 'inventory_2') + '</span>' +
                 '<span class="flex-1 min-w-0">' +
                 '<span class="block text-sm text-zinc-900 truncate">' + escapeHtml(result.name) + '</span>' +
-                '<span class="block text-xs text-zinc-500 truncate">' + escapeHtml(result.code) + ' &middot; ' + escapeHtml(result.categoria) + '</span>' +
+                '<span class="block text-xs text-zinc-500 truncate">' + escapeHtml(result.code) + ' &middot; ' + escapeHtml(result.category) + '</span>' +
                 '</span>' +
-                '<span class="shrink-0 text-xs text-zinc-400">' + escapeHtml(result.tipo_label) + '</span>' +
+                '<span class="shrink-0 text-xs text-zinc-400">' + escapeHtml(result.asset_type_label) + '</span>' +
                 '</a>'
             );
         }).join('');

@@ -7,7 +7,7 @@ from django.utils import timezone
 
 from apps.inventory.models import Acquisition, Item
 from apps.inventory.services.depreciation_service import calculate_depreciation
-from apps.inventory.services.patrimonio_filters import to_rows
+from apps.inventory.services.asset_filters import to_rows
 
 
 def get_portfolio_total_value(organization) -> Decimal:
@@ -23,7 +23,7 @@ def get_portfolio_current_value(organization) -> Decimal:
     ver depreciation_service.calculate_depreciation."""
     acquisitions = (
         Acquisition.objects.filter(item__organization=organization, value__isnull=False)
-        .select_related("item__movel__category")
+        .select_related("item__movable_asset__category")
     )
     total = Decimal("0")
     for acquisition in acquisitions:
@@ -37,8 +37,8 @@ def get_top_valued_items(organization, limit=5):
     """Bens com maior valor de aquisição cadastrado (itens sem valor não entram no ranking)."""
     items = (
         Item.objects.filter(organization=organization, acquisition__value__isnull=False)
-        .filter(Q(movel__isnull=False) | Q(imovel__isnull=False))
-        .select_related("acquisition", "movel__category", "imovel__category")
+        .filter(Q(movable_asset__isnull=False) | Q(real_estate_asset__isnull=False))
+        .select_related("acquisition", "movable_asset__category", "real_estate_asset__category")
         .order_by("-acquisition__value")[:limit]
     )
     return to_rows(items)

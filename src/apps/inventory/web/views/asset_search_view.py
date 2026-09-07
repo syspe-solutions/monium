@@ -3,18 +3,18 @@ from django.http import JsonResponse
 from django.urls import reverse
 from django.views import View
 
-from apps.inventory.services.patrimonio_filters import filter_patrimonios, to_rows
+from apps.inventory.services.asset_filters import filter_assets, to_rows
 
 SEARCH_RESULTS_LIMIT = 8
 
 
-class PatrimonioSearchView(LoginRequiredMixin, View):
+class AssetSearchView(LoginRequiredMixin, View):
     def get(self, request):
         query = (request.GET.get("q") or "").strip()
         if not query:
             return JsonResponse({"results": []})
 
-        items = filter_patrimonios(request.organization, {"q": query})[:SEARCH_RESULTS_LIMIT]
+        items = filter_assets(request.organization, {"q": query})[:SEARCH_RESULTS_LIMIT]
         rows = to_rows(items)
 
         return JsonResponse({"results": [self._serialize(row) for row in rows]})
@@ -23,8 +23,8 @@ class PatrimonioSearchView(LoginRequiredMixin, View):
         return {
             "name": row.item.name,
             "code": row.item.code,
-            "tipo": row.tipo,
-            "tipo_label": str(row.tipo_label),
-            "categoria": row.categoria_nome,
+            "asset_type": row.asset_type,
+            "asset_type_label": str(row.asset_type_label),
+            "category": row.category_name,
             "url": reverse(row.detail_url_name, args=[row.item.pk]),
         }

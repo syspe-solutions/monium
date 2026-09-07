@@ -1,16 +1,16 @@
 from django import forms
 
 from apps.common.forms import widget_styles
-from apps.inventory.models import Imovel
+from apps.inventory.models import RealEstateAsset
 
 _INPUT = widget_styles.INPUT
 _SELECT = widget_styles.SELECT
 _TEXTAREA = widget_styles.TEXTAREA
 
 
-class ImovelForm(forms.ModelForm):
+class RealEstateForm(forms.ModelForm):
     class Meta:
-        model = Imovel
+        model = RealEstateAsset
         fields = [
             "code", "name", "description",
             "category", "responsible", "ownership",

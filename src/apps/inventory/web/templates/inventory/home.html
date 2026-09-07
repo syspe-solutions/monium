@@ -16,7 +16,7 @@
             </h1>
             <p class="text-sm text-zinc-500 mt-0.5">{% trans "Here's an overview of today's inventory." %}</p>
         </div>
-        <button type="button" data-open-modal="patrimonio-choice-modal"
+        <button type="button" data-open-modal="asset-type-choice-modal"
                 class="flex items-center gap-2 bg-zinc-900 text-white text-sm font-medium px-4 py-2.5 rounded hover:bg-zinc-800 transition">
             <span class="material-symbols-outlined text-sm md:text-base leading-none">add</span>
             {% trans "Register asset" %}
@@ -272,5 +272,5 @@
 
 </div>
 
-{% include "inventory/includes/patrimonio_choice_modal.html" %}
+{% include "inventory/includes/asset_type_choice_modal.html" %}
 {% endblock %}

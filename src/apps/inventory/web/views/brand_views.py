@@ -28,7 +28,7 @@ def resolve_brand(brand_id: str, new_brand_name: str, created_by) -> tuple[Brand
     existente), ou não retorna nenhum se nada foi informado.
 
     Usado tanto na criação quanto na edição de itens — antes só existia
-    dentro do MovelCreateView.
+    dentro do MovableAssetCreateView.
     """
     if brand_id and brand_id != NEW_BRAND_OPTION:
         try:

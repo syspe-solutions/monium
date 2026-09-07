@@ -5,7 +5,7 @@ from django.core import mail
 from django.test import TestCase
 from django.utils import timezone
 
-from apps.inventory.models import Category, Loan, LoanStatus, Movel, Sector
+from apps.inventory.models import Category, Loan, LoanStatus, MovableAsset, Sector
 from apps.inventory.services.loan_notification_service import send_overdue_notice
 from apps.organizations.models import (
     Membership,
@@ -37,7 +37,7 @@ class SendOverdueNoticeTests(TestCase):
             industry=OrganizationIndustry.values[0], size=OrganizationSize.values[0],
             primary_goal=OrganizationGoal.values[0],
         )
-        self.item = Movel.objects.create(
+        self.item = MovableAsset.objects.create(
             organization=self.organization, code="PAT-0001", name="Notebook",
             category=self.category, sector=self.sector,
         )

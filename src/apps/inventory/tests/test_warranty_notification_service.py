@@ -5,7 +5,7 @@ from django.contrib.auth import get_user_model
 from django.core import mail
 from django.test import TestCase
 
-from apps.inventory.models import Acquisition, Category, Movel, Sector
+from apps.inventory.models import Acquisition, Category, MovableAsset, Sector
 from apps.inventory.services.warranty_notification_service import send_warranty_expiring_notice
 from apps.organizations.models import (
     Membership,
@@ -37,7 +37,7 @@ class SendWarrantyExpiringNoticeTests(TestCase):
             industry=OrganizationIndustry.values[0], size=OrganizationSize.values[0],
             primary_goal=OrganizationGoal.values[0],
         )
-        self.item = Movel.objects.create(
+        self.item = MovableAsset.objects.create(
             organization=self.organization, code="PAT-0001", name="Notebook",
             category=self.category, sector=self.sector,
         )

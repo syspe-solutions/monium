@@ -1,7 +1,7 @@
 from django.db import models
 
-from .imovel_category import ImovelCategory
 from .item import Item
+from .real_estate_category import RealEstateCategory
 
 
 class CartorioSituacao(models.TextChoices):
@@ -15,13 +15,21 @@ class ZonaTipo(models.TextChoices):
     RURAL = "rural", "Rural"
 
 
-class Imovel(Item):
+class RealEstateAsset(Item):
     """Bem imóvel: casas, apartamentos, terrenos e demais propriedades da organização."""
 
+    item_ptr = models.OneToOneField(
+        Item,
+        on_delete=models.CASCADE,
+        parent_link=True,
+        primary_key=True,
+        related_name="real_estate_asset",
+    )
+
     category = models.ForeignKey(
-        ImovelCategory,
+        RealEstateCategory,
         on_delete=models.PROTECT,
-        related_name="imoveis",
+        related_name="real_estate_assets",
         verbose_name="Categoria",
     )
     cartorio_situacao = models.CharField(

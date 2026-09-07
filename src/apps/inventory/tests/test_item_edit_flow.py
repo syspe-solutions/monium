@@ -7,7 +7,7 @@ from django.test import TestCase
 from django.urls import reverse
 from django.utils import timezone
 
-from apps.inventory.models import Acquisition, Category, Imovel, ImovelCategory, Loan, LoanStatus, Movel, Sector
+from apps.inventory.models import Acquisition, Category, RealEstateAsset, RealEstateCategory, Loan, LoanStatus, MovableAsset, Sector
 from apps.organizations.models import (
     Membership,
     MembershipRole,
@@ -36,10 +36,10 @@ class InventoryEditFlowTests(TestCase):
         Membership.objects.create(organization=self.organization, user=self.user, role=MembershipRole.OWNER)
         self.category = Category.objects.create(name="Eletrônicos", slug="eletronicos")
         self.sector = Sector.objects.create(name="TI", slug="ti")
-        self.imovel_category = ImovelCategory.objects.create(name="Sede", slug="sede")
+        self.real_estate_category = RealEstateCategory.objects.create(name="Sede", slug="sede")
         self.client.force_login(self.user)
 
-    def _movel_payload(self, **overrides):
+    def _movable_asset_payload(self, **overrides):
         payload = {
             "code": "PAT-0001",
             "name": "Notebook",
@@ -53,11 +53,11 @@ class InventoryEditFlowTests(TestCase):
         payload.update(overrides)
         return payload
 
-    def _imovel_payload(self, **overrides):
+    def _real_estate_payload(self, **overrides):
         payload = {
             "code": "IMV-0001",
             "name": "Sede Central",
-            "category": self.imovel_category.id,
+            "category": self.real_estate_category.id,
             "ownership": "proprio",
             "condition": "bom",
             "cartorio_situacao": "nao_registrado",
@@ -65,13 +65,13 @@ class InventoryEditFlowTests(TestCase):
         payload.update(overrides)
         return payload
 
-    def test_movel_create_redirects_to_detail(self):
-        response = self.client.post(reverse("inventory:item_create"), self._movel_payload())
-        item = Movel.objects.get(code="PAT-0001")
+    def test_movable_asset_create_redirects_to_detail(self):
+        response = self.client.post(reverse("inventory:item_create"), self._movable_asset_payload())
+        item = MovableAsset.objects.get(code="PAT-0001")
         self.assertRedirects(response, reverse("inventory:item_detail", args=[item.id]))
 
-    def test_movel_update_view_get_and_post(self):
-        item = Movel.objects.create(
+    def test_movable_asset_update_view_get_and_post(self):
+        item = MovableAsset.objects.create(
             organization=self.organization, code="PAT-0002", name="Mouse",
             category=self.category, sector=self.sector, status="em_uso",
         )
@@ -82,40 +82,40 @@ class InventoryEditFlowTests(TestCase):
 
         post_response = self.client.post(
             reverse("inventory:item_update", args=[item.id]),
-            self._movel_payload(code="PAT-0002", name="Mouse sem fio", status="em_manutencao"),
+            self._movable_asset_payload(code="PAT-0002", name="Mouse sem fio", status="em_manutencao"),
         )
         item.refresh_from_db()
         self.assertEqual(item.name, "Mouse sem fio")
         self.assertEqual(item.status, "em_manutencao")
         self.assertRedirects(post_response, reverse("inventory:item_detail", args=[item.id]))
 
-    def test_movel_create_saves_acquisition_value(self):
-        self.client.post(reverse("inventory:item_create"), self._movel_payload(
+    def test_movable_asset_create_saves_acquisition_value(self):
+        self.client.post(reverse("inventory:item_create"), self._movable_asset_payload(
             value="4500.00", purchase_date="2026-01-15",
         ))
-        item = Movel.objects.get(code="PAT-0001")
+        item = MovableAsset.objects.get(code="PAT-0001")
         self.assertEqual(item.acquisition.value, Decimal("4500.00"))
         self.assertEqual(item.acquisition.purchase_date, date(2026, 1, 15))
 
-    def test_movel_create_without_acquisition_data_creates_no_acquisition(self):
-        self.client.post(reverse("inventory:item_create"), self._movel_payload())
-        item = Movel.objects.get(code="PAT-0001")
+    def test_movable_asset_create_without_acquisition_data_creates_no_acquisition(self):
+        self.client.post(reverse("inventory:item_create"), self._movable_asset_payload())
+        item = MovableAsset.objects.get(code="PAT-0001")
         self.assertFalse(Acquisition.objects.filter(item=item).exists())
 
-    def test_movel_update_sets_acquisition_value(self):
-        item = Movel.objects.create(
+    def test_movable_asset_update_sets_acquisition_value(self):
+        item = MovableAsset.objects.create(
             organization=self.organization, code="PAT-0003", name="Impressora",
             category=self.category, sector=self.sector, status="em_uso",
         )
         self.client.post(
             reverse("inventory:item_update", args=[item.id]),
-            self._movel_payload(code="PAT-0003", name="Impressora", value="899.90", purchase_date="2026-02-01"),
+            self._movable_asset_payload(code="PAT-0003", name="Impressora", value="899.90", purchase_date="2026-02-01"),
         )
         item.refresh_from_db()
         self.assertEqual(item.acquisition.value, Decimal("899.90"))
 
-    def test_movel_update_edits_existing_acquisition_value(self):
-        item = Movel.objects.create(
+    def test_movable_asset_update_edits_existing_acquisition_value(self):
+        item = MovableAsset.objects.create(
             organization=self.organization, code="PAT-0004", name="Cadeira",
             category=self.category, sector=self.sector, status="em_uso",
         )
@@ -123,14 +123,14 @@ class InventoryEditFlowTests(TestCase):
 
         self.client.post(
             reverse("inventory:item_update", args=[item.id]),
-            self._movel_payload(code="PAT-0004", name="Cadeira", value="150.00", purchase_date="2025-06-01"),
+            self._movable_asset_payload(code="PAT-0004", name="Cadeira", value="150.00", purchase_date="2025-06-01"),
         )
         item.refresh_from_db()
         self.assertEqual(item.acquisition.value, Decimal("150.00"))
         self.assertEqual(Acquisition.objects.filter(item=item).count(), 1)
 
-    def test_movel_delete_confirm_page_loads(self):
-        item = Movel.objects.create(
+    def test_movable_asset_delete_confirm_page_loads(self):
+        item = MovableAsset.objects.create(
             organization=self.organization, code="PAT-0005", name="Teclado",
             category=self.category, sector=self.sector, status="em_uso",
         )
@@ -138,8 +138,8 @@ class InventoryEditFlowTests(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "PAT-0005")
 
-    def test_movel_delete_requires_matching_code_confirmation(self):
-        item = Movel.objects.create(
+    def test_movable_asset_delete_requires_matching_code_confirmation(self):
+        item = MovableAsset.objects.create(
             organization=self.organization, code="PAT-0006", name="Mesa",
             category=self.category, sector=self.sector, status="em_uso",
         )
@@ -148,10 +148,10 @@ class InventoryEditFlowTests(TestCase):
             {"confirmation_code": "WRONG-CODE"},
         )
         self.assertEqual(response.status_code, 200)
-        self.assertTrue(Movel.objects.filter(pk=item.id).exists())
+        self.assertTrue(MovableAsset.objects.filter(pk=item.id).exists())
 
-    def test_movel_delete_succeeds_with_matching_code(self):
-        item = Movel.objects.create(
+    def test_movable_asset_delete_succeeds_with_matching_code(self):
+        item = MovableAsset.objects.create(
             organization=self.organization, code="PAT-0007", name="Monitor",
             category=self.category, sector=self.sector, status="em_uso",
         )
@@ -162,11 +162,11 @@ class InventoryEditFlowTests(TestCase):
             {"confirmation_code": "PAT-0007"},
         )
         self.assertRedirects(response, reverse("inventory:item_list"))
-        self.assertFalse(Movel.objects.filter(pk=item.id).exists())
+        self.assertFalse(MovableAsset.objects.filter(pk=item.id).exists())
         self.assertFalse(Acquisition.objects.filter(item_id=item.id).exists())
 
-    def test_movel_delete_is_blocked_when_item_has_loan_history(self):
-        item = Movel.objects.create(
+    def test_movable_asset_delete_is_blocked_when_item_has_loan_history(self):
+        item = MovableAsset.objects.create(
             organization=self.organization, code="PAT-0008", name="Notebook Emprestado",
             category=self.category, sector=self.sector, status="em_uso",
         )
@@ -180,40 +180,40 @@ class InventoryEditFlowTests(TestCase):
             {"confirmation_code": "PAT-0008"},
         )
         self.assertRedirects(response, reverse("inventory:item_detail", args=[item.id]))
-        self.assertTrue(Movel.objects.filter(pk=item.id).exists())
+        self.assertTrue(MovableAsset.objects.filter(pk=item.id).exists())
 
-    def test_movel_update_view_rejects_other_organizations_item(self):
+    def test_movable_asset_update_view_rejects_other_organizations_item(self):
         other_org = Organization.objects.create(
             name="Outra Org", slug="outra-org",
             industry=OrganizationIndustry.values[0], size=OrganizationSize.values[0],
             primary_goal=OrganizationGoal.values[0],
         )
-        other_item = Movel.objects.create(
+        other_item = MovableAsset.objects.create(
             organization=other_org, code="PAT-9999", name="Item de outra org",
             category=self.category, sector=self.sector,
         )
         response = self.client.get(reverse("inventory:item_update", args=[other_item.id]))
         self.assertEqual(response.status_code, 404)
 
-    def test_imovel_create_redirects_to_detail(self):
-        response = self.client.post(reverse("inventory:imovel_create"), self._imovel_payload())
-        imovel = Imovel.objects.get(code="IMV-0001")
-        self.assertRedirects(response, reverse("inventory:imovel_detail", args=[imovel.id]))
+    def test_real_estate_create_redirects_to_detail(self):
+        response = self.client.post(reverse("inventory:real_estate_create"), self._real_estate_payload())
+        real_estate = RealEstateAsset.objects.get(code="IMV-0001")
+        self.assertRedirects(response, reverse("inventory:real_estate_detail", args=[real_estate.id]))
 
-    def test_imovel_update_view_get_and_post(self):
-        imovel = Imovel.objects.create(
+    def test_real_estate_update_view_get_and_post(self):
+        real_estate = RealEstateAsset.objects.create(
             organization=self.organization, code="IMV-0002", name="Filial",
-            category=self.imovel_category,
+            category=self.real_estate_category,
         )
 
-        get_response = self.client.get(reverse("inventory:imovel_update", args=[imovel.id]))
+        get_response = self.client.get(reverse("inventory:real_estate_update", args=[real_estate.id]))
         self.assertEqual(get_response.status_code, 200)
 
         post_response = self.client.post(
-            reverse("inventory:imovel_update", args=[imovel.id]),
-            self._imovel_payload(code="IMV-0002", name="Filial Renomeada", cartorio_situacao="registrado"),
+            reverse("inventory:real_estate_update", args=[real_estate.id]),
+            self._real_estate_payload(code="IMV-0002", name="Filial Renomeada", cartorio_situacao="registrado"),
         )
-        imovel.refresh_from_db()
-        self.assertEqual(imovel.name, "Filial Renomeada")
-        self.assertEqual(imovel.cartorio_situacao, "registrado")
-        self.assertRedirects(post_response, reverse("inventory:imovel_detail", args=[imovel.id]))
+        real_estate.refresh_from_db()
+        self.assertEqual(real_estate.name, "Filial Renomeada")
+        self.assertEqual(real_estate.cartorio_situacao, "registrado")
+        self.assertRedirects(post_response, reverse("inventory:real_estate_detail", args=[real_estate.id]))

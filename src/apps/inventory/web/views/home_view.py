@@ -7,17 +7,17 @@ from django.views.generic import TemplateView
 
 from apps.inventory.models import (
     Category,
-    Imovel,
+    RealEstateAsset,
     ItemCondition,
     Loan,
     LoanStatus,
     Maintenance,
     MaintenanceStatus,
-    Movel,
-    MovelStatus,
+    MovableAsset,
+    AssetStatus,
     Sector,
 )
-from apps.inventory.services.movel_status_summary import get_movel_status_summary
+from apps.inventory.services.asset_status_summary import get_asset_status_summary
 from apps.inventory.services.portfolio_value_summary import (
     get_portfolio_current_value,
     get_portfolio_total_value,
@@ -38,12 +38,12 @@ class HomeView(LoginRequiredMixin, TemplateView):
         organization = self.request.organization
 
         # ── Resumo de status (bens móveis) ──────────────────────────────────
-        items = Movel.objects.filter(organization=organization)
+        items = MovableAsset.objects.filter(organization=organization)
         total = items.count()
-        ctx.update(get_movel_status_summary(organization))
+        ctx.update(get_asset_status_summary(organization))
 
         # ── Resumo de imóveis ─────────────────────────────────────────────────
-        ctx["total_imoveis"] = Imovel.objects.filter(organization=organization).count()
+        ctx["total_imoveis"] = RealEstateAsset.objects.filter(organization=organization).count()
 
         # ── Alertas ───────────────────────────────────────────────────────────
         org_loans = Loan.objects.filter(item__organization=organization)
@@ -76,7 +76,7 @@ class HomeView(LoginRequiredMixin, TemplateView):
 
         ctx["poor_condition_active"] = items.filter(
             condition=ItemCondition.POOR,
-            status=MovelStatus.IN_USE,
+            status=AssetStatus.IN_USE,
         ).count()
 
         expiring_warranties = get_expiring_warranties(organization)

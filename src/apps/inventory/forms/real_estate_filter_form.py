@@ -2,13 +2,13 @@ from django import forms
 from django.utils.translation import gettext_lazy as _
 
 from apps.common.forms import widget_styles
-from apps.inventory.models import CartorioSituacao, ImovelCategory, ZonaTipo
+from apps.inventory.models import CartorioSituacao, RealEstateCategory, ZonaTipo
 
 _INPUT = widget_styles.INPUT
 _SELECT = widget_styles.SELECT
 
 
-class ImovelFilterForm(forms.Form):
+class RealEstateFilterForm(forms.Form):
     q = forms.CharField(
         required=False,
         label=_("Search"),
@@ -17,7 +17,7 @@ class ImovelFilterForm(forms.Form):
     category = forms.ModelChoiceField(
         required=False,
         label=_("Category"),
-        queryset=ImovelCategory.objects.order_by("name"),
+        queryset=RealEstateCategory.objects.order_by("name"),
         empty_label=_("All"),
         widget=forms.Select(attrs={"class": _SELECT}),
     )

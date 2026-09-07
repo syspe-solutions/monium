@@ -7,7 +7,7 @@ from .item import Item
 from .sector import Location, Sector
 
 
-class MovelStatus(models.TextChoices):
+class AssetStatus(models.TextChoices):
     IN_USE = "em_uso", "Em uso"
     STORED = "guardado", "Guardado"
     MAINTENANCE = "em_manutencao", "Em manutenção"
@@ -15,8 +15,16 @@ class MovelStatus(models.TextChoices):
     MISSING = "extraviado", "Extraviado"
 
 
-class Movel(Item):
+class MovableAsset(Item):
     """Bem móvel: mobiliário, equipamentos e demais itens patrimoniais rastreados por setor/localização."""
+
+    item_ptr = models.OneToOneField(
+        Item,
+        on_delete=models.CASCADE,
+        parent_link=True,
+        primary_key=True,
+        related_name="movable_asset",
+    )
 
     category = models.ForeignKey(
         Category,
@@ -40,8 +48,8 @@ class Movel(Item):
     )
     status = models.CharField(
         max_length=20,
-        choices=MovelStatus.choices,
-        default=MovelStatus.IN_USE,
+        choices=AssetStatus.choices,
+        default=AssetStatus.IN_USE,
         verbose_name="Situação Patrimonial",
     )
 
@@ -54,9 +62,9 @@ class Movel(Item):
         return f"[{self.code}] {self.name}"
 
 
-class MovelSpec(BaseModelAbstract):
-    movel = models.OneToOneField(
-        Movel,
+class AssetSpec(BaseModelAbstract):
+    asset = models.OneToOneField(
+        MovableAsset,
         on_delete=models.CASCADE,
         related_name="spec",
         verbose_name="Bem Móvel",
@@ -79,4 +87,4 @@ class MovelSpec(BaseModelAbstract):
         verbose_name_plural = "Especificações dos Bens Móveis"
 
     def __str__(self):
-        return f"Spec — {self.movel}"
+        return f"Spec — {self.asset}"

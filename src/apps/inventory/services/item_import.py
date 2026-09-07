@@ -4,7 +4,7 @@ from dataclasses import dataclass, field
 
 from django.utils.translation import gettext as _
 
-from apps.inventory.models import Brand, Category, Item, ItemCondition, Movel, MovelSpec, MovelStatus, Sector
+from apps.inventory.models import Brand, Category, Item, ItemCondition, MovableAsset, AssetSpec, AssetStatus, Sector
 
 IMPORT_COLUMNS = [
     "Código", "Nome", "Categoria", "Setor", "Localização",
@@ -12,8 +12,8 @@ IMPORT_COLUMNS = [
 ]
 REQUIRED_COLUMNS = ["Código", "Nome", "Categoria", "Setor"]
 
-_STATUS_BY_LABEL = {label.lower(): value for value, label in MovelStatus.choices}
-_STATUS_BY_VALUE = {value.lower(): value for value, _ in MovelStatus.choices}
+_STATUS_BY_LABEL = {label.lower(): value for value, label in AssetStatus.choices}
+_STATUS_BY_VALUE = {value.lower(): value for value, _ in AssetStatus.choices}
 _CONDITION_BY_LABEL = {label.lower(): value for value, label in ItemCondition.choices}
 _CONDITION_BY_VALUE = {value.lower(): value for value, _ in ItemCondition.choices}
 
@@ -100,7 +100,7 @@ def import_items_from_csv(organization, csv_file, user) -> ImportResult:
                 )
                 continue
 
-        status = _resolve_choice(status_raw, _STATUS_BY_LABEL, _STATUS_BY_VALUE) if status_raw else MovelStatus.IN_USE
+        status = _resolve_choice(status_raw, _STATUS_BY_LABEL, _STATUS_BY_VALUE) if status_raw else AssetStatus.IN_USE
         if status_raw and not status:
             result.errors.append(
                 _('Row %(row)s: unknown status "%(value)s".') % {"row": row_number, "value": status_raw}
@@ -117,7 +117,7 @@ def import_items_from_csv(organization, csv_file, user) -> ImportResult:
             )
             continue
 
-        item = Movel.objects.create(
+        item = MovableAsset.objects.create(
             organization=organization,
             code=code,
             name=name,
@@ -137,7 +137,7 @@ def import_items_from_csv(organization, csv_file, user) -> ImportResult:
                 name__iexact=brand_name,
                 defaults={"name": brand_name, "created_by": user, "updated_by": user},
             )
-            MovelSpec.objects.create(movel=item, brand=brand, created_by=user, updated_by=user)
+            AssetSpec.objects.create(asset=item, brand=brand, created_by=user, updated_by=user)
 
         result.created_count += 1
 

@@ -1,7 +1,7 @@
 {% extends "common/layouts/base-aside.html" %}
 {% load i18n %}
 
-{% block title %}{% if imovel %}{% trans "Edit Real Estate" %}{% else %}{% trans "New Real Estate" %}{% endif %} — Inventory{% endblock %}
+{% block title %}{% if real_estate %}{% trans "Edit Real Estate" %}{% else %}{% trans "New Real Estate" %}{% endif %} — Inventory{% endblock %}
 
 {% block content %}
 <div class="p-6 space-y-6">
@@ -9,21 +9,21 @@
     <!-- Header -->
     <div class="flex items-center justify-between flex-wrap gap-3">
         <div class="flex items-center gap-2">
-            <a href="{% if imovel %}{% url 'inventory:imovel_detail' imovel.id %}{% else %}{% url 'inventory:imovel_list' %}{% endif %}"
+            <a href="{% if real_estate %}{% url 'inventory:real_estate_detail' real_estate.id %}{% else %}{% url 'inventory:real_estate_list' %}{% endif %}"
                class="text-zinc-500 hover:text-zinc-700 transition">
                 <span class="material-symbols-outlined text-xl leading-none">arrow_back</span>
             </a>
             <div>
-                <h1 class="text-2xl font-bold text-zinc-900">{% if imovel %}{% trans "Edit Real Estate" %}{% else %}{% trans "New Real Estate" %}{% endif %}</h1>
+                <h1 class="text-2xl font-bold text-zinc-900">{% if real_estate %}{% trans "Edit Real Estate" %}{% else %}{% trans "New Real Estate" %}{% endif %}</h1>
                 <p class="text-sm text-zinc-500 mt-0.5">
-                    {% if imovel %}{% trans "Update this property's details" %}{% else %}{% trans "Fill in the details to register a real estate property" %}{% endif %}
+                    {% if real_estate %}{% trans "Update this property's details" %}{% else %}{% trans "Fill in the details to register a real estate property" %}{% endif %}
                 </p>
             </div>
         </div>
         <p class="text-xs text-zinc-600"><span class="text-red-600">*</span> {% trans "Required fields" %}</p>
     </div>
 
-    <form id="imovel-form" method="post" class="flex flex-col gap-4" novalidate>
+    <form id="real_estate-form" method="post" class="flex flex-col gap-4" novalidate>
         {% csrf_token %}
 
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 items-start">
@@ -195,8 +195,8 @@
                             <span class="material-symbols-outlined text-lg text-zinc-600">home_work</span>
                         </div>
                         <div class="min-w-0 flex-1">
-                            <p id="preview_name" class="text-sm font-semibold text-zinc-900 truncate">{% if imovel %}{{ imovel.name }}{% else %}{% trans "Real estate name" %}{% endif %}</p>
-                            <p id="preview_code" class="text-xs text-zinc-500 font-mono truncate">{{ imovel.code|default:"—" }}</p>
+                            <p id="preview_name" class="text-sm font-semibold text-zinc-900 truncate">{% if real_estate %}{{ real_estate.name }}{% else %}{% trans "Real estate name" %}{% endif %}</p>
+                            <p id="preview_code" class="text-xs text-zinc-500 font-mono truncate">{{ real_estate.code|default:"—" }}</p>
                         </div>
                     </div>
 
@@ -225,14 +225,14 @@
 
         <!-- Actions -->
         <div class="flex items-center justify-end gap-3">
-            <a href="{% if imovel %}{% url 'inventory:imovel_detail' imovel.id %}{% else %}{% url 'inventory:imovel_list' %}{% endif %}"
+            <a href="{% if real_estate %}{% url 'inventory:real_estate_detail' real_estate.id %}{% else %}{% url 'inventory:real_estate_list' %}{% endif %}"
                class="text-sm text-zinc-500 hover:text-zinc-700 transition px-4 py-2">
                 {% trans "Cancel" %}
             </a>
-            <button type="submit" id="save_imovel_btn"
+            <button type="submit" id="save_real_estate_btn"
                     class="bg-zinc-900 text-white px-4 py-2.5 rounded hover:bg-zinc-800 transition text-sm font-medium flex items-center gap-1.5">
                 <span class="material-symbols-outlined text-base leading-none">save</span>
-                {% if imovel %}{% trans "Save Changes" %}{% else %}{% trans "Save Real Estate" %}{% endif %}
+                {% if real_estate %}{% trans "Save Changes" %}{% else %}{% trans "Save Real Estate" %}{% endif %}
             </button>
         </div>
 
@@ -279,8 +279,8 @@
     updatePreview();
 
     // Loading state
-    const saveBtn = document.getElementById('save_imovel_btn');
-    document.getElementById('imovel-form').addEventListener('submit', function () {
+    const saveBtn = document.getElementById('save_real_estate_btn');
+    document.getElementById('real_estate-form').addEventListener('submit', function () {
         saveBtn.disabled = true;
         saveBtn.innerHTML = `
             <div class="w-4 h-4 border-2 border-zinc-400/30 border-t-zinc-900 rounded-full animate-spin"></div>

@@ -5,7 +5,7 @@ from django.contrib.auth import get_user_model
 from django.test import TestCase
 from django.urls import reverse
 
-from apps.inventory.models import Acquisition, Category, Imovel, ImovelCategory, Movel, Sector
+from apps.inventory.models import Acquisition, Category, RealEstateAsset, RealEstateCategory, MovableAsset, Sector
 from apps.organizations.models import (
     Membership,
     MembershipRole,
@@ -32,18 +32,18 @@ class HomeAndLayoutSmokeTests(TestCase):
         Membership.objects.create(organization=self.organization, user=self.user, role=MembershipRole.OWNER)
         self.category = Category.objects.create(name="Eletronicos", slug="eletronicos")
         self.sector = Sector.objects.create(name="TI", slug="ti")
-        self.imovel_category = ImovelCategory.objects.create(name="Sede", slug="sede")
+        self.real_estate_category = RealEstateCategory.objects.create(name="Sede", slug="sede")
 
-        movel = Movel.objects.create(
+        movable_asset = MovableAsset.objects.create(
             organization=self.organization,
             code="PAT-0001",
             name="Notebook Dell",
             category=self.category,
             sector=self.sector,
         )
-        Acquisition.objects.create(item=movel, value=Decimal("4500.00"), purchase_date=date.today())
+        Acquisition.objects.create(item=movable_asset, value=Decimal("4500.00"), purchase_date=date.today())
 
-        movel_no_value = Movel.objects.create(
+        movable_asset_no_value = MovableAsset.objects.create(
             organization=self.organization,
             code="PAT-0002",
             name="Cadeira",
@@ -51,13 +51,13 @@ class HomeAndLayoutSmokeTests(TestCase):
             sector=self.sector,
         )
 
-        imovel = Imovel.objects.create(
+        real_estate = RealEstateAsset.objects.create(
             organization=self.organization,
             code="IM-0001",
             name="Sala Comercial",
-            category=self.imovel_category,
+            category=self.real_estate_category,
         )
-        Acquisition.objects.create(item=imovel, value=Decimal("150000.00"), purchase_date=date.today())
+        Acquisition.objects.create(item=real_estate, value=Decimal("150000.00"), purchase_date=date.today())
 
         self.client.force_login(self.user)
 
@@ -80,8 +80,8 @@ class HomeAndLayoutSmokeTests(TestCase):
         self.assertIn("Nenhum bem com valor cadastrado ainda.", content)
         self.assertIn("Nenhum valor de aquisição registrado neste período ainda.", content)
 
-    def test_patrimonio_list_renders_with_aside(self):
-        response = self.client.get(reverse("inventory:patrimonio_list"))
+    def test_asset_list_renders_with_aside(self):
+        response = self.client.get(reverse("inventory:asset_list"))
         self.assertEqual(response.status_code, 200)
         self.assertIn("main-sidebar", response.content.decode())
 

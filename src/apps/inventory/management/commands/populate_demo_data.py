@@ -17,17 +17,17 @@ from apps.inventory.models import (
     Brand,
     CartorioSituacao,
     Category,
-    Imovel,
-    ImovelCategory,
+    RealEstateAsset,
+    RealEstateCategory,
     ItemCondition,
     Loan,
     LoanStatus,
     Location,
     Maintenance,
     MaintenanceStatus,
-    Movel,
-    MovelSpec,
-    MovelStatus,
+    MovableAsset,
+    AssetSpec,
+    AssetStatus,
     Sector,
     ZonaTipo,
 )
@@ -87,7 +87,7 @@ BRANDS_BY_CATEGORY = {
     "demo-externos": ["Tramontina", "Vonder", "Husqvarna", "Stihl"],
 }
 
-DEMO_IMOVEL_CATEGORIES = [
+DEMO_REAL_ESTATE_CATEGORIES = [
     {"name": "Sede (Demo)", "slug": "demo-sede"},
     {"name": "Filial (Demo)", "slug": "demo-filial"},
     {"name": "Galpão (Demo)", "slug": "demo-galpao"},
@@ -141,11 +141,11 @@ ITEM_TEMPLATES = {
 }
 
 STATUS_WEIGHTS = [
-    (MovelStatus.IN_USE, 58),
-    (MovelStatus.STORED, 18),
-    (MovelStatus.MAINTENANCE, 10),
-    (MovelStatus.MISSING, 6),
-    (MovelStatus.DISCARDED, 8),
+    (AssetStatus.IN_USE, 58),
+    (AssetStatus.STORED, 18),
+    (AssetStatus.MAINTENANCE, 10),
+    (AssetStatus.MISSING, 6),
+    (AssetStatus.DISCARDED, 8),
 ]
 CONDITION_WEIGHTS = [
     (ItemCondition.EXCELLENT, 25),
@@ -162,7 +162,7 @@ DEMO_PEOPLE = [
     "Patrícia Cardozo", "Rafael Andrade", "Sabrina Moreira", "Thiago Batista", "Vitória Campos",
 ]
 
-IMOVEL_TEMPLATES = [
+REAL_ESTATE_TEMPLATES = [
     {"name": "Sede Administrativa (Demo)", "value": Decimal("850000.00"), "zone": ZonaTipo.URBANA, "category": "demo-sede"},
     {"name": "Escritório Compartilhado (Demo)", "value": Decimal("340000.00"), "zone": ZonaTipo.URBANA, "category": "demo-sede"},
     {"name": "Filial Zona Sul (Demo)", "value": Decimal("610000.00"), "zone": ZonaTipo.URBANA, "category": "demo-filial"},
@@ -181,7 +181,7 @@ IMOVEL_TEMPLATES = [
     {"name": "Sítio Corporativo (Demo)", "value": Decimal("720000.00"), "zone": ZonaTipo.RURAL, "category": "demo-casa"},
 ]
 
-DEFAULT_IMOVEL_COUNT = len(IMOVEL_TEMPLATES)
+DEFAULT_REAL_ESTATE_COUNT = len(REAL_ESTATE_TEMPLATES)
 
 
 def _weighted_choice(rng: random.Random, weighted_options):
@@ -226,14 +226,14 @@ class Command(BaseCommand):
             help=f"Quantidade de bens móveis a gerar (padrão {DEFAULT_ITEM_COUNT}).",
         )
         parser.add_argument(
-            "--imoveis", type=int, default=DEFAULT_IMOVEL_COUNT,
-            help=f"Quantidade de imóveis a gerar (máx {len(IMOVEL_TEMPLATES)}, padrão {DEFAULT_IMOVEL_COUNT}).",
+            "--real_estate_assets", type=int, default=DEFAULT_REAL_ESTATE_COUNT,
+            help=f"Quantidade de imóveis a gerar (máx {len(REAL_ESTATE_TEMPLATES)}, padrão {DEFAULT_REAL_ESTATE_COUNT}).",
         )
 
     @transaction.atomic
     def handle(self, *args, **options):
         item_count = max(0, options["items"])
-        imovel_count = min(max(0, options["imoveis"]), len(IMOVEL_TEMPLATES))
+        real_estate_count = min(max(0, options["real_estate_assets"]), len(REAL_ESTATE_TEMPLATES))
         rng = random.Random(RNG_SEED)
 
         organization, org_created = Organization.objects.get_or_create(
@@ -272,9 +272,9 @@ class Command(BaseCommand):
             s["slug"]: Sector.objects.get_or_create(slug=s["slug"], defaults={"name": s["name"]})[0]
             for s in DEMO_SECTORS
         }
-        imovel_categories = {
-            c["slug"]: ImovelCategory.objects.get_or_create(slug=c["slug"], defaults={"name": c["name"]})[0]
-            for c in DEMO_IMOVEL_CATEGORIES
+        real_estate_categories = {
+            c["slug"]: RealEstateCategory.objects.get_or_create(slug=c["slug"], defaults={"name": c["name"]})[0]
+            for c in DEMO_REAL_ESTATE_CATEGORIES
         }
 
         all_brand_names = sorted({name for names in BRANDS_BY_CATEGORY.values() for name in names})
@@ -320,7 +320,7 @@ class Command(BaseCommand):
             condition = _weighted_choice(rng, CONDITION_WEIGHTS)
             location = rng.choice(locations) if rng.random() < 0.5 else None
 
-            item, item_created = Movel.objects.get_or_create(
+            item, item_created = MovableAsset.objects.get_or_create(
                 organization=organization,
                 code=code,
                 defaults={
@@ -340,8 +340,8 @@ class Command(BaseCommand):
             created_items += 1
             color = _shift_color(category_data["color"], rng.randint(-25, 25))
             image_file = _generate_placeholder_image(name, color)
-            spec = MovelSpec(
-                movel=item,
+            spec = AssetSpec(
+                asset=item,
                 brand=brand,
                 model_name=f"Modelo {rng.randint(100, 999)}",
                 serial_number=f"SN-DEMO-{index + 1:05d}",
@@ -356,7 +356,7 @@ class Command(BaseCommand):
 
             # ── Manutenção: itens em manutenção sempre ganham um chamado aberto;
             # alguns outros ganham histórico de manutenção já concluída.
-            if status == MovelStatus.MAINTENANCE:
+            if status == AssetStatus.MAINTENANCE:
                 Maintenance.objects.create(
                     item=item,
                     description="Manutenção corretiva de demonstração.",
@@ -380,7 +380,7 @@ class Command(BaseCommand):
                 created_maintenances += 1
 
             # ── Empréstimos: só faz sentido para itens em uso/guardados.
-            if status in (MovelStatus.IN_USE, MovelStatus.STORED) and rng.random() < 0.25:
+            if status in (AssetStatus.IN_USE, AssetStatus.STORED) and rng.random() < 0.25:
                 loan_kind = rng.random()
                 loaned_at = timezone.now() - timedelta(days=rng.randint(20, 200))
                 loaned_to = f"{rng.choice(DEMO_PEOPLE)} (Demo)"
@@ -422,16 +422,16 @@ class Command(BaseCommand):
         ))
 
         created_imoveis = 0
-        for index in range(imovel_count):
-            template = IMOVEL_TEMPLATES[index]
+        for index in range(real_estate_count):
+            template = REAL_ESTATE_TEMPLATES[index]
             code = f"DEMO-IMV-{index + 1:04d}"
-            imovel, imovel_created = Imovel.objects.get_or_create(
+            real_estate, real_estate_created = RealEstateAsset.objects.get_or_create(
                 organization=organization,
                 code=code,
                 defaults={
                     "name": template["name"],
                     "description": "Imóvel de demonstração gerado automaticamente.",
-                    "category": imovel_categories[template["category"]],
+                    "category": real_estate_categories[template["category"]],
                     "ownership": AssetOwnership.OWN,
                     "condition": _weighted_choice(rng, CONDITION_WEIGHTS),
                     "zone": template["zone"],
@@ -440,12 +440,12 @@ class Command(BaseCommand):
                     "built_area": Decimal(rng.randint(50, 1500)),
                 },
             )
-            if not imovel_created:
+            if not real_estate_created:
                 continue
 
             created_imoveis += 1
             Acquisition.objects.create(
-                item=imovel, value=template["value"], purchase_date=today - timedelta(days=rng.randint(180, 1500)),
+                item=real_estate, value=template["value"], purchase_date=today - timedelta(days=rng.randint(180, 1500)),
             )
 
         self.stdout.write(self.style.SUCCESS(f"Criado(s) {created_imoveis} imóvel(is) de demonstração."))

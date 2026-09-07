@@ -1,10 +1,10 @@
 from django.db.models import Q, QuerySet
 
-from apps.inventory.models import Movel
+from apps.inventory.models import MovableAsset
 
 
 def filter_items(organization, filters: dict) -> QuerySet:
-    items = Movel.objects.filter(organization=organization).select_related(
+    items = MovableAsset.objects.filter(organization=organization).select_related(
         "category", "sector", "location"
     ).prefetch_related("spec__brand")
 

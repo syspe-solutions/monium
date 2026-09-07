@@ -3,7 +3,7 @@ from decimal import Decimal
 
 from django.test import TestCase
 
-from apps.inventory.models import Acquisition, Category, Movel, Sector
+from apps.inventory.models import Acquisition, Category, MovableAsset, Sector
 from apps.inventory.services.warranty_alert_service import get_expiring_warranties
 from apps.organizations.models import (
     Organization,
@@ -24,7 +24,7 @@ class GetExpiringWarrantiesTests(TestCase):
         )
 
     def _acquisition(self, code, warranty_expiry):
-        item = Movel.objects.create(
+        item = MovableAsset.objects.create(
             organization=self.organization, code=code, name=code,
             category=self.category, sector=self.sector,
         )
@@ -48,7 +48,7 @@ class GetExpiringWarrantiesTests(TestCase):
         self.assertEqual(results, [])
 
     def test_excludes_acquisitions_without_warranty(self):
-        item = Movel.objects.create(
+        item = MovableAsset.objects.create(
             organization=self.organization, code="PAT-0004", name="Sem garantia",
             category=self.category, sector=self.sector,
         )

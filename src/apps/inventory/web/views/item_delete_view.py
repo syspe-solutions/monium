@@ -4,15 +4,15 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.utils.translation import gettext as _
 from django.views import View
 
-from apps.inventory.models import Movel
+from apps.inventory.models import MovableAsset
 from apps.organizations.mixins import InventoryWriteRequiredMixin
 
 
-class MovelDeleteView(LoginRequiredMixin, InventoryWriteRequiredMixin, View):
+class MovableAssetDeleteView(LoginRequiredMixin, InventoryWriteRequiredMixin, View):
     template_name = "inventory/item_delete_confirm.html"
 
     def _get_item(self, request, pk):
-        return get_object_or_404(Movel, pk=pk, organization=request.organization)
+        return get_object_or_404(MovableAsset, pk=pk, organization=request.organization)
 
     def _blocking_counts(self, item):
         return {
