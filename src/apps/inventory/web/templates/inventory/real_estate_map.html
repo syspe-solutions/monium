@@ -1,0 +1,95 @@
+{% extends "common/layouts/base-aside.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Map" %} — Monium{% endblock %}
+
+{% block extrahead %}
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<style>
+    #real-estate-map { height: 70vh; min-height: 420px; background: #f4f4f5; }
+    .leaflet-popup-content { font-family: var(--font-sans); }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="p-6 space-y-6">
+
+    <!-- Header -->
+    <div class="flex items-center justify-between flex-wrap gap-3">
+        <div>
+            <div class="flex items-center gap-2">
+                <a href="{% url 'inventory:real_estate_list' %}" class="text-zinc-500 hover:text-zinc-700 transition" title="{% trans 'Back to Real Estate' %}">
+                    <span class="material-symbols-outlined text-lg leading-none">arrow_back</span>
+                </a>
+                <h1 class="text-2xl font-bold text-zinc-900">{% trans "Map" %}</h1>
+            </div>
+            <p class="text-sm text-zinc-500 mt-0.5">
+                {% blocktrans count count=total_count %}{{ count }} property{% plural %}{{ count }} properties{% endblocktrans %}
+            </p>
+        </div>
+    </div>
+
+    {% if missing_coordinates_count > 0 %}
+    <div class="flex items-start gap-3 border border-amber-200 bg-amber-50 text-amber-800 rounded-md px-4 py-3 text-sm">
+        <span class="material-symbols-outlined text-base leading-none shrink-0 mt-0.5">info</span>
+        <span>
+            {% blocktrans count count=missing_coordinates_count %}{{ count }} property has no coordinates and isn't shown on the map. Edit it and fill in latitude/longitude to place it.{% plural %}{{ count }} properties have no coordinates and aren't shown on the map. Edit them and fill in latitude/longitude to place them.{% endblocktrans %}
+        </span>
+    </div>
+    {% endif %}
+
+    <div class="border border-zinc-200 rounded-md bg-white overflow-hidden">
+        {% if properties %}
+        <div id="real-estate-map"></div>
+        {% else %}
+        <div class="px-5 py-8 text-center text-sm text-zinc-500">
+            {% trans "No property has coordinates set yet." %}
+        </div>
+        {% endif %}
+    </div>
+
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+{{ properties|json_script:"real-estate-map-data" }}
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const mapElement = document.getElementById('real-estate-map');
+    if (!mapElement) return;
+
+    const properties = JSON.parse(document.getElementById('real-estate-map-data').textContent);
+
+    function escapeHtml(value) {
+        const div = document.createElement('div');
+        div.textContent = value;
+        return div.innerHTML;
+    }
+
+    const map = L.map(mapElement);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+        maxZoom: 19,
+    }).addTo(map);
+
+    const markers = properties.map(function (property) {
+        const marker = L.marker([property.latitude, property.longitude]).addTo(map);
+        const popupHtml =
+            '<div class="text-sm">' +
+            '<a href="' + escapeHtml(property.url) + '" class="font-semibold text-zinc-900 hover:underline">' + escapeHtml(property.name) + '</a>' +
+            '<div class="text-xs text-zinc-500 mt-0.5">' + escapeHtml(property.category) + '</div>' +
+            (property.address ? '<div class="text-xs text-zinc-600 mt-1">' + escapeHtml(property.address) + '</div>' : '') +
+            '</div>';
+        marker.bindPopup(popupHtml);
+        return marker;
+    });
+
+    if (markers.length === 1) {
+        map.setView(markers[0].getLatLng(), 15);
+    } else {
+        map.fitBounds(L.featureGroup(markers).getBounds().pad(0.2));
+    }
+});
+</script>
+{% endblock %}

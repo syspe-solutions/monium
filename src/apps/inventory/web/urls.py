@@ -18,6 +18,7 @@ from .views import (
     RealEstateCreateView,
     RealEstateDetailView,
     RealEstateListView,
+    RealEstateMapView,
     RealEstateUpdateView,
 )
 
@@ -38,6 +39,7 @@ urlpatterns = [
     path("items/<uuid:pk>/edit/", MovableAssetUpdateView.as_view(), name="item_update"),
     path("items/<uuid:pk>/delete/", MovableAssetDeleteView.as_view(), name="item_delete"),
     path("imoveis/", RealEstateListView.as_view(), name="real_estate_list"),
+    path("imoveis/mapa/", RealEstateMapView.as_view(), name="real_estate_map"),
     path("imoveis/add/", RealEstateCreateView.as_view(), name="real_estate_create"),
     path("imoveis/<uuid:pk>/", RealEstateDetailView.as_view(), name="real_estate_detail"),
     path("imoveis/<uuid:pk>/edit/", RealEstateUpdateView.as_view(), name="real_estate_update"),

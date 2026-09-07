@@ -4,6 +4,7 @@ from .dashboard import MovableAssetsByCategoryView
 from .home_view import HomeView
 from .real_estate_detail_view import RealEstateDetailView
 from .real_estate_list_view import RealEstateListView
+from .real_estate_map_view import RealEstateMapView
 from .real_estate_update_view import RealEstateUpdateView
 from .real_estate_views import RealEstateCreateView
 from .item_delete_view import MovableAssetDeleteView
@@ -24,6 +25,7 @@ __all__ = [
     "RealEstateCreateView",
     "RealEstateDetailView",
     "RealEstateListView",
+    "RealEstateMapView",
     "RealEstateUpdateView",
     "ItemImportTemplateView",
     "ItemImportView",

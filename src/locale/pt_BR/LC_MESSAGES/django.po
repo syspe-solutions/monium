@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Monium 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-08 18:57-0300\n"
+"POT-Creation-Date: 2026-09-07 11:04-0300\n"
 "PO-Revision-Date: 2026-06-30 00:00-0300\n"
 "Last-Translator: Jonathas Cardoso\n"
 "Language-Team: Portuguese (Brazil)\n"
@@ -124,7 +124,7 @@ msgstr ""
 #: apps/common/web/templates/common/errors/400.html:26
 #: apps/common/web/templates/common/errors/403.html:30
 #: apps/common/web/templates/common/errors/404.html:26
-#: apps/common/web/templates/common/errors/500.html:31
+#: apps/common/web/templates/common/errors/500.html:30
 msgid "Back to Home"
 msgstr "Voltar ao Início"
 
@@ -170,10 +170,8 @@ msgstr "Faça login na sua conta"
 
 #: apps/account/templates/account/auth/login.html:86
 #: apps/account/templates/account/auth/register.html:74
-#, fuzzy
-#| msgid "Confirm password"
 msgid "Show/hide password"
-msgstr "Confirmar senha"
+msgstr "Mostrar/ocultar senha"
 
 #: apps/account/templates/account/auth/login.html:98
 msgid "Forgot your password?"
@@ -302,10 +300,10 @@ msgstr "Confirmar Nova Senha"
 #: apps/account/templates/account/includes/change_password_modal.html:40
 #: apps/account/templates/account/includes/deactivate_account_modal.html:27
 #: apps/account/templates/account/settings/settings.html:259
-#: apps/inventory/web/templates/inventory/imovel_form.html:230
 #: apps/inventory/web/templates/inventory/item_delete_confirm.html:28
 #: apps/inventory/web/templates/inventory/item_delete_confirm.html:52
 #: apps/inventory/web/templates/inventory/item_form.html:323
+#: apps/inventory/web/templates/inventory/real_estate_form.html:230
 #: apps/organizations/templates/organizations/delete_confirm.html:34
 #: apps/organizations/templates/organizations/member_create.html:44
 msgid "Cancel"
@@ -384,22 +382,22 @@ msgid "Website / Link"
 msgstr "Website / Link"
 
 #: apps/account/templates/account/profile/profile.html:128
-#: apps/inventory/web/templates/inventory/imovel_detail.html:80
-#: apps/inventory/web/templates/inventory/imovel_form.html:90
 #: apps/inventory/web/templates/inventory/item_detail.html:62
 #: apps/inventory/web/templates/inventory/item_form.html:82
+#: apps/inventory/web/templates/inventory/real_estate_detail.html:80
+#: apps/inventory/web/templates/inventory/real_estate_form.html:90
 msgid "Location"
 msgstr "Localização"
 
 #: apps/account/templates/account/profile/profile.html:139
-#: apps/organizations/templates/organizations/settings.html:115
+#: apps/organizations/templates/organizations/settings.html:116
 #: apps/setup/templates/setup/admin.html:17
 msgid "Back"
 msgstr "Voltar"
 
 #: apps/account/templates/account/profile/profile.html:144
-#: apps/inventory/web/templates/inventory/imovel_form.html:235
 #: apps/inventory/web/templates/inventory/item_form.html:328
+#: apps/inventory/web/templates/inventory/real_estate_form.html:235
 msgid "Save Changes"
 msgstr "Salvar Alterações"
 
@@ -415,27 +413,27 @@ msgstr "Mantenha sua conta protegida alterando sua senha periodicamente."
 msgid "Danger Zone"
 msgstr "Zona de Perigo"
 
-#: apps/account/templates/account/profile/profile.html:220
-#: apps/inventory/web/templates/inventory/imovel_form.html:190
+#: apps/account/templates/account/profile/profile.html:206
 #: apps/inventory/web/templates/inventory/item_form.html:264
 #: apps/inventory/web/templates/inventory/item_form.html:279
+#: apps/inventory/web/templates/inventory/real_estate_form.html:190
 #: apps/organizations/templates/organizations/create.html:81
-#: apps/organizations/templates/organizations/settings.html:66
+#: apps/organizations/templates/organizations/settings.html:67
 msgid "Preview"
 msgstr "Pré-visualização"
 
-#: apps/account/templates/account/profile/profile.html:244
-#: apps/account/templates/account/settings/settings.html:297
-#: apps/inventory/web/templates/inventory/imovel_form.html:287
+#: apps/account/templates/account/profile/profile.html:230
+#: apps/account/templates/account/settings/settings.html:283
 #: apps/inventory/web/templates/inventory/item_form.html:481
-#: apps/organizations/templates/organizations/settings.html:174
+#: apps/inventory/web/templates/inventory/real_estate_form.html:287
+#: apps/organizations/templates/organizations/settings.html:229
 msgid "Saving..."
 msgstr "Salvando..."
 
 #: apps/account/templates/account/settings/settings.html:4
 #: apps/account/templates/account/settings/settings.html:11
-#: apps/common/web/templates/common/includes/aside.html:156
-#: apps/common/web/templates/common/includes/aside.html:158
+#: apps/common/web/templates/common/includes/aside.html:193
+#: apps/common/web/templates/common/includes/aside.html:195
 msgid "Settings"
 msgstr "Configurações"
 
@@ -444,6 +442,8 @@ msgid "Manage your language, help resources, and account preferences"
 msgstr "Gerencie o idioma, os recursos de ajuda e as preferências da conta"
 
 #: apps/account/templates/account/settings/settings.html:36
+#: apps/common/web/templates/common/includes/aside.html:200
+#: apps/common/web/templates/common/includes/aside.html:202
 msgid "Language"
 msgstr "Idioma"
 
@@ -497,6 +497,8 @@ msgstr ""
 "do sistema primeiro, já que os códigos são entregues por e-mail."
 
 #: apps/account/templates/account/settings/settings.html:127
+#: apps/common/web/templates/common/includes/aside.html:207
+#: apps/common/web/templates/common/includes/aside.html:209
 msgid "Help & Support"
 msgstr "Ajuda e Suporte"
 
@@ -525,7 +527,7 @@ msgstr ""
 "incompleto, o envio de e-mails vai falhar até você ativar um servidor aqui."
 
 #: apps/account/templates/account/settings/settings.html:234
-#: apps/organizations/templates/organizations/settings.html:120
+#: apps/organizations/templates/organizations/settings.html:121
 msgid "Save changes"
 msgstr "Salvar alterações"
 
@@ -549,18 +551,6 @@ msgstr "A senha deve conter letras e números."
 msgid "The password must contain at least one special character."
 msgstr "A senha deve conter pelo menos um caractere especial."
 
-#: apps/account/views/auth.py:95
-msgid "Usuário ou senha inválidos."
-msgstr "Usuário ou senha inválidos."
-
-#: apps/account/views/auth.py:96
-msgid "Sua conta foi encerrada."
-msgstr "Sua conta foi encerrada."
-
-#: apps/account/views/auth.py:99
-msgid "Erro inesperado."
-msgstr "Erro inesperado."
-
 #: apps/account/views/upload_avatar_view.py:21
 msgid "Image is required."
 msgstr "A imagem é obrigatória."
@@ -568,6 +558,18 @@ msgstr "A imagem é obrigatória."
 #: apps/account/views/upload_avatar_view.py:45
 msgid "Avatar updated successfully."
 msgstr "Avatar atualizado com sucesso."
+
+#: apps/account/views/user_login_view.py:51
+msgid "Usuário ou senha inválidos."
+msgstr "Usuário ou senha inválidos."
+
+#: apps/account/views/user_login_view.py:52
+msgid "Sua conta foi encerrada."
+msgstr "Sua conta foi encerrada."
+
+#: apps/account/views/user_login_view.py:55
+msgid "Erro inesperado."
+msgstr "Erro inesperado."
 
 #: apps/account/views/user_profile_update_view.py:27
 msgid "Profile updated successfully."
@@ -609,10 +611,8 @@ msgstr ""
 # ──────────────────────────────────────────────────────────────────────
 #: apps/common/web/templates/common/errors/404.html:4
 #: apps/common/web/templates/common/errors/404.html:16
-#, fuzzy
-#| msgid "Page Not Found"
 msgid "Page not found"
-msgstr "Página Não Encontrada"
+msgstr "Página não encontrada"
 
 #: apps/common/web/templates/common/errors/404.html:20
 msgid "The page you're looking for doesn't exist or may have been moved."
@@ -622,11 +622,11 @@ msgstr "A página que você está procurando não existe ou pode ter sido movida
 msgid "Server error"
 msgstr "Erro no servidor"
 
-#: apps/common/web/templates/common/errors/500.html:20
+#: apps/common/web/templates/common/errors/500.html:19
 msgid "Something went wrong on our end"
 msgstr "Algo deu errado do nosso lado"
 
-#: apps/common/web/templates/common/errors/500.html:24
+#: apps/common/web/templates/common/errors/500.html:23
 msgid ""
 "We've been notified and are already looking into it. Please try again in a "
 "few minutes."
@@ -634,59 +634,103 @@ msgstr ""
 "Já fomos notificados e estamos investigando. Tente novamente em alguns "
 "minutos."
 
+# ── Base-aside
+# ────────────────────────────────────────────────────────────────
+#: apps/common/web/templates/common/includes/aside.html:50
+msgid "Expand menu"
+msgstr "Abrir menu"
+
+#: apps/common/web/templates/common/includes/aside.html:60
+#: apps/common/web/templates/common/includes/aside.html:66
+msgid "Organizations"
+msgstr "Organizações"
+
 # ── Sidebar
 # ──────────────────────────────────────────────────────────────────
-#: apps/common/web/templates/common/includes/aside.html:64
+#: apps/common/web/templates/common/includes/aside.html:73
 msgid "Collapse menu"
 msgstr "Retrair menu"
 
-#: apps/common/web/templates/common/includes/aside.html:80
-#: apps/common/web/templates/common/includes/aside.html:82
+#: apps/common/web/templates/common/includes/aside.html:88
+msgid "current"
+msgstr "atual"
+
+#: apps/common/web/templates/common/includes/aside.html:96
+msgid "New organization"
+msgstr "Nova organização"
+
+#: apps/common/web/templates/common/includes/aside.html:103
+msgid "Main"
+msgstr ""
+
+#: apps/common/web/templates/common/includes/aside.html:108
+#: apps/common/web/templates/common/includes/aside.html:110
+#: apps/common/web/templates/common/includes/aside.html:132
+#: apps/inventory/web/templates/inventory/asset_list.html:6
+#: apps/inventory/web/templates/inventory/asset_list.html:14
+msgid "Assets"
+msgstr "Patrimônios"
+
+#: apps/common/web/templates/common/includes/aside.html:116
+#: apps/common/web/templates/common/includes/aside.html:118
 #: apps/common/web/templates/common/includes/footer.html:16
 #: apps/inventory/web/templates/inventory/home.html:6
 msgid "Home"
 msgstr "Início"
 
-#: apps/common/web/templates/common/includes/aside.html:88
-#: apps/common/web/templates/common/includes/aside.html:90
-#: apps/inventory/web/templates/inventory/patrimonio_list.html:6
-#: apps/inventory/web/templates/inventory/patrimonio_list.html:14
-msgid "Assets"
-msgstr "Patrimônios"
-
-#: apps/common/web/templates/common/includes/aside.html:99
-#: apps/common/web/templates/common/includes/aside.html:102
-msgid "Organizations"
-msgstr "Organizações"
-
-#: apps/common/web/templates/common/includes/aside.html:107
-msgid "Switch organization"
-msgstr "Trocar organização"
-
 #: apps/common/web/templates/common/includes/aside.html:123
-msgid "current"
-msgstr "atual"
+#: apps/common/web/templates/common/includes/aside.html:125
+#: apps/inventory/forms/asset_filter_form.py:20
+#: apps/inventory/forms/movable_asset_filter_form.py:14
+#: apps/inventory/forms/real_estate_filter_form.py:14
+msgid "Search"
+msgstr "Buscar"
 
-#: apps/common/web/templates/common/includes/aside.html:131
-#: apps/inventory/web/templates/inventory/imovel_detail.html:27
-#: apps/inventory/web/templates/inventory/item_detail.html:32
-msgid "Edit"
-msgstr "Editar"
+#: apps/common/web/templates/common/includes/aside.html:137
+#: apps/common/web/templates/common/includes/aside.html:139
+msgid "Items"
+msgstr "Itens"
 
-#: apps/common/web/templates/common/includes/aside.html:142
-#: apps/organizations/templates/organizations/members.html:4
-#: apps/organizations/templates/organizations/members.html:11
-#: apps/organizations/templates/organizations/settings.html:136
-msgid "Members"
-msgstr "Membros"
+#: apps/common/web/templates/common/includes/aside.html:145
+#: apps/common/web/templates/common/includes/aside.html:147
+#: apps/inventory/forms/asset_filter_form.py:13
+#: apps/inventory/services/asset_filters.py:62
+#: apps/inventory/web/templates/inventory/includes/asset_type_choice_modal.html:40
+#: apps/inventory/web/templates/inventory/real_estate_list.html:5
+#: apps/inventory/web/templates/inventory/real_estate_list.html:17
+msgid "Real Estate"
+msgstr "Imóveis"
 
-#: apps/common/web/templates/common/includes/aside.html:148
-msgid "New organization"
-msgstr "Nova organização"
+#: apps/common/web/templates/common/includes/aside.html:153
+#: apps/common/web/templates/common/includes/aside.html:155
+#: apps/inventory/web/templates/inventory/real_estate_map.html:4
+#: apps/inventory/web/templates/inventory/real_estate_map.html:24
+msgid "Map"
+msgstr "Mapa"
+
+#: apps/common/web/templates/common/includes/aside.html:162
+msgid "Management"
+msgstr "Gestão"
+
+#: apps/common/web/templates/common/includes/aside.html:168
+#: apps/common/web/templates/common/includes/aside.html:170
+msgid "Audit"
+msgstr ""
+
+#: apps/common/web/templates/common/includes/aside.html:178
+#: apps/common/web/templates/common/includes/aside.html:180
+#: apps/organizations/templates/organizations/settings.html:4
+#: apps/organizations/templates/organizations/settings.html:11
+msgid "Organization"
+msgstr "Organização"
+
+#: apps/common/web/templates/common/includes/aside.html:188
+msgid "Other"
+msgstr "Outros"
 
 # ── Profile
 # ───────────────────────────────────────────────────────────────────
-#: apps/common/web/templates/common/includes/aside.html:166
+#: apps/common/web/templates/common/includes/aside.html:220
 msgid "My profile"
 msgstr "Meu perfil"
 
@@ -716,6 +760,20 @@ msgstr "Contato"
 msgid "All rights reserved."
 msgstr "Todos os direitos reservados."
 
+#: apps/common/web/templates/common/includes/global_search_modal.html:11
+msgid "Search items, real estate…"
+msgstr "Buscar itens, imóveis…"
+
+#: apps/common/web/templates/common/includes/global_search_modal.html:19
+#: apps/common/web/templates/common/includes/global_search_modal.html:86
+msgid "Type to search assets by name or code."
+msgstr ""
+
+#: apps/common/web/templates/common/includes/global_search_modal.html:49
+#: apps/inventory/web/templates/inventory/asset_list.html:152
+msgid "No assets found."
+msgstr "Nenhum patrimônio encontrado."
+
 #: apps/common/web/templates/common/includes/header.html:46
 msgid "Login"
 msgstr "Entrar"
@@ -742,56 +800,46 @@ msgstr "Sair"
 msgid "Open menu"
 msgstr "Abrir menu"
 
-#: apps/inventory/forms/imovel_filter_form.py:14
-#: apps/inventory/forms/movel_filter_form.py:14
-#: apps/inventory/forms/patrimonio_filter_form.py:20
-msgid "Search"
-msgstr "Buscar"
-
-#: apps/inventory/forms/imovel_filter_form.py:15
-msgid "Code, name or address"
-msgstr "Código, nome ou endereço"
-
-#: apps/inventory/forms/imovel_filter_form.py:19
-#: apps/inventory/forms/movel_filter_form.py:31
-#: apps/inventory/web/templates/inventory/dashboard.html:40
-#: apps/inventory/web/templates/inventory/home.html:142
-#: apps/inventory/web/templates/inventory/imovel_detail.html:44
-#: apps/inventory/web/templates/inventory/imovel_form.html:61
-#: apps/inventory/web/templates/inventory/imovel_list.html:106
-#: apps/inventory/web/templates/inventory/item_detail.html:54
-#: apps/inventory/web/templates/inventory/item_form.html:60
-#: apps/inventory/web/templates/inventory/item_list.html:124
-#: apps/inventory/web/templates/inventory/patrimonio_list.html:106
-msgid "Category"
-msgstr "Categoria"
-
-#: apps/inventory/forms/imovel_filter_form.py:21
-#: apps/inventory/forms/imovel_filter_form.py:27
-#: apps/inventory/forms/imovel_filter_form.py:33
-#: apps/inventory/forms/movel_filter_form.py:20
-#: apps/inventory/forms/movel_filter_form.py:26
-#: apps/inventory/forms/movel_filter_form.py:33
-#: apps/inventory/forms/movel_filter_form.py:40
-#: apps/inventory/forms/movel_filter_form.py:47
-#: apps/inventory/forms/patrimonio_filter_form.py:11
-#: apps/inventory/forms/patrimonio_filter_form.py:32
+#: apps/inventory/forms/asset_filter_form.py:11
+#: apps/inventory/forms/asset_filter_form.py:32
+#: apps/inventory/forms/movable_asset_filter_form.py:20
+#: apps/inventory/forms/movable_asset_filter_form.py:26
+#: apps/inventory/forms/movable_asset_filter_form.py:33
+#: apps/inventory/forms/movable_asset_filter_form.py:40
+#: apps/inventory/forms/movable_asset_filter_form.py:47
+#: apps/inventory/forms/real_estate_filter_form.py:21
+#: apps/inventory/forms/real_estate_filter_form.py:27
+#: apps/inventory/forms/real_estate_filter_form.py:33
 msgid "All"
 msgstr "Todos"
 
-#: apps/inventory/forms/imovel_filter_form.py:26
-#: apps/inventory/web/templates/inventory/imovel_detail.html:92
-#: apps/inventory/web/templates/inventory/imovel_form.html:110
-#: apps/inventory/web/templates/inventory/imovel_list.html:108
-msgid "Zone"
-msgstr "Zona"
+#: apps/inventory/forms/asset_filter_form.py:12
+#: apps/inventory/services/asset_filters.py:52
+#: apps/inventory/web/templates/inventory/includes/asset_type_choice_modal.html:27
+#: apps/pages/templates/pages/home.html:82
+msgid "Item"
+msgstr "Item"
 
-#: apps/inventory/forms/imovel_filter_form.py:32
-#: apps/inventory/web/templates/inventory/imovel_detail.html:60
-#: apps/inventory/web/templates/inventory/imovel_form.html:156
-#: apps/inventory/web/templates/inventory/imovel_list.html:109
-msgid "Registry status"
-msgstr "Situação no cartório"
+#: apps/inventory/forms/asset_filter_form.py:21
+msgid "Code or name"
+msgstr "Código ou nome"
+
+#: apps/inventory/forms/asset_filter_form.py:25
+#: apps/inventory/web/templates/inventory/asset_list.html:105
+msgid "Type"
+msgstr "Tipo"
+
+#: apps/inventory/forms/asset_filter_form.py:31
+#: apps/inventory/forms/movable_asset_filter_form.py:25
+#: apps/inventory/web/templates/inventory/asset_list.html:107
+#: apps/inventory/web/templates/inventory/item_detail.html:70
+#: apps/inventory/web/templates/inventory/item_form.html:116
+#: apps/inventory/web/templates/inventory/item_form.html:128
+#: apps/inventory/web/templates/inventory/item_list.html:128
+#: apps/inventory/web/templates/inventory/real_estate_detail.html:56
+#: apps/inventory/web/templates/inventory/real_estate_form.html:168
+msgid "Condition"
+msgstr "Condição"
 
 #: apps/inventory/forms/item_import_form.py:7
 msgid "CSV file"
@@ -801,11 +849,11 @@ msgstr "Arquivo CSV"
 msgid "Please upload a .csv file."
 msgstr "Envie um arquivo .csv."
 
-#: apps/inventory/forms/movel_filter_form.py:15
+#: apps/inventory/forms/movable_asset_filter_form.py:15
 msgid "Code, name or responsible"
 msgstr "Código, nome ou responsável"
 
-#: apps/inventory/forms/movel_filter_form.py:19
+#: apps/inventory/forms/movable_asset_filter_form.py:19
 #: apps/inventory/web/templates/inventory/home.html:144
 #: apps/inventory/web/templates/inventory/item_detail.html:167
 #: apps/inventory/web/templates/inventory/item_form.html:122
@@ -814,19 +862,21 @@ msgstr "Código, nome ou responsável"
 msgid "Status"
 msgstr "Status"
 
-#: apps/inventory/forms/movel_filter_form.py:25
-#: apps/inventory/forms/patrimonio_filter_form.py:31
-#: apps/inventory/web/templates/inventory/imovel_detail.html:56
-#: apps/inventory/web/templates/inventory/imovel_form.html:168
-#: apps/inventory/web/templates/inventory/item_detail.html:70
-#: apps/inventory/web/templates/inventory/item_form.html:116
-#: apps/inventory/web/templates/inventory/item_form.html:128
-#: apps/inventory/web/templates/inventory/item_list.html:128
-#: apps/inventory/web/templates/inventory/patrimonio_list.html:107
-msgid "Condition"
-msgstr "Condição"
+#: apps/inventory/forms/movable_asset_filter_form.py:31
+#: apps/inventory/forms/real_estate_filter_form.py:19
+#: apps/inventory/web/templates/inventory/asset_list.html:106
+#: apps/inventory/web/templates/inventory/dashboard.html:40
+#: apps/inventory/web/templates/inventory/home.html:142
+#: apps/inventory/web/templates/inventory/item_detail.html:54
+#: apps/inventory/web/templates/inventory/item_form.html:60
+#: apps/inventory/web/templates/inventory/item_list.html:124
+#: apps/inventory/web/templates/inventory/real_estate_detail.html:44
+#: apps/inventory/web/templates/inventory/real_estate_form.html:61
+#: apps/inventory/web/templates/inventory/real_estate_list.html:106
+msgid "Category"
+msgstr "Categoria"
 
-#: apps/inventory/forms/movel_filter_form.py:38
+#: apps/inventory/forms/movable_asset_filter_form.py:38
 #: apps/inventory/web/templates/inventory/home.html:143
 #: apps/inventory/web/templates/inventory/item_detail.html:58
 #: apps/inventory/web/templates/inventory/item_form.html:87
@@ -835,35 +885,29 @@ msgstr "Condição"
 msgid "Sector"
 msgstr "Setor"
 
-#: apps/inventory/forms/movel_filter_form.py:45
+#: apps/inventory/forms/movable_asset_filter_form.py:45
 #: apps/inventory/web/templates/inventory/item_detail.html:78
 #: apps/inventory/web/templates/inventory/item_form.html:186
 msgid "Brand"
 msgstr "Marca"
 
-#: apps/inventory/forms/patrimonio_filter_form.py:12
-#: apps/inventory/services/patrimonio_filters.py:52
-#: apps/inventory/web/templates/inventory/patrimonio_choice.html:21
-#: apps/pages/templates/pages/home.html:82
-msgid "Item"
-msgstr "Item"
+#: apps/inventory/forms/real_estate_filter_form.py:15
+msgid "Code, name or address"
+msgstr "Código, nome ou endereço"
 
-#: apps/inventory/forms/patrimonio_filter_form.py:13
-#: apps/inventory/services/patrimonio_filters.py:62
-#: apps/inventory/web/templates/inventory/imovel_list.html:5
-#: apps/inventory/web/templates/inventory/imovel_list.html:17
-#: apps/inventory/web/templates/inventory/patrimonio_choice.html:34
-msgid "Real Estate"
-msgstr "Imóveis"
+#: apps/inventory/forms/real_estate_filter_form.py:26
+#: apps/inventory/web/templates/inventory/real_estate_detail.html:92
+#: apps/inventory/web/templates/inventory/real_estate_form.html:110
+#: apps/inventory/web/templates/inventory/real_estate_list.html:108
+msgid "Zone"
+msgstr "Zona"
 
-#: apps/inventory/forms/patrimonio_filter_form.py:21
-msgid "Code or name"
-msgstr "Código ou nome"
-
-#: apps/inventory/forms/patrimonio_filter_form.py:25
-#: apps/inventory/web/templates/inventory/patrimonio_list.html:105
-msgid "Type"
-msgstr "Tipo"
+#: apps/inventory/forms/real_estate_filter_form.py:32
+#: apps/inventory/web/templates/inventory/real_estate_detail.html:60
+#: apps/inventory/web/templates/inventory/real_estate_form.html:156
+#: apps/inventory/web/templates/inventory/real_estate_list.html:109
+msgid "Registry status"
+msgstr "Situação no cartório"
 
 #: apps/inventory/services/item_import.py:42
 msgid "The file is not a valid UTF-8 text file."
@@ -910,6 +954,102 @@ msgstr "Linha %(row)s: status \"%(value)s\" desconhecido."
 #, python-format
 msgid "Row %(row)s: unknown condition \"%(value)s\"."
 msgstr "Linha %(row)s: condição \"%(value)s\" desconhecida."
+
+#: apps/inventory/web/templates/inventory/asset_list.html:16
+#, python-format
+msgid "%(count)s asset"
+msgid_plural "%(count)s assets"
+msgstr[0] "%(count)s patrimônio"
+msgstr[1] "%(count)s patrimônios"
+
+#: apps/inventory/web/templates/inventory/asset_list.html:17
+msgid "combined view of items and real estate"
+msgstr ""
+
+#: apps/inventory/web/templates/inventory/asset_list.html:24
+#: apps/inventory/web/templates/inventory/home.html:22
+#: apps/inventory/web/templates/inventory/includes/asset_type_choice_modal.html:10
+msgid "Register asset"
+msgstr "Cadastrar patrimônio"
+
+#: apps/inventory/web/templates/inventory/asset_list.html:33
+#: apps/inventory/web/templates/inventory/item_list.html:47
+#: apps/inventory/web/templates/inventory/real_estate_list.html:37
+msgid "Filters"
+msgstr "Filtros"
+
+#: apps/inventory/web/templates/inventory/asset_list.html:35
+#: apps/inventory/web/templates/inventory/item_list.html:49
+#: apps/inventory/web/templates/inventory/real_estate_list.html:39
+msgid "active"
+msgstr "ativo"
+
+#: apps/inventory/web/templates/inventory/asset_list.html:58
+#: apps/inventory/web/templates/inventory/item_list.html:72
+#: apps/inventory/web/templates/inventory/real_estate_list.html:62
+msgid "Clear all"
+msgstr "Limpar tudo"
+
+#: apps/inventory/web/templates/inventory/asset_list.html:80
+#: apps/inventory/web/templates/inventory/item_list.html:106
+#: apps/inventory/web/templates/inventory/real_estate_list.html:88
+msgid "Filter"
+msgstr "Filtrar"
+
+#: apps/inventory/web/templates/inventory/asset_list.html:83
+#: apps/inventory/web/templates/inventory/item_list.html:109
+#: apps/inventory/web/templates/inventory/real_estate_list.html:91
+msgid "Clear filters"
+msgstr "Limpar filtros"
+
+#: apps/inventory/web/templates/inventory/asset_list.html:90
+msgid "Looking for advanced filters, status history or CSV import/export?"
+msgstr ""
+
+#: apps/inventory/web/templates/inventory/asset_list.html:91
+msgid "Manage items"
+msgstr "Gerenciar itens"
+
+#: apps/inventory/web/templates/inventory/asset_list.html:93
+msgid "Manage real estate"
+msgstr "Gerenciar imóveis"
+
+#: apps/inventory/web/templates/inventory/asset_list.html:103
+#: apps/inventory/web/templates/inventory/home.html:140
+#: apps/inventory/web/templates/inventory/item_detail.html:50
+#: apps/inventory/web/templates/inventory/item_list.html:122
+#: apps/inventory/web/templates/inventory/real_estate_detail.html:40
+#: apps/inventory/web/templates/inventory/real_estate_list.html:104
+msgid "Code"
+msgstr "Código"
+
+#: apps/inventory/web/templates/inventory/asset_list.html:104
+#: apps/inventory/web/templates/inventory/home.html:141
+#: apps/inventory/web/templates/inventory/item_form.html:52
+#: apps/inventory/web/templates/inventory/item_list.html:123
+#: apps/inventory/web/templates/inventory/real_estate_form.html:52
+#: apps/inventory/web/templates/inventory/real_estate_list.html:105
+msgid "Name"
+msgstr "Nome"
+
+#: apps/inventory/web/templates/inventory/asset_list.html:135
+#: apps/inventory/web/templates/inventory/item_list.html:154
+#: apps/inventory/web/templates/inventory/real_estate_list.html:134
+#, python-format
+msgid "Showing %(start)s–%(end)s of %(total)s"
+msgstr "Exibindo %(start)s–%(end)s de %(total)s"
+
+#: apps/inventory/web/templates/inventory/asset_list.html:140
+#: apps/inventory/web/templates/inventory/item_list.html:159
+#: apps/inventory/web/templates/inventory/real_estate_list.html:139
+msgid "Previous"
+msgstr "Anterior"
+
+#: apps/inventory/web/templates/inventory/asset_list.html:144
+#: apps/inventory/web/templates/inventory/item_list.html:163
+#: apps/inventory/web/templates/inventory/real_estate_list.html:143
+msgid "Next"
+msgstr "Próxima"
 
 #: apps/inventory/web/templates/inventory/dashboard.html:4
 #: apps/inventory/web/templates/inventory/dashboard.html:16
@@ -968,10 +1108,8 @@ msgid "e.g. 60"
 msgstr "ex.: 60"
 
 #: apps/inventory/web/templates/inventory/dashboard.html:102
-#, fuzzy
-#| msgid "Save Item"
 msgid "Save"
-msgstr "Salvar Item"
+msgstr "Salvar"
 
 #: apps/inventory/web/templates/inventory/dashboard.html:127
 #: apps/inventory/web/templates/inventory/home.html:228
@@ -988,13 +1126,6 @@ msgstr "Olá, %(name)s 👋"
 #: apps/inventory/web/templates/inventory/home.html:17
 msgid "Here's an overview of today's inventory."
 msgstr "Aqui está um resumo do inventário hoje."
-
-#: apps/inventory/web/templates/inventory/home.html:22
-#: apps/inventory/web/templates/inventory/patrimonio_choice.html:4
-#: apps/inventory/web/templates/inventory/patrimonio_choice.html:10
-#: apps/inventory/web/templates/inventory/patrimonio_list.html:24
-msgid "Register asset"
-msgstr "Cadastrar patrimônio"
 
 #: apps/inventory/web/templates/inventory/home.html:46
 msgid "in maintenance"
@@ -1053,27 +1184,9 @@ msgstr "Últimos Itens Cadastrados"
 msgid "View all"
 msgstr "Ver todos"
 
-#: apps/inventory/web/templates/inventory/home.html:140
-#: apps/inventory/web/templates/inventory/imovel_detail.html:40
-#: apps/inventory/web/templates/inventory/imovel_list.html:104
-#: apps/inventory/web/templates/inventory/item_detail.html:50
-#: apps/inventory/web/templates/inventory/item_list.html:122
-#: apps/inventory/web/templates/inventory/patrimonio_list.html:103
-msgid "Code"
-msgstr "Código"
-
-#: apps/inventory/web/templates/inventory/home.html:141
-#: apps/inventory/web/templates/inventory/imovel_form.html:52
-#: apps/inventory/web/templates/inventory/imovel_list.html:105
-#: apps/inventory/web/templates/inventory/item_form.html:52
-#: apps/inventory/web/templates/inventory/item_list.html:123
-#: apps/inventory/web/templates/inventory/patrimonio_list.html:104
-msgid "Name"
-msgstr "Nome"
-
 #: apps/inventory/web/templates/inventory/home.html:145
-#: apps/inventory/web/templates/inventory/imovel_detail.html:64
 #: apps/inventory/web/templates/inventory/item_detail.html:82
+#: apps/inventory/web/templates/inventory/real_estate_detail.html:64
 msgid "Registered at"
 msgstr "Cadastrado em"
 
@@ -1118,247 +1231,22 @@ msgstr "Bens com Maior Valor"
 msgid "No asset with a registered value yet."
 msgstr "Nenhum bem com valor cadastrado ainda."
 
-#: apps/inventory/web/templates/inventory/imovel_detail.html:36
-msgid "Real Estate Information"
-msgstr "Informações do Imóvel"
+#: apps/inventory/web/templates/inventory/includes/asset_type_choice_modal.html:11
+msgid "What kind of asset do you want to register?"
+msgstr "Que tipo de patrimônio você quer cadastrar?"
 
-#: apps/inventory/web/templates/inventory/imovel_detail.html:48
-#: apps/inventory/web/templates/inventory/imovel_form.html:73
-#: apps/inventory/web/templates/inventory/item_detail.html:66
-#: apps/inventory/web/templates/inventory/item_form.html:105
-#: apps/inventory/web/templates/inventory/item_list.html:126
-msgid "Responsible"
-msgstr "Responsável"
-
-#: apps/inventory/web/templates/inventory/imovel_detail.html:52
-#: apps/inventory/web/templates/inventory/imovel_form.html:162
-#: apps/inventory/web/templates/inventory/item_detail.html:74
-#: apps/inventory/web/templates/inventory/item_form.html:134
-msgid "Ownership"
-msgstr "Propriedade"
-
-#: apps/inventory/web/templates/inventory/imovel_detail.html:70
-#: apps/inventory/web/templates/inventory/imovel_form.html:80
-#: apps/inventory/web/templates/inventory/item_detail.html:88
-#: apps/inventory/web/templates/inventory/item_form.html:72
-msgid "Description"
-msgstr "Descrição"
-
-#: apps/inventory/web/templates/inventory/imovel_detail.html:84
-#: apps/inventory/web/templates/inventory/imovel_form.html:96
-#: apps/inventory/web/templates/inventory/imovel_list.html:107
-msgid "Address"
-msgstr "Endereço"
-
-#: apps/inventory/web/templates/inventory/imovel_detail.html:88
-#: apps/inventory/web/templates/inventory/imovel_form.html:102
-msgid "CEP"
-msgstr "CEP"
-
-#: apps/inventory/web/templates/inventory/imovel_detail.html:96
-msgid "Coordinates"
-msgstr "Coordenadas"
-
-#: apps/inventory/web/templates/inventory/imovel_detail.html:102
-#: apps/inventory/web/templates/inventory/imovel_form.html:133
-msgid "Total area"
-msgstr "Área total"
-
-#: apps/inventory/web/templates/inventory/imovel_detail.html:106
-#: apps/inventory/web/templates/inventory/imovel_form.html:139
-msgid "Built area"
-msgstr "Área construída"
-
-#: apps/inventory/web/templates/inventory/imovel_detail.html:112
-#: apps/inventory/web/templates/inventory/imovel_form.html:175
-#: apps/inventory/web/templates/inventory/item_detail.html:94
-#: apps/inventory/web/templates/inventory/item_form.html:141
-msgid "Notes"
-msgstr "Observações"
-
-#: apps/inventory/web/templates/inventory/imovel_form.html:4
-#: apps/inventory/web/templates/inventory/imovel_form.html:17
-#, fuzzy
-#| msgid "Real Estate"
-msgid "Edit Real Estate"
-msgstr "Imóveis"
-
-#: apps/inventory/web/templates/inventory/imovel_form.html:4
-#: apps/inventory/web/templates/inventory/imovel_form.html:17
-#: apps/inventory/web/templates/inventory/imovel_list.html:28
-msgid "New Real Estate"
-msgstr "Novo Imóvel"
-
-#: apps/inventory/web/templates/inventory/imovel_form.html:19
-msgid "Update this property's details"
+#: apps/inventory/web/templates/inventory/includes/asset_type_choice_modal.html:15
+msgid "Close"
 msgstr ""
 
-#: apps/inventory/web/templates/inventory/imovel_form.html:19
-msgid "Fill in the details to register a real estate property"
-msgstr "Preencha os dados para cadastrar um imóvel"
-
-#: apps/inventory/web/templates/inventory/imovel_form.html:23
-#: apps/inventory/web/templates/inventory/item_form.html:23
-msgid "Required fields"
-msgstr "Campos obrigatórios"
-
-#: apps/inventory/web/templates/inventory/imovel_form.html:38
-#: apps/inventory/web/templates/inventory/item_form.html:38
-msgid "Identification"
-msgstr "Identificação"
-
-#: apps/inventory/web/templates/inventory/imovel_form.html:44
-#: apps/inventory/web/templates/inventory/item_form.html:44
-msgid "Code / Asset Number"
-msgstr "Código / Patrimônio"
-
-#: apps/inventory/web/templates/inventory/imovel_form.html:67
-#: apps/inventory/web/templates/inventory/item_form.html:66
-msgid ""
-"No categories registered yet. Ask an administrator to create one before "
-"continuing."
+#: apps/inventory/web/templates/inventory/includes/asset_type_choice_modal.html:29
+msgid "Furniture, equipment and other assets tracked by sector and location."
 msgstr ""
-"Nenhuma categoria cadastrada ainda. Peça a um administrador para criar uma "
-"antes de continuar."
+"Mobiliário, equipamentos e demais itens rastreados por setor e localização."
 
-#: apps/inventory/web/templates/inventory/imovel_form.html:91
-#: apps/inventory/web/templates/inventory/imovel_form.html:151
-#: apps/inventory/web/templates/inventory/item_form.html:117
-#: apps/inventory/web/templates/inventory/item_form.html:152
-#: apps/inventory/web/templates/inventory/item_form.html:181
-#: apps/inventory/web/templates/inventory/item_form.html:251
-msgid "(optional)"
-msgstr "(opcional)"
-
-#: apps/inventory/web/templates/inventory/imovel_form.html:116
-msgid "Latitude"
-msgstr "Latitude"
-
-#: apps/inventory/web/templates/inventory/imovel_form.html:122
-msgid "Longitude"
-msgstr "Longitude"
-
-#: apps/inventory/web/templates/inventory/imovel_form.html:128
-msgid "GPS coordinates are optional and used to locate the property on a map."
-msgstr ""
-"As coordenadas de GPS são opcionais e usadas para localizar o imóvel no mapa."
-
-#: apps/inventory/web/templates/inventory/imovel_form.html:150
-msgid "Legal & Condition"
-msgstr "Jurídico e Condição"
-
-#: apps/inventory/web/templates/inventory/imovel_form.html:198
-#: apps/inventory/web/templates/inventory/imovel_form.html:257
-msgid "Real estate name"
-msgstr "Nome do imóvel"
-
-#: apps/inventory/web/templates/inventory/imovel_form.html:213
-#: apps/inventory/web/templates/inventory/item_form.html:306
-msgid "Tips"
-msgstr "Dicas"
-
-#: apps/inventory/web/templates/inventory/imovel_form.html:216
-msgid ""
-"Use a consistent code pattern, e.g. IMV-0001, to make properties easy to "
-"search later."
-msgstr ""
-"Use um padrão de código consistente, como IMV-0001, para facilitar a busca "
-"dos imóveis depois."
-
-#: apps/inventory/web/templates/inventory/imovel_form.html:217
-msgid ""
-"Keeping the registry status up to date helps track legal risk across the "
-"portfolio."
-msgstr ""
-"Manter a situação em cartório atualizada ajuda a acompanhar o risco jurídico "
-"do portfólio."
-
-#: apps/inventory/web/templates/inventory/imovel_form.html:218
-msgid ""
-"Address and GPS coordinates make it easier to locate the property later."
-msgstr "Endereço e coordenadas de GPS facilitam localizar o imóvel depois."
-
-#: apps/inventory/web/templates/inventory/imovel_form.html:235
-msgid "Save Real Estate"
-msgstr "Salvar Imóvel"
-
-#: apps/inventory/web/templates/inventory/imovel_list.html:14
-#: apps/inventory/web/templates/inventory/item_list.html:14
-#, fuzzy
-#| msgid "Back to Home"
-msgid "Back to Assets"
-msgstr "Voltar ao Início"
-
-#: apps/inventory/web/templates/inventory/imovel_list.html:20
-#, python-format
-msgid "%(count)s property"
-msgid_plural "%(count)s properties"
-msgstr[0] "%(count)s propriedade"
-msgstr[1] "%(count)s propriedades"
-
-#: apps/inventory/web/templates/inventory/imovel_list.html:21
-msgid "real estate only — registry status, zone, area"
-msgstr ""
-
-#: apps/inventory/web/templates/inventory/imovel_list.html:37
-#: apps/inventory/web/templates/inventory/item_list.html:47
-#: apps/inventory/web/templates/inventory/patrimonio_list.html:33
-#, fuzzy
-#| msgid "Filter"
-msgid "Filters"
-msgstr "Filtrar"
-
-#: apps/inventory/web/templates/inventory/imovel_list.html:39
-#: apps/inventory/web/templates/inventory/item_list.html:49
-#: apps/inventory/web/templates/inventory/patrimonio_list.html:35
-#, fuzzy
-#| msgid "Active"
-msgid "active"
-msgstr "Ativos"
-
-#: apps/inventory/web/templates/inventory/imovel_list.html:62
-#: apps/inventory/web/templates/inventory/item_list.html:72
-#: apps/inventory/web/templates/inventory/patrimonio_list.html:58
-#, fuzzy
-#| msgid "Clear filters"
-msgid "Clear all"
-msgstr "Limpar filtros"
-
-#: apps/inventory/web/templates/inventory/imovel_list.html:88
-#: apps/inventory/web/templates/inventory/item_list.html:106
-#: apps/inventory/web/templates/inventory/patrimonio_list.html:80
-msgid "Filter"
-msgstr "Filtrar"
-
-#: apps/inventory/web/templates/inventory/imovel_list.html:91
-#: apps/inventory/web/templates/inventory/item_list.html:109
-#: apps/inventory/web/templates/inventory/patrimonio_list.html:83
-msgid "Clear filters"
-msgstr "Limpar filtros"
-
-#: apps/inventory/web/templates/inventory/imovel_list.html:134
-#: apps/inventory/web/templates/inventory/item_list.html:154
-#: apps/inventory/web/templates/inventory/patrimonio_list.html:135
-#, fuzzy, python-format
-#| msgid "Page %(current)s of %(total)s"
-msgid "Showing %(start)s–%(end)s of %(total)s"
-msgstr "Página %(current)s de %(total)s"
-
-#: apps/inventory/web/templates/inventory/imovel_list.html:139
-#: apps/inventory/web/templates/inventory/item_list.html:159
-#: apps/inventory/web/templates/inventory/patrimonio_list.html:140
-msgid "Previous"
-msgstr "Anterior"
-
-#: apps/inventory/web/templates/inventory/imovel_list.html:143
-#: apps/inventory/web/templates/inventory/item_list.html:163
-#: apps/inventory/web/templates/inventory/patrimonio_list.html:144
-msgid "Next"
-msgstr "Próxima"
-
-#: apps/inventory/web/templates/inventory/imovel_list.html:151
-msgid "No real estate found."
-msgstr "Nenhum imóvel encontrado."
+#: apps/inventory/web/templates/inventory/includes/asset_type_choice_modal.html:42
+msgid "Houses, apartments, land and other real estate properties."
+msgstr "Casas, apartamentos, terrenos e demais propriedades."
 
 #: apps/inventory/web/templates/inventory/item_delete_confirm.html:4
 #: apps/inventory/web/templates/inventory/item_delete_confirm.html:10
@@ -1399,6 +1287,11 @@ msgstr "Digite \"%(code)s\" para confirmar"
 msgid "Permanently delete"
 msgstr "Excluir permanentemente"
 
+#: apps/inventory/web/templates/inventory/item_detail.html:32
+#: apps/inventory/web/templates/inventory/real_estate_detail.html:27
+msgid "Edit"
+msgstr "Editar"
+
 #: apps/inventory/web/templates/inventory/item_detail.html:36
 msgid "Delete"
 msgstr "Excluir"
@@ -1406,6 +1299,35 @@ msgstr "Excluir"
 #: apps/inventory/web/templates/inventory/item_detail.html:46
 msgid "Item Information"
 msgstr "Informações do Item"
+
+#: apps/inventory/web/templates/inventory/item_detail.html:66
+#: apps/inventory/web/templates/inventory/item_form.html:105
+#: apps/inventory/web/templates/inventory/item_list.html:126
+#: apps/inventory/web/templates/inventory/real_estate_detail.html:48
+#: apps/inventory/web/templates/inventory/real_estate_form.html:73
+msgid "Responsible"
+msgstr "Responsável"
+
+#: apps/inventory/web/templates/inventory/item_detail.html:74
+#: apps/inventory/web/templates/inventory/item_form.html:134
+#: apps/inventory/web/templates/inventory/real_estate_detail.html:52
+#: apps/inventory/web/templates/inventory/real_estate_form.html:162
+msgid "Ownership"
+msgstr "Propriedade"
+
+#: apps/inventory/web/templates/inventory/item_detail.html:88
+#: apps/inventory/web/templates/inventory/item_form.html:72
+#: apps/inventory/web/templates/inventory/real_estate_detail.html:70
+#: apps/inventory/web/templates/inventory/real_estate_form.html:80
+msgid "Description"
+msgstr "Descrição"
+
+#: apps/inventory/web/templates/inventory/item_detail.html:94
+#: apps/inventory/web/templates/inventory/item_form.html:141
+#: apps/inventory/web/templates/inventory/real_estate_detail.html:112
+#: apps/inventory/web/templates/inventory/real_estate_form.html:175
+msgid "Notes"
+msgstr "Observações"
 
 #: apps/inventory/web/templates/inventory/item_detail.html:105
 #: apps/inventory/web/templates/inventory/item_form.html:151
@@ -1469,10 +1391,8 @@ msgstr "Nenhum histórico de empréstimo para este item ainda."
 
 #: apps/inventory/web/templates/inventory/item_form.html:4
 #: apps/inventory/web/templates/inventory/item_form.html:17
-#, fuzzy
-#| msgid "Edit item"
 msgid "Edit Item"
-msgstr "Editar item"
+msgstr "Editar Item"
 
 #: apps/inventory/web/templates/inventory/item_form.html:19
 msgid "Update this item's details"
@@ -1482,6 +1402,30 @@ msgstr ""
 msgid "Fill in the details to register an item in the inventory"
 msgstr "Preencha os dados para cadastrar um item no inventário"
 
+#: apps/inventory/web/templates/inventory/item_form.html:23
+#: apps/inventory/web/templates/inventory/real_estate_form.html:23
+msgid "Required fields"
+msgstr "Campos obrigatórios"
+
+#: apps/inventory/web/templates/inventory/item_form.html:38
+#: apps/inventory/web/templates/inventory/real_estate_form.html:38
+msgid "Identification"
+msgstr "Identificação"
+
+#: apps/inventory/web/templates/inventory/item_form.html:44
+#: apps/inventory/web/templates/inventory/real_estate_form.html:44
+msgid "Code / Asset Number"
+msgstr "Código / Patrimônio"
+
+#: apps/inventory/web/templates/inventory/item_form.html:66
+#: apps/inventory/web/templates/inventory/real_estate_form.html:67
+msgid ""
+"No categories registered yet. Ask an administrator to create one before "
+"continuing."
+msgstr ""
+"Nenhuma categoria cadastrada ainda. Peça a um administrador para criar uma "
+"antes de continuar."
+
 #: apps/inventory/web/templates/inventory/item_form.html:93
 msgid "No sectors registered yet."
 msgstr "Nenhum setor cadastrado ainda."
@@ -1489,6 +1433,15 @@ msgstr "Nenhum setor cadastrado ainda."
 #: apps/inventory/web/templates/inventory/item_form.html:99
 msgid "Specific location"
 msgstr "Localização específica"
+
+#: apps/inventory/web/templates/inventory/item_form.html:117
+#: apps/inventory/web/templates/inventory/item_form.html:152
+#: apps/inventory/web/templates/inventory/item_form.html:181
+#: apps/inventory/web/templates/inventory/item_form.html:251
+#: apps/inventory/web/templates/inventory/real_estate_form.html:91
+#: apps/inventory/web/templates/inventory/real_estate_form.html:151
+msgid "(optional)"
+msgstr "(opcional)"
 
 #: apps/inventory/web/templates/inventory/item_form.html:169
 msgid "Warranty (months)"
@@ -1538,6 +1491,11 @@ msgstr "Remover foto"
 #: apps/inventory/web/templates/inventory/item_form.html:451
 msgid "Item name"
 msgstr "Nome do item"
+
+#: apps/inventory/web/templates/inventory/item_form.html:306
+#: apps/inventory/web/templates/inventory/real_estate_form.html:213
+msgid "Tips"
+msgstr "Dicas"
 
 #: apps/inventory/web/templates/inventory/item_form.html:309
 msgid ""
@@ -1619,6 +1577,11 @@ msgstr[1] "%(count)s linhas não puderam ser importadas"
 msgid "All Items"
 msgstr "Todos os Itens"
 
+#: apps/inventory/web/templates/inventory/item_list.html:14
+#: apps/inventory/web/templates/inventory/real_estate_list.html:14
+msgid "Back to Assets"
+msgstr "Voltar para Patrimônios"
+
 #: apps/inventory/web/templates/inventory/item_list.html:20
 #, python-format
 msgid "%(count)s item"
@@ -1642,49 +1605,135 @@ msgstr "Exportar CSV"
 msgid "No items found."
 msgstr "Nenhum item encontrado."
 
-#: apps/inventory/web/templates/inventory/patrimonio_choice.html:11
-msgid "What kind of asset do you want to register?"
-msgstr "Que tipo de patrimônio você quer cadastrar?"
+#: apps/inventory/web/templates/inventory/real_estate_detail.html:36
+msgid "Real Estate Information"
+msgstr "Informações do Imóvel"
 
-#: apps/inventory/web/templates/inventory/patrimonio_choice.html:23
-msgid "Furniture, equipment and other assets tracked by sector and location."
+#: apps/inventory/web/templates/inventory/real_estate_detail.html:84
+#: apps/inventory/web/templates/inventory/real_estate_form.html:96
+#: apps/inventory/web/templates/inventory/real_estate_list.html:107
+msgid "Address"
+msgstr "Endereço"
+
+#: apps/inventory/web/templates/inventory/real_estate_detail.html:88
+#: apps/inventory/web/templates/inventory/real_estate_form.html:102
+msgid "CEP"
+msgstr "CEP"
+
+#: apps/inventory/web/templates/inventory/real_estate_detail.html:96
+msgid "Coordinates"
+msgstr "Coordenadas"
+
+#: apps/inventory/web/templates/inventory/real_estate_detail.html:102
+#: apps/inventory/web/templates/inventory/real_estate_form.html:133
+msgid "Total area"
+msgstr "Área total"
+
+#: apps/inventory/web/templates/inventory/real_estate_detail.html:106
+#: apps/inventory/web/templates/inventory/real_estate_form.html:139
+msgid "Built area"
+msgstr "Área construída"
+
+#: apps/inventory/web/templates/inventory/real_estate_form.html:4
+#: apps/inventory/web/templates/inventory/real_estate_form.html:17
+msgid "Edit Real Estate"
+msgstr "Editar Imóvel"
+
+#: apps/inventory/web/templates/inventory/real_estate_form.html:4
+#: apps/inventory/web/templates/inventory/real_estate_form.html:17
+#: apps/inventory/web/templates/inventory/real_estate_list.html:28
+msgid "New Real Estate"
+msgstr "Novo Imóvel"
+
+#: apps/inventory/web/templates/inventory/real_estate_form.html:19
+msgid "Update this property's details"
 msgstr ""
-"Mobiliário, equipamentos e demais itens rastreados por setor e localização."
 
-#: apps/inventory/web/templates/inventory/patrimonio_choice.html:36
-msgid "Houses, apartments, land and other real estate properties."
-msgstr "Casas, apartamentos, terrenos e demais propriedades."
+#: apps/inventory/web/templates/inventory/real_estate_form.html:19
+msgid "Fill in the details to register a real estate property"
+msgstr "Preencha os dados para cadastrar um imóvel"
 
-#: apps/inventory/web/templates/inventory/patrimonio_list.html:16
-#, python-format
-msgid "%(count)s asset"
-msgid_plural "%(count)s assets"
-msgstr[0] "%(count)s patrimônio"
-msgstr[1] "%(count)s patrimônios"
+#: apps/inventory/web/templates/inventory/real_estate_form.html:116
+msgid "Latitude"
+msgstr "Latitude"
 
-#: apps/inventory/web/templates/inventory/patrimonio_list.html:17
-msgid "combined view of items and real estate"
+#: apps/inventory/web/templates/inventory/real_estate_form.html:122
+msgid "Longitude"
+msgstr "Longitude"
+
+#: apps/inventory/web/templates/inventory/real_estate_form.html:128
+msgid "GPS coordinates are optional and used to locate the property on a map."
 msgstr ""
+"As coordenadas de GPS são opcionais e usadas para localizar o imóvel no mapa."
 
-#: apps/inventory/web/templates/inventory/patrimonio_list.html:90
-msgid "Looking for advanced filters, status history or CSV import/export?"
+#: apps/inventory/web/templates/inventory/real_estate_form.html:150
+msgid "Legal & Condition"
+msgstr "Jurídico e Condição"
+
+#: apps/inventory/web/templates/inventory/real_estate_form.html:198
+#: apps/inventory/web/templates/inventory/real_estate_form.html:257
+msgid "Real estate name"
+msgstr "Nome do imóvel"
+
+#: apps/inventory/web/templates/inventory/real_estate_form.html:216
+msgid ""
+"Use a consistent code pattern, e.g. IMV-0001, to make properties easy to "
+"search later."
 msgstr ""
+"Use um padrão de código consistente, como IMV-0001, para facilitar a busca "
+"dos imóveis depois."
 
-#: apps/inventory/web/templates/inventory/patrimonio_list.html:91
-#, fuzzy
-#| msgid "Total items"
-msgid "Manage items"
-msgstr "Total de itens"
+#: apps/inventory/web/templates/inventory/real_estate_form.html:217
+msgid ""
+"Keeping the registry status up to date helps track legal risk across the "
+"portfolio."
+msgstr ""
+"Manter a situação em cartório atualizada ajuda a acompanhar o risco jurídico "
+"do portfólio."
 
-#: apps/inventory/web/templates/inventory/patrimonio_list.html:93
-#, fuzzy
-#| msgid "Save Real Estate"
-msgid "Manage real estate"
+#: apps/inventory/web/templates/inventory/real_estate_form.html:218
+msgid ""
+"Address and GPS coordinates make it easier to locate the property later."
+msgstr "Endereço e coordenadas de GPS facilitam localizar o imóvel depois."
+
+#: apps/inventory/web/templates/inventory/real_estate_form.html:235
+msgid "Save Real Estate"
 msgstr "Salvar Imóvel"
 
-#: apps/inventory/web/templates/inventory/patrimonio_list.html:152
-msgid "No assets found."
-msgstr "Nenhum patrimônio encontrado."
+#: apps/inventory/web/templates/inventory/real_estate_list.html:20
+#: apps/inventory/web/templates/inventory/real_estate_map.html:27
+#, python-format
+msgid "%(count)s property"
+msgid_plural "%(count)s properties"
+msgstr[0] "%(count)s propriedade"
+msgstr[1] "%(count)s propriedades"
+
+#: apps/inventory/web/templates/inventory/real_estate_list.html:21
+msgid "real estate only — registry status, zone, area"
+msgstr ""
+
+#: apps/inventory/web/templates/inventory/real_estate_list.html:151
+msgid "No real estate found."
+msgstr "Nenhum imóvel encontrado."
+
+#: apps/inventory/web/templates/inventory/real_estate_map.html:21
+msgid "Back to Real Estate"
+msgstr "Voltar para Imóveis"
+
+#: apps/inventory/web/templates/inventory/real_estate_map.html:36
+#, python-format
+msgid ""
+"%(count)s property has no coordinates and isn't shown on the map. Edit it "
+"and fill in latitude/longitude to place it."
+msgid_plural ""
+"%(count)s properties have no coordinates and aren't shown on the map. Edit "
+"them and fill in latitude/longitude to place them."
+msgstr[0] "%(count)s imóvel não tem coordenadas e não aparece no mapa. Edite-o e preencha latitude/longitude para posicioná-lo."
+msgstr[1] "%(count)s imóveis não têm coordenadas e não aparecem no mapa. Edite-os e preencha latitude/longitude para posicioná-los."
+
+#: apps/inventory/web/templates/inventory/real_estate_map.html:46
+msgid "No property has coordinates set yet."
+msgstr "Nenhum imóvel tem coordenadas cadastradas ainda."
 
 #: apps/inventory/web/views/brand_views.py:37
 msgid "Selected brand not found."
@@ -1709,17 +1758,6 @@ msgstr "Vida útil de \"%(name)s\" atualizada."
 msgid "Could not update useful life: %(errors)s"
 msgstr "Não foi possível atualizar a vida útil: %(errors)s"
 
-#: apps/inventory/web/views/imovel_update_view.py:37
-#, fuzzy, python-format
-#| msgid "Real estate \"%(name)s\" registered successfully."
-msgid "Real estate \"%(name)s\" updated successfully."
-msgstr "Imóvel \"%(name)s\" cadastrado com sucesso."
-
-#: apps/inventory/web/views/imovel_views.py:30
-#, python-format
-msgid "Real estate \"%(name)s\" registered successfully."
-msgstr "Imóvel \"%(name)s\" cadastrado com sucesso."
-
 #: apps/inventory/web/views/item_delete_view.py:37
 #, python-format
 msgid ""
@@ -1740,7 +1778,7 @@ msgstr "O código digitado não confere. O item não foi excluído."
 msgid "Item \"%(name)s\" deleted."
 msgstr "Item \"%(name)s\" excluído."
 
-#: apps/inventory/web/views/item_import_view.py:34
+#: apps/inventory/web/views/item_import_view.py:31
 #, python-format
 msgid "%(count)s item imported successfully."
 msgid_plural "%(count)s items imported successfully."
@@ -1748,15 +1786,24 @@ msgstr[0] "%(count)s item importado com sucesso."
 msgstr[1] "%(count)s itens importados com sucesso."
 
 #: apps/inventory/web/views/item_update_view.py:97
-#, fuzzy, python-format
-#| msgid "Item \"%(name)s\" registered successfully."
+#, python-format
 msgid "Item \"%(name)s\" updated successfully."
-msgstr "Item \"%(name)s\" cadastrado com sucesso."
+msgstr "Item \"%(name)s\" atualizado com sucesso."
 
 #: apps/inventory/web/views/item_views.py:83
 #, python-format
 msgid "Item \"%(name)s\" registered successfully."
 msgstr "Item \"%(name)s\" cadastrado com sucesso."
+
+#: apps/inventory/web/views/real_estate_update_view.py:37
+#, python-format
+msgid "Real estate \"%(name)s\" updated successfully."
+msgstr "Imóvel \"%(name)s\" atualizado com sucesso."
+
+#: apps/inventory/web/views/real_estate_views.py:30
+#, python-format
+msgid "Real estate \"%(name)s\" registered successfully."
+msgstr "Imóvel \"%(name)s\" cadastrado com sucesso."
 
 # ── Auth — Register
 # ──────────────────────────────────────────────────────────
@@ -1766,10 +1813,8 @@ msgid "Create organization"
 msgstr "Criar organização"
 
 #: apps/organizations/templates/organizations/create.html:22
-#, fuzzy
-#| msgid "The organization owner's role can't be changed."
 msgid "One organization per team, all in one place."
-msgstr "O papel do proprietário da organização não pode ser alterado."
+msgstr "Uma organização por equipe, tudo em um só lugar."
 
 #: apps/organizations/templates/organizations/create.html:25
 msgid ""
@@ -1796,33 +1841,27 @@ msgid "You can create as many organizations as you need."
 msgstr "Você pode criar quantas organizações precisar."
 
 #: apps/organizations/templates/organizations/create.html:79
-#: apps/organizations/templates/organizations/settings.html:64
-#, fuzzy
-#| msgid "Logout"
+#: apps/organizations/templates/organizations/settings.html:65
 msgid "Logo"
-msgstr "Sair"
+msgstr "Logotipo"
 
 #: apps/organizations/templates/organizations/create.html:86
-#: apps/organizations/templates/organizations/settings.html:70
-#, fuzzy
-#| msgid "Remove"
+#: apps/organizations/templates/organizations/settings.html:71
 msgid "Remove image"
-msgstr "Remover"
+msgstr "Remover imagem"
 
 #: apps/organizations/templates/organizations/create.html:88
-#: apps/organizations/templates/organizations/settings.html:78
+#: apps/organizations/templates/organizations/settings.html:79
 msgid "Square image, PNG or JPG — up to 5MB"
 msgstr ""
 
 #: apps/organizations/templates/organizations/create.html:116
-#, fuzzy
-#| msgid "Back to Home"
 msgid "Back to home"
-msgstr "Voltar ao Início"
+msgstr "Voltar ao início"
 
 #: apps/organizations/templates/organizations/delete_confirm.html:4
 #: apps/organizations/templates/organizations/delete_confirm.html:10
-#: apps/organizations/templates/organizations/settings.html:157
+#: apps/organizations/templates/organizations/settings.html:210
 msgid "Delete organization"
 msgstr "Excluir organização"
 
@@ -1841,7 +1880,7 @@ msgstr "Digite \"%(name)s\" para confirmar"
 
 #: apps/organizations/templates/organizations/member_create.html:4
 #: apps/organizations/templates/organizations/member_create.html:11
-#: apps/organizations/templates/organizations/members.html:16
+#: apps/organizations/templates/organizations/settings.html:136
 msgid "Add member"
 msgstr "Adicionar membro"
 
@@ -1904,18 +1943,6 @@ msgstr "Ver patrimônio e relatórios"
 msgid "Create or edit assets"
 msgstr "Criar ou editar patrimônio"
 
-#: apps/organizations/templates/organizations/members.html:23
-msgid "Current members"
-msgstr "Membros atuais"
-
-#: apps/organizations/templates/organizations/members.html:32
-msgid "you"
-msgstr "você"
-
-#: apps/organizations/templates/organizations/members.html:54
-msgid "Remove"
-msgstr "Remover"
-
 #: apps/organizations/templates/organizations/onboarding.html:4
 msgid "Guided setup"
 msgstr "Configuração guiada"
@@ -1963,32 +1990,39 @@ msgstr "Pular, eu configuro depois"
 msgid "Apply suggestions and continue"
 msgstr "Aplicar sugestões e continuar"
 
-#: apps/organizations/templates/organizations/settings.html:4
-#: apps/organizations/templates/organizations/settings.html:11
-msgid "Organization settings"
-msgstr "Configurações da organização"
-
-#: apps/organizations/templates/organizations/settings.html:51
+#: apps/organizations/templates/organizations/settings.html:52
 msgid "Organization Information"
 msgstr "Informações da Organização"
 
-#: apps/organizations/templates/organizations/settings.html:88
+#: apps/organizations/templates/organizations/settings.html:89
 msgid "Organization Profile"
 msgstr "Perfil da Organização"
 
-#: apps/organizations/templates/organizations/settings.html:131
+#: apps/organizations/templates/organizations/settings.html:132
+msgid "Members"
+msgstr "Membros"
+
+#: apps/organizations/templates/organizations/settings.html:148
+msgid "you"
+msgstr "você"
+
+#: apps/organizations/templates/organizations/settings.html:170
+msgid "Remove"
+msgstr "Remover"
+
+#: apps/organizations/templates/organizations/settings.html:188
 msgid "Overview"
 msgstr "Visão geral"
 
-#: apps/organizations/templates/organizations/settings.html:140
+#: apps/organizations/templates/organizations/settings.html:193
 msgid "Created"
 msgstr "Criada em"
 
-#: apps/organizations/templates/organizations/settings.html:149
+#: apps/organizations/templates/organizations/settings.html:202
 msgid "Danger zone"
 msgstr "Zona de perigo"
 
-#: apps/organizations/templates/organizations/settings.html:152
+#: apps/organizations/templates/organizations/settings.html:205
 msgid "Permanently delete this organization and all its data."
 msgstr "Exclua permanentemente esta organização e todos os seus dados."
 
@@ -2067,7 +2101,11 @@ msgstr "Organização \"%(name)s\" apagada."
 msgid "Suggestions applied! You're ready to register your first assets."
 msgstr "Sugestões aplicadas! Você já pode cadastrar seus primeiros ativos."
 
-#: apps/organizations/web/views/organization_settings_view.py:35
+#: apps/organizations/web/views/organization_settings_view.py:40
+msgid "Only the organization owner can edit these settings."
+msgstr "Somente o proprietário da organização pode editar estas configurações."
+
+#: apps/organizations/web/views/organization_settings_view.py:50
 msgid "Organization data updated successfully."
 msgstr "Dados da organização atualizados com sucesso."
 
@@ -2332,10 +2370,8 @@ msgid "Inform the default sender address to enable the server."
 msgstr "Informe o endereço de remetente padrão para ativar o servidor."
 
 #: apps/setup/templates/setup/_installer_base.html:19
-#, fuzzy
-#| msgid "Let's get your inventory started"
 msgid "Let's get your instance running."
-msgstr "Vamos começar seu inventário"
+msgstr "Vamos colocar sua instância no ar."
 
 #: apps/setup/templates/setup/_installer_base.html:22
 msgid ""
@@ -2624,23 +2660,3 @@ msgstr ""
 "Não conseguimos enviar o e-mail de verificação agora. Tente novamente em "
 "instantes.Já fomos notificados e estamos investigando. Tente novamente em "
 "alguns minutos."
-
-#: apps/common/web/templates/common/includes/aside.html
-msgid "Items"
-msgstr "Itens"
-
-#: apps/common/web/templates/common/includes/aside.html
-msgid "Other"
-msgstr "Outros"
-
-#: apps/common/web/templates/common/includes/aside.html
-msgid "Trash"
-msgstr "Lixeira"
-
-#: apps/common/web/templates/common/includes/aside.html
-msgid "Help"
-msgstr "Ajuda"
-
-#: apps/common/web/templates/common/includes/aside.html
-msgid "Support"
-msgstr "Apoiar"
