@@ -3,6 +3,7 @@ services:
     container_name: monium
     env_file:
       - ./src/.env
+    image: ghcr.io/syspe-tech/monium:latest
     build:
       context: ./src
       dockerfile: Dockerfile

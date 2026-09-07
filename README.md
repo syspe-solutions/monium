@@ -55,8 +55,15 @@ cp src/.env.example src/.env
 # edite src/.env — no mínimo DJANGO_SECRET_KEY e DJANGO_ENCRYPTION_KEY
 # (veja os comandos de geração nos comentários do próprio arquivo)
 
-docker compose up -d --build
+docker compose pull
+docker compose up -d
 ```
+
+Isso baixa a imagem já pronta publicada em
+`ghcr.io/syspe-tech/monium` — não precisa compilar nada localmente.
+Se preferir construir a imagem a partir do código-fonte (por exemplo,
+para testar uma alteração antes de contribuir), troque as duas últimas
+linhas por `docker compose up -d --build`.
 
 Acesse `http://localhost:8088/` (porta configurável via `APP_PORT` no
 `.env`) e siga o instalador — próxima seção.
