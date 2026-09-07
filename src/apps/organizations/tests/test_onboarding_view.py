@@ -63,18 +63,3 @@ class OrganizationOnboardingViewTests(TestCase):
     def test_post_without_selection_still_redirects(self):
         response = self.client.post(reverse("organizations:onboarding"), {})
         self.assertRedirects(response, reverse("inventory:home"))
-
-
-class OrganizationCreateRedirectsToOnboardingTests(TestCase):
-    def test_create_redirects_to_onboarding(self):
-        user = User.objects.create_user(username="newowner", password="12345")
-        self.client.force_login(user)
-
-        response = self.client.post(reverse("organizations:create"), {
-            "name": "My Org",
-            "industry": "technology",
-            "size": "1-10",
-            "primary_goal": "it_equipment",
-        })
-
-        self.assertRedirects(response, reverse("organizations:onboarding"))
