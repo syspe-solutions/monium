@@ -4,6 +4,11 @@ on:
   push:
     branches: [main]
     tags: ["v*.*.*"]
+  workflow_dispatch:
+
+concurrency:
+  group: docker-publish-${{ github.ref }}
+  cancel-in-progress: false
 
 permissions:
   contents: read
@@ -11,7 +16,11 @@ permissions:
 
 jobs:
   build-and-push:
+    # Evita que forks tentem publicar no pacote deste repositório (falharia
+    # por permissão mesmo assim, mas assim nem tenta).
+    if: github.repository == 'syspe-tech/monium'
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
 

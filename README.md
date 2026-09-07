@@ -1,6 +1,8 @@
 # Monium
 
 [![License: AGPL v3](https://img.shields.io/badge/License-AGPLv3-blue.svg)](LICENSE)
+[![CI](https://github.com/syspe-tech/monium/actions/workflows/ci.yml/badge.svg)](https://github.com/syspe-tech/monium/actions/workflows/ci.yml)
+[![Docker publish](https://github.com/syspe-tech/monium/actions/workflows/docker-publish.yml/badge.svg)](https://github.com/syspe-tech/monium/actions/workflows/docker-publish.yml)
 
 Monium é um sistema open source e self-hosted de gestão de inventário e
 ativos que substitui planilhas por um sistema único para rastrear
