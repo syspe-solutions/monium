@@ -2,13 +2,13 @@ from django import forms
 from django.utils.translation import gettext_lazy as _
 
 from apps.common.forms import widget_styles
-from apps.inventory.models import Brand, Category, ItemCondition, MovelStatus, Sector
+from apps.inventory.models import Brand, Category, ItemCondition, AssetStatus, Sector
 
 _INPUT = widget_styles.INPUT
 _SELECT = widget_styles.SELECT
 
 
-class MovelFilterForm(forms.Form):
+class MovableAssetFilterForm(forms.Form):
     q = forms.CharField(
         required=False,
         label=_("Search"),
@@ -17,7 +17,7 @@ class MovelFilterForm(forms.Form):
     status = forms.ChoiceField(
         required=False,
         label=_("Status"),
-        choices=[("", _("All"))] + list(MovelStatus.choices),
+        choices=[("", _("All"))] + list(AssetStatus.choices),
         widget=forms.Select(attrs={"class": _SELECT}),
     )
     condition = forms.ChoiceField(

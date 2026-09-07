@@ -1,7 +1,7 @@
 {% extends "common/layouts/base-aside.html" %}
 {% load i18n %}
 
-{% block title %}{{ imovel.name }} — Monium{% endblock %}
+{% block title %}{{ real_estate.name }} — Monium{% endblock %}
 
 {% block content %}
 <div class="p-6 mx-auto space-y-6">
@@ -9,19 +9,19 @@
     <!-- Header -->
     <div class="flex items-center justify-between flex-wrap gap-3">
         <div class="flex items-center gap-2">
-            <a href="{% url 'inventory:imovel_list' %}" class="text-zinc-500 hover:text-zinc-700 transition">
+            <a href="{% url 'inventory:real_estate_list' %}" class="text-zinc-500 hover:text-zinc-700 transition">
                 <span class="material-symbols-outlined text-xl leading-none">arrow_back</span>
             </a>
             <div>
-                <h1 class="text-2xl font-bold text-zinc-900">{{ imovel.name }}</h1>
-                <p class="text-sm text-zinc-500 mt-0.5">{{ imovel.category.name }}</p>
+                <h1 class="text-2xl font-bold text-zinc-900">{{ real_estate.name }}</h1>
+                <p class="text-sm text-zinc-500 mt-0.5">{{ real_estate.category.name }}</p>
             </div>
         </div>
         <div class="flex items-center gap-3">
             <span class="inline-flex items-center px-2.5 py-1 rounded text-xs font-medium bg-zinc-100 text-zinc-700">
-                {{ imovel.get_cartorio_situacao_display }}
+                {{ real_estate.get_cartorio_situacao_display }}
             </span>
-            <a href="{% url 'inventory:imovel_update' imovel.id %}"
+            <a href="{% url 'inventory:real_estate_update' real_estate.id %}"
                class="flex items-center gap-2 bg-zinc-900 text-white text-sm font-medium px-4 py-2 rounded hover:bg-zinc-800 transition">
                 <span class="material-symbols-outlined text-base leading-none">edit</span>
                 {% trans "Edit" %}
@@ -29,7 +29,7 @@
         </div>
     </div>
 
-    <!-- Imovel info -->
+    <!-- RealEstateAsset info -->
     <div class="border border-zinc-200 rounded-md bg-white p-5">
         <div class="flex items-center gap-2 pb-3 mb-4 border-b border-zinc-200">
             <span class="material-symbols-outlined text-zinc-500 text-xl leading-none">home_work</span>
@@ -38,37 +38,37 @@
         <dl class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-4 text-sm">
             <div>
                 <dt class="text-xs text-zinc-500 uppercase tracking-wide">{% trans "Code" %}</dt>
-                <dd class="text-zinc-900 mt-0.5 font-mono">{{ imovel.code }}</dd>
+                <dd class="text-zinc-900 mt-0.5 font-mono">{{ real_estate.code }}</dd>
             </div>
             <div>
                 <dt class="text-xs text-zinc-500 uppercase tracking-wide">{% trans "Category" %}</dt>
-                <dd class="text-zinc-900 mt-0.5">{{ imovel.category.name }}</dd>
+                <dd class="text-zinc-900 mt-0.5">{{ real_estate.category.name }}</dd>
             </div>
             <div>
                 <dt class="text-xs text-zinc-500 uppercase tracking-wide">{% trans "Responsible" %}</dt>
-                <dd class="text-zinc-900 mt-0.5">{{ imovel.responsible|default:"—" }}</dd>
+                <dd class="text-zinc-900 mt-0.5">{{ real_estate.responsible|default:"—" }}</dd>
             </div>
             <div>
                 <dt class="text-xs text-zinc-500 uppercase tracking-wide">{% trans "Ownership" %}</dt>
-                <dd class="text-zinc-900 mt-0.5">{{ imovel.get_ownership_display }}</dd>
+                <dd class="text-zinc-900 mt-0.5">{{ real_estate.get_ownership_display }}</dd>
             </div>
             <div>
                 <dt class="text-xs text-zinc-500 uppercase tracking-wide">{% trans "Condition" %}</dt>
-                <dd class="text-zinc-900 mt-0.5">{{ imovel.get_condition_display }}</dd>
+                <dd class="text-zinc-900 mt-0.5">{{ real_estate.get_condition_display }}</dd>
             </div>
             <div>
                 <dt class="text-xs text-zinc-500 uppercase tracking-wide">{% trans "Registry status" %}</dt>
-                <dd class="text-zinc-900 mt-0.5">{{ imovel.get_cartorio_situacao_display }}</dd>
+                <dd class="text-zinc-900 mt-0.5">{{ real_estate.get_cartorio_situacao_display }}</dd>
             </div>
             <div>
                 <dt class="text-xs text-zinc-500 uppercase tracking-wide">{% trans "Registered at" %}</dt>
-                <dd class="text-zinc-900 mt-0.5">{{ imovel.created_at|date:"d/m/Y H:i" }}</dd>
+                <dd class="text-zinc-900 mt-0.5">{{ real_estate.created_at|date:"d/m/Y H:i" }}</dd>
             </div>
         </dl>
-        {% if imovel.description %}
+        {% if real_estate.description %}
         <div class="mt-4 pt-4 border-t border-zinc-200">
             <p class="text-xs text-zinc-500 uppercase tracking-wide">{% trans "Description" %}</p>
-            <p class="text-zinc-700 mt-1 text-sm leading-relaxed">{{ imovel.description }}</p>
+            <p class="text-zinc-700 mt-1 text-sm leading-relaxed">{{ real_estate.description }}</p>
         </div>
         {% endif %}
     </div>
@@ -82,35 +82,35 @@
         <dl class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-4 text-sm">
             <div class="lg:col-span-2">
                 <dt class="text-xs text-zinc-500 uppercase tracking-wide">{% trans "Address" %}</dt>
-                <dd class="text-zinc-900 mt-0.5">{{ imovel.address|default:"—" }}</dd>
+                <dd class="text-zinc-900 mt-0.5">{{ real_estate.address|default:"—" }}</dd>
             </div>
             <div>
                 <dt class="text-xs text-zinc-500 uppercase tracking-wide">{% trans "CEP" %}</dt>
-                <dd class="text-zinc-900 mt-0.5">{{ imovel.cep|default:"—" }}</dd>
+                <dd class="text-zinc-900 mt-0.5">{{ real_estate.cep|default:"—" }}</dd>
             </div>
             <div>
                 <dt class="text-xs text-zinc-500 uppercase tracking-wide">{% trans "Zone" %}</dt>
-                <dd class="text-zinc-900 mt-0.5">{{ imovel.get_zone_display|default:"—" }}</dd>
+                <dd class="text-zinc-900 mt-0.5">{{ real_estate.get_zone_display|default:"—" }}</dd>
             </div>
             <div>
                 <dt class="text-xs text-zinc-500 uppercase tracking-wide">{% trans "Coordinates" %}</dt>
                 <dd class="text-zinc-900 mt-0.5">
-                    {% if imovel.latitude and imovel.longitude %}{{ imovel.latitude }}, {{ imovel.longitude }}{% else %}—{% endif %}
+                    {% if real_estate.latitude and real_estate.longitude %}{{ real_estate.latitude }}, {{ real_estate.longitude }}{% else %}—{% endif %}
                 </dd>
             </div>
             <div>
                 <dt class="text-xs text-zinc-500 uppercase tracking-wide">{% trans "Total area" %}</dt>
-                <dd class="text-zinc-900 mt-0.5">{% if imovel.total_area %}{{ imovel.total_area }} m²{% else %}—{% endif %}</dd>
+                <dd class="text-zinc-900 mt-0.5">{% if real_estate.total_area %}{{ real_estate.total_area }} m²{% else %}—{% endif %}</dd>
             </div>
             <div>
                 <dt class="text-xs text-zinc-500 uppercase tracking-wide">{% trans "Built area" %}</dt>
-                <dd class="text-zinc-900 mt-0.5">{% if imovel.built_area %}{{ imovel.built_area }} m²{% else %}—{% endif %}</dd>
+                <dd class="text-zinc-900 mt-0.5">{% if real_estate.built_area %}{{ real_estate.built_area }} m²{% else %}—{% endif %}</dd>
             </div>
         </dl>
-        {% if imovel.notes %}
+        {% if real_estate.notes %}
         <div class="mt-4 pt-4 border-t border-zinc-200">
             <p class="text-xs text-zinc-500 uppercase tracking-wide">{% trans "Notes" %}</p>
-            <p class="text-zinc-700 mt-1 text-sm leading-relaxed">{{ imovel.notes }}</p>
+            <p class="text-zinc-700 mt-1 text-sm leading-relaxed">{{ real_estate.notes }}</p>
         </div>
         {% endif %}
     </div>

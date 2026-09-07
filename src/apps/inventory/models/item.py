@@ -16,7 +16,7 @@ class AssetOwnership(models.TextChoices):
 
 
 class Item(BaseModelAbstract):
-    """Base comum a bens móveis (Movel) e imóveis (Imovel)."""
+    """Base comum a bens móveis (MovableAsset) e imóveis (RealEstateAsset)."""
 
     organization = models.ForeignKey(
         "organizations.Organization",

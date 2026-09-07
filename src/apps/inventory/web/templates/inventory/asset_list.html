@@ -18,7 +18,7 @@
             </p>
         </div>
         <div class="flex items-center gap-2">
-            <button type="button" data-open-modal="patrimonio-choice-modal"
+            <button type="button" data-open-modal="asset-type-choice-modal"
                     class="flex items-center gap-2 bg-zinc-900 text-white text-sm font-medium px-4 py-2.5 rounded hover:bg-zinc-800 transition">
                 <span class="material-symbols-outlined text-base leading-none">add</span>
                 {% trans "Register asset" %}
@@ -54,7 +54,7 @@
             </form>
             {% endif %}
             {% endfor %}
-            <a href="{% url 'inventory:patrimonio_list' %}" class="text-xs text-zinc-500 hover:text-zinc-700 transition ml-1">
+            <a href="{% url 'inventory:asset_list' %}" class="text-xs text-zinc-500 hover:text-zinc-700 transition ml-1">
                 {% trans "Clear all" %}
             </a>
         </div>
@@ -66,8 +66,8 @@
                 {{ form.q }}
             </div>
             <div class="flex flex-col gap-1.5">
-                <label class="text-xs font-medium text-zinc-500">{{ form.tipo.label }}</label>
-                {{ form.tipo }}
+                <label class="text-xs font-medium text-zinc-500">{{ form.asset_type.label }}</label>
+                {{ form.asset_type }}
             </div>
             <div class="flex flex-col gap-1.5">
                 <label class="text-xs font-medium text-zinc-500">{{ form.condition.label }}</label>
@@ -79,7 +79,7 @@
                     <span class="material-symbols-outlined text-base leading-none">filter_alt</span>
                     {% trans "Filter" %}
                 </button>
-                <a href="{% url 'inventory:patrimonio_list' %}" class="text-sm text-zinc-500 hover:text-zinc-700 transition">
+                <a href="{% url 'inventory:asset_list' %}" class="text-sm text-zinc-500 hover:text-zinc-700 transition">
                     {% trans "Clear filters" %}
                 </a>
             </div>
@@ -90,7 +90,7 @@
         {% trans "Looking for advanced filters, status history or CSV import/export?" %}
         <a href="{% url 'inventory:item_list' %}" class="text-zinc-500 hover:text-zinc-900 hover:underline">{% trans "Manage items" %}</a>
         &middot;
-        <a href="{% url 'inventory:imovel_list' %}" class="text-zinc-500 hover:text-zinc-900 hover:underline">{% trans "Manage real estate" %}</a>
+        <a href="{% url 'inventory:real_estate_list' %}" class="text-zinc-500 hover:text-zinc-900 hover:underline">{% trans "Manage real estate" %}</a>
     </p>
 
     <!-- Assets table -->
@@ -117,11 +117,11 @@
                             </a>
                         </td>
                         <td class="px-5 py-3">
-                            <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium {{ row.tipo|tipo_badge_class }}">
-                                {{ row.tipo_label }}
+                            <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium {{ row.asset_type|asset_type_badge_class }}">
+                                {{ row.asset_type_label }}
                             </span>
                         </td>
-                        <td class="px-5 py-3 text-zinc-500 hidden sm:table-cell">{{ row.categoria_nome }}</td>
+                        <td class="px-5 py-3 text-zinc-500 hidden sm:table-cell">{{ row.category_name }}</td>
                         <td class="px-5 py-3 text-zinc-500 hidden lg:table-cell">{{ row.item.get_condition_display }}</td>
                     </tr>
                     {% endfor %}
@@ -156,5 +156,5 @@
 
 </div>
 
-{% include "inventory/includes/patrimonio_choice_modal.html" %}
+{% include "inventory/includes/asset_type_choice_modal.html" %}
 {% endblock %}

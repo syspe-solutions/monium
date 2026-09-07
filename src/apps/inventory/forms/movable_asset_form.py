@@ -1,16 +1,16 @@
 from django import forms
 
 from apps.common.forms import widget_styles
-from apps.inventory.models import Movel, MovelSpec
+from apps.inventory.models import MovableAsset, AssetSpec
 
 _INPUT = widget_styles.INPUT
 _SELECT = widget_styles.SELECT
 _TEXTAREA = widget_styles.TEXTAREA
 
 
-class MovelForm(forms.ModelForm):
+class MovableAssetForm(forms.ModelForm):
     class Meta:
-        model = Movel
+        model = MovableAsset
         fields = [
             "code", "name", "description",
             "category", "sector", "location", "responsible", "ownership",
@@ -31,7 +31,7 @@ class MovelForm(forms.ModelForm):
         }
 
 
-class MovelSpecForm(forms.ModelForm):
+class AssetSpecForm(forms.ModelForm):
     # brand is handled manually in the view (select existing or create new)
     new_brand_name = forms.CharField(
         required=False,
@@ -44,7 +44,7 @@ class MovelSpecForm(forms.ModelForm):
     )
 
     class Meta:
-        model = MovelSpec
+        model = AssetSpec
         fields = ["model_name", "serial_number", "image"]
         widgets = {
             "model_name":    forms.TextInput(attrs={"class": _INPUT, "placeholder": "Ex: Inspiron 15"}),

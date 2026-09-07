@@ -102,9 +102,9 @@
             <div class="flex flex-col gap-1">
                 <h6 class="sidebar-text text-neutral-400 p-1 text-xs">{% trans "Main" %}</h6>
                 <div class="flex flex-wrap flex-col gap-2">
-                    <a href="{% url 'inventory:patrimonio_list' %}"
+                    <a href="{% url 'inventory:asset_list' %}"
                         class="nav-item tooltip px-2 py-1 text-neutral-500 gap-1 flex items-center justify-start
-                                {% if request.resolver_match.url_name in 'patrimonio_list,item_list,item_detail,item_create,imovel_list,imovel_detail,imovel_create,dashboard' %}bg-neutral-200{% else %}hover:bg-neutral-100{% endif %}"
+                                {% if request.resolver_match.url_name in 'asset_list,item_list,item_detail,item_create,real_estate_list,real_estate_detail,real_estate_create,dashboard' %}bg-neutral-200{% else %}hover:bg-neutral-100{% endif %}"
                         data-tooltip="{% trans 'Assets' %}">
                         <span class="material-symbols-outlined text-base shrink-0">inventory_2</span>
                         <span class="sidebar-text text-sm overflow-hidden whitespace-nowrap">{% trans "Assets" %}</span>
@@ -139,9 +139,9 @@
                         <span class="sidebar-text text-sm overflow-hidden whitespace-nowrap">{% trans "Items" %}</span>
                     </a>
 
-                    <a href="{% url 'inventory:imovel_list' %}"
+                    <a href="{% url 'inventory:real_estate_list' %}"
                         class="nav-item tooltip px-2 py-1 text-neutral-500 gap-1 flex items-center justify-start
-                                {% if request.resolver_match.url_name in 'imovel_list,imovel_detail,imovel_create' %}bg-neutral-200{% else %}hover:bg-neutral-100{% endif %}"
+                                {% if request.resolver_match.url_name in 'real_estate_list,real_estate_detail,real_estate_create' %}bg-neutral-200{% else %}hover:bg-neutral-100{% endif %}"
                         data-tooltip="{% trans 'Real Estate' %}">
                         <span class="material-symbols-outlined text-base shrink-0">home_work</span>
                         <span class="sidebar-text text-sm overflow-hidden whitespace-nowrap">{% trans "Real Estate" %}</span>

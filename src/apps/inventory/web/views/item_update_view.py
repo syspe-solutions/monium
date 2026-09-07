@@ -5,19 +5,19 @@ from django.utils.translation import gettext as _
 from django.views import View
 
 from apps.inventory.forms.acquisition_form import AcquisitionForm
-from apps.inventory.forms.movel_form import MovelForm, MovelSpecForm
-from apps.inventory.models import Brand, Movel
+from apps.inventory.forms.movable_asset_form import MovableAssetForm, AssetSpecForm
+from apps.inventory.models import Brand, MovableAsset
 from apps.organizations.mixins import InventoryWriteRequiredMixin
 
 from .brand_views import resolve_brand
 
 
-class MovelUpdateView(LoginRequiredMixin, InventoryWriteRequiredMixin, View):
+class MovableAssetUpdateView(LoginRequiredMixin, InventoryWriteRequiredMixin, View):
     template_name = "inventory/item_form.html"
 
     def _get_item(self, request, pk):
         return get_object_or_404(
-            Movel.objects.select_related("category", "sector", "location", "acquisition").prefetch_related("spec__brand"),
+            MovableAsset.objects.select_related("category", "sector", "location", "acquisition").prefetch_related("spec__brand"),
             pk=pk,
             organization=request.organization,
         )
@@ -39,7 +39,7 @@ class MovelUpdateView(LoginRequiredMixin, InventoryWriteRequiredMixin, View):
         acquisition = getattr(item, "acquisition", None)
         selected_brand_id = spec.brand_id if spec and spec.brand_id else ""
         return render(request, self.template_name, self._context(
-            item, MovelForm(instance=item), MovelSpecForm(instance=spec),
+            item, MovableAssetForm(instance=item), AssetSpecForm(instance=spec),
             AcquisitionForm(instance=acquisition), selected_brand_id,
         ))
 
@@ -47,8 +47,8 @@ class MovelUpdateView(LoginRequiredMixin, InventoryWriteRequiredMixin, View):
         item = self._get_item(request, pk)
         spec = getattr(item, "spec", None)
         acquisition = getattr(item, "acquisition", None)
-        form = MovelForm(request.POST, instance=item)
-        spec_form = MovelSpecForm(request.POST, request.FILES, instance=spec)
+        form = MovableAssetForm(request.POST, instance=item)
+        spec_form = AssetSpecForm(request.POST, request.FILES, instance=spec)
         acquisition_form = AcquisitionForm(request.POST, instance=acquisition)
         brand_id = request.POST.get("brand_id", "").strip()
         new_brand_name = request.POST.get("new_brand_name", "").strip()
@@ -74,7 +74,7 @@ class MovelUpdateView(LoginRequiredMixin, InventoryWriteRequiredMixin, View):
         ])
         if has_spec:
             new_spec = spec_form.save(commit=False)
-            new_spec.movel = item
+            new_spec.asset = item
             new_spec.brand = brand_instance
             new_spec.updated_by = request.user
             if not new_spec.created_by_id:

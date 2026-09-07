@@ -7,23 +7,23 @@ from apps.inventory.models import ItemCondition
 _INPUT = widget_styles.INPUT
 _SELECT = widget_styles.SELECT
 
-TIPO_CHOICES = [
+ASSET_TYPE_CHOICES = [
     ("", _("All")),
-    ("movel", _("Item")),
-    ("imovel", _("Real Estate")),
+    ("movable_asset", _("Item")),
+    ("real_estate", _("Real Estate")),
 ]
 
 
-class PatrimonioFilterForm(forms.Form):
+class AssetFilterForm(forms.Form):
     q = forms.CharField(
         required=False,
         label=_("Search"),
         widget=forms.TextInput(attrs={"class": _INPUT, "placeholder": _("Code or name")}),
     )
-    tipo = forms.ChoiceField(
+    asset_type = forms.ChoiceField(
         required=False,
         label=_("Type"),
-        choices=TIPO_CHOICES,
+        choices=ASSET_TYPE_CHOICES,
         widget=forms.Select(attrs={"class": _SELECT}),
     )
     condition = forms.ChoiceField(

@@ -5,14 +5,14 @@ from django.utils.translation import gettext as _
 from django.views import View
 
 from apps.inventory.forms.acquisition_form import AcquisitionForm
-from apps.inventory.forms.movel_form import MovelForm, MovelSpecForm
+from apps.inventory.forms.movable_asset_form import MovableAssetForm, AssetSpecForm
 from apps.inventory.models import Brand
 from apps.organizations.mixins import InventoryWriteRequiredMixin
 
 from .brand_views import resolve_brand
 
 
-class MovelCreateView(LoginRequiredMixin, InventoryWriteRequiredMixin, View):
+class MovableAssetCreateView(LoginRequiredMixin, InventoryWriteRequiredMixin, View):
     template_name = "inventory/item_form.html"
 
     def _context(self, form, spec_form, acquisition_form, selected_brand_id="", brand_error=""):
@@ -27,11 +27,11 @@ class MovelCreateView(LoginRequiredMixin, InventoryWriteRequiredMixin, View):
 
     def get(self, request):
         return render(request, self.template_name,
-                      self._context(MovelForm(), MovelSpecForm(), AcquisitionForm()))
+                      self._context(MovableAssetForm(), AssetSpecForm(), AcquisitionForm()))
 
     def post(self, request):
-        form = MovelForm(request.POST)
-        spec_form = MovelSpecForm(request.POST, request.FILES)
+        form = MovableAssetForm(request.POST)
+        spec_form = AssetSpecForm(request.POST, request.FILES)
         acquisition_form = AcquisitionForm(request.POST)
         brand_id = request.POST.get("brand_id", "").strip()
         new_brand_name = request.POST.get("new_brand_name", "").strip()
@@ -61,7 +61,7 @@ class MovelCreateView(LoginRequiredMixin, InventoryWriteRequiredMixin, View):
         ])
         if has_spec:
             spec = spec_form.save(commit=False)
-            spec.movel = item
+            spec.asset = item
             spec.brand = brand_instance
             spec.created_by = request.user
             spec.updated_by = request.user

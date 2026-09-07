@@ -34,7 +34,7 @@ def calculate_depreciation(
     `useful_life_months` pode ser passado explicitamente por quem já tem a
     categoria do item em mãos (ex.: página de detalhe, que já fez
     select_related nela) — evita as duas queries extras que
-    `acquisition.item.movel.category` disparia pra descobrir de novo algo que
+    `acquisition.item.movable_asset.category` disparia pra descobrir de novo algo que
     o chamador já sabe."""
 
     if acquisition.value is None or acquisition.purchase_date is None:
@@ -79,10 +79,10 @@ def calculate_depreciation(
 
 
 def _resolve_useful_life_months(item) -> Optional[int]:
-    movel = getattr(item, "movel", None)
-    if movel is None:
+    movable_asset = getattr(item, "movable_asset", None)
+    if movable_asset is None:
         return None
-    return movel.category.useful_life_months
+    return movable_asset.category.useful_life_months
 
 
 def _months_between(start: date, end: date) -> int:

@@ -7,12 +7,12 @@ from apps.inventory.management.commands.populate_demo_data import (
 from apps.inventory.models import (
     Brand,
     Category,
-    ImovelCategory,
+    RealEstateCategory,
     Loan,
     Location,
     Maintenance,
     Movement,
-    MovelSpec,
+    AssetSpec,
     Sector,
 )
 from apps.organizations.models import Organization
@@ -37,8 +37,8 @@ class Command(BaseCommand):
 
         # Remove os arquivos de imagem do disco/storage antes do cascade apagar as
         # linhas do banco — o Django não faz isso sozinho ao deletar via CASCADE.
-        specs_with_image = MovelSpec.objects.filter(
-            movel__organization=organization, image__isnull=False,
+        specs_with_image = AssetSpec.objects.filter(
+            asset__organization=organization, image__isnull=False,
         ).exclude(image="")
         removed_images = 0
         for spec in specs_with_image:
@@ -65,11 +65,11 @@ class Command(BaseCommand):
         removed_categories, _ = Category.objects.filter(slug__startswith="demo-").delete()
         removed_sectors, _ = Sector.objects.filter(slug__startswith="demo-").delete()
         removed_brands, _ = Brand.objects.filter(slug__startswith="demo-").delete()
-        removed_imovel_categories, _ = ImovelCategory.objects.filter(slug__startswith="demo-").delete()
+        removed_real_estate_categories, _ = RealEstateCategory.objects.filter(slug__startswith="demo-").delete()
         self.stdout.write(f"Removida(s) {removed_locations} localização(ões) de demonstração.")
 
         self.stdout.write(self.style.SUCCESS(
             "Dados de referência de demonstração removidos: "
             f"{removed_categories} categoria(s), {removed_sectors} setor(es), "
-            f"{removed_brands} marca(s), {removed_imovel_categories} categoria(s) de imóvel."
+            f"{removed_brands} marca(s), {removed_real_estate_categories} categoria(s) de imóvel."
         ))

@@ -3,7 +3,7 @@ from decimal import Decimal
 
 from django.test import TestCase
 
-from apps.inventory.models import Acquisition, Category, Movel, Sector
+from apps.inventory.models import Acquisition, Category, MovableAsset, Sector
 from apps.inventory.services.portfolio_value_summary import get_portfolio_current_value
 from apps.organizations.models import (
     Organization,
@@ -26,13 +26,13 @@ class PortfolioCurrentValueTests(TestCase):
         )
 
     def test_sums_current_book_value_across_items(self):
-        item1 = Movel.objects.create(
+        item1 = MovableAsset.objects.create(
             organization=self.organization, code="PAT-0001", name="Notebook",
             category=self.category, sector=self.sector,
         )
         Acquisition.objects.create(item=item1, value=Decimal("6000.00"), purchase_date=date.today())
 
-        item2 = Movel.objects.create(
+        item2 = MovableAsset.objects.create(
             organization=self.organization, code="PAT-0002", name="Cadeira",
             category=self.category, sector=self.sector,
         )
@@ -42,7 +42,7 @@ class PortfolioCurrentValueTests(TestCase):
         self.assertEqual(total, Decimal("6500.00"))
 
     def test_ignores_items_without_acquisition_value(self):
-        item = Movel.objects.create(
+        item = MovableAsset.objects.create(
             organization=self.organization, code="PAT-0003", name="Mesa",
             category=self.category, sector=self.sector,
         )

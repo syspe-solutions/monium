@@ -3,7 +3,7 @@ from django.db import models
 from apps.common.models import BaseModelAbstract
 
 
-class ImovelCategory(BaseModelAbstract):
+class RealEstateCategory(BaseModelAbstract):
     name = models.CharField(max_length=150, verbose_name="Nome")
     slug = models.SlugField(max_length=150, unique=True, verbose_name="Slug")
     parent = models.ForeignKey(

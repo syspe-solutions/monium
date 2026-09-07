@@ -5,7 +5,7 @@ from django.test import TestCase
 from django.utils import timezone
 
 from apps.inventory.forms.acquisition_form import AcquisitionForm
-from apps.inventory.models import Acquisition, Category, Movel, Sector
+from apps.inventory.models import Acquisition, Category, MovableAsset, Sector
 from apps.organizations.models import (
     Organization,
     OrganizationGoal,
@@ -23,7 +23,7 @@ class AcquisitionFormWarrantyTests(TestCase):
             industry=OrganizationIndustry.values[0], size=OrganizationSize.values[0],
             primary_goal=OrganizationGoal.values[0],
         )
-        self.item = Movel.objects.create(
+        self.item = MovableAsset.objects.create(
             organization=self.organization, code="PAT-0001", name="Notebook",
             category=self.category, sector=self.sector,
         )

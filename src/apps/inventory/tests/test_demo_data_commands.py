@@ -5,7 +5,7 @@ from django.contrib.auth import get_user_model
 from django.core.management import call_command
 from django.test import TestCase, override_settings
 
-from apps.inventory.models import Acquisition, Brand, Category, ImovelCategory, Movel, MovelSpec, Sector
+from apps.inventory.models import Acquisition, Brand, Category, RealEstateCategory, MovableAsset, AssetSpec, Sector
 from apps.organizations.models import Membership, Organization
 
 User = get_user_model()
@@ -21,11 +21,11 @@ class DemoDataCommandsTest(TestCase):
         organization = Organization.objects.get(slug="organizacao-demo")
         self.assertTrue(Membership.objects.filter(user=user, organization=organization).exists())
 
-        items = Movel.objects.filter(organization=organization)
+        items = MovableAsset.objects.filter(organization=organization)
         self.assertGreater(items.count(), 0)
 
         for item in items:
-            spec = MovelSpec.objects.get(movel=item)
+            spec = AssetSpec.objects.get(asset=item)
             self.assertTrue(spec.image)
             acquisition = Acquisition.objects.get(item=item)
             self.assertIsNotNone(acquisition.value)
@@ -33,10 +33,10 @@ class DemoDataCommandsTest(TestCase):
     def test_populate_is_idempotent(self):
         User.objects.create_user(username="demo_owner2", email="demo2@example.com", password="x")
         call_command("populate_demo_data", stdout=StringIO())
-        first_count = Movel.objects.count()
+        first_count = MovableAsset.objects.count()
 
         call_command("populate_demo_data", stdout=StringIO())
-        second_count = Movel.objects.count()
+        second_count = MovableAsset.objects.count()
 
         self.assertEqual(first_count, second_count)
 
@@ -50,8 +50,8 @@ class DemoDataCommandsTest(TestCase):
         self.assertFalse(Category.objects.filter(slug__startswith="demo-").exists())
         self.assertFalse(Sector.objects.filter(slug__startswith="demo-").exists())
         self.assertFalse(Brand.objects.filter(slug__startswith="demo-").exists())
-        self.assertFalse(ImovelCategory.objects.filter(slug__startswith="demo-").exists())
-        self.assertFalse(Movel.objects.filter(code__startswith="DEMO-").exists())
+        self.assertFalse(RealEstateCategory.objects.filter(slug__startswith="demo-").exists())
+        self.assertFalse(MovableAsset.objects.filter(code__startswith="DEMO-").exists())
 
     def test_clear_does_not_touch_other_organizations(self):
         real_org = Organization.objects.create(name="Empresa Real", slug="empresa-real")

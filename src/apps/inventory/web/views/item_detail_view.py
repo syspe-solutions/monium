@@ -3,13 +3,13 @@ from django.shortcuts import get_object_or_404
 from django.utils import timezone
 from django.views.generic import TemplateView
 
-from apps.inventory.models import Movel
+from apps.inventory.models import MovableAsset
 from apps.inventory.services.depreciation_service import calculate_depreciation
 
 WARRANTY_EXPIRING_SOON_DAYS = 30
 
 
-class MovelDetailView(LoginRequiredMixin, TemplateView):
+class MovableAssetDetailView(LoginRequiredMixin, TemplateView):
     template_name = "inventory/item_detail.html"
 
     def get_context_data(self, **kwargs):
@@ -17,7 +17,7 @@ class MovelDetailView(LoginRequiredMixin, TemplateView):
         organization = self.request.organization
 
         item = get_object_or_404(
-            Movel.objects.select_related("category", "sector", "location", "acquisition").prefetch_related("spec__brand"),
+            MovableAsset.objects.select_related("category", "sector", "location", "acquisition").prefetch_related("spec__brand"),
             pk=kwargs["pk"],
             organization=organization,
         )

@@ -5,14 +5,14 @@ from django.http import HttpResponse
 from django.utils import timezone
 from django.views import View
 
-from apps.inventory.forms.movel_filter_form import MovelFilterForm
-from apps.inventory.services.movel_filters import filter_items
+from apps.inventory.forms.movable_asset_filter_form import MovableAssetFilterForm
+from apps.inventory.services.movable_asset_filters import filter_items
 
 
-class MovelExportView(LoginRequiredMixin, View):
+class MovableAssetExportView(LoginRequiredMixin, View):
     def get(self, request):
         organization = request.organization
-        form = MovelFilterForm(request.GET or None)
+        form = MovableAssetFilterForm(request.GET or None)
         filters = form.cleaned_data if form.is_valid() else {}
         items = filter_items(organization, filters)
 

@@ -5,7 +5,7 @@ from django.core import mail
 from django.test import TestCase
 from django.utils import timezone
 
-from apps.inventory.models import Category, Loan, LoanStatus, Movel, Sector
+from apps.inventory.models import Category, Loan, LoanStatus, MovableAsset, Sector
 from apps.inventory.tasks import check_overdue_loans
 from apps.organizations.models import (
     Membership,
@@ -46,7 +46,7 @@ class CheckOverdueLoansTaskTests(TestCase):
             username="loanuser", email="loanuser@example.com", password="12345",
         )
         Membership.objects.create(organization=self.organization, user=self.user, role=MembershipRole.OWNER)
-        self.item = Movel.objects.create(
+        self.item = MovableAsset.objects.create(
             organization=self.organization, code="PAT-0001", name="Notebook",
             category=self.category, sector=self.sector,
         )

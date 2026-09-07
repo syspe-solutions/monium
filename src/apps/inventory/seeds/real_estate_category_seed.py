@@ -1,8 +1,8 @@
 from apps.common.seeds.base_seed import BaseSeed
-from apps.inventory.models import ImovelCategory
+from apps.inventory.models import RealEstateCategory
 
 
-class ImovelCategorySeed(BaseSeed):
+class RealEstateCategorySeed(BaseSeed):
     DATA = [
         {"name": "Casa",                       "slug": "casa"},
         {"name": "Apartamento",                "slug": "apartamento"},
@@ -15,7 +15,7 @@ class ImovelCategorySeed(BaseSeed):
 
     def run(self) -> str:
         return self.populate_if_needed(
-            model=ImovelCategory,
+            model=RealEstateCategory,
             data=self.DATA,
             unique_field="slug",
         )
