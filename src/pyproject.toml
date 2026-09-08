@@ -115,7 +115,7 @@ dependencies = [
     "uvicorn>=0.31.1",
     "watchfiles>=0.24.0",
     "wcwidth>=0.2.13",
-    "websockets>=13.1",
+    "websockets>=16.1.1",
     "whitenoise>=6.9.0",
     "xmltodict>=0.14.2",
 ]
