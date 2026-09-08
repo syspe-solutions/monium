@@ -6,7 +6,7 @@ FROM ghcr.io/astral-sh/uv:latest AS uv_bin
 # ===============
 # Step 2: Frontend Build
 # ===============
-FROM node:20-alpine AS frontend_builder
+FROM node:26-alpine AS frontend_builder
 
 WORKDIR /build
 
