@@ -21,7 +21,7 @@ RUN npm run build
 # ===============
 # Step 3: Builder
 # ===============
-FROM python:3.11-slim AS builder
+FROM python:3.14-slim AS builder
 
 # Configurações do UV para performance
 ENV UV_COMPILE_BYTECODE=1 \
@@ -55,7 +55,7 @@ RUN --mount=type=cache,target=/root/.cache/uv \
 # ===============
 # Step 3: Runtime
 # ===============
-FROM python:3.11-slim AS runtime
+FROM python:3.14-slim AS runtime
 
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
