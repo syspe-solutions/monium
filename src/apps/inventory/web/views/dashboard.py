@@ -2,7 +2,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Count, Q
 from django.views.generic import TemplateView
 
-from apps.inventory.models import Category, AssetStatus
+from apps.inventory.models import AssetStatus, Category
 from apps.inventory.services.asset_status_summary import get_asset_status_summary
 
 

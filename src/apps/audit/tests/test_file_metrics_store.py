@@ -6,7 +6,6 @@ from datetime import timedelta
 from django.test import SimpleTestCase, override_settings
 from django.utils import timezone
 
-from apps.audit.file_metrics import FileMetricsStore
 from apps.audit.services import LogReaderService
 
 

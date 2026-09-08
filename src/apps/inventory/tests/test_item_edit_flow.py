@@ -1,5 +1,4 @@
 from datetime import date
-
 from decimal import Decimal
 
 from django.contrib.auth import get_user_model
@@ -7,7 +6,16 @@ from django.test import TestCase
 from django.urls import reverse
 from django.utils import timezone
 
-from apps.inventory.models import Acquisition, Category, RealEstateAsset, RealEstateCategory, Loan, LoanStatus, MovableAsset, Sector
+from apps.inventory.models import (
+    Acquisition,
+    Category,
+    Loan,
+    LoanStatus,
+    MovableAsset,
+    RealEstateAsset,
+    RealEstateCategory,
+    Sector,
+)
 from apps.organizations.models import (
     Membership,
     MembershipRole,

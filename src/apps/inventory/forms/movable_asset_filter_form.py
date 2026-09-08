@@ -2,7 +2,7 @@ from django import forms
 from django.utils.translation import gettext_lazy as _
 
 from apps.common.forms import widget_styles
-from apps.inventory.models import Brand, Category, ItemCondition, AssetStatus, Sector
+from apps.inventory.models import AssetStatus, Brand, Category, ItemCondition, Sector
 
 _INPUT = widget_styles.INPUT
 _SELECT = widget_styles.SELECT

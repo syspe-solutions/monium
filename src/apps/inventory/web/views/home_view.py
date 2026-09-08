@@ -6,15 +6,15 @@ from django.utils import timezone
 from django.views.generic import TemplateView
 
 from apps.inventory.models import (
+    AssetStatus,
     Category,
-    RealEstateAsset,
     ItemCondition,
     Loan,
     LoanStatus,
     Maintenance,
     MaintenanceStatus,
     MovableAsset,
-    AssetStatus,
+    RealEstateAsset,
     Sector,
 )
 from apps.inventory.services.asset_status_summary import get_asset_status_summary

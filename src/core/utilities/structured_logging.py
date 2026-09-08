@@ -1,15 +1,15 @@
+import functools
 import json
 import logging
 import re
 import time
-import functools
-from datetime import datetime, timezone
-from typing import Any, Dict, Set, Final
+from datetime import datetime
+from typing import Any, Dict, Final, Set
 
 from asgiref.sync import async_to_sync
 from channels.layers import get_channel_layer
-from core.utilities.logging_context import get_request_context
 
+from core.utilities.logging_context import get_request_context
 
 DEFAULT_SENSITIVE_KEYS: Final[Set[str]] = {
     "password", "token", "secret", "key", "api_key", "card_number", 

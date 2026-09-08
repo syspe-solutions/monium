@@ -5,7 +5,14 @@ from django.contrib.auth import get_user_model
 from django.test import TestCase
 from django.urls import reverse
 
-from apps.inventory.models import Acquisition, Category, RealEstateAsset, RealEstateCategory, MovableAsset, Sector
+from apps.inventory.models import (
+    Acquisition,
+    Category,
+    MovableAsset,
+    RealEstateAsset,
+    RealEstateCategory,
+    Sector,
+)
 from apps.organizations.models import (
     Membership,
     MembershipRole,
@@ -43,7 +50,7 @@ class HomeAndLayoutSmokeTests(TestCase):
         )
         Acquisition.objects.create(item=movable_asset, value=Decimal("4500.00"), purchase_date=date.today())
 
-        movable_asset_no_value = MovableAsset.objects.create(
+        MovableAsset.objects.create(
             organization=self.organization,
             code="PAT-0002",
             name="Cadeira",

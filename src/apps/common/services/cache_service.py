@@ -1,10 +1,9 @@
 import logging
-
 from typing import Any, Optional
+
 from django.core.cache import cache
+
 from apps.common.interfaces import CacheNamespace
-
-
 
 logger = logging.getLogger(__name__)
 

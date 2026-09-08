@@ -1,7 +1,7 @@
 from django import forms
 
 from apps.common.forms import widget_styles
-from apps.inventory.models import MovableAsset, AssetSpec
+from apps.inventory.models import AssetSpec, MovableAsset
 
 _INPUT = widget_styles.INPUT
 _SELECT = widget_styles.SELECT

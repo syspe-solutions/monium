@@ -1,7 +1,7 @@
 import os
-from django.http import HttpResponse
-
 from datetime import datetime
+
+from django.http import HttpResponse
 from django.views import View
 
 from apps.audit.services import LogReaderService

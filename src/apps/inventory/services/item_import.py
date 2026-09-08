@@ -4,7 +4,16 @@ from dataclasses import dataclass, field
 
 from django.utils.translation import gettext as _
 
-from apps.inventory.models import Brand, Category, Item, ItemCondition, MovableAsset, AssetSpec, AssetStatus, Sector
+from apps.inventory.models import (
+    AssetSpec,
+    AssetStatus,
+    Brand,
+    Category,
+    Item,
+    ItemCondition,
+    MovableAsset,
+    Sector,
+)
 
 IMPORT_COLUMNS = [
     "Código", "Nome", "Categoria", "Setor", "Localização",

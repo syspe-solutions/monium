@@ -1,5 +1,6 @@
 import logging
 from typing import Any, Dict, Optional
+
 from apps.audit.dtos import PerformanceAction
 from apps.audit.loggers.base_logger import BaseLogger
 

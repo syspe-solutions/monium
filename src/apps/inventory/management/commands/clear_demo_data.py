@@ -5,14 +5,14 @@ from apps.inventory.management.commands.populate_demo_data import (
     DEMO_ORG_SLUG,
 )
 from apps.inventory.models import (
+    AssetSpec,
     Brand,
     Category,
-    RealEstateCategory,
     Loan,
     Location,
     Maintenance,
     Movement,
-    AssetSpec,
+    RealEstateCategory,
     Sector,
 )
 from apps.organizations.models import Organization

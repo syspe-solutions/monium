@@ -1,6 +1,7 @@
 from django.core.management.base import BaseCommand
-from apps.audit.services import LogReaderService
+
 from apps.audit.file_metrics import FileMetricsStore
+from apps.audit.services import LogReaderService
 
 
 class Command(BaseCommand):

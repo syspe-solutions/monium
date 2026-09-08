@@ -1,5 +1,5 @@
 from unittest import mock
-from unittest.mock import patch, MagicMock
+from unittest.mock import MagicMock, patch
 
 from django.http import HttpResponse
 from django.test import SimpleTestCase

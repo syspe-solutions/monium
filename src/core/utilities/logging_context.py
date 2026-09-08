@@ -1,6 +1,6 @@
 import uuid
 from contextvars import ContextVar
-from typing import Optional, Dict, Any
+from typing import Any, Dict, Optional
 
 # Context variables for request-level metadata
 _request_context: ContextVar[Dict[str, Any]] = ContextVar("request_context", default={})

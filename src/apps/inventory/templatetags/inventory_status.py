@@ -2,7 +2,7 @@ from decimal import Decimal, InvalidOperation
 
 from django import template
 
-from apps.inventory.models import LoanStatus, AssetStatus
+from apps.inventory.models import AssetStatus, LoanStatus
 
 register = template.Library()
 

@@ -2,7 +2,7 @@ from time import perf_counter
 
 from python_ipware import IpWare
 
-from apps.audit.dtos import ErrorType, SecurityAction, SecurityStatus
+from apps.audit.dtos import ErrorType
 from apps.audit.loggers.access_logger import AccessLogger
 from apps.audit.loggers.error_logger import ErrorLogger
 from apps.audit.loggers.security_logger import SecurityLogger

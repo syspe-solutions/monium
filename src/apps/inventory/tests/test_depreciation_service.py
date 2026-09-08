@@ -3,7 +3,14 @@ from decimal import Decimal
 
 from django.test import TestCase
 
-from apps.inventory.models import Acquisition, Category, RealEstateAsset, RealEstateCategory, MovableAsset, Sector
+from apps.inventory.models import (
+    Acquisition,
+    Category,
+    MovableAsset,
+    RealEstateAsset,
+    RealEstateCategory,
+    Sector,
+)
 from apps.inventory.services.depreciation_service import calculate_depreciation
 from apps.organizations.models import (
     Organization,

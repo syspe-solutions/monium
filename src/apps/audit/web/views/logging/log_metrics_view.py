@@ -1,5 +1,6 @@
-from django.views import View
 from django.http import JsonResponse
+from django.views import View
+
 from apps.audit.services import LogReaderService
 from apps.security.mixins import PermissionRequiredMixin
 

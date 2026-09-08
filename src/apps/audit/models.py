@@ -1,5 +1,7 @@
 from django.db import models
+
 from apps.common.models import BaseModelAbstract
+
 
 class Audit(BaseModelAbstract):
     date = models.DateTimeField(auto_now_add=True)

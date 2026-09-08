@@ -5,7 +5,7 @@ from django.utils.translation import gettext as _
 from django.views import View
 
 from apps.inventory.forms.acquisition_form import AcquisitionForm
-from apps.inventory.forms.movable_asset_form import MovableAssetForm, AssetSpecForm
+from apps.inventory.forms.movable_asset_form import AssetSpecForm, MovableAssetForm
 from apps.inventory.models import Brand, MovableAsset
 from apps.organizations.mixins import InventoryWriteRequiredMixin
 

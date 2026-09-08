@@ -5,7 +5,15 @@ from django.contrib.auth import get_user_model
 from django.core.management import call_command
 from django.test import TestCase, override_settings
 
-from apps.inventory.models import Acquisition, Brand, Category, RealEstateCategory, MovableAsset, AssetSpec, Sector
+from apps.inventory.models import (
+    Acquisition,
+    AssetSpec,
+    Brand,
+    Category,
+    MovableAsset,
+    RealEstateCategory,
+    Sector,
+)
 from apps.organizations.models import Membership, Organization
 
 User = get_user_model()

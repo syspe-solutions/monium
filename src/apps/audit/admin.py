@@ -1,6 +1,9 @@
 from django.contrib import admin
+
 from apps.common.admin import BaseModelAdminAbstract
+
 from .models import Audit
+
 
 @admin.register(Audit)
 class AuditorAdmin(BaseModelAdminAbstract):

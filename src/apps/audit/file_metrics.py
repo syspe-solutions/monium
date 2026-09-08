@@ -3,7 +3,6 @@ from __future__ import annotations
 import json
 import os
 import tempfile
-from dataclasses import dataclass
 from datetime import datetime, timedelta, timezone
 from threading import RLock
 from typing import Any, Dict

@@ -6,8 +6,8 @@ from django.db.models.functions import Coalesce, TruncMonth
 from django.utils import timezone
 
 from apps.inventory.models import Acquisition, Item
-from apps.inventory.services.depreciation_service import calculate_depreciation
 from apps.inventory.services.asset_filters import to_rows
+from apps.inventory.services.depreciation_service import calculate_depreciation
 
 
 def get_portfolio_total_value(organization) -> Decimal:

@@ -1,8 +1,7 @@
+from django.http import JsonResponse
 from django.views import View
 
-from django.http import JsonResponse
 from apps.security.mixins import PermissionRequiredMixin
-
 
 
 class AuditDataView(PermissionRequiredMixin, View):

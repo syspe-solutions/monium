@@ -1,7 +1,6 @@
 import logging
-from django.forms.models import model_to_dict
 
-from core.utilities.logging_context import get_request_context
+from django.forms.models import model_to_dict
 
 logger = logging.getLogger("business")
 
@@ -61,7 +60,8 @@ class AuditManager:
         
         if action == 'UPDATE':
             changes = get_diff(before, after)
-            if not changes: return
+            if not changes:
+                return
         else:
             changes = get_diff(None, after)
         
@@ -77,7 +77,6 @@ class AuditManager:
 
     @staticmethod
     def _log_event(action, sender, instance, before, after, changes):
-        context = get_request_context()
         model_name = sender.__name__
         object_id = str(instance.pk)
 
@@ -95,7 +94,7 @@ class AuditManager:
         # A auditoria é persistida exclusivamente em arquivo via logger "business".
 
 def register_audit_signals(model):
-    from django.db.models.signals import pre_save, post_save, pre_delete
+    from django.db.models.signals import post_save, pre_delete, pre_save
     pre_save.connect(AuditManager.handle_pre_save, sender=model)
     post_save.connect(AuditManager.handle_post_save, sender=model)
     pre_delete.connect(AuditManager.handle_pre_delete, sender=model)

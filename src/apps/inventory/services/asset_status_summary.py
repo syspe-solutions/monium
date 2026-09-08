@@ -1,4 +1,4 @@
-from apps.inventory.models import MovableAsset, AssetStatus
+from apps.inventory.models import AssetStatus, MovableAsset
 
 
 def get_asset_status_summary(organization) -> dict:

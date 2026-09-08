@@ -1,5 +1,6 @@
 import logging
 from typing import Any
+
 from apps.audit.dtos import SecurityAction, SecurityStatus
 from apps.audit.loggers.base_logger import BaseLogger
 

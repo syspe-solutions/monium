@@ -2,7 +2,6 @@ import logging
 from typing import Any, Dict
 
 
-
 class BaseLogger:
     def __init__(self, logger_name: str):
         self.logger = logging.getLogger(logger_name)

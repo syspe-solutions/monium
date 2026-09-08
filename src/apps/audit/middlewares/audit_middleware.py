@@ -4,7 +4,7 @@ from typing import Callable
 from django.http import HttpRequest, HttpResponse
 from python_ipware import IpWare
 
-from core.utilities.logging_context import set_request_context, clear_request_context
+from core.utilities.logging_context import clear_request_context, set_request_context
 
 ipw = IpWare(precedence=("X_FORWARDED_FOR", "HTTP_X_FORWARDED_FOR"))
 
