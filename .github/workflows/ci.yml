@@ -17,9 +17,9 @@ permissions:
 env:
   DJANGO_DEBUG: "FALSE"
   DJANGO_SECRET_KEY: "ci-dummy-secret-key-not-for-production-use-only"
-  # Chave Fernet válida (32 bytes url-safe base64) só para os testes rodarem;
-  # não é usada para proteger dado real nenhum neste pipeline.
-  DJANGO_ENCRYPTION_KEY: "Zm9vYmFyYmF6cXV4Zm9vYmFyYmF6cXV4Zm9vYmFyYmF6PQ=="
+  # Chave Fernet válida (32 bytes, gerada com Fernet.generate_key()) só para
+  # os testes rodarem; não protege dado real nenhum neste pipeline.
+  DJANGO_ENCRYPTION_KEY: "-72ZNySB_krJueWo3ZTtm9qgftFEBAUuNVAbLuhV-bg="
   DB_ENGINE: "sqlite3"
 
 jobs:
