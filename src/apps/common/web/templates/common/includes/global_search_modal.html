@@ -3,15 +3,15 @@
 <div id="global-search-modal"
      class="fixed inset-0 z-50 hidden items-start justify-center bg-black/70 backdrop-blur-sm p-4 pt-[12vh]">
 
-    <div class="bg-white border border-zinc-200 rounded-md max-w-lg w-full flex flex-col overflow-hidden">
+    <div class="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-700 rounded-md max-w-lg w-full flex flex-col overflow-hidden">
 
-        <div class="flex items-center gap-2 px-4 border-b border-zinc-200">
+        <div class="flex items-center gap-2 px-4 border-b border-zinc-200 dark:border-zinc-700">
             <span class="material-symbols-outlined text-zinc-400 text-xl leading-none shrink-0">search</span>
             <input type="text" id="global-search-input" autocomplete="off"
                    placeholder="{% trans 'Search items, real estate…' %}"
-                   class="flex-1 py-3.5 text-sm outline-none border-0 focus:ring-0 placeholder:text-zinc-400">
+                   class="flex-1 py-3.5 text-sm outline-none border-0 focus:ring-0 bg-transparent text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-400">
             <button type="button" data-close-modal
-                    class="shrink-0 text-xs text-zinc-400 border border-zinc-200 rounded px-1.5 py-0.5 leading-none">Esc</button>
+                    class="shrink-0 text-xs text-zinc-400 border border-zinc-200 dark:border-zinc-700 rounded px-1.5 py-0.5 leading-none">Esc</button>
         </div>
 
         <div id="global-search-results" class="max-h-96 overflow-y-auto">
@@ -53,11 +53,11 @@ document.addEventListener('DOMContentLoaded', function () {
         resultsBox.innerHTML = results.map(function (result) {
             return (
                 '<a href="' + escapeHtml(result.url) + '" ' +
-                'class="flex items-center gap-3 px-4 py-3 hover:bg-zinc-50 transition border-b border-zinc-100 last:border-b-0">' +
+                'class="flex items-center gap-3 px-4 py-3 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition border-b border-zinc-100 dark:border-zinc-800 last:border-b-0">' +
                 '<span class="material-symbols-outlined text-zinc-400 text-lg leading-none shrink-0">' +
                 (ICON_BY_ASSET_TYPE[result.asset_type] || 'inventory_2') + '</span>' +
                 '<span class="flex-1 min-w-0">' +
-                '<span class="block text-sm text-zinc-900 truncate">' + escapeHtml(result.name) + '</span>' +
+                '<span class="block text-sm text-zinc-900 dark:text-zinc-100 truncate">' + escapeHtml(result.name) + '</span>' +
                 '<span class="block text-xs text-zinc-500 truncate">' + escapeHtml(result.code) + ' &middot; ' + escapeHtml(result.category) + '</span>' +
                 '</span>' +
                 '<span class="shrink-0 text-xs text-zinc-400">' + escapeHtml(result.asset_type_label) + '</span>' +

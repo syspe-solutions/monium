@@ -1,5 +1,18 @@
 {% load static i18n %}
 
+<script>
+    // Aplica o tema antes do CSS carregar, pra não piscar claro->escuro no
+    // primeiro paint. localStorage tem prioridade; sem preferência salva,
+    // usa prefers-color-scheme só como padrão inicial da primeira visita.
+    (function() {
+        const saved = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (saved === 'dark' || (!saved && prefersDark)) {
+            document.documentElement.classList.add('dark');
+        }
+    })();
+</script>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 

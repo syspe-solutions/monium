@@ -1,5 +1,11 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  // Alternância de tema manual via classe "dark" na <html> — script de
+  // detecção/toggle em common/includes/builtin.html (aplica antes do CSS
+  // carregar, evita flash) e common/includes/aside.html (botão). Usa
+  // prefers-color-scheme só como padrão inicial na primeira visita, depois
+  // a escolha do usuário (localStorage) sempre tem prioridade.
+  darkMode: "class",
   content: [
     "./apps/**/templates/**/*.html",
     "./apps/**/static/**/*.js",
