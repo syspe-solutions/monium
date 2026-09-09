@@ -74,61 +74,29 @@
     <div class="hidden">{{ form.avatar }}</div>
 
     <!-- Form fields -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-8">
+    <div class="max-w-md flex flex-col gap-5">
+      <div class="flex items-center gap-2 text-zinc-900 pb-2 border-b border-zinc-200">
+        <span class="material-symbols-outlined text-zinc-500 text-xl leading-none">person</span>
+        <h2 class="text-sm font-semibold">{% trans "Basic Information" %}</h2>
+      </div>
 
-      <!-- Basic info -->
-      <div class="flex flex-col gap-5">
-        <div class="flex items-center gap-2 text-zinc-900 pb-2 border-b border-zinc-200">
-          <span class="material-symbols-outlined text-zinc-500 text-xl leading-none">person</span>
-          <h2 class="text-sm font-semibold">{% trans "Basic Information" %}</h2>
-        </div>
-
-        <div class="grid grid-cols-2 gap-4">
-          <div class="flex flex-col gap-1.5">
-            <label class="text-xs font-medium text-zinc-500">{% trans "First Name" %}</label>
-            {{ form.first_name }}
-            {% if form.first_name.errors %}<p class="text-red-600 text-xs mt-1">{{ form.first_name.errors }}</p>{% endif %}
-          </div>
-          <div class="flex flex-col gap-1.5">
-            <label class="text-xs font-medium text-zinc-500">{% trans "Last Name" %}</label>
-            {{ form.last_name }}
-            {% if form.last_name.errors %}<p class="text-red-600 text-xs mt-1">{{ form.last_name.errors }}</p>{% endif %}
-          </div>
-        </div>
-
+      <div class="grid grid-cols-2 gap-4">
         <div class="flex flex-col gap-1.5">
-          <label class="text-xs font-medium text-zinc-500">{% trans "Date of Birth" %}</label>
-          {{ form.birth_date }}
-          {% if form.birth_date.errors %}<p class="text-red-600 text-xs mt-1">{{ form.birth_date.errors }}</p>{% endif %}
+          <label class="text-xs font-medium text-zinc-500">{% trans "First Name" %}</label>
+          {{ form.first_name }}
+          {% if form.first_name.errors %}<p class="text-red-600 text-xs mt-1">{{ form.first_name.errors }}</p>{% endif %}
+        </div>
+        <div class="flex flex-col gap-1.5">
+          <label class="text-xs font-medium text-zinc-500">{% trans "Last Name" %}</label>
+          {{ form.last_name }}
+          {% if form.last_name.errors %}<p class="text-red-600 text-xs mt-1">{{ form.last_name.errors }}</p>{% endif %}
         </div>
       </div>
 
-      <!-- About -->
-      <div class="flex flex-col gap-5">
-        <div class="flex items-center gap-2 text-zinc-900 pb-2 border-b border-zinc-200">
-          <span class="material-symbols-outlined text-zinc-500 text-xl leading-none">description</span>
-          <h2 class="text-sm font-semibold">{% trans "About You" %}</h2>
-        </div>
-
-        <div class="flex flex-col gap-1.5">
-          <label class="text-xs font-medium text-zinc-500">{% trans "Bio" %}</label>
-          {{ form.bio }}
-          {% if form.bio.errors %}<p class="text-red-600 text-xs mt-1">{{ form.bio.errors }}</p>{% endif %}
-        </div>
-      </div>
-
-      <!-- Website + Location -->
-      <div class="md:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-4">
-        <div class="flex flex-col gap-1.5">
-          <label class="text-xs font-medium text-zinc-500">{% trans "Website / Link" %}</label>
-          {{ form.website }}
-          {% if form.website.errors %}<p class="text-red-600 text-xs mt-1">{{ form.website.errors }}</p>{% endif %}
-        </div>
-        <div class="flex flex-col gap-1.5">
-          <label class="text-xs font-medium text-zinc-500">{% trans "Location" %}</label>
-          {{ form.location }}
-          {% if form.location.errors %}<p class="text-red-600 text-xs mt-1">{{ form.location.errors }}</p>{% endif %}
-        </div>
+      <div class="flex flex-col gap-1.5">
+        <label class="text-xs font-medium text-zinc-500">{% trans "Date of Birth" %}</label>
+        {{ form.birth_date }}
+        {% if form.birth_date.errors %}<p class="text-red-600 text-xs mt-1">{{ form.birth_date.errors }}</p>{% endif %}
       </div>
     </div>
 

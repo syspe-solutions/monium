@@ -6,7 +6,6 @@ from apps.account.services.image_validator_service import ImageValidator
 from apps.common.forms import widget_styles
 
 _INPUT = widget_styles.INPUT
-_TEXTAREA = widget_styles.TEXTAREA
 
 
 class ProfileForm(forms.ModelForm):
@@ -23,11 +22,8 @@ class ProfileForm(forms.ModelForm):
 
     class Meta:
         model = UserProfile
-        fields = ["bio", "website", "location", "birth_date", "avatar"]
+        fields = ["birth_date", "avatar"]
         widgets = {
-            "bio": forms.Textarea(attrs={"class": _TEXTAREA, "rows": 3}),
-            "website": forms.URLInput(attrs={"class": _INPUT}),
-            "location": forms.TextInput(attrs={"class": _INPUT}),
             "birth_date": forms.DateInput(
                 format="%Y-%m-%d",
                 attrs={"class": _INPUT, "type": "date"}
