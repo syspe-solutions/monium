@@ -10,7 +10,7 @@
     {% block extrahead %}{% endblock %}
 </head>
 
-<body class="bg-white h-screen flex font-sans overflow-hidden">
+<body class="bg-white dark:bg-zinc-950 h-screen flex font-sans overflow-hidden">
 
     {% block sidebar %}
         {% include "common/includes/aside.html" %}
@@ -18,13 +18,13 @@
 
     <div class="flex flex-col flex-1 h-screen overflow-y-auto">
 
-        <header class="flex lg:!hidden items-center gap-3 h-14 px-4 bg-white text-white sticky top-0 z-[60] shrink-0 border-b border-zinc-200 w-full">
+        <header class="flex lg:!hidden items-center gap-3 h-14 px-4 bg-white dark:bg-zinc-900 sticky top-0 z-[60] shrink-0 border-b border-zinc-200 dark:border-zinc-800 w-full">
             <button id="mobile-hamburger"
                     aria-label="{% trans 'Open menu' %}"
-                    class="flex items-center justify-center w-9 h-9 rounded hover:bg-zinc-100 transition">
-                <span class="material-symbols-outlined text-zinc-950">menu</span>
+                    class="flex items-center justify-center w-9 h-9 rounded hover:bg-zinc-100 dark:hover:bg-zinc-800 transition">
+                <span class="material-symbols-outlined text-zinc-950 dark:text-zinc-100">menu</span>
             </button>
-            <span class="text-xl font-bold">Monium</span>
+            <span class="text-xl font-bold text-zinc-950 dark:text-zinc-100">Monium</span>
         </header>
 
         {% block header %}{% endblock %}

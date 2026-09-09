@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Monium 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-07 11:04-0300\n"
+"POT-Creation-Date: 2026-09-08 21:26-0300\n"
 "PO-Revision-Date: 2026-06-30 00:00-0300\n"
 "Last-Translator: Jonathas Cardoso\n"
 "Language-Team: Portuguese (Brazil)\n"
@@ -279,7 +279,7 @@ msgid "Already have an account?"
 msgstr "Já possui uma conta?"
 
 #: apps/account/templates/account/includes/change_password_modal.html:10
-#: apps/account/templates/account/profile/profile.html:163
+#: apps/account/templates/account/profile/profile.html:131
 msgid "Change Password"
 msgstr "Alterar Senha"
 
@@ -314,7 +314,7 @@ msgid "Update"
 msgstr "Atualizar"
 
 #: apps/account/templates/account/includes/deactivate_account_modal.html:10
-#: apps/account/templates/account/profile/profile.html:178
+#: apps/account/templates/account/profile/profile.html:146
 msgid "Delete my account"
 msgstr "Apagar minha conta"
 
@@ -325,7 +325,7 @@ msgid "Your account will be deactivated and permanently deleted after 30 days."
 msgstr "Sua conta será desativada e excluída permanentemente após 30 dias."
 
 #: apps/account/templates/account/includes/deactivate_account_modal.html:19
-#: apps/account/templates/account/profile/profile.html:173
+#: apps/account/templates/account/profile/profile.html:141
 msgid "Account deletion is permanent and cannot be undone."
 msgstr "A exclusão da conta é permanente e não pode ser desfeita."
 
@@ -353,67 +353,47 @@ msgstr "Avatar"
 msgid "Pending changes"
 msgstr "Alterações pendentes"
 
-#: apps/account/templates/account/profile/profile.html:83
+#: apps/account/templates/account/profile/profile.html:80
 msgid "Basic Information"
 msgstr "Informações Básicas"
 
-#: apps/account/templates/account/profile/profile.html:88
+#: apps/account/templates/account/profile/profile.html:85
 msgid "First Name"
 msgstr "Primeiro Nome"
 
-#: apps/account/templates/account/profile/profile.html:93
+#: apps/account/templates/account/profile/profile.html:90
 msgid "Last Name"
 msgstr "Sobrenome"
 
-#: apps/account/templates/account/profile/profile.html:100
+#: apps/account/templates/account/profile/profile.html:97
 msgid "Date of Birth"
 msgstr "Data de Nascimento"
 
-#: apps/account/templates/account/profile/profile.html:110
-msgid "About You"
-msgstr "Sobre Você"
-
-#: apps/account/templates/account/profile/profile.html:114
-msgid "Bio"
-msgstr "Bio"
-
-#: apps/account/templates/account/profile/profile.html:123
-msgid "Website / Link"
-msgstr "Website / Link"
-
-#: apps/account/templates/account/profile/profile.html:128
-#: apps/inventory/web/templates/inventory/item_detail.html:62
-#: apps/inventory/web/templates/inventory/item_form.html:82
-#: apps/inventory/web/templates/inventory/real_estate_detail.html:80
-#: apps/inventory/web/templates/inventory/real_estate_form.html:90
-msgid "Location"
-msgstr "Localização"
-
-#: apps/account/templates/account/profile/profile.html:139
+#: apps/account/templates/account/profile/profile.html:107
 #: apps/organizations/templates/organizations/settings.html:116
 #: apps/setup/templates/setup/admin.html:17
 msgid "Back"
 msgstr "Voltar"
 
-#: apps/account/templates/account/profile/profile.html:144
+#: apps/account/templates/account/profile/profile.html:112
 #: apps/inventory/web/templates/inventory/item_form.html:328
 #: apps/inventory/web/templates/inventory/real_estate_form.html:235
 msgid "Save Changes"
 msgstr "Salvar Alterações"
 
-#: apps/account/templates/account/profile/profile.html:155
+#: apps/account/templates/account/profile/profile.html:123
 msgid "Security"
 msgstr "Segurança"
 
-#: apps/account/templates/account/profile/profile.html:158
+#: apps/account/templates/account/profile/profile.html:126
 msgid "Keep your account protected by changing your password periodically."
 msgstr "Mantenha sua conta protegida alterando sua senha periodicamente."
 
-#: apps/account/templates/account/profile/profile.html:170
+#: apps/account/templates/account/profile/profile.html:138
 msgid "Danger Zone"
 msgstr "Zona de Perigo"
 
-#: apps/account/templates/account/profile/profile.html:206
+#: apps/account/templates/account/profile/profile.html:174
 #: apps/inventory/web/templates/inventory/item_form.html:264
 #: apps/inventory/web/templates/inventory/item_form.html:279
 #: apps/inventory/web/templates/inventory/real_estate_form.html:190
@@ -422,7 +402,7 @@ msgstr "Zona de Perigo"
 msgid "Preview"
 msgstr "Pré-visualização"
 
-#: apps/account/templates/account/profile/profile.html:230
+#: apps/account/templates/account/profile/profile.html:198
 #: apps/account/templates/account/settings/settings.html:283
 #: apps/inventory/web/templates/inventory/item_form.html:481
 #: apps/inventory/web/templates/inventory/real_estate_form.html:287
@@ -497,8 +477,8 @@ msgstr ""
 "do sistema primeiro, já que os códigos são entregues por e-mail."
 
 #: apps/account/templates/account/settings/settings.html:127
-#: apps/common/web/templates/common/includes/aside.html:207
-#: apps/common/web/templates/common/includes/aside.html:209
+#: apps/common/web/templates/common/includes/aside.html:214
+#: apps/common/web/templates/common/includes/aside.html:216
 msgid "Help & Support"
 msgstr "Ajuda e Suporte"
 
@@ -728,14 +708,22 @@ msgstr "Organização"
 msgid "Other"
 msgstr "Outros"
 
+#: apps/common/web/templates/common/includes/aside.html:207
+msgid "Toggle theme"
+msgstr "Alternar tema"
+
+#: apps/common/web/templates/common/includes/aside.html:209
+msgid "Theme"
+msgstr "Tema"
+
 # ── Profile
 # ───────────────────────────────────────────────────────────────────
-#: apps/common/web/templates/common/includes/aside.html:220
+#: apps/common/web/templates/common/includes/aside.html:227
 msgid "My profile"
 msgstr "Meu perfil"
 
-#: apps/common/web/templates/common/includes/builtin.html:10
-#: apps/common/web/templates/common/includes/builtin.html:16
+#: apps/common/web/templates/common/includes/builtin.html:23
+#: apps/common/web/templates/common/includes/builtin.html:29
 msgid "Manage your assets for free and securely."
 msgstr "Gerencie seu patrimônio de forma gratuita e segura."
 
@@ -909,48 +897,48 @@ msgstr "Zona"
 msgid "Registry status"
 msgstr "Situação no cartório"
 
-#: apps/inventory/services/item_import.py:42
+#: apps/inventory/services/item_import.py:51
 msgid "The file is not a valid UTF-8 text file."
 msgstr "O arquivo não é um arquivo de texto UTF-8 válido."
 
-#: apps/inventory/services/item_import.py:49
+#: apps/inventory/services/item_import.py:58
 #, python-format
 msgid "Missing required columns: %(columns)s"
 msgstr "Colunas obrigatórias ausentes: %(columns)s"
 
-#: apps/inventory/services/item_import.py:67
+#: apps/inventory/services/item_import.py:76
 #, python-format
 msgid "Row %(row)s: code and name are required."
 msgstr "Linha %(row)s: código e nome são obrigatórios."
 
-#: apps/inventory/services/item_import.py:72
+#: apps/inventory/services/item_import.py:81
 #, python-format
 msgid "Row %(row)s: an item with code \"%(code)s\" already exists."
 msgstr "Linha %(row)s: já existe um item com o código \"%(code)s\"."
 
-#: apps/inventory/services/item_import.py:80
+#: apps/inventory/services/item_import.py:89
 #, python-format
 msgid "Row %(row)s: category \"%(name)s\" not found."
 msgstr "Linha %(row)s: categoria \"%(name)s\" não encontrada."
 
-#: apps/inventory/services/item_import.py:88
+#: apps/inventory/services/item_import.py:97
 #, python-format
 msgid "Row %(row)s: sector \"%(name)s\" not found."
 msgstr "Linha %(row)s: setor \"%(name)s\" não encontrado."
 
-#: apps/inventory/services/item_import.py:98
+#: apps/inventory/services/item_import.py:107
 #, python-format
 msgid "Row %(row)s: location \"%(name)s\" not found in sector \"%(sector)s\"."
 msgstr ""
 "Linha %(row)s: localização \"%(name)s\" não encontrada no setor "
 "\"%(sector)s\"."
 
-#: apps/inventory/services/item_import.py:106
+#: apps/inventory/services/item_import.py:115
 #, python-format
 msgid "Row %(row)s: unknown status \"%(value)s\"."
 msgstr "Linha %(row)s: status \"%(value)s\" desconhecido."
 
-#: apps/inventory/services/item_import.py:116
+#: apps/inventory/services/item_import.py:125
 #, python-format
 msgid "Row %(row)s: unknown condition \"%(value)s\"."
 msgstr "Linha %(row)s: condição \"%(value)s\" desconhecida."
@@ -1299,6 +1287,13 @@ msgstr "Excluir"
 #: apps/inventory/web/templates/inventory/item_detail.html:46
 msgid "Item Information"
 msgstr "Informações do Item"
+
+#: apps/inventory/web/templates/inventory/item_detail.html:62
+#: apps/inventory/web/templates/inventory/item_form.html:82
+#: apps/inventory/web/templates/inventory/real_estate_detail.html:80
+#: apps/inventory/web/templates/inventory/real_estate_form.html:90
+msgid "Location"
+msgstr "Localização"
 
 #: apps/inventory/web/templates/inventory/item_detail.html:66
 #: apps/inventory/web/templates/inventory/item_form.html:105
@@ -1728,8 +1723,12 @@ msgid ""
 msgid_plural ""
 "%(count)s properties have no coordinates and aren't shown on the map. Edit "
 "them and fill in latitude/longitude to place them."
-msgstr[0] "%(count)s imóvel não tem coordenadas e não aparece no mapa. Edite-o e preencha latitude/longitude para posicioná-lo."
-msgstr[1] "%(count)s imóveis não têm coordenadas e não aparecem no mapa. Edite-os e preencha latitude/longitude para posicioná-los."
+msgstr[0] ""
+"%(count)s imóvel não tem coordenadas e não aparece no mapa. Edite-o e "
+"preencha latitude/longitude para posicioná-lo."
+msgstr[1] ""
+"%(count)s imóveis não têm coordenadas e não aparecem no mapa. Edite-os e "
+"preencha latitude/longitude para posicioná-los."
 
 #: apps/inventory/web/templates/inventory/real_estate_map.html:46
 msgid "No property has coordinates set yet."
